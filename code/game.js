@@ -2,7 +2,7 @@ scene('game', () => {
   const mark = add([
     sprite('mark'),
     pos(SCALE*3, SCALE*3),
-    scale(SCALE/640 * 2), // SCALE divided by sprite width, multiplied by the size change
+    scale(SCALE/640 * 2),
     rotate(0),
     anchor('center'),
   ]); 
@@ -10,7 +10,7 @@ scene('game', () => {
   const player = add([
     sprite('player'),
     pos(0,0),
-    scale(SCALE/64 * 0.5),
+    scale(SCALE/640 * 0.5),
     anchor('center')
   ]);
 
