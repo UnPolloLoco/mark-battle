@@ -16,10 +16,8 @@ debug.inspect = false;
 function ls(a,b,c) {
   if (b == undefined) {
     loadSprite(a, `${a}.png`); 
-  } else if (c == undefined) {
-    loadSprite(a, `${b}.png`);
   } else {
-    loadSprite(a, `${b}.png`, c);
+    loadSprite(a, `${a}.png`, b);
   };
 };
 
@@ -28,4 +26,4 @@ const SCALE = width()/10;
 loadRoot('sprites/');
 
 ls('mark');
-ls('player', 'mark');
+loadSprite('player', 'mark.png');
