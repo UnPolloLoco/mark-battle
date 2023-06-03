@@ -37,7 +37,7 @@ scene('game', () => {
       ],
     },
   };
-	const level = addLevel(level, levelConf);
+  const levelObject = addLevel(level, levelConf);
   
   
   onUpdate(() => {
