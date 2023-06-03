@@ -13,11 +13,13 @@ kaboom({
 
 debug.inspect = false;
 
-function ls(a,b) {
+function ls(a,b,c) {
   if (b == undefined) {
     loadSprite(a, `${a}.png`); 
+  } else if (c == undefined) {
+    loadSprite(a, `${b}.png`);
   } else {
-    loadSprite(a, `${a}.png`, b);
+    loadSprite(a, `${b}.png`, c);
   };
 };
 
@@ -26,4 +28,4 @@ const SCALE = width()/10;
 loadRoot('sprites/');
 
 ls('mark');
-ls('player');
+ls('player', 'mark');
