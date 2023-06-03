@@ -29,7 +29,7 @@ scene('game', () => {
     tileWidth: SCALE/2,
     tileHeight: SCALE/2,
     tiles: {
-      "=": () => [
+      "#": () => [
         sprite('mark'),
         area(),
         body({ isStatic: true }),
