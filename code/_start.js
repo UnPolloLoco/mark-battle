@@ -21,8 +21,9 @@ function ls(a,b) {
   };
 };
 
-const SCALE = width()/16;
+const SCALE = width()/10;
 
 loadRoot('sprites/');
 
 ls('mark');
+ls('player');
