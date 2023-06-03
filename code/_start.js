@@ -25,4 +25,4 @@ const SCALE = width()/16;
 
 loadRoot('sprites/');
 
-ls('apple');
+ls('mark');
