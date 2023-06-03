@@ -14,6 +14,32 @@ scene('game', () => {
     anchor('center')
   ]);
 
+  const level = [
+    '                    ',
+    '                    ',
+    '                    ',
+    '                    ',
+    '                    ',
+    '                    ',
+    '                    ',
+    '                    ',
+    '####################',
+  ];
+  const levelConf = {
+    tileWidth: SCALE/2,
+    tileHeight: SCALE/2,
+    tiles: {
+      "=": () => [
+        sprite('mark'),
+        area(),
+        body({ isStatic: true }),
+        anchor('bot'),
+      ],
+    },
+  };
+	const level = addLevel(level, levelConf);
+  
+  
   onUpdate(() => {
     mark.angle += dt()*150;
     player.pos = mousePos();
