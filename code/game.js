@@ -1,7 +1,7 @@
 scene('game', () => {
   const mark = add([
     sprite('mark'),
-    pos(SCALE*3, SCALE*3),
+    pos(SCALE*5, SCALE*2),
     scale(SCALE/640 * 2),
     rotate(0),
     anchor('center'),
@@ -10,7 +10,7 @@ scene('game', () => {
   const player = add([
     sprite('player'),
     pos(SCALE, SCALE),
-    scale(SCALE/640 * 0.5),
+    scale(SCALE/640 / 3),
     anchor('center'),
     area(),
     body(),
@@ -49,14 +49,14 @@ scene('game', () => {
   const levelConf = {
     tileWidth: SCALE/3,
     tileHeight: SCALE/3,
-    pos: vec2(0, SCALE*13/3),
+    pos: vec2(0, SCALE * 13/3),
     tiles: {
       "#": () => [
         sprite('mark'),
         area(),
         body({ isStatic: true }),
         anchor('topleft'),
-        scale(SCALE/640 / 2),
+        scale(SCALE/640 / 3),
       ],
     },
   };
@@ -97,7 +97,7 @@ scene('game', () => {
   });
   
   onUpdate(() => {
-    mark.angle += dt()*150;
+    mark.angle += dt()*360;
     
     if (!(isKeyDown('a') || isKeyDown('d'))) {
       player.xVel -= player.xVel * dt() * (
