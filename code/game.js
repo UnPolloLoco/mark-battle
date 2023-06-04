@@ -29,8 +29,8 @@ scene('game', () => {
         sprite('mark'),
         area(),
         body({ isStatic: true }),
-        anchor('bot'),
-        scale(SCALE/640),
+        anchor('topleft'),
+        scale(SCALE/640 / 2),
       ],
     },
   };
