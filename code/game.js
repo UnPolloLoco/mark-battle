@@ -18,7 +18,17 @@ scene('game', () => {
       xVel: 0,
     }
   ]);
-  
+	
+  for (let i = 0; i < 2; i++) {
+    add([
+      rect(SCALE, SCALE*10),
+      pos(-SCALE + 11*i*SCALE, -SCALE*3),
+      color(BLACK),
+      area(),
+      body({ isStatic: true }),
+    ]);
+  };
+
   const JUMP_SPEED = SCALE * 9;
   const RUN_SPEED = SCALE * 5;
   const ACCELERATION = 6;
