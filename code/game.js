@@ -75,14 +75,18 @@ scene('game', () => {
 	onKeyDown("a", () => {
     player.xVel = Math.max(
       -RUN_SPEED,
-      player.xVel - RUN_SPEED * dt() * GROUND_FRICTION,
+      player.xVel - RUN_SPEED * dt() * (
+        player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+      )
     );
 	});
 
 	onKeyDown("d", () => {
     player.xVel = Math.min(
       RUN_SPEED,
-      player.xVel + RUN_SPEED * dt() * GROUND_FRICTION,
+      player.xVel + RUN_SPEED * dt() * (
+        player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+      )
     );
 	});
   
