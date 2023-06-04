@@ -64,8 +64,8 @@ scene('game', () => {
   const levelObject = addLevel(level, levelConf);
   
   add([
-    rect(SCALE*6, SCALE/6),
-    pos(SCALE*5, SCALE * 3/4),
+    rect(SCALE*6, SCALE/10),
+    pos(SCALE*5, SCALE * 1/2),
     anchor('center'),
     color(RED),
   ]);
@@ -74,8 +74,9 @@ scene('game', () => {
     text('MARK', {
       size: SCALE/2,  
       textAlign: 'center',
+      font: 'noto',
     }),
-    pos(SCALE*5, SCALE * 3/4),
+    pos(SCALE*5, SCALE * 1/2),
     anchor('center'),
   ]);
 	
