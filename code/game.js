@@ -14,10 +14,13 @@ scene('game', () => {
     anchor('center'),
     area(),
     body(),
+    {
+      xVel: 0,
+    }
   ]);
   
-  const JUMP_SPEED = SCALE * 10;
-  const RUN_SPEED = SCALE * 4;
+  const JUMP_SPEED = SCALE * 8;
+  const RUN_SPEED = SCALE * 5;
   
   setGravity(SCALE * 23);
 
@@ -45,22 +48,27 @@ scene('game', () => {
   
   const levelObject = addLevel(level, levelConf);
   
-  onKeyPress("space", () => {
+  onKeyPress("w", () => {
     if (player.isGrounded()) {
 			player.jump(JUMP_SPEED);
 		};
   });
 
-	onKeyDown("left", () => {
+	onKeyDown("a", () => {
+    player.xVel -= RUN_SPEED * dt() * 2;
 		player.move(-RUN_SPEED, 0)
 	})
 
-	onKeyDown("right", () => {
+	onKeyDown("d", () => {
 		player.move(RUN_SPEED, 0)
 	})
   
   onUpdate(() => {
     mark.angle += dt()*150;
+    
+    if (!(isKeyDown('a') || isKeyDown('d'))) {
+      
+    };
   });
 });
 
