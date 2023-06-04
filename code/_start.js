@@ -23,6 +23,8 @@ function ls(a,b,c) {
 
 const SCALE = width()/10;
 
+loadFont('noto', 'fonts/NotoSerifDisplay.ttf')
+
 loadRoot('sprites/');
 
 ls('mark');
