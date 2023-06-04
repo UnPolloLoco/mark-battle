@@ -34,7 +34,7 @@ scene('game', () => {
   const JUMP_SPEED = SCALE * 9;
   const RUN_SPEED = SCALE * 5;
   const GROUND_FRICTION = 8;
-  const AIR_FRICTION = 4;
+  const AIR_FRICTION = 1;
   
   setGravity(SCALE * 24);
 
