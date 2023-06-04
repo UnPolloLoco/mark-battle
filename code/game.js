@@ -16,7 +16,6 @@ scene('game', () => {
     body(),
     {
       xVel: 0,
-	    yVel: 0,
     }
   ]);
   
@@ -24,7 +23,8 @@ scene('game', () => {
   const RUN_SPEED = SCALE * 5;
   const ACCELERATION = 6;
   const DECCELERATION = 6;
-  const GRAVITY = 20;
+  
+  setGravity(SCALE * 24);
 
   const level = [
     '   ####      ####   ',
@@ -56,7 +56,7 @@ scene('game', () => {
   
   onKeyPress("w", () => {
     if (player.isGrounded()) {
-			player.yVel = JUMP_SPEED;
+			player.jump(JUMP_SPEED);
 		};
   });
 
@@ -80,15 +80,7 @@ scene('game', () => {
     if (!(isKeyDown('a') || isKeyDown('d'))) {
       player.xVel -= player.xVel * dt() * DECCELERATION;
     };
-    player.move(player.xVel, -player.yVel);
-    
-    if (player.isGrounded()) {
-      player.yVel = 0;
-    } else {
-      player.yVel -= SCALE * dt() * GRAVITY;  
-    };
-	  
-    debug.log(`${player.xVel/SCALE}  ,  ${player.yVel/SCALE}  ,  ${player.isGrounded()}`);
+    player.move(player.xVel, 0);
   });
 });
 
