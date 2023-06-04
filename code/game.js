@@ -19,8 +19,10 @@ scene('game', () => {
     }
   ]);
   
-  const JUMP_SPEED = SCALE * 8;
+  const JUMP_SPEED = SCALE * 9;
   const RUN_SPEED = SCALE * 5;
+  const ACCELERATION = 4;
+  const DECCELERATION = 1;
   
   setGravity(SCALE * 23);
 
@@ -55,20 +57,26 @@ scene('game', () => {
   });
 
 	onKeyDown("a", () => {
-    player.xVel -= RUN_SPEED * dt() * 2;
-		player.move(-RUN_SPEED, 0)
-	})
+    player.xVel = Math.max(
+      -RUN_SPEED,
+      player.xVel - RUN_SPEED * dt() * ACCELERATION,
+    );
+	});
 
 	onKeyDown("d", () => {
-		player.move(RUN_SPEED, 0)
-	})
+    player.xVel = Math.min(
+      RUN_SPEED,
+      player.xVel + RUN_SPEED * dt() * ACCELERATION,
+    );
+	});
   
   onUpdate(() => {
     mark.angle += dt()*150;
     
     if (!(isKeyDown('a') || isKeyDown('d'))) {
-      
+      player.xVel -= player.xVel * dt() * DECCELERATION;
     };
+    player.move(player.xVel);
   });
 });
 
