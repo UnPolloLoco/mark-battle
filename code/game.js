@@ -66,7 +66,7 @@ scene('game', () => {
   add([
     rect(SCALE*6, SCALE/6),
     pos(SCALE*5, SCALE * 3/4),
-    origin('center'),
+    anchor('center'),
     color(RED),
   ]);
   
@@ -76,7 +76,7 @@ scene('game', () => {
       textAlign: 'center',
     }),
     pos(SCALE*5, SCALE * 3/4),
-    origin('center'),
+    anchor('center'),
   ]);
 	
   onKeyPress('0', () => {
