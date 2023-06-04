@@ -11,15 +11,22 @@ scene('game', () => {
     sprite('player'),
     pos(0,0),
     scale(SCALE/640 * 0.5),
-    anchor('center')
+    anchor('center'),
+    body(),
   ]);
+  
+  const JUMP_SPEED = SCALE * 10;
+  const RUN_SPEED = SCALE * 4;
+  
+  setGravity(SCALE * 23);
 
   const level = [
-    '   ####     ####    ',
+    '   ####      ####   ',
     '                    ',
     '                    ',
     '####################',
   ];
+  
   const levelConf = {
     tileWidth: SCALE/2,
     tileHeight: SCALE/2,
@@ -34,12 +41,25 @@ scene('game', () => {
       ],
     },
   };
+  
   const levelObject = addLevel(level, levelConf);
   
+  onKeyPress("space", () => {
+    if (player.isGrounded()) {
+			player.jump(JUMP_SPEED);
+		};
+  });
+
+	onKeyDown("left", () => {
+		player.move(-RUN_SPEED, 0)
+	})
+
+	onKeyDown("right", () => {
+		player.move(RUN_SPEED, 0)
+	})
   
   onUpdate(() => {
     mark.angle += dt()*150;
-    player.pos = mousePos();
   });
 });
 
