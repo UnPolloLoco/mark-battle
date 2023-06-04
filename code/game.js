@@ -34,7 +34,7 @@ scene('game', () => {
   const JUMP_SPEED = SCALE * 9;
   const RUN_SPEED = SCALE * 5;
   const GROUND_FRICTION = 8;
-  const AIR_FRICTION = 1;
+  const AIR_FRICTION = 2;
   
   setGravity(SCALE * 24);
 
@@ -62,6 +62,22 @@ scene('game', () => {
   };
   
   const levelObject = addLevel(level, levelConf);
+  
+  add([
+    rect(SCALE*6, SCALE/6),
+    pos(SCALE*5, SCALE * 3/4),
+    origin('center'),
+    color(RED),
+  ]);
+  
+  add([
+    text('MARK', {
+      size: SCALE/2,  
+      textAlign: 'center',
+    }),
+    pos(SCALE*5, SCALE * 3/4),
+    origin('center'),
+  ]);
 	
   onKeyPress('0', () => {
     debug.inspect = !debug.inspect; 
