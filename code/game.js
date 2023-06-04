@@ -80,15 +80,13 @@ scene('game', () => {
     if (!(isKeyDown('a') || isKeyDown('d'))) {
       player.xVel -= player.xVel * dt() * DECCELERATION;
     };
-    player.move(player.xVel, 0);
+    player.move(player.xVel, -player.yVel);
     
     if (player.isGrounded()) {
       player.yVel = 0;
     } else {
       player.yVel -= SCALE * dt() * GRAVITY;  
     };
-	  
-    debug.log(player.isGrounded());
   });
 });
 
