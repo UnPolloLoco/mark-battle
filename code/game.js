@@ -15,12 +15,7 @@ scene('game', () => {
   ]);
 
   const level = [
-    '                    ',
-    '                    ',
-    '                    ',
-    '                    ',
-    '                    ',
-    '                    ',
+    '   ####     ####    ',
     '                    ',
     '                    ',
     '####################',
@@ -28,12 +23,14 @@ scene('game', () => {
   const levelConf = {
     tileWidth: SCALE/2,
     tileHeight: SCALE/2,
+    pos: vec2(0, SCALE*4),
     tiles: {
       "#": () => [
         sprite('mark'),
         area(),
         body({ isStatic: true }),
         anchor('bot'),
+        scale(SCALE/640),
       ],
     },
   };
