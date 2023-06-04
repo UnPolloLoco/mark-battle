@@ -8,7 +8,7 @@ kaboom({
   height: kaboomDimensions.h,
   inspectColor: [255,255,255],
   pixelDensity: 1,
-  crisp: false,
+  crisp: true,
 });
 
 debug.inspect = false;
