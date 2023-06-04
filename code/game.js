@@ -39,16 +39,17 @@ scene('game', () => {
   setGravity(SCALE * 24);
 
   const level = [
-    '   ####      ####   ',
-    '                    ',
-    '                    ',
-    '####################',
+    '     ######        ######     ',
+    '                              ',
+    '                              ',
+    '                              ',
+    '##############################',
   ];
   
   const levelConf = {
-    tileWidth: SCALE/2,
-    tileHeight: SCALE/2,
-    pos: vec2(0, SCALE*4),
+    tileWidth: SCALE/3,
+    tileHeight: SCALE/3,
+    pos: vec2(0, SCALE*13/3),
     tiles: {
       "#": () => [
         sprite('mark'),
