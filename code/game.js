@@ -14,6 +14,7 @@ scene('game', () => {
     anchor('center'),
     area(),
     body(),
+    "player",
     {
       xVel: 0,
     }
@@ -26,6 +27,7 @@ scene('game', () => {
       color(BLACK),
       area(),
       body({ isStatic: true }),
+	    "border",
     ]);
   };
 
@@ -83,6 +85,11 @@ scene('game', () => {
       player.xVel + RUN_SPEED * dt() * ACCELERATION,
     );
 	});
+  
+  onCollide('player', 'border', (p,b) => {
+    p.xVel *= -0.8;
+    player.move(p.xVel/10, 0);
+  });
   
   onUpdate(() => {
     mark.angle += dt()*150;
