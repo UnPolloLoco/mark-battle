@@ -31,8 +31,8 @@ scene('game', () => {
 
   const JUMP_SPEED = SCALE * 9;
   const RUN_SPEED = SCALE * 5;
-  const ACCELERATION = 6;
-  const DECCELERATION = 6;
+  const ACCELERATION = 8;
+  const DECCELERATION = 8;
   
   setGravity(SCALE * 24);
 
