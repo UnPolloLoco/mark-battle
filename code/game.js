@@ -33,8 +33,8 @@ scene('game', () => {
 
   const JUMP_SPEED = SCALE * 9;
   const RUN_SPEED = SCALE * 5;
-  const ACCELERATION = 8;
-  const DECCELERATION = 8;
+  const GROUND_FRICTION = 8;
+  const AIR_FRICTION = 4;
   
   setGravity(SCALE * 24);
 
@@ -75,14 +75,14 @@ scene('game', () => {
 	onKeyDown("a", () => {
     player.xVel = Math.max(
       -RUN_SPEED,
-      player.xVel - RUN_SPEED * dt() * ACCELERATION,
+      player.xVel - RUN_SPEED * dt() * GROUND_FRICTION,
     );
 	});
 
 	onKeyDown("d", () => {
     player.xVel = Math.min(
       RUN_SPEED,
-      player.xVel + RUN_SPEED * dt() * ACCELERATION,
+      player.xVel + RUN_SPEED * dt() * GROUND_FRICTION,
     );
 	});
   
@@ -95,7 +95,9 @@ scene('game', () => {
     mark.angle += dt()*150;
     
     if (!(isKeyDown('a') || isKeyDown('d'))) {
-      player.xVel -= player.xVel * dt() * DECCELERATION;
+      player.xVel -= player.xVel * dt() * (
+        player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+      );
     };
     player.move(player.xVel, 0);
   });
