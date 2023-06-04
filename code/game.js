@@ -9,9 +9,10 @@ scene('game', () => {
   
   const player = add([
     sprite('player'),
-    pos(0,0),
+    pos(SCALE, SCALE),
     scale(SCALE/640 * 0.5),
     anchor('center'),
+    area(),
     body(),
   ]);
   
