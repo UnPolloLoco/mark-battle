@@ -87,6 +87,8 @@ scene('game', () => {
     } else {
       player.yVel -= SCALE * dt() * GRAVITY;  
     };
+	  
+    debug.log(player.isGrounded());
   });
 });
 
