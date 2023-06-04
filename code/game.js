@@ -88,7 +88,7 @@ scene('game', () => {
       player.yVel -= SCALE * dt() * GRAVITY;  
     };
 	  
-    debug.log(`${player.xVel}  -  ${player.yVel}`);
+    debug.log(`${player.xVel/SCALE}  ,  ${player.yVel/SCLAE}  ,  ${player.isGrounded()}`);
   });
 });
 
