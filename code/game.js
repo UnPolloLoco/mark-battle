@@ -66,7 +66,7 @@ scene('game', () => {
     debug.inspect = !debug.inspect; 
   });
   
-  onKeyPress("w", () => {
+  onKeyDown("w", () => {
     if (player.isGrounded()) {
 			player.jump(JUMP_SPEED);
 		};
