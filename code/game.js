@@ -69,7 +69,7 @@ scene('game', () => {
       pos(SCALE*5, SCALE/2),
       anchor('center'),
       color(BLACK),
-      opacity(0.15),
+      opacity(0.18),
     ]);
   };
   
@@ -102,7 +102,7 @@ scene('game', () => {
       );
       textPos = textPos.scale(SCALE/40);
       textColor = BLACK;
-      textOpacity = 0.08;
+      textOpacity = 0.1;
     };
     for (let j = 1; j <= 3; j++) {
       add([
