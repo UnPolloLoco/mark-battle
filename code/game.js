@@ -42,7 +42,7 @@ scene('game', () => {
   setGravity(SCALE * 24);
 
   const level = [
-    '     <====>        <====>     ',
+    '     ######        ######     ',
     '                              ',
     '                              ',
     '                              ',
