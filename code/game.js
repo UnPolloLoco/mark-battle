@@ -85,8 +85,7 @@ scene('game', () => {
   
   const healthBar = add([
     rect(SCALE*6, SCALE/10),
-    pos(SCALE*5, SCALE * 1/2),
-    anchor('center'),
+    pos(SCALE*2, SCALE * 9/20),
     color(RED),
   ]);
   
