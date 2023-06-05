@@ -33,4 +33,21 @@ loadRoot('sprites/');
 
 ls('mark');
 loadSprite('player', 'mark.png');
-loadSprite('block', 'mark.png');
+la('blocks', {
+  bottomBlock: {
+    x: 0, y: 0,
+    width: 500, height: 500,
+  },
+  middleBlock: {
+    x: 500, y: 0,
+    width: 500, height: 500,
+  },
+  leftBlock: {
+    x: 1000, y: 0,
+    width: 500, height: 500,
+  },
+  rightBlock: {
+    x: 1500, y: 0,
+    width: 500, height: 500,
+  }
+});
