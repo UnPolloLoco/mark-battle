@@ -5,6 +5,9 @@ scene('game', () => {
     scale(SCALE/640 * 2),
     rotate(0),
     anchor('center'),
+    {
+      health: 1000,
+    }
   ]); 
   
   const player = add([
@@ -52,7 +55,7 @@ scene('game', () => {
     pos: vec2(0, SCALE * 13/3),
     tiles: {
       "#": () => [
-        sprite('mark'),
+        sprite('block'),
         area(),
         body({ isStatic: true }),
         anchor('topleft'),
@@ -77,10 +80,10 @@ scene('game', () => {
     rect(SCALE*6, SCALE/10),
     pos(SCALE*5, SCALE * 1/2),
     anchor('center'),
-    color(BLACK),
+    color(rgb(25,25,25)),
   ]);
   
-  add([
+  const healthBar = add([
     rect(SCALE*6, SCALE/10),
     pos(SCALE*5, SCALE * 1/2),
     anchor('center'),
@@ -154,6 +157,7 @@ scene('game', () => {
   
   onUpdate(() => {
     mark.angle += dt()*360;
+    mark.health--;
     
     if (!(isKeyDown('a') || isKeyDown('d'))) {
       player.xVel -= player.xVel * dt() * (
@@ -161,6 +165,8 @@ scene('game', () => {
       );
     };
     player.move(player.xVel, 0);
+    
+    healthBar.width = SCALE*6 * mark.health/1000; 
   });
 });
 
