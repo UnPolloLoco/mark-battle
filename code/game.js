@@ -63,13 +63,15 @@ scene('game', () => {
   
   const levelObject = addLevel(level, levelConf);
   
-  add([
-    rect(SCALE*6 + SCALE/30, SCALE/10 + SCALE/30),
-    pos(SCALE*5, SCALE/2),
-    anchor('center'),
-    color(BLACK),
-    opacity(0.5),
-  ]);
+  for (let i = 1; i <= 3; i++) {
+    add([
+      rect(SCALE*6 + SCALE/60*i, SCALE/10 + SCALE/60*i),
+      pos(SCALE*5, SCALE/2),
+      anchor('center'),
+      color(BLACK),
+      opacity(0.15),
+    ]);
+  };
   
   add([
     rect(SCALE*6, SCALE/10),
@@ -100,7 +102,7 @@ scene('game', () => {
       );
       textPos = textPos.scale(SCALE/40);
       textColor = BLACK;
-      textOpacity = 0.05;
+      textOpacity = 0.08;
     };
     for (let j = 1; j <= 3; j++) {
       add([
