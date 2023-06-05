@@ -64,8 +64,8 @@ scene('game', () => {
   const levelObject = addLevel(level, levelConf);
   
   add([
-    rect(SCALE*6 + SCALE/60*2, SCALE/10 + SCALE/60*2),
-    pos(SCALE*5 - SCALE/60, SCALE/2 - SCALE/60),
+    rect(SCALE*6 + SCALE/30, SCALE/10 + SCALE/30),
+    pos(SCALE*5, SCALE/2),
     anchor('center'),
     color(BLACK),
     opacity(0.5),
