@@ -21,6 +21,10 @@ function ls(a,b,c) {
   };
 };
 
+function la(a,b) {
+  loadSpriteAtlas(`${a}.png`, b);
+};
+
 const SCALE = width()/10;
 
 loadFont('noto', 'fonts/NotoSerifDisplay.ttf')
