@@ -83,6 +83,7 @@ scene('game', () => {
         Math.cos(Math.PI*2 * i/8),
         Math.sin(Math.PI*2 * i/8),
       );
+      textPos = textPos.scale(SCALE/24);
       textColor = BLACK;
       textOpacity = 0.1;
     };
