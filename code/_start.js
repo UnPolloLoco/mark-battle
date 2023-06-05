@@ -29,3 +29,4 @@ loadRoot('sprites/');
 
 ls('mark');
 loadSprite('player', 'mark.png');
+loadSprite('block', 'mark.png');
