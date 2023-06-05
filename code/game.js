@@ -70,15 +70,34 @@ scene('game', () => {
     color(RED),
   ]);
   
-  add([
-    text('MARK', {
-      size: SCALE/2,  
-      textAlign: 'center',
-      font: 'noto',
-    }),
-    pos(SCALE*5, SCALE * 1/2),
-    anchor('center'),
-  ]);
+  for (let i = 0; i < 9; i++) {
+    let textPos;
+    let textColor;
+    let textOpacity;
+    if (i == 8) {
+      textPos = vec2(0,0);
+      textColor = WHITE;
+      textOpacity = 1;
+    } else {
+      textPos = vec2(
+        Math.cos(Math.PI*2 * i/8),
+        Math.sin(Math.PI*2 * i/8),
+      );
+      textColor = BLACK;
+      textOpacity = 0.1;
+    };
+    add([
+      text('MARK', {
+        size: SCALE/2,  
+        textAlign: 'center',
+        font: 'noto',
+      }),
+      pos(SCALE*5 + textPos.x, SCALE * 1/2 + textPos.y),
+      anchor('center'),
+      color(textColor),
+      opacity(textOpacity),
+    ]);
+  };
 	
   onKeyPress('0', () => {
     debug.inspect = !debug.inspect; 
