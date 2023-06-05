@@ -83,21 +83,23 @@ scene('game', () => {
         Math.cos(Math.PI*2 * i/8),
         Math.sin(Math.PI*2 * i/8),
       );
-      textPos = textPos.scale(SCALE/24);
+      textPos = textPos.scale(SCALE/40);
       textColor = BLACK;
-      textOpacity = 0.1;
+      textOpacity = 0.05;
     };
-    add([
-      text('MARK', {
-        size: SCALE/2,  
-        textAlign: 'center',
-        font: 'noto',
-      }),
-      pos(SCALE*5 + textPos.x, SCALE * 1/2 + textPos.y),
-      anchor('center'),
-      color(textColor),
-      opacity(textOpacity),
-    ]);
+    for (let j = 1; j <= 3; j++) {
+      add([
+        text('MARK', {
+          size: SCALE/2,  
+          textAlign: 'center',
+          font: 'noto',
+        }),
+        pos(SCALE*5 + textPos.x*j, SCALE * 1/2 + textPos.y*j),
+        anchor('center'),
+        color(textColor),
+        opacity(textOpacity),
+      ]);
+    };
   };
 	
   onKeyPress('0', () => {
