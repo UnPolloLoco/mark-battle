@@ -1,4 +1,12 @@
 scene('game', () => {
+  add([
+    pos(0,0),
+    rect(width(), height()),
+    fixed(),
+    color(rgb(32,32,32)),
+    shader('light'),
+  ]);
+  
   const mark = add([
     sprite('mark'),
     pos(SCALE*5, SCALE*2),
