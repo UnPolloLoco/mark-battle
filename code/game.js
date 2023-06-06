@@ -132,7 +132,7 @@ scene('game', () => {
         text('MARK', {
           size: SCALE/2,  
           textAlign: 'center',
-          font: 'noto',
+          font: 'playfair',
         }),
         pos(SCALE*5 + textPos.x*j, SCALE * 1/2 + textPos.y*j),
         anchor('center'),
