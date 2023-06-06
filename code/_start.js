@@ -27,7 +27,7 @@ function la(a,b) {
 
 const SCALE = width()/10;
 
-loadFont('noto', 'fonts/NotoSerifDisplay.ttf')
+loadFont('playfair', 'fonts/PlayfairDisplay.ttf')
 
 loadRoot('sprites/');
 
