@@ -42,7 +42,7 @@ scene('game', () => {
   setGravity(SCALE * 24);
 
   const level = [
-    '     ######        ######     ',
+    '     #####>        #####>     ',
     '                              ',
     '                              ',
     '                              ',
@@ -55,21 +55,7 @@ scene('game', () => {
     pos: vec2(0, SCALE * 13/3),
     tiles: {
       "#": () => [
-        sprite('bottomBlock'),
-        area(),
-        body({ isStatic: true }),
-        anchor('topleft'),
-        scale(SCALE/500 / 3),
-      ],
-      "<": () => [
-        sprite('leftBlock'),
-        area(),
-        body({ isStatic: true }),
-        anchor('topleft'),
-        scale(SCALE/500 / 3),
-      ],
-      "=": () => [
-        sprite('middleBlock'),
+        sprite('block'),
         area(),
         body({ isStatic: true }),
         anchor('topleft'),
