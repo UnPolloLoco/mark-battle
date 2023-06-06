@@ -5,6 +5,7 @@ scene('game', () => {
     scale(SCALE/640 * 2),
     rotate(0),
     anchor('center'),
+    shader('light'),
     {
       health: 1000,
     }
@@ -17,6 +18,7 @@ scene('game', () => {
     anchor('center'),
     area(),
     body(),
+    shader('light'),
     "player",
     {
       xVel: 0,
@@ -60,6 +62,7 @@ scene('game', () => {
         body({ isStatic: true }),
         anchor('topleft'),
         scale(SCALE/500 / 3),
+        shader('light'),
         "block",
       ],
       ">": () => [
@@ -68,6 +71,7 @@ scene('game', () => {
         body({ isStatic: true }),
         anchor('topleft'),
         scale(SCALE/500 / 3),
+        shader('light'),
         "block",
       ],
     },
@@ -75,6 +79,7 @@ scene('game', () => {
   
   const levelObject = addLevel(level, levelConf);
   
+  // health bar shadow
   for (let i = 1; i <= 3; i++) {
     add([
       rect(SCALE*6 + SCALE/60*i, SCALE/10 + SCALE/60*i),
@@ -85,6 +90,7 @@ scene('game', () => {
     ]);
   };
   
+  // empty health bar
   add([
     rect(SCALE*6, SCALE/10),
     pos(SCALE*5, SCALE * 1/2),
@@ -92,12 +98,14 @@ scene('game', () => {
     color(rgb(15,15,15)),
   ]);
   
+  // red bar part
   const healthBar = add([
     rect(SCALE*6, SCALE/10),
     pos(SCALE*2, SCALE * 9/20),
     color(RED),
   ]);
   
+  // health bar label
   for (let i = 0; i < 9; i++) {
     let textPos;
     let textColor;
@@ -130,6 +138,10 @@ scene('game', () => {
     };
   };
 	
+  /////////////
+  // buttons //
+  /////////////
+  
   onKeyPress('0', () => {
     debug.inspect = !debug.inspect; 
   });
@@ -162,6 +174,10 @@ scene('game', () => {
     p.xVel *= -0.8;
     player.move(p.xVel/10, 0);
   });
+  
+  ///////////////
+  // on update //
+  ///////////////
   
   onUpdate(() => {
     mark.angle += dt()*360;
