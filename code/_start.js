@@ -43,3 +43,12 @@ la('blocks', {
     width: 500, height: 500,
   }
 });
+
+loadShader('light', null, `
+  vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
+    vec4 c = def_frag();
+    float dist = distance(pos, vec2(0, 0));
+    float alpha = 1.0 - (max(0.0, dist - 0.4) * 0.7);
+    return vec4(c.r * alpha, c.g * alpha, c.b * alpha, c.a);
+  }
+`);
