@@ -60,6 +60,7 @@ scene('game', () => {
         body({ isStatic: true }),
         anchor('topleft'),
         scale(SCALE/500 / 3),
+        "block",
       ],
       ">": () => [
         sprite('rightBlock'),
@@ -67,6 +68,7 @@ scene('game', () => {
         body({ isStatic: true }),
         anchor('topleft'),
         scale(SCALE/500 / 3),
+        "block",
       ],
     },
   };
