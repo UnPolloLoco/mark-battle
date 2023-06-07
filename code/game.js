@@ -188,7 +188,7 @@ scene('game', () => {
     };
     for (let j = 1; j <= 3; j++) {
       add([
-        text('MARK', {
+        text('jlkdjfioek', {
           size: SCALE/2,  
           textAlign: 'center',
           font: 'playfair',
