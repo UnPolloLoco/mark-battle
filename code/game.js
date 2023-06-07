@@ -108,12 +108,11 @@ scene('game', () => {
   
   // block background
   setTimeout(() => {
-    console.log(levelObject)
     levelObject.children.forEach((b) => {
       add([
         pos(
           b.pos.x - SCALE/30, 
-          b.pos.y - SCALE/30
+          b.pos.y - SCALE/30 + SCALE*13/3
         ),
         rect(SCALE/3 + SCALE/15, SCALE/3 + SCALE/15),
         color(BLACK),
