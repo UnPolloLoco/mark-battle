@@ -108,41 +108,38 @@ scene('game', () => {
   
   const levelObject = addLevel(level, levelConf);
   
+  // adding the... actual blocks
   let theFilthyKids = levelObject.children;
-  for (let i = 0; i < theFilthyKids.length; i++) {
-    let obj = theFilthyKids[i];
-    add([
-      rect(SCALE/6, SCALE/6),
-      pos(obj.pos),
-      z(Z.mark),
-      color(RED),
-    ]);
+  for (let j = 0; j < 2; j++) {
+    for (let i = 0; i < theFilthyKids.length; i++) {
+      if (j == 0) {
+        let obj = theFilthyKids[i];
+        // block border
+        add([
+          rect(SCALE/3 + SCALE/15, SCALE/3 + SCALE/15),
+          pos(obj.pos
+            .add(0, SCALE*13/3)
+            .sub(SCALE/30, SCALE/30)
+          ),
+          z(Z.tiles - 1),
+          color(BLACK),
+        ]);
+        // add the block
+        add([
+          sprite(obj.style),
+          pos(obj.pos.add(0, SCALE*13/3)),
+          scale(SCALE/500 / 3),
+          z(Z.tiles),
+          area(),
+          body({ isStatic: true }),
+          shader('light'),
+        ]);
+      // murder the block
+      } else {
+        destroy(obj);
+      };
+    };
   };
-  
-  // block border 
-  setTimeout(() => {
-    /*console.log(levelObject);
-    levelObject.children.forEach((b) => {
-      add([
-        pos(
-          b.pos.x - SCALE/30, 
-          b.pos.y - SCALE/30 + SCALE*13/3
-        ),
-        rect(SCALE/3 + SCALE/15, SCALE/3 + SCALE/15),
-        color(BLACK),
-        z(Z.tiles - 1),
-      ]);
-      add([
-        pos(b.pos),
-        sprite(b.style),
-        z(Z.tiles),
-        scale(SCALE/3),
-        shader('light'),
-        area(),
-        body({ isStatic: true }),
-      ]);
-    });*/
-  }, 50);
   
   ////////////////
   // health bar //
