@@ -104,7 +104,7 @@ scene('game', () => {
     },
   };
   
-  const levelObject = addLevel(level, levelConf);
+  const levelObject = addLevel(level, levelConf).use( z(Z.tile) );
   
   // block background
   setTimeout(() => {
