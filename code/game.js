@@ -1,10 +1,21 @@
 scene('game', () => {
+  const Z = {
+    bg:           0,
+    projectile: 100,
+    player:     200,
+    effects:    300,
+    tiles:      400,
+    mark:       500,
+    ui:         600,
+  }
+  
   add([
     pos(0,0),
     rect(width(), height()),
     fixed(),
     color(rgb(32,32,32)),
     shader('light'),
+    z(Z.bg),
   ]);
   
   const mark = add([
@@ -14,6 +25,7 @@ scene('game', () => {
     rotate(0),
     anchor('center'),
     shader('light'),
+    z(Z.mark),
     {
       health: 1000,
     }
@@ -27,6 +39,7 @@ scene('game', () => {
     area(),
     body(),
     shader('light'),
+    z(Z.player),
     "player",
     {
       xVel: 0,
@@ -50,6 +63,10 @@ scene('game', () => {
   const AIR_FRICTION = 2;
   
   setGravity(SCALE * 24);
+  
+  ///////////
+  // level //
+  ///////////
 
   const level = [
     '     #####>        #####>     ',
@@ -71,6 +88,7 @@ scene('game', () => {
         anchor('topleft'),
         scale(SCALE/500 / 3),
         shader('light'),
+        z(Z.tile),
         "block",
       ],
       ">": () => [
@@ -80,12 +98,27 @@ scene('game', () => {
         anchor('topleft'),
         scale(SCALE/500 / 3),
         shader('light'),
+        z(Z.tile), 
         "block",
       ],
     },
   };
   
   const levelObject = addLevel(level, levelConf);
+  
+  // block background
+  get('block').forEach((b) => {
+    add([
+      pos(b.sub(vec2(SCALE/30, SCALE/30))),
+      rect(SCALE/2 + SCALE/15, SCALE/2 + SCALE/15),
+      color(BLACK),
+      z(Z.tile - 1),
+    ])
+  });
+  
+  ////////////////
+  // health bar //
+  ////////////////
   
   // health bar shadow
   for (let i = 1; i <= 3; i++) {
@@ -95,6 +128,7 @@ scene('game', () => {
       anchor('center'),
       color(BLACK),
       opacity(0.18),
+      z(Z.ui),
     ]);
   };
   
@@ -104,6 +138,7 @@ scene('game', () => {
     pos(SCALE*5, SCALE * 1/2),
     anchor('center'),
     color(rgb(15,15,15)),
+    z(Z.ui),
   ]);
   
   // red bar part
@@ -111,6 +146,7 @@ scene('game', () => {
     rect(SCALE*6, SCALE/10),
     pos(SCALE*2, SCALE * 9/20),
     color(RED),
+    z(Z.ui),
   ]);
   
   // health bar label
@@ -142,6 +178,7 @@ scene('game', () => {
         anchor('center'),
         color(textColor),
         opacity(textOpacity),
+        z(Z.ui),
       ]);
     };
   };
@@ -177,6 +214,10 @@ scene('game', () => {
       )
     );
 	});
+  
+  ////////////////
+  // collisions //
+  ////////////////
   
   onCollide('player', 'border', (p,b) => {
     p.xVel *= -0.8;
