@@ -109,7 +109,7 @@ scene('game', () => {
   // block background
   get('block').forEach((b) => {
     add([
-      pos(b.sub(vec2(SCALE/30, SCALE/30))),
+      pos(b.pos.sub(vec2(SCALE/30, SCALE/30))),
       rect(SCALE/2 + SCALE/15, SCALE/2 + SCALE/15),
       color(BLACK),
       z(Z.tile - 1),
