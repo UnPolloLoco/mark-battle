@@ -108,6 +108,8 @@ scene('game', () => {
   
   const levelObject = addLevel(level, levelConf);
   
+  console.log(levelObject)
+  
   // block border
   setTimeout(() => {
     /*console.log(levelObject);
