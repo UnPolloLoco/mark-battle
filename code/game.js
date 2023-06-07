@@ -110,7 +110,7 @@ scene('game', () => {
   
   console.log(levelObject)
   
-  // block border
+  // block border 
   setTimeout(() => {
     /*console.log(levelObject);
     levelObject.children.forEach((b) => {
