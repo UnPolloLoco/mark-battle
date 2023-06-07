@@ -90,6 +90,7 @@ scene('game', () => {
         shader('light'),
         z(Z.tiles),
         "block",
+        { style: 'block' }
       ],
       ">": () => [
         sprite('rightBlock'),
@@ -100,6 +101,7 @@ scene('game', () => {
         shader('light'),
         z(Z.tiles), 
         "block",
+        { style: 'rightBlock' }
       ],
     },
   };
@@ -110,7 +112,7 @@ scene('game', () => {
   setTimeout(() => {
     console.log(levelObject);
     levelObject.children.forEach((b) => {
-      const s = add([
+      add([
         pos(
           b.pos.x - SCALE/30, 
           b.pos.y - SCALE/30 + SCALE*13/3
@@ -119,7 +121,15 @@ scene('game', () => {
         color(BLACK),
         z(Z.tiles - 1),
       ]);
-      console.log(s)
+      add([
+        pos(b.pos),
+        sprite(b.style),
+        z(Z.tiles),
+        scale(SCALE/3),
+        shader('light'),
+        area(),
+        body({ isStatic: true }),
+      ]);
     });
   }, 50);
   
