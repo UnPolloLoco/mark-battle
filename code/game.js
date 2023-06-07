@@ -110,7 +110,7 @@ scene('game', () => {
   setTimeout(() => {
     console.log(levelObject);
     levelObject.children.forEach((b) => {
-      add([
+      const s = add([
         pos(
           b.pos.x - SCALE/30, 
           b.pos.y - SCALE/30 + SCALE*13/3
@@ -119,6 +119,7 @@ scene('game', () => {
         color(BLACK),
         z(Z.tiles - 1),
       ]);
+      console.log(s)
     });
   }, 50);
   
