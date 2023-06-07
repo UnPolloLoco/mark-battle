@@ -107,15 +107,17 @@ scene('game', () => {
   const levelObject = addLevel(level, levelConf);
   
   // block background
-  get('block').forEach((b) => {
-    add([
-      pos(b.pos.x - SCALE/30, b.pos.y - SCALE/30),
-      rect(SCALE/3 + SCALE/15, SCALE/3 + SCALE/15),
-      color(BLACK),
-      z(Z.tile - 1),
-    ]);
-    console.log(b.pos)
-  });
+  setTimeout(() => {
+    get('block').forEach((b) => {
+      add([
+        pos(b.pos.x - SCALE/30, b.pos.y - SCALE/30),
+        rect(SCALE/3 + SCALE/15, SCALE/3 + SCALE/15),
+        color(BLACK),
+        z(Z.tile - 1),
+      ]);
+      console.log(b.pos)
+    });
+  }, 50);
   
   ////////////////
   // health bar //
