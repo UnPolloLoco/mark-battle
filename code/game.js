@@ -88,7 +88,7 @@ scene('game', () => {
         anchor('topleft'),
         scale(SCALE/500 / 3),
         shader('light'),
-        z(Z.tile),
+        z(Z.tiles),
         "block",
       ],
       ">": () => [
@@ -98,13 +98,13 @@ scene('game', () => {
         anchor('topleft'),
         scale(SCALE/500 / 3),
         shader('light'),
-        z(Z.tile), 
+        z(Z.tiles), 
         "block",
       ],
     },
   };
   
-  const levelObject = addLevel(level, levelConf).use( z(Z.tile) );
+  const levelObject = addLevel(level, levelConf);
   
   // block background
   setTimeout(() => {
