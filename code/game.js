@@ -112,8 +112,8 @@ scene('game', () => {
   let theFilthyKids = levelObject.children;
   for (let j = 0; j < 2; j++) {
     for (let i = 0; i < theFilthyKids.length; i++) {
+      let obj = theFilthyKids[i];
       if (j == 0) {
-        let obj = theFilthyKids[i];
         // block border
         add([
           rect(SCALE/3 + SCALE/15, SCALE/3 + SCALE/15),
