@@ -108,7 +108,7 @@ scene('game', () => {
   
   const levelObject = addLevel(level, levelConf);
   
-  let theFiltyKids = levelObject.children;
+  let theFilthyKids = levelObject.children;
   for (let i = 0; i < theFilthyKids.length; i++) {
     let obj = theFilthyKids[i];
     add([
