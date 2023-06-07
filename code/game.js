@@ -134,6 +134,19 @@ scene('game', () => {
           body({ isStatic: true }),
           shader('light'),
         ]);
+        // block shadow
+        if (obj.pos.y < SCALE) {
+          add([
+            rect(SCALE/3, SCALE*3),
+            pos(obj.pos
+              .add(0, SCALE*13/3)
+            ),
+            z(Z.bg),
+            color(rgb(50,50,50)),
+            opacity(0.3),
+            shader('light')
+          ]);
+        };
       // murder the block
       } else {
         destroy(obj);
