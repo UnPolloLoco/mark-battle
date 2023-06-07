@@ -117,7 +117,7 @@ scene('game', () => {
         ),
         rect(SCALE/3 + SCALE/15, SCALE/3 + SCALE/15),
         color(BLACK),
-        z(Z.tile - 1),
+        z(Z.tiles - 1),
       ]);
     });
   }, 50);
