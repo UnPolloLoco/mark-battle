@@ -114,6 +114,7 @@ scene('game', () => {
       color(BLACK),
       z(Z.tile - 1),
     ]);
+    console.log(b.pos)
   });
   
   ////////////////
