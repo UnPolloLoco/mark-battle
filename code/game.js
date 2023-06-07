@@ -108,9 +108,9 @@ scene('game', () => {
   
   const levelObject = addLevel(level, levelConf);
   
-  // block background
+  // block border
   setTimeout(() => {
-    console.log(levelObject);
+    /*console.log(levelObject);
     levelObject.children.forEach((b) => {
       add([
         pos(
@@ -130,7 +130,7 @@ scene('game', () => {
         area(),
         body({ isStatic: true }),
       ]);
-    });
+    });*/
   }, 50);
   
   ////////////////
