@@ -108,7 +108,8 @@ scene('game', () => {
   
   // block background
   setTimeout(() => {
-    get('block').forEach((b) => {
+    console.log(levelObject)
+    levelObject.forEach((b) => {
       add([
         pos(
           b.pos.x - SCALE/30, 
@@ -119,7 +120,6 @@ scene('game', () => {
         z(Z.tile - 1),
       ]);
     });
-    console.log(get('block'));
   }, 50);
   
   ////////////////
