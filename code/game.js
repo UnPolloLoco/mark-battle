@@ -108,7 +108,16 @@ scene('game', () => {
   
   const levelObject = addLevel(level, levelConf);
   
-  console.log(levelObject)
+  let theFiltyKids = levelObject.children;
+  for (let i = 0; i < theFilthyKids.length; i++) {
+    let obj = theFilthyKids[i];
+    add([
+      rect(SCALE/6, SCALE/6),
+      pos(obj.pos),
+      z(Z.mark),
+      color(RED),
+    ]);
+  };
   
   // block border 
   setTimeout(() => {
