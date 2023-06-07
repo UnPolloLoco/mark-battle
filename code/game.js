@@ -109,7 +109,7 @@ scene('game', () => {
   // block background
   setTimeout(() => {
     console.log(levelObject)
-    levelObject.forEach((b) => {
+    levelObject.children.forEach((b) => {
       add([
         pos(
           b.pos.x - SCALE/30, 
