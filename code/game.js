@@ -155,6 +155,22 @@ scene('game', () => {
   };
   
   ////////////////
+  // background //
+  ////////////////
+  
+  for (let r = 0; r < 6; r++) {
+    for (let c = 0; c < 10; c++) {
+      add([
+        sprite('block'),
+        opacity(0.2),
+        pos(SCALE*c, SCALE*r),
+        z(Z.bg),
+        scale(SCALE),
+      ]);
+    };
+  };
+  
+  ////////////////
   // health bar //
   ////////////////
   
