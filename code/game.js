@@ -161,8 +161,8 @@ scene('game', () => {
   for (let r = 0; r < 6; r++) {
     for (let c = 0; c < 10; c++) {
       add([
-        sprite('block'),
-        opacity(0.1),
+        sprite('bgBlock'),
+        opacity(0.08),
         pos(SCALE*c, SCALE*r),
         z(Z.bg),
         scale(SCALE/500),
