@@ -116,10 +116,10 @@ scene('game', () => {
       if (j == 0) {
         // block border
         add([
-          rect(SCALE/3 + SCALE/15, SCALE/3 + SCALE/15),
+          rect(SCALE/3 + SCALE/25, SCALE/3 + SCALE/25),
           pos(obj.pos
             .add(0, SCALE*13/3)
-            .sub(SCALE/30, SCALE/30)
+            .sub(SCALE/50, SCALE/50)
           ),
           z(Z.tiles - 1),
           color(BLACK),
