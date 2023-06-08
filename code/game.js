@@ -139,10 +139,10 @@ scene('game', () => {
           add([
             rect(SCALE/3, SCALE*3),
             pos(obj.pos
-              .add(0, SCALE*13/3)
+              .add(0, SCALE*14/3)
             ),
-            z(Z.bg),
-            color(rgb(20,20,20)),
+            z(Z.tiles - 2),
+            color(rgb(16,16,16)),
             opacity(0.3),
             shader('light')
           ]);
