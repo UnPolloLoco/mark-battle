@@ -162,10 +162,11 @@ scene('game', () => {
     for (let c = 0; c < 10; c++) {
       add([
         sprite('block'),
-        opacity(0.2),
+        opacity(0.1),
         pos(SCALE*c, SCALE*r),
         z(Z.bg),
         scale(SCALE/500),
+        shader('light'),
       ]);
     };
   };
