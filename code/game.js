@@ -13,7 +13,7 @@ scene('game', () => {
     pos(0,0),
     rect(width(), height()),
     fixed(),
-    color(rgb(55,55,55)),
+    color(rgb(50,50,50)),
     shader('light'),
     z(Z.bg),
   ]);
@@ -143,7 +143,7 @@ scene('game', () => {
             ),
             z(Z.tiles - 2),
             color(rgb(20,20,20)),
-            opacity(0.3),
+            opacity(0.2),
             shader('light')
           ]);
         };
