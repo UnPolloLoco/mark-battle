@@ -13,7 +13,7 @@ scene('game', () => {
     pos(0,0),
     rect(width(), height()),
     fixed(),
-    color(rgb(45,45,45)),
+    color(rgb(60,60,60)),
     shader('light'),
     z(Z.bg),
   ]);
