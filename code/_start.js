@@ -41,6 +41,10 @@ la('blocks', {
   rightBlock: {
     x: 500, y: 0,
     width: 500, height: 500,
+  },
+  bgBlock: {
+    x: 1000, y: 0,
+    width: 500, height: 500,
   }
 });
 
