@@ -142,7 +142,7 @@ scene('game', () => {
               .add(0, SCALE*14/3)
             ),
             z(Z.tiles - 2),
-            color(rgb(10,10,10)),
+            color(rgb(20,20,20)),
             opacity(0.3),
             shader('light')
           ]);
