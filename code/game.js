@@ -165,7 +165,7 @@ scene('game', () => {
         opacity(0.2),
         pos(SCALE*c, SCALE*r),
         z(Z.bg),
-        scale(SCALE),
+        scale(SCALE/500),
       ]);
     };
   };
