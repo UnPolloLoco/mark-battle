@@ -54,7 +54,7 @@ ls('slash', {
     attack: {
       from: 0,
       to: 6,
-      speed: 30,
+      speed: 40,
     },
   },
 });
