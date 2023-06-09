@@ -53,7 +53,7 @@ ls('slash', {
   anims: {
     attack: {
       from: 0,
-      to: 6,
+      to: 5,
       speed: 40,
     },
   },
