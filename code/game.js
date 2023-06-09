@@ -354,7 +354,7 @@ scene('game', () => {
     
     get('attackLines').forEach((a) => {
       a.opacity -= 0.5 * dt();
-      a.pos.y += SCALE * 0.7 * dt();
+      a.pos.y += SCALE * dt();
       if (a.opacity <= 0) { destroy(a); };
     });
   });
