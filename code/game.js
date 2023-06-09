@@ -307,7 +307,7 @@ scene('game', () => {
             ),
             pos(player.pos.add(
               SCALE * rand(-0.8, 0.8),
-              SCALE * rand(-0.6, 0.3),
+              SCALE * rand(-0.7, 0),
             )),
             anchor('center'),
             color(WHITE),
@@ -341,9 +341,6 @@ scene('game', () => {
   ///////////////
   
   onUpdate(() => {
-    mark.angle += dt()*360;
-    mark.health--;
-    
     if (!(isKeyDown('a') || isKeyDown('d'))) {
       player.xVel -= player.xVel * dt() * (
         player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
