@@ -9,6 +9,7 @@ scene('game', () => {
     ui:         600,
   }
   
+  // background
   add([
     pos(0,0),
     rect(width(), height()),
@@ -18,6 +19,7 @@ scene('game', () => {
     z(Z.bg),
   ]);
   
+  // mark
   const mark = add([
     sprite('mark'),
     pos(SCALE*5, SCALE*2),
@@ -31,6 +33,7 @@ scene('game', () => {
     }
   ]); 
   
+  // bean
   const player = add([
     sprite('player'),
     pos(SCALE, SCALE),
@@ -43,9 +46,21 @@ scene('game', () => {
     "player",
     {
       xVel: 0,
+      isAttacking: false,
     }
   ]);
+  
+  // slash
+  const slash = player.add([
+    sprite('slash'),
+    pos(0,0),
+    origin('center'),
+    scale(4),
+    area(),
+    opacity(0)
+  ]);
 	
+  // movement borders
   for (let i = 0; i < 2; i++) {
     add([
       rect(SCALE, SCALE*10),
@@ -57,6 +72,7 @@ scene('game', () => {
     ]);
   };
 
+  // constants
   const JUMP_SPEED = SCALE * 9;
   const RUN_SPEED = SCALE * 5;
   const GROUND_FRICTION = 8;
@@ -269,6 +285,19 @@ scene('game', () => {
       )
     );
 	});
+  
+  onKeyPress('space', () => {
+    if (!player.isAttacking) {
+      player.isAttacking = true;
+      slash.opacity = 1;
+      slash.play('attack');
+      
+      setTimeout(() => {
+        slash.opacity = 0;
+        player.isAttacking = false;
+      }, 233);
+    };
+  });
   
   ////////////////
   // collisions //
