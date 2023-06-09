@@ -365,7 +365,7 @@ scene('game', () => {
     
     if (!mark.sliced && mark.isColliding(slash)) {
       mark.sliced = true;
-      mark.health -= 5;
+      mark.health -= 3;
     };
   });
 });
