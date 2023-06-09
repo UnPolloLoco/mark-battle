@@ -48,7 +48,7 @@ la('blocks', {
   }
 });
 ls('slash', {
-  sliceX: 7,
+  sliceX: 6,
   sliceY: 1,
   anims: {
     attack: {
