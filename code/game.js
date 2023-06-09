@@ -298,34 +298,15 @@ scene('game', () => {
 	});
   
   onKeyPress('space', () => {
-    if (!player.isAttacking) {
+    let attackDelta = time() - player.lastAttack;
+    
+    if (!player.isAttacking && attackDelta >= 0.5) {
       player.isAttacking = true;
-      let attackDelta = time() - player.lastAttack;
       player.lastAttack = time();
-      player.gravityScale = 0.3;
+      player.gravityScale = 0.4;
      
       slash.opacity = 1;
       slash.play('attack');
-      
-      if (attackDelta < 0.3) {
-        for (let i = 0; i < randi(3,7); i++) {
-          add([
-            rect(
-              SCALE * rand(0.07, 0.01), 
-              SCALE * rand(0.8, 1.2),
-            ),
-            pos(player.pos.add(
-              SCALE * rand(-0.8, 0.8),
-              SCALE * rand(-0.7, 0),
-            )),
-            anchor('center'),
-            color(WHITE),
-            opacity(rand(0.08, 0.18)),
-            z(Z.projectiles),
-            'attackLines',
-          ]);
-        };
-      };
       
       setTimeout(() => {
         mark.sliced = false;
