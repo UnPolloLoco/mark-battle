@@ -55,9 +55,10 @@ scene('game', () => {
     sprite('slash'),
     pos(0,0),
     anchor('center'),
-    scale(4),
+    scale(2* 4),
     area(),
-    opacity(0)
+    opacity(0),
+    shader('slash'),
   ]);
 	
   // movement borders
@@ -295,7 +296,7 @@ scene('game', () => {
       setTimeout(() => {
         slash.opacity = 0;
         player.isAttacking = false;
-      }, 233);
+      }, 266);
     };
   });
   
