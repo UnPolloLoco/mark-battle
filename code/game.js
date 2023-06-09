@@ -30,6 +30,7 @@ scene('game', () => {
     z(Z.mark),
     {
       health: 1000,
+      sliced: false,
     }
   ]); 
   
@@ -57,7 +58,7 @@ scene('game', () => {
     pos(0, -150),
     anchor('center'),
     scale(2* 8),
-    area(),
+    area({ scale: vec2(1, 0.2) }),
     opacity(0),
     shader('slash'),
   ]);
@@ -319,6 +320,7 @@ scene('game', () => {
       };
       
       setTimeout(() => {
+        mark.sliced = false;
         player.isAttacking = false;
         player.gravityScale = 1;
         
@@ -355,6 +357,11 @@ scene('game', () => {
       a.pos.y += SCALE * 3 * dt();
       if (a.opacity <= 0) { destroy(a); };
     });
+    
+    if (!mark.sliced && mark.isColliding(slash)) {
+      mark.sliced = true;
+      mark.health -= 5;
+    };
   });
 });
 
