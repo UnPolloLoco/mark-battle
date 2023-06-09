@@ -2,10 +2,10 @@ scene('game', () => {
   const Z = {
     bg:            0,
     projectiles: 100,
-    player:      200,
-    effects:     300,
-    tiles:       400,
-    mark:        500,
+    mark:        200,
+    player:      300,
+    effects:     400,
+    tiles:       500,
     ui:          600,
   }
   
