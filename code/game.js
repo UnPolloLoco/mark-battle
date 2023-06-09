@@ -53,7 +53,7 @@ scene('game', () => {
   // slash
   const slash = player.add([
     sprite('slash'),
-    pos(0,0),
+    pos(0, -150),
     anchor('center'),
     scale(2* 8),
     area(),
@@ -291,11 +291,13 @@ scene('game', () => {
     if (!player.isAttacking) {
       player.isAttacking = true;
       slash.opacity = 1;
+      player.gravityScale = 0.5;
       slash.play('attack');
       
       setTimeout(() => {
         slash.opacity = 0;
         player.isAttacking = false;
+        player.gravityScale = 1;
       }, 200);
     };
   });
