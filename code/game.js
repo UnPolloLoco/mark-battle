@@ -63,7 +63,10 @@ scene('game', () => {
     pos(0, -150),
     anchor('center'),
     scale(vec2(16, 10)),
-    area({ scale: vec2(0.95, 0.22) }),
+    area({ 
+      scale: vec2(0.95, 0.22),
+      offset: vec2(0, 20),
+    }),
     opacity(0),
     shader('slash'),
   ]);
