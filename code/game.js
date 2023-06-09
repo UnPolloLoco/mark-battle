@@ -304,7 +304,7 @@ scene('game', () => {
       slash.opacity = 1;
       slash.play('attack');
       
-      if (attackDelta < 0.35) {
+      if (attackDelta < 0.3) {
         for (let i = 0; i < randi(3,7); i++) {
           add([
             rect(
@@ -330,7 +330,7 @@ scene('game', () => {
         player.gravityScale = 1;
         
         slash.opacity = 0;
-      }, 200);
+      }, 175);
     };
   });
   
