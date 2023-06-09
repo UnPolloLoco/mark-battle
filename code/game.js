@@ -311,7 +311,7 @@ scene('game', () => {
             )),
             anchor('center'),
             color(WHITE),
-            opacity(rand(0.1, 0.3)),
+            opacity(rand(0.07, 0.2)),
             'attackLines',
           ]);
         };
@@ -354,6 +354,7 @@ scene('game', () => {
     
     get('attackLines').forEach((a) => {
       a.opacity -= 0.5 * dt();
+      a.pos.y += SCALE * 0.7 * dt();
       if (a.opacity <= 0) { destroy(a); };
     });
   });
