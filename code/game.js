@@ -291,7 +291,7 @@ scene('game', () => {
     if (!player.isAttacking) {
       player.isAttacking = true;
       slash.opacity = 1;
-      player.gravityScale = 0.5;
+      player.gravityScale = 0.3;
       slash.play('attack');
       
       setTimeout(() => {
