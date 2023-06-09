@@ -55,7 +55,7 @@ scene('game', () => {
     sprite('slash'),
     pos(0,0),
     anchor('center'),
-    scale(2* 4),
+    scale(2* 8),
     area(),
     opacity(0),
     shader('slash'),
