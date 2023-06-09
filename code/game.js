@@ -54,7 +54,7 @@ scene('game', () => {
   const slash = player.add([
     sprite('slash'),
     pos(0,0),
-    origin('center'),
+    anchor('center'),
     scale(4),
     area(),
     opacity(0)
