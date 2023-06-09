@@ -1,12 +1,12 @@
 scene('game', () => {
   const Z = {
-    bg:           0,
-    projectile: 100,
-    player:     200,
-    effects:    300,
-    tiles:      400,
-    mark:       500,
-    ui:         600,
+    bg:            0,
+    projectiles: 100,
+    player:      200,
+    effects:     300,
+    tiles:       400,
+    mark:        500,
+    ui:          600,
   }
   
   // background
@@ -299,19 +299,20 @@ scene('game', () => {
       slash.play('attack');
       
       if (attackDelta < 0.3) {
-        for (let i = 0; i < randi(2,7); i++) {
+        for (let i = 0; i < randi(3,7); i++) {
           add([
             rect(
               SCALE * rand(0.07, 0.01), 
               SCALE * rand(0.8, 1.2),
             ),
             pos(player.pos.add(
-              SCALE * rand(-1, 0.3),
-              SCALE * rand(-0.6, 0.6),
+              SCALE * rand(-0.8, 0.8),
+              SCALE * rand(-0.6, 0.3),
             )),
             anchor('center'),
             color(WHITE),
-            opacity(rand(0.07, 0.2)),
+            opacity(rand(0.04, 0.14)),
+            z(Z.projectiles),
             'attackLines',
           ]);
         };
@@ -354,7 +355,7 @@ scene('game', () => {
     
     get('attackLines').forEach((a) => {
       a.opacity -= 0.5 * dt();
-      a.pos.y += SCALE * 2 * dt();
+      a.pos.y += SCALE * 3 * dt();
       if (a.opacity <= 0) { destroy(a); };
     });
   });
