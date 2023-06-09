@@ -299,10 +299,10 @@ scene('game', () => {
       slash.play('attack');
       
       if (attackDelta < 0.3) {
-        for (let i = 0; i < randi(1,3); i++) {
+        for (let i = 0; i < randi(2,7); i++) {
           add([
             rect(
-              SCALE * rand(0.14, 0.08), 
+              SCALE * rand(0.07, 0.01), 
               SCALE * rand(0.8, 1.2),
             ),
             pos(player.pos.add(
@@ -353,7 +353,7 @@ scene('game', () => {
     healthBar.width = SCALE*6 * mark.health/1000; 
     
     get('attackLines').forEach((a) => {
-      a.opacity -= 1 * dt();
+      a.opacity -= 0.5 * dt();
       if (a.opacity <= 0) { destroy(a); };
     });
   });
