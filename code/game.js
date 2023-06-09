@@ -306,7 +306,7 @@ scene('game', () => {
               SCALE * rand(0.8, 1.2),
             ),
             pos(player.pos.add(
-              SCALE * rand(-1, 1),
+              SCALE * rand(-1, 0.3),
               SCALE * rand(-0.6, 0.6),
             )),
             anchor('center'),
@@ -354,7 +354,7 @@ scene('game', () => {
     
     get('attackLines').forEach((a) => {
       a.opacity -= 0.5 * dt();
-      a.pos.y += SCALE * dt();
+      a.pos.y += SCALE * 2 * dt();
       if (a.opacity <= 0) { destroy(a); };
     });
   });
