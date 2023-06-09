@@ -47,6 +47,7 @@ scene('game', () => {
     {
       xVel: 0,
       isAttacking: false,
+      lastAttack: -123,
     }
   ]);
   
@@ -290,14 +291,33 @@ scene('game', () => {
   onKeyPress('space', () => {
     if (!player.isAttacking) {
       player.isAttacking = true;
-      slash.opacity = 1;
+      let attackDelta = time() - player.lastAttack;
+      player.lastAttack = time();
       player.gravityScale = 0.3;
+     
+      slash.opacity = 1;
       slash.play('attack');
       
+      if (attackDelta < 0.3) {
+        for (let i = 0; i < randi(1,3); i++) {
+          add([
+            rec(SCALE/6, SCALE),
+            pos(player.pos.add(
+              SCALE * rand(-1, 1),
+              SCALE * rand(-0.6, 0.6),
+            )),
+            anchor('center'),
+            color(WHITE),
+            opacity(rand(0.1, 0.4)),
+          ]);
+        };
+      };
+      
       setTimeout(() => {
-        slash.opacity = 0;
         player.isAttacking = false;
         player.gravityScale = 1;
+        
+        slash.opacity = 0;
       }, 200);
     };
   });
