@@ -304,7 +304,7 @@ scene('game', () => {
       slash.opacity = 1;
       slash.play('attack');
       
-      if (attackDelta < 0.3) {
+      if (attackDelta < 0.35) {
         for (let i = 0; i < randi(3,7); i++) {
           add([
             rect(
@@ -317,7 +317,7 @@ scene('game', () => {
             )),
             anchor('center'),
             color(WHITE),
-            opacity(rand(0.04, 0.14)),
+            opacity(rand(0.08, 0.18)),
             z(Z.projectiles),
             'attackLines',
           ]);
@@ -358,7 +358,7 @@ scene('game', () => {
     healthBar.width = SCALE*6 * mark.health/1000; 
     
     get('attackLines').forEach((a) => {
-      a.opacity -= 0.5 * dt();
+      a.opacity -= 0.4 * dt();
       a.pos.y += SCALE * 3 * dt();
       if (a.opacity <= 0) { destroy(a); };
     });
