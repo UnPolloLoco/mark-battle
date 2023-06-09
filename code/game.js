@@ -28,6 +28,11 @@ scene('game', () => {
     anchor('center'),
     shader('light'),
     z(Z.mark),
+    area({shape: new Polygon([
+      vec2(-140, -220), vec2(65, -220), vec2(210, -150), 
+      vec2(260, -80),   vec2(260, 40),  vec2(65, 225),
+      vec2(-100, 225),  vec2(-240, 90), vec2(-240, -80),
+    ])}),
     {
       health: 1000,
       sliced: false,
