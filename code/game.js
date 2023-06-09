@@ -301,7 +301,7 @@ scene('game', () => {
       if (attackDelta < 0.3) {
         for (let i = 0; i < randi(1,3); i++) {
           add([
-            rec(SCALE/6, SCALE),
+            rect(SCALE/6, SCALE),
             pos(player.pos.add(
               SCALE * rand(-1, 1),
               SCALE * rand(-0.6, 0.6),
