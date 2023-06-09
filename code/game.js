@@ -301,14 +301,18 @@ scene('game', () => {
       if (attackDelta < 0.3) {
         for (let i = 0; i < randi(1,3); i++) {
           add([
-            rect(SCALE/6, SCALE),
+            rect(
+              SCALE * rand(0.14, 0.08), 
+              SCALE * rand(0.8, 1.2),
+            ),
             pos(player.pos.add(
               SCALE * rand(-1, 1),
               SCALE * rand(-0.6, 0.6),
             )),
             anchor('center'),
             color(WHITE),
-            opacity(rand(0.1, 0.4)),
+            opacity(rand(0.1, 0.3)),
+            'attackLines',
           ]);
         };
       };
@@ -347,6 +351,11 @@ scene('game', () => {
     player.move(player.xVel, 0);
     
     healthBar.width = SCALE*6 * mark.health/1000; 
+    
+    get('attackLines').forEach((a) => {
+      a.opacity -= 1 * dt();
+      if (a.opacity <= 0) { destroy(a); };
+    });
   });
 });
 
