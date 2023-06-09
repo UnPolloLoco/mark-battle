@@ -62,8 +62,8 @@ scene('game', () => {
     sprite('slash'),
     pos(0, -150),
     anchor('center'),
-    scale(2* 8),
-    area({ scale: vec2(1, 0.2) }),
+    scale(vec2(16, 10)),
+    area({ scale: vec2(0.95, 0.22) }),
     opacity(0),
     shader('slash'),
   ]);
