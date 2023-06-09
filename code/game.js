@@ -296,7 +296,7 @@ scene('game', () => {
       setTimeout(() => {
         slash.opacity = 0;
         player.isAttacking = false;
-      }, 266);
+      }, 200);
     };
   });
   
