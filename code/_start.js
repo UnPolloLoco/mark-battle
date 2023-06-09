@@ -47,6 +47,17 @@ la('blocks', {
     width: 500, height: 500,
   }
 });
+ls('slash', {
+  sliceX: 7,
+  sliceY: 1,
+  anims: {
+    attack: {
+      from: 0,
+      to: 6,
+      speed: 30,
+    },
+  },
+});
 
 loadShader('light', null, `
   vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
