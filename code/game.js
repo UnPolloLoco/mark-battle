@@ -36,6 +36,19 @@ scene('game', () => {
     };
   }; 
   
+  // underground shake proofer
+  add([
+    rect(width(), SCALE),
+    pos(0, height()),
+    color(rgb(100,100,100)),
+    z(Z.bg),
+    shader('light'),
+  ]);
+  
+  ////////////////
+  // characters //
+  ////////////////
+  
   // mark
   const mark = add([
     sprite('mark'),
