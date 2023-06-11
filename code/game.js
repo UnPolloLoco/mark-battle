@@ -305,6 +305,7 @@ scene('game', () => {
       player.lastAttack = time();
       player.gravityScale = 0.4;
      
+      slash.flipX = (player.xVel >= 0);
       slash.opacity = 1;
       slash.play('attack');
       
