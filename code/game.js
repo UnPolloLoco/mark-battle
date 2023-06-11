@@ -9,7 +9,10 @@ scene('game', () => {
     ui:          600,
   }
   
-  // background
+  ////////////////
+  // background //
+  ////////////////
+  
   add([
     pos(0,0),
     rect(width(), height()),
@@ -18,6 +21,20 @@ scene('game', () => {
     shader('light'),
     z(Z.bg),
   ]);
+  
+  // bricks
+  for (let r = -1; r <= 6; r++) {
+    for (let c = -1; c <= 10; c++) {
+      add([
+        sprite('bgBlock'),
+        opacity(0.08),
+        pos(SCALE*c, SCALE*r),
+        z(Z.bg),
+        scale(SCALE/500),
+        shader('light'),
+      ]);
+    };
+  }; 
   
   // mark
   const mark = add([
@@ -182,23 +199,6 @@ scene('game', () => {
   };
   
   ////////////////
-  // background //
-  ////////////////
-  
-  for (let r = 0; r < 6; r++) {
-    for (let c = 0; c < 10; c++) {
-      add([
-        sprite('bgBlock'),
-        opacity(0.08),
-        pos(SCALE*c, SCALE*r),
-        z(Z.bg),
-        scale(SCALE/500),
-        shader('light'),
-      ]);
-    };
-  };
-  
-  ////////////////
   // health bar //
   ////////////////
   
@@ -211,6 +211,7 @@ scene('game', () => {
       color(BLACK),
       opacity(0.18),
       z(Z.ui),
+      fixed(),
     ]);
   };
   
@@ -221,6 +222,7 @@ scene('game', () => {
     anchor('center'),
     color(rgb(15,15,15)),
     z(Z.ui),
+      fixed(),
   ]);
   
   // red bar part
@@ -229,6 +231,7 @@ scene('game', () => {
     pos(SCALE*2, SCALE * 9/20),
     color(RED),
     z(Z.ui),
+      fixed(),
   ]);
   
   // health bar label
@@ -261,6 +264,7 @@ scene('game', () => {
         color(textColor),
         opacity(textOpacity),
         z(Z.ui),
+        fixed(),
       ]);
     };
   };
@@ -296,6 +300,10 @@ scene('game', () => {
       )
     );
 	});
+  
+  onKeyDown('m', () => {
+    shake(SCALE);
+  })
   
   onKeyPress('space', () => {
     let attackDelta = time() - player.lastAttack;
