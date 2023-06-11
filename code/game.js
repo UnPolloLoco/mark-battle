@@ -96,6 +96,7 @@ scene('game', () => {
       color(BLACK),
       area(),
       body({ isStatic: true }),
+      opacity(0),
 	    "border",
     ]);
   };
