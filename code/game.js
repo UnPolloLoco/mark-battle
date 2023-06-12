@@ -208,7 +208,7 @@ scene('game', () => {
         };
       // murder the block
       } else {
-        destroy(obj);
+        destroy(theFilthyKids[i]);
       };
     };
   };
