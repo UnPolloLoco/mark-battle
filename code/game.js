@@ -138,7 +138,7 @@ scene('game', () => {
   const levelConf = {
     tileWidth: SCALE/3,
     tileHeight: SCALE/3,
-    pos: vec2(SCALE*-2/3, SCALE * 13/3),
+    pos: vec2(SCALE*(-4/3), SCALE * 13/3),
     tiles: {
       "#": () => [
         sprite('block'),
