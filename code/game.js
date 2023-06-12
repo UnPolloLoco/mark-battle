@@ -366,7 +366,7 @@ scene('game', () => {
     } else {
       if (yVelIndex >= 2) {
         // JUMPING
-        if (Math.abs(player.xVel / SCALE) >= 1) {
+        if (Math.abs(player.xVel / SCALE) >= 2) {
           player.play('jumpMove');
           player.flipX = (player.xVel < 0);
         } else {
@@ -375,7 +375,7 @@ scene('game', () => {
         }
       } else if (yVelIndex <= -2) {
         // FALLING
-        if (Math.abs(player.xVel / SCALE) >= 1) {
+        if (Math.abs(player.xVel / SCALE) >= 2) {
           player.play('fallMove');
           player.flipX = (player.xVel < 0);
         } else {
