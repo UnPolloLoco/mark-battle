@@ -351,15 +351,27 @@ scene('game', () => {
     player.move(p.xVel/10, 0);
   });
   
-  ///////////////////
-  // y delta thing //
-  ///////////////////
+  //////////////////////
+  // animation update //
+  //////////////////////
   
   let playerLastYPos = player.pos.y;
   
   loop(0.02, () => {
-    debug.log(Math.round((playerLastYPos - player.pos.y) / SCALE * 100));
+    let yVelIndex = Math.round((playerLastYPos - player.pos.y) / SCALE * 100);
     playerLastYPos = player.pos.y;
+    
+    if (/* just took damage */ false) {
+      
+    } else {
+      if (Math.abs(yVelIndex) >= 2) {
+        // JUMPING
+      
+      } else {
+        // NOT JUMPING
+        
+      };
+    };
   });
   
   ///////////////
