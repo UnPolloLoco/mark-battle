@@ -401,7 +401,7 @@ scene('game', () => {
   
   onUpdate(() => {
     camPos(center().add(
-      player.pos.sub(SCALE * 5, SCALE * 3)
+      (player.pos.sub(SCALE * 5, SCALE * 3))
       .scale(SCALE/10)
     ));
     
