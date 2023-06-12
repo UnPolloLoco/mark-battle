@@ -355,6 +355,8 @@ scene('game', () => {
   // on update //
   ///////////////
   
+  let playerLastYPos = player.pos.y;
+  
   onUpdate(() => {
     if (!(isKeyDown('a') || isKeyDown('d'))) {
       player.xVel -= player.xVel * dt() * (
@@ -376,7 +378,8 @@ scene('game', () => {
       mark.health -= 3;
     };
     
-    debug.log(player.xVel / SCALE);
+    debug.log((playerLastYPos - player.pos.y) / SCALE);
+    playerLastYPos = player.pos.y
   });
 });
 
