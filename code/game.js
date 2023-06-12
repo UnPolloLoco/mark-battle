@@ -71,7 +71,7 @@ scene('game', () => {
   
   // bean
   const player = add([
-    sprite('bean'),
+    sprite('beans'),
     pos(SCALE, SCALE),
     scale(SCALE/500 / 3),
     anchor('center'),
