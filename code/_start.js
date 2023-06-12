@@ -57,17 +57,17 @@ ls('slash', {
     },
   },
 });
-ls('bean', {
+ls('beans', {
   sliceX: 3,
   sliceY: 3,
   anims: {
-    idle:     4,
-    movingg:   0,
-    jump:     3,
-    jumpMove: 1,
-    fall:     2,
-    fallMove: 5,
-    battle:   6,
+    idle:     3,
+    moving:   7,
+    jump:     5,
+    jumpMove: 6,
+    fall:     4,
+    fallMove: 2,
+    battle:   1,
   },
 });
 
