@@ -177,7 +177,7 @@ scene('game', () => {
         add([
           rect(SCALE/3 + SCALE/25, SCALE/3 + SCALE/25),
           pos(obj.pos
-            .add(-SCALE*2/3, SCALE*13/3)
+            .add(-SCALE/3, SCALE*13/3)
             .sub(SCALE/50, SCALE/50)
           ),
           z(Z.tiles - 1),
@@ -186,7 +186,7 @@ scene('game', () => {
         // add the block
         add([
           sprite(obj.style),
-          pos(obj.pos.add(-SCALE*2/3, SCALE*13/3)),
+          pos(obj.pos.add(-SCALE/3, SCALE*13/3)),
           scale(SCALE/500 / 3),
           z(Z.tiles),
           area(),
@@ -198,7 +198,7 @@ scene('game', () => {
           add([
             rect(SCALE/3, SCALE*3),
             pos(obj.pos
-              .add(-SCALE*2/3, SCALE*14/3)
+              .add(-SCALE/3, SCALE*14/3)
             ),
             z(Z.tiles - 2),
             color(rgb(20,20,20)),
