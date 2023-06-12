@@ -351,11 +351,20 @@ scene('game', () => {
     player.move(p.xVel/10, 0);
   });
   
+  ///////////////////
+  // y delta thing //
+  ///////////////////
+  
+  let playerLastYPos = player.pos.y;
+  
+  loop(0.1, () => {
+    debug.log((playerLastYPos - player.pos.y) / SCALE);
+    playerLastYPos = player.pos.y;
+  });
+  
   ///////////////
   // on update //
   ///////////////
-  
-  let playerLastYPos = player.pos.y;
   
   onUpdate(() => {
     if (!(isKeyDown('a') || isKeyDown('d'))) {
@@ -377,9 +386,6 @@ scene('game', () => {
       mark.sliced = true;
       mark.health -= 3;
     };
-    
-    debug.log((playerLastYPos - player.pos.y) / SCALE);
-    playerLastYPos = player.pos.y
   });
 });
 
