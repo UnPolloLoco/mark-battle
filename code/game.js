@@ -358,7 +358,7 @@ scene('game', () => {
   let playerLastYPos = player.pos.y;
   
   loop(0.02, () => {
-    debug.log((playerLastYPos - player.pos.y) / SCALE);
+    debug.log(Math.round((playerLastYPos - player.pos.y) / SCALE * 100));
     playerLastYPos = player.pos.y;
   });
   
