@@ -71,9 +71,9 @@ scene('game', () => {
   
   // bean
   const player = add([
-    sprite('player'),
+    sprite('bean'),
     pos(SCALE, SCALE),
-    scale(SCALE/640 / 3),
+    scale(SCALE/500 / 3),
     anchor('center'),
     area(),
     body(),
@@ -86,6 +86,7 @@ scene('game', () => {
       lastAttack: -123,
     }
   ]);
+  player.play('idle');
   
   // slash
   const slash = player.add([
@@ -374,6 +375,8 @@ scene('game', () => {
       mark.sliced = true;
       mark.health -= 3;
     };
+    
+    debug.log(player.xVel / SCALE);
   });
 });
 
