@@ -385,7 +385,7 @@ scene('game', () => {
       } else {
         // NOT JUMPING
         if (Math.abs(player.xVel / SCALE) >= 1) {
-          player.play('movingg');
+          player.play('moving');
           player.flipX = (player.xVel < 0);
         } else {
           player.play('idle');
