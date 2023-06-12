@@ -400,10 +400,11 @@ scene('game', () => {
   ///////////////
   
   onUpdate(() => {
-    camPos(center().add(
+    /*camPos(center().add(
       (player.pos.sub(SCALE * 5, SCALE * 3))
       .scale(SCALE/10)
-    ));
+    ));*/
+    debug.log(player.pos.sub(SCALE*5, SCALE*3).scale(1/SCALE));
     
     if (!(isKeyDown('a') || isKeyDown('d'))) {
       player.xVel -= player.xVel * dt() * (
