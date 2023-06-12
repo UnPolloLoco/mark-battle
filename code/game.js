@@ -401,7 +401,7 @@ scene('game', () => {
   
   onUpdate(() => {
     camPos(
-      center().add(player.pos.sub(SCALE*5, SCALE*3).scale(0.6/SCALE))
+      center().add(player.pos.sub(SCALE*5, SCALE*3).scale(2/SCALE))
     );
     
     if (!(isKeyDown('a') || isKeyDown('d'))) {
