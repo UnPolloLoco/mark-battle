@@ -364,12 +364,33 @@ scene('game', () => {
     if (/* just took damage */ false) {
       
     } else {
-      if (Math.abs(yVelIndex) >= 2) {
+      if (yVelIndex >= 2) {
         // JUMPING
-      
+        if (Math.abs(player.xVel / SCALE) >= 1) {
+          player.play('jumpMove');
+          player.flipX = (player.xVel < 0);
+        } else {
+          player.play('jump');
+          player.flipX = false;
+        }
+      } else if (yVelIndex <= -2) {
+        // FALLING
+        if (Math.abs(player.xVel / SCALE) >= 1) {
+          player.play('fallMove');
+          player.flipX = (player.xVel < 0);
+        } else {
+          player.play('fall');
+          player.flipX = false;
+        }
       } else {
         // NOT JUMPING
-        
+        if (Math.abs(player.xVel / SCALE) >= 1) {
+          player.play('moving');
+          player.flipX = (player.xVel < 0);
+        } else {
+          player.play('idle');
+          player.flipX = false;
+        }
       };
     };
   });
