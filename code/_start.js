@@ -32,7 +32,6 @@ loadFont('playfair', 'fonts/PlayfairDisplay.ttf')
 loadRoot('sprites/');
 
 ls('mark');
-loadSprite('player', 'mark.png');
 la('blocks', {
   block: {
     x: 0, y: 0,
