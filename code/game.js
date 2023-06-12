@@ -38,9 +38,9 @@ scene('game', () => {
   
   // underground shake proofer
   add([
-    rect(width(), SCALE),
-    pos(0, height()),
-    color(rgb(100,100,100)),
+    rect(width() + SCALE*2/3, SCALE),
+    pos(-SCALE/3, height()),
+    color(rgb(130,130,130)),
     z(Z.bg),
     shader('light'),
   ]);
@@ -128,17 +128,17 @@ scene('game', () => {
   ///////////
 
   const level = [
-    '     #####>        #####>     ',
-    '                              ',
-    '                              ',
-    '                              ',
-    '##############################',
+    '      #####>        #####>      ',
+    '                                ',
+    '                                ',
+    '                                ',
+    '################################',
   ];
   
   const levelConf = {
     tileWidth: SCALE/3,
     tileHeight: SCALE/3,
-    pos: vec2(0, SCALE * 13/3),
+    pos: vec2(-SCALE/3, SCALE * 13/3),
     tiles: {
       "#": () => [
         sprite('block'),
