@@ -58,6 +58,19 @@ ls('slash', {
     },
   },
 });
+ls('bean', {
+  sliceX: 3,
+  sliceY: 3,
+  anims: {
+    idle:     4,
+    moving:   0,
+    jump:     3,
+    jumpMove: 1,
+    fall:     2,
+    fallMove: 5,
+    battle:   6,
+  },
+});
 
 loadShader('light', null, `
   vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
