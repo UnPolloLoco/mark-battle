@@ -432,6 +432,8 @@ scene('game', () => {
       ]);
       impact.play('flash');
     };
+    
+    debug.log(`ms: ${mark.sliced} ... mic: ${mark.isColliding(slash)} ... ia: ${player.isAttacking}`);
   });
 });
 
