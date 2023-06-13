@@ -422,6 +422,15 @@ scene('game', () => {
     if (!mark.sliced && mark.isColliding(slash)) {
       mark.sliced = true;
       mark.health -= 3;
+      let impact = add([
+        pos(mark.pos),
+        sprite('impact'),
+        shader('white'),
+        scale(SCALE/500 * 3),
+        z(Z.effects),
+        lifespan(0.125),
+      ]);
+      impact.play('flash');
     };
   });
 });
