@@ -70,6 +70,17 @@ ls('beans', {
     battle:   1,
   },
 });
+ls('impact', {
+  sliceX: 3,
+  sliceY: 2,
+  anims: {
+    flash: {
+      from: 0,
+      to: 4,
+      speed: 40,
+    },
+  },
+});
 
 loadShader('light', null, `
   vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
