@@ -419,7 +419,7 @@ scene('game', () => {
       if (a.opacity <= 0) { destroy(a); };
     });
     
-    if (!mark.sliced && mark.isColliding(slash)) {
+    if (!mark.sliced && slash.isColliding(mark)) {
       mark.sliced = true;
       mark.health -= 3;
       let impact = add([
