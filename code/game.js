@@ -99,7 +99,7 @@ scene('game', () => {
       offset: vec2(0, 90),
     }),
     opacity(0),
-    shader('slash'),
+    shader('white'),
   ]);
 	
   // movement borders
@@ -237,7 +237,7 @@ scene('game', () => {
     anchor('center'),
     color(rgb(15,15,15)),
     z(Z.ui),
-      fixed(),
+    fixed(),
   ]);
   
   // red bar part
@@ -246,7 +246,7 @@ scene('game', () => {
     pos(SCALE*2, SCALE * 9/20),
     color(RED),
     z(Z.ui),
-      fixed(),
+    fixed(),
   ]);
   
   // health bar label
