@@ -76,8 +76,8 @@ ls('impact', {
   anims: {
     flash: {
       from: 0,
-      to: 4,
-      speed: 40,
+      to: 5,
+      speed: 48,
     },
   },
 });
