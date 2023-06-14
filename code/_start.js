@@ -70,11 +70,11 @@ ls('beans', {
     battle:   1,
   },
 });
-ls('impact', {
+ls('clash', {
   sliceX: 3,
   sliceY: 2,
   anims: {
-    flash: {
+    clash: {
       from: 0,
       to: 5,
       speed: 48,
