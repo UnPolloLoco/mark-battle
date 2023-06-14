@@ -422,15 +422,15 @@ scene('game', () => {
     if (!mark.sliced && slash.isColliding(mark) && player.isAttacking) {
       mark.sliced = true;
       mark.health -= 3;
-      let impact = add([
+      let clash = add([
         pos(mark.pos),
-        sprite('impact'),
+        sprite('clash'),
         shader('white'),
         scale(SCALE/500 * 3),
         z(Z.effects),
         lifespan(0.125),
       ]);
-      impact.play('flash');
+      clash.play('clash');
     };
     
     debug.log(`ms: ${mark.sliced} ... mic: ${mark.isColliding(slash)} ... sic: ${slash.isColliding(mark)} ... ia: ${player.isAttacking}`);
