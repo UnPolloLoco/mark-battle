@@ -436,6 +436,7 @@ scene('game', () => {
         z(Z.effects),
         lifespan(0.2),
         rotate(randi(0,360)),
+        anchor('center'),
       ]);
       clash.play('clash');
     };
