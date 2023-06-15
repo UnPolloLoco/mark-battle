@@ -68,6 +68,19 @@ scene('game', () => {
       sliced: false,
     }
   ]); 
+
+  // mark eye points TEST
+  for (let i = 0; i < 2; i++) {
+  	let p = [
+  		vec2(-SCALE*0.28, -SCALE*0.22),
+		  vec2(SCALE*0.28, -SCALE*0.28),
+  	][i];
+  	add([
+  		sprite('beans'),
+  		pos(mark.pos.add(p)),
+  		scale(SCALE/500 /10)
+  	])
+  };
   
   // bean
   const player = add([
@@ -440,7 +453,7 @@ scene('game', () => {
       ]);
       
       clash.play('clash');
-      shake(SCALE/8);
+      shake(SCALE/10);
     };
     
     debug.log(`ms: ${mark.sliced} ... mic: ${mark.isColliding(slash)} ... sic: ${slash.isColliding(mark)} ... ia: ${player.isAttacking}`);
