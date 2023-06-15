@@ -428,7 +428,7 @@ scene('game', () => {
         shader('white'),
         scale(SCALE/500 * 3),
         z(Z.effects),
-        lifespan(0.125),
+        lifespan(0.2),
       ]);
       clash.play('clash');
     };
