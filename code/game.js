@@ -438,7 +438,9 @@ scene('game', () => {
         rotate(randi(0,360)),
         anchor('center'),
       ]);
+      
       clash.play('clash');
+      shake(SCALE/7);
     };
     
     debug.log(`ms: ${mark.sliced} ... mic: ${mark.isColliding(slash)} ... sic: ${slash.isColliding(mark)} ... ia: ${player.isAttacking}`);
