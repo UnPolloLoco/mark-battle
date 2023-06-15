@@ -78,7 +78,8 @@ scene('game', () => {
   	add([
   		sprite('beans'),
   		pos(mark.pos.add(p)),
-  		scale(SCALE/500 /10)
+  		scale(SCALE/500 /10),
+      z(Z.ui),
   	])
   };
   
