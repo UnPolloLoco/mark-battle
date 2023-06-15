@@ -77,7 +77,7 @@ ls('clash', {
     clash: {
       from: 0,
       to: 5,
-      speed: 48,
+      speed: 30,
     },
   },
 });
