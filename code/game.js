@@ -422,13 +422,20 @@ scene('game', () => {
     if (!mark.sliced && slash.isColliding(mark) && player.isAttacking) {
       mark.sliced = true;
       mark.health -= 3;
+
+      let clashPos = mark.pos.add(
+    		(mark.pos.sub(player.pos))
+    		.unit().scale(-SCALE)
+    	);
+      
       let clash = add([
-        pos(mark.pos),
+        pos(clashPos),
         sprite('clash'),
         shader('white'),
         scale(SCALE/500 * 3),
         z(Z.effects),
         lifespan(0.2),
+        rotate(randi(0,360)),
       ]);
       clash.play('clash');
     };
