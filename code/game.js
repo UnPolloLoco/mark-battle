@@ -1,9 +1,9 @@
 scene('game', () => {
   const Z = {
     bg:            0,
-    projectiles: 100,
-    mark:        200,
-    player:      300,
+    mark:        100,
+    player:      200,
+    projectiles: 300,
     effects:     400,
     tiles:       500,
     ui:          600,
