@@ -323,10 +323,10 @@ scene('game', () => {
   onKeyPress('space', () => {
     let attackDelta = time() - player.lastAttack;
     
-    if (!player.isAttacking && attackDelta >= 0.5) {
+    if (!player.isAttacking && attackDelta >= 0.25) {
       player.isAttacking = true;
       player.lastAttack = time();
-      player.gravityScale = 0.4;
+      player.gravityScale = 0.7;
      
       slash.flipX = (player.xVel >= 0);
       slash.opacity = 1;
@@ -440,7 +440,7 @@ scene('game', () => {
       ]);
       
       clash.play('clash');
-      shake(SCALE/7);
+      shake(SCALE/8);
     };
     
     debug.log(`ms: ${mark.sliced} ... mic: ${mark.isColliding(slash)} ... sic: ${slash.isColliding(mark)} ... ia: ${player.isAttacking}`);
