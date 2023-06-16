@@ -430,7 +430,7 @@ scene('game', () => {
   // mark attacks //
   //////////////////
 
-  loop(0.1, () => {
+  loop(0.6, () => {
     for (let i = 0; i < 2; i++) {
       let eye = markEyes()[i];
     	add([
