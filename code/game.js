@@ -95,6 +95,7 @@ scene('game', () => {
     shader('light'),
     z(Z.player),
     "player",
+    "laserBreak",
     {
       xVel: 0,
       isAttacking: false,
@@ -207,6 +208,7 @@ scene('game', () => {
           area(),
           body({ isStatic: true }),
           shader('light'),
+          "laserBreak",
         ]);
         // block shadow
         if (obj.pos.y < SCALE) {
@@ -365,6 +367,13 @@ scene('game', () => {
     p.xVel *= -0.8;
     player.move(p.xVel/10, 0);
   });
+
+  onCollide('laser', 'laserBreak', (l,g) => {
+    if (l.curAnim() == 'beam') {
+  	  l.play('boom');
+  	  wait(0.05, () => { destroy(l); });
+    };
+  });
   
   //////////////////////
   // animation update //
@@ -416,7 +425,20 @@ scene('game', () => {
   // mark attacks //
   //////////////////
 
-  // ugh later
+  loop(0.4, () => {
+  	add([
+  		pos( markEyes()[0] ),
+  		anchor('left'),
+  		sprite('laser', { anim: 'beam' }),
+  		scale(0.3),
+  		area({ scale: vec2(1, 0.2) }),
+  		lifespan(2),
+  		"laser",
+  		{
+  			dir: player.pos.angle( markEyes()[0] ),
+  		}
+  	])
+  })
   
   ///////////////
   // on update //
@@ -451,9 +473,9 @@ scene('game', () => {
     		.unit().scale(-SCALE)
     	);
       
-      let clash = add([
+      add([
         pos(clashPos),
-        sprite('clash'),
+        sprite('clash', { anim: 'clash' }),
         shader('white'),
         scale(SCALE/500 * 3),
         z(Z.effects),
@@ -462,11 +484,18 @@ scene('game', () => {
         anchor('center'),
       ]);
       
-      clash.play('clash');
       shake(SCALE/10);
     };
     
-    debug.log(`ms: ${mark.sliced} ... mic: ${mark.isColliding(slash)} ... sic: ${slash.isColliding(mark)} ... ia: ${player.isAttacking}`);
+    get('laser').forEach((l) => {
+  		if (l.curAnim() == 'beam') {
+  			l.pos = l.pos.add(
+  				SCALE*10 * dt() * Math.cos(l.dir),
+  				SCALE*10 * dt() * Math.sin(l.dir)
+  			);
+  		};
+  	});
+    
   });
 });
 
