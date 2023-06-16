@@ -69,18 +69,19 @@ scene('game', () => {
     }
   ]); 
 
-  // mark eye points TEST
-  for (let i = 0; i < 2; i++) {
-  	let p = [
-  		vec2(-SCALE*0.28, -SCALE*0.22),
-		  vec2(SCALE*0.28, -SCALE*0.28),
-  	][i];
-  	add([
-  		sprite('beans'),
-  		pos(mark.pos.add(p)),
-  		scale(SCALE/500 /10),
-      z(Z.ui),
-  	])
+  // mark eye coords
+  function markEyes() {
+    let a = [];
+    let b = [
+      vec2(-SCALE*0.28, -SCALE*0.22),
+      vec2(SCALE*0.28, -SCALE*0.28),
+    ]; 
+    for (let i = 0; i < 2; i++) {
+    	a.push( 
+        mark.pos.add(b[i])
+      );
+    }; 
+    return a;
   };
   
   // bean
@@ -375,8 +376,10 @@ scene('game', () => {
     let yVelIndex = Math.round((playerLastYPos - player.pos.y) / SCALE * 100);
     playerLastYPos = player.pos.y;
     
-    if (/* just took damage */ false) {
-      
+    if (player.isAttacking /* OR just took damage */) {
+      // ATTACKING
+      player.play('battle');
+      player.flipX = false;
     } else {
       if (yVelIndex >= 2) {
         // JUMPING
@@ -408,6 +411,12 @@ scene('game', () => {
       };
     };
   });
+
+  //////////////////
+  // mark attacks //
+  //////////////////
+
+  // ugh later
   
   ///////////////
   // on update //
