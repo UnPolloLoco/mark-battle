@@ -375,7 +375,7 @@ scene('game', () => {
         player.health--;
       };
   	  l.play('boom');
-      shake(SCALE/35);
+      //shake(SCALE/35); one day...
   	  wait(0.05, () => { destroy(l); });
     };
   });
