@@ -426,18 +426,22 @@ scene('game', () => {
   //////////////////
 
   loop(0.4, () => {
-  	add([
-  		pos( markEyes()[0] ),
-  		anchor('left'),
-  		sprite('laser', { anim: 'beam' }),
-  		scale(0.3),
-  		area({ scale: vec2(1, 0.2) }),
-  		lifespan(2),
-  		"laser",
-  		{
-  			dir: deg2rad( player.pos.angle( markEyes()[0] ) ),
-  		}
-  	])
+    for (let i = 0; i < 2; i++) {
+      let eye = markEyes()[i];
+    	add([
+    		pos(eye),
+    		anchor('left'),
+    		sprite('laser', { anim: 'beam' }),
+    		scale(SCALE/500 / 2),
+    		area({ scale: vec2(1, 0.2) }),
+    		lifespan(2),
+        rotate(player.pos.angle(eye)),
+    		"laser",
+    		{
+    			dir: deg2rad( player.pos.angle(eye) ),
+    		}
+    	]);
+    };
   })
   
   ///////////////
