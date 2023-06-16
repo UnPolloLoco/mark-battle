@@ -100,6 +100,7 @@ scene('game', () => {
       xVel: 0,
       isAttacking: false,
       lastAttack: -123,
+      health: 10,
     }
   ]);
   player.play('idle');
@@ -370,6 +371,9 @@ scene('game', () => {
 
   onCollide('laser', 'laserBreak', (l,g) => {
     if (l.curAnim() == 'beam') {
+      if (g.is('player')) {
+        player.health--;
+      };
   	  l.play('boom');
   	  wait(0.05, () => { destroy(l); });
     };
@@ -436,6 +440,7 @@ scene('game', () => {
     		area({ scale: vec2(1, 0.2) }),
     		lifespan(2),
         rotate(player.pos.angle(eye)),
+        z(Z.projectiles),
     		"laser",
     		{
     			dir: deg2rad( player.pos.angle(eye) ),
@@ -499,6 +504,8 @@ scene('game', () => {
   			);
   		};
   	});
+
+    debug.log(player.health);
     
   });
 });
