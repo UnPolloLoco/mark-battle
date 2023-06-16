@@ -435,7 +435,7 @@ scene('game', () => {
   		lifespan(2),
   		"laser",
   		{
-  			dir: player.pos.angle( markEyes()[0] ),
+  			dir: deg2rad( player.pos.angle( markEyes()[0] ) ),
   		}
   	])
   })
