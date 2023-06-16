@@ -81,6 +81,14 @@ ls('clash', {
     },
   },
 });
+ls('laser', {
+	sliceX: 2,
+	sliceY: 1,
+	anims: {
+		beam: 0,
+		boom: 1,
+	}
+})
 
 loadShader('light', null, `
   vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
