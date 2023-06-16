@@ -429,7 +429,7 @@ scene('game', () => {
   // mark attacks //
   //////////////////
 
-  loop(0.4, () => {
+  loop(0.1, () => {
     for (let i = 0; i < 2; i++) {
       let eye = markEyes()[i];
     	add([
@@ -438,7 +438,7 @@ scene('game', () => {
     		sprite('laser', { anim: 'beam' }),
     		scale(SCALE/500 / 2),
     		area({ scale: vec2(1, 0.2) }),
-    		lifespan(2),
+    		lifespan(1.5),
         rotate(player.pos.angle(eye)),
         z(Z.projectiles),
     		"laser",
