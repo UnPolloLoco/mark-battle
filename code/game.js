@@ -8,6 +8,14 @@ scene('game', () => {
     tiles:       500,
     ui:          600,
   }
+
+  ///////////////
+  // functions //
+  ///////////////
+
+  function clamp(a, x, b) {
+    return Math.max(Math.min(b, x), a);
+  };
   
   ////////////////
   // background //
@@ -430,25 +438,52 @@ scene('game', () => {
   // mark attacks //
   //////////////////
 
-  loop(0.6, () => {
-    for (let i = 0; i < 2; i++) {
-      let eye = markEyes()[i];
-    	add([
-    		pos(eye),
-    		anchor('left'),
-    		sprite('laser', { anim: 'beam' }),
-    		scale(SCALE/500 / 2),
-    		area({ scale: vec2(1, 0.2) }),
-    		lifespan(1.5),
-        rotate(player.pos.angle(eye)),
-        z(Z.projectiles),
-    		"laser",
-    		{
-    			dir: deg2rad( player.pos.angle(eye) ),
-    		}
-    	]);
+  var maNum = -1; // mark attack number
+  
+  function markAttack() {
+    let phase = clamp(
+      1, 
+      Math.floor(mark.health / -200) + 6, 
+      5
+    );
+    maNum++;
+    let curAttack = maNum % (phase + 1);
+
+    if (curAttack == 0) {
+      // LASERS
+      for (let n = 0; n < 2+phase; n++) {
+        wait(400 * n, () => {
+          for (let i = 0; i < 2; i++) {
+            let eye = markEyes()[i];
+          	add([
+          		pos(eye),
+          		anchor('left'),
+          		sprite('laser', { anim: 'beam' }),
+          		scale(SCALE/500 / 2),
+          		area({ scale: vec2(1, 0.2) }),
+          		lifespan(1.5),
+              rotate(player.pos.angle(eye)),
+              z(Z.projectiles),
+          		"laser",
+          		{
+          			dir: deg2rad( player.pos.angle(eye) ),
+          		}
+          	]);
+          };
+        });
+      };
+      wait(400 * 4+phase, markAttack);
+    } else if (curAttack == 1) {
+      // MINI MARK
+      debug.log('hi');
+      wait(1500, markAttack);
     };
-  })
+    
+  };
+
+  wait(1, () => {
+    markAttack();
+  });
   
   ///////////////
   // on update //
@@ -505,8 +540,6 @@ scene('game', () => {
   			);
   		};
   	});
-
-    debug.log(player.health);
     
   });
 });
