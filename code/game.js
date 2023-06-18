@@ -449,14 +449,10 @@ scene('game', () => {
     maNum++;
     let curAttack = maNum % (phase + 1);
 
-    debug.log(`pha: ${phase}    maN: ${maNum}    cur: ${curAttack}`);
-
     if (curAttack == 0) {
       // LASERS
       for (let n = 0; n < 2+phase; n++) {
-        debug.log('loop')
-        wait(400 * n, () => {
-          debug.log('pew');
+        wait(0.4 * n, () => {
           for (let i = 0; i < 2; i++) {
             let eye = markEyes()[i];
           	add([
@@ -476,11 +472,11 @@ scene('game', () => {
           };
         });
       };
-      wait(400 * 4+phase, markAttack);
+      wait(0.4 * 4+phase, markAttack);
     } else if (curAttack == 1) {
       // MINI MARK
       debug.log('hi');
-      wait(1500, markAttack);
+      wait(1.5, markAttack);
     };
     
   };
