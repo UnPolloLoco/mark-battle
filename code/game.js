@@ -454,7 +454,9 @@ scene('game', () => {
     if (curAttack == 0) {
       // LASERS
       for (let n = 0; n < 2+phase; n++) {
+        debug.log('loop')
         wait(400 * n, () => {
+          debug.log('pew');
           for (let i = 0; i < 2; i++) {
             let eye = markEyes()[i];
           	add([
