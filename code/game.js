@@ -535,8 +535,8 @@ scene('game', () => {
     get('laser').forEach((l) => {
   		if (l.curAnim() == 'beam') {
   			l.pos = l.pos.add(
-  				SCALE*10 * dt() * Math.cos(l.dir),
-  				SCALE*10 * dt() * Math.sin(l.dir)
+  				SCALE*12 * dt() * Math.cos(l.dir),
+  				SCALE*12 * dt() * Math.sin(l.dir)
   			);
   		};
   	});
