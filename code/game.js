@@ -449,6 +449,8 @@ scene('game', () => {
     maNum++;
     let curAttack = maNum % (phase + 1);
 
+    debug.log(`pha: ${phase}    maN: ${maNum}    cur: ${curAttack}`);
+
     if (curAttack == 0) {
       // LASERS
       for (let n = 0; n < 2+phase; n++) {
