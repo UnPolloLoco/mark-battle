@@ -472,7 +472,7 @@ scene('game', () => {
           };
         });
       };
-      wait(0.4 * 4+phase, markAttack);
+      wait(0.4 * 5+phase, markAttack);
     } else if (curAttack == 1) {
       // MINI MARK
       debug.log('hi');
