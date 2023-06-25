@@ -66,6 +66,7 @@ scene('game', () => {
     anchor('center'),
     shader('mark', () => ({
   		'time': time(),
+      'rand': rand(),
   	})),
     z(Z.mark),
     area({shape: new Polygon([
