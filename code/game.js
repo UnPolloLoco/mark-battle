@@ -64,7 +64,9 @@ scene('game', () => {
     scale(SCALE/640 * 2),
     rotate(0),
     anchor('center'),
-    shader('light'),
+    shader('mark', () => ({
+  		'time': time(),
+  	})),
     z(Z.mark),
     area({shape: new Polygon([
       vec2(-140, -220), vec2(65, -220), vec2(210, -150), 
