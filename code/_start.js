@@ -88,7 +88,8 @@ ls('laser', {
 		beam: 0,
 		boom: 1,
 	}
-})
+});
+loadSprite('miniMark', 'mark.png');
 
 loadShader('light', null, `
   vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
