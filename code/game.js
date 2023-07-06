@@ -454,6 +454,7 @@ scene('game', () => {
 
     if (curAttack == 0) {
       // LASERS
+      
       for (let n = 0; n < 2+phase; n++) {
         wait(0.4 * n, () => {
           for (let i = 0; i < 2; i++) {
@@ -478,6 +479,9 @@ scene('game', () => {
       wait(0.4 * 5+phase, markAttack);
     } else if (curAttack == 1) {
       // MINI MARK
+
+      let airTime = 1;
+      
       for (let n = 0; n < 2; n++) {
         let mm = add([
           sprite('miniMark'),
@@ -494,8 +498,6 @@ scene('game', () => {
             spawnDir: n%2==0 ? 1 : -1,
           }
         ]);
-        
-        let airTime = 1;
         
         tween(
       		mm.pos,
