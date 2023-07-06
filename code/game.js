@@ -478,8 +478,38 @@ scene('game', () => {
       wait(0.4 * 5+phase, markAttack);
     } else if (curAttack == 1) {
       // MINI MARK
-      debug.log('hi');
-      wait(1.5, markAttack);
+      for (let n = 0; n < 2; n++) {
+        let mm = add([
+          sprite('miniMark'),
+          pos(mark.pos),
+          z(Z.player - 2),
+          scale(SCALE/500 / 3),
+          area(),
+          body({ gravityScale: 0, }),
+          anchor('center'),
+          shader('light'),
+          "miniMark",
+          {
+            xVel: 0,
+            spawnDir: n%2==0 ? 1 : -1,
+          }
+        ]);
+        
+        let airTime = 1;
+        
+        tween(
+      		mm.pos,
+      		mm.pos.add(SCALE * 2.5 * mm.spawnDir, 0),
+      		airTime,
+      		(val) => mm.pos = val,
+      		easings.easeOutCubic,
+      	);
+        wait(airTime + 0.3, () => {
+          mm.gravityScale = 1;
+        });
+      };
+      
+      wait(airTime + 1, markAttack);
     };
     
   };
