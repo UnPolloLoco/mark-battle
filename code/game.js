@@ -511,7 +511,7 @@ scene('game', () => {
         });
       };
       
-      wait(airTime + 1, markAttack);
+      wait(airTime + 2, markAttack);
     };
     
   };
@@ -535,6 +535,10 @@ scene('game', () => {
       );
     };
     player.move(player.xVel, 0);
+
+    get('miniMark').forEach((m) => {
+      debug.log('hi');
+    });
     
     healthBar.width = SCALE*6 * mark.health/1000; 
     
