@@ -588,15 +588,15 @@ scene('game', () => {
     get('miniMark').forEach((m) => {
       if (player.pos.x <= m.pos.x - SCALE) { // left
         m.xVel = Math.max(
-          -RUN_SPEED,
-          m.xVel - RUN_SPEED * dt() * (
+          -RUN_SPEED / 2,
+          m.xVel - RUN_SPEED / 2 * dt() * (
             m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
           )
         );
       } else if (player.pos.x >= m.pos.x + SCALE) { // right
          m.xVel = Math.min(
-          RUN_SPEED,
-          m.xVel + RUN_SPEED * dt() * (
+          RUN_SPEED / 2,
+          m.xVel + RUN_SPEED / 2 * dt() * (
             m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
           )
         );
