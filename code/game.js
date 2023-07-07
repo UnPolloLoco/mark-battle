@@ -476,7 +476,7 @@ scene('game', () => {
           };
         });
       };
-      wait(0.4 * 5+phase, markAttack);
+      wait(0.5 * 5+phase, markAttack);
     } else if (curAttack == 1) {
       // MINI MARK
 
@@ -511,7 +511,7 @@ scene('game', () => {
         });
       };
       
-      wait(airTime + 2, markAttack);
+      wait(airTime + 4, markAttack);
     };
     
   };
@@ -525,10 +525,13 @@ scene('game', () => {
   ///////////////
   
   onUpdate(() => {
-    /*camPos(
+    /*
+    camPos(
       center().add(player.pos.sub(SCALE*5, SCALE*3).scale(2/SCALE))
-    );*/
-    
+    );
+    */
+
+    // PLAYER MOVEMENT
     if (!(isKeyDown('a') || isKeyDown('d'))) {
       player.xVel -= player.xVel * dt() * (
         player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
@@ -536,18 +539,18 @@ scene('game', () => {
     };
     player.move(player.xVel, 0);
 
-    get('miniMark').forEach((m) => {
-      debug.log('hi');
-    });
-    
+    // HEALTH BAR DISPLAY
     healthBar.width = SCALE*6 * mark.health/1000; 
-    
+
+    /*
     get('attackLines').forEach((a) => {
       a.opacity -= 0.4 * dt();
       a.pos.y += SCALE * 3 * dt();
       if (a.opacity <= 0) { destroy(a); };
     });
-    
+    */
+
+    // MARK TAKES DAMAGE
     if (!mark.sliced && slash.isColliding(mark) && player.isAttacking) {
       mark.sliced = true;
       mark.health -= 3;
@@ -570,7 +573,8 @@ scene('game', () => {
       
       shake(SCALE/10);
     };
-    
+
+    // LASER MOVEMENT
     get('laser').forEach((l) => {
   		if (l.curAnim() == 'beam') {
   			l.pos = l.pos.add(
@@ -579,6 +583,31 @@ scene('game', () => {
   			);
   		};
   	});
+
+    // MINIMARK AI
+    get('miniMark').forEach((m) => {
+      if (player.pos.x <= m.pos.x - SCALE) { // left
+        m.xVel = Math.max(
+          -RUN_SPEED,
+          m.xVel - RUN_SPEED * dt() * (
+            m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+          )
+        );
+      } else if (player.pos.x >= m.pos.x + SCALE) { // right
+         m.xVel = Math.min(
+          RUN_SPEED,
+          m.xVel + RUN_SPEED * dt() * (
+            m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+          )
+        );
+      } else if (Math.abs(player.pos.x - m.pos.x) < SCALE) { // neither
+        m.xVel -= m.xVel * dt() * (
+          m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+        );
+      };
+      
+      m.move(m.xVel, 0);
+    });
     
   });
 });
