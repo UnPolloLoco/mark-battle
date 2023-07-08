@@ -496,6 +496,8 @@ scene('game', () => {
           {
             xVel: 0,
             spawnDir: n%2==0 ? 1 : -1,
+            spawnTime: time(),
+            canMove: false,
           }
         ]);
         
@@ -586,27 +588,33 @@ scene('game', () => {
 
     // MINIMARK AI
     get('miniMark').forEach((m) => {
-      if (player.pos.x <= m.pos.x - SCALE) { // left
-        m.xVel = Math.max(
-          -RUN_SPEED / 2,
-          m.xVel - RUN_SPEED / 2 * dt() * (
+      if (m.canMove) {
+        if (player.pos.x <= m.pos.x - SCALE) { // left
+          m.xVel = Math.max(
+            -RUN_SPEED / 2,
+            m.xVel - RUN_SPEED / 2 * dt() * (
+              m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+            )
+          );
+        } else if (player.pos.x >= m.pos.x + SCALE) { // right
+          m.xVel = Math.min(
+            RUN_SPEED / 2,
+            m.xVel + RUN_SPEED / 2 * dt() * (
+              m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+            )
+          );
+        } else if (Math.abs(player.pos.x - m.pos.x) < SCALE) { // neither
+          m.xVel -= m.xVel * dt() * (
             m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
-          )
-        );
-      } else if (player.pos.x >= m.pos.x + SCALE) { // right
-         m.xVel = Math.min(
-          RUN_SPEED / 2,
-          m.xVel + RUN_SPEED / 2 * dt() * (
-            m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
-          )
-        );
-      } else if (Math.abs(player.pos.x - m.pos.x) < SCALE) { // neither
-        m.xVel -= m.xVel * dt() * (
-          m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
-        );
-      };
+          );
+        };
       
-      m.move(m.xVel, 0);
+        m.move(m.xVel, 0);
+      // cant move yet
+      } else if (m.spawnTime + 1.5 >= time()) {
+        m.canMove = true;
+      };
+
     });
     
   });
