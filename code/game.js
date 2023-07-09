@@ -98,7 +98,7 @@ scene('game', () => {
   // bean
   const player = add([
     sprite('beans'),
-    pos(SCALE, SCALE),
+    pos(SCALE*0.9, SCALE),
     scale(SCALE/500 / 3),
     anchor('center'),
     area(),
@@ -611,10 +611,9 @@ scene('game', () => {
       
         m.move(m.xVel, 0);
       // cant move yet
-      } else if (m.spawnTime + 2 >= time()) {
+      } else if (m.spawnTime + 2 < time()) {
         m.canMove = true;
       };
-      debug.log(`${m.canMove}`);
 
     });
     
