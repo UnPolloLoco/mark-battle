@@ -614,7 +614,7 @@ scene('game', () => {
       } else if (m.spawnTime + 2 >= time()) {
         m.canMove = true;
       };
-      debug.log(`${m.spawnTime + 2} --- ${time()}`);
+      debug.log(`${m.canMove}`);
 
     });
     
