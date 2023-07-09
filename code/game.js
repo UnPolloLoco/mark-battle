@@ -609,9 +609,7 @@ scene('game', () => {
           );
         };
         
-        let mpxs = m.pos.x / SCALE;
-        debug.log(`${m.isGrounded()} --- ${!((1.4 < mpxs && mpxs < 4) || (6 < mpxs && mpxs < 8.5))} --- ${player.pos.y > m.pos.y + SCALE*0.75}`)
-        if (player.pos.y > m.pos.y + SCALE*0.75 && m.isGrounded()) {
+        if (player.pos.y < m.pos.y - SCALE*0.75 && m.isGrounded()) {
           let mpxs = m.pos.x / SCALE;
           if ( !((1.4 < mpxs && mpxs < 4) || (6 < mpxs && mpxs < 8.5)) ) {
             m.jump(JUMP_SPEED);
