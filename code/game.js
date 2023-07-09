@@ -132,6 +132,20 @@ scene('game', () => {
       attackID: rand(),
     }
   ]);
+
+  // damage special fx
+  function clashEffect(p, s) {
+    add([
+      pos(p),
+      sprite('clash', { anim: 'clash' }),
+      shader('white'),
+      scale(SCALE/500 * s),
+      z(Z.effects),
+      lifespan(0.2),
+      rotate(randi(0,360)),
+      anchor('center'),
+    ]);
+  };
 	
   // movement borders
   for (let i = 0; i < 2; i++) {
@@ -405,7 +419,7 @@ scene('game', () => {
     let yVelIndex = Math.round((playerLastYPos - player.pos.y) / SCALE * 100);
     playerLastYPos = player.pos.y;
     
-    if (player.isAttacking /* OR just took damage */) {
+    if (player.isAttacking /* OR just took damage? */) {
       // ATTACKING
       player.play('battle');
       player.flipX = false;
@@ -555,16 +569,7 @@ scene('game', () => {
     		.unit().scale(-SCALE)
     	);
       
-      add([
-        pos(clashPos),
-        sprite('clash', { anim: 'clash' }),
-        shader('white'),
-        scale(SCALE/500 * 3),
-        z(Z.effects),
-        lifespan(0.2),
-        rotate(randi(0,360)),
-        anchor('center'),
-      ]);
+      clashEffect(clashPos, 3);
       
       shake(SCALE/10);
     };
@@ -615,10 +620,18 @@ scene('game', () => {
         m.canMove = true;
       };
 
-      // attacked?
+      // MINIMARK TAKES DAMAGE
       if (slash.isColliding(m) && m.attackedBy != slash.attackID && player.isAttacking) {
         m.attackedBy = slash.attackID;
         m.health--;
+
+        let clashPos = m.pos.add(
+      		(m.pos.sub(player.pos))
+      		.unit().scale(-SCALE)
+      	);
+        
+        clashEffect(clashPos, 1);
+        
         if (m.health <= 0) {
           destroy(m);
         };
