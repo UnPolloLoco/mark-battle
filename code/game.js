@@ -128,6 +128,9 @@ scene('game', () => {
     }),
     opacity(0),
     shader('white'),
+    {
+      attackID: rand(),
+    }
   ]);
 	
   // movement borders
@@ -360,6 +363,7 @@ scene('game', () => {
       slash.flipX = (player.xVel >= 0);
       slash.opacity = 1;
       slash.play('attack');
+      slash.attackID = rand();
       
       setTimeout(() => {
         mark.sliced = false;
@@ -498,6 +502,8 @@ scene('game', () => {
             spawnDir: n%2==0 ? 1 : -1,
             spawnTime: time(),
             canMove: false,
+            health: 2,
+            attackedBy: -1,
           }
         ]);
         
@@ -527,11 +533,6 @@ scene('game', () => {
   ///////////////
   
   onUpdate(() => {
-    /*
-    camPos(
-      center().add(player.pos.sub(SCALE*5, SCALE*3).scale(2/SCALE))
-    );
-    */
 
     // PLAYER MOVEMENT
     if (!(isKeyDown('a') || isKeyDown('d'))) {
@@ -543,15 +544,7 @@ scene('game', () => {
 
     // HEALTH BAR DISPLAY
     healthBar.width = SCALE*6 * mark.health/1000; 
-
-    /*
-    get('attackLines').forEach((a) => {
-      a.opacity -= 0.4 * dt();
-      a.pos.y += SCALE * 3 * dt();
-      if (a.opacity <= 0) { destroy(a); };
-    });
-    */
-
+ 
     // MARK TAKES DAMAGE
     if (!mark.sliced && slash.isColliding(mark) && player.isAttacking) {
       mark.sliced = true;
@@ -591,15 +584,15 @@ scene('game', () => {
       if (m.canMove) {
         if (player.pos.x <= m.pos.x - SCALE) { // left
           m.xVel = Math.max(
-            -RUN_SPEED / 2,
-            m.xVel - RUN_SPEED / 2 * dt() * (
+            -RUN_SPEED * 0.75,
+            m.xVel - RUN_SPEED * 0.75 * dt() * (
               m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
             )
           );
         } else if (player.pos.x >= m.pos.x + SCALE) { // right
           m.xVel = Math.min(
             RUN_SPEED / 2,
-            m.xVel + RUN_SPEED / 2 * dt() * (
+            m.xVel + RUN_SPEED * 0.75 * dt() * (
               m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
             )
           );
@@ -622,6 +615,14 @@ scene('game', () => {
         m.canMove = true;
       };
 
+      // attacked?
+      if (slash.isColliding(m) && m.attackedBy != slash.attackID && player.isAttacking) {
+        m.attackedBy = slash.attackID;
+        m.health--;
+        if (m.health <= 0) {
+          destroy(m);
+        };
+      };
     });
     
   });
