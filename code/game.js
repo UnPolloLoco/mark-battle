@@ -611,7 +611,7 @@ scene('game', () => {
       
         m.move(m.xVel, 0);
       // cant move yet
-      } else if (m.spawnTime + 1.5 >= time()) {
+      } else if (m.spawnTime + 2 >= time()) {
         m.canMove = true;
       };
 
