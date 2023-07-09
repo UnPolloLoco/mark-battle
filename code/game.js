@@ -608,6 +608,13 @@ scene('game', () => {
             m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
           );
         };
+
+        if (player.pos.y > m.pos.y + SCALE*0.75 && m.isGrounded()) {
+          let mpxs = m.pos.x / SCALE;
+          if ( !((mpxs > 1.4 && mpxs < 4) || (mpxs > 6 && mpxs < 8.5)) ) {
+            m.jump(JUMP_SPEED);
+          };
+        };
       
         m.move(m.xVel, 0);
       // cant move yet
