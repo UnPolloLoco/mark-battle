@@ -606,7 +606,7 @@ scene('game', () => {
           m.xVel -= m.xVel * dt() * (
             m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
           );
-          if (player.pos.y > SCALE*4.3 && Math.abs(player.pos.y - m.pos.y) > SCALE*0.65) {
+          if ((player.pos.y > SCALE*4.3 || m.pos.y > SCALE*4.5) && Math.abs(player.pos.y - m.pos.y) > SCALE*0.65) {
             m.forceMove = rand() < 0.5 ? 'left' : 'right';
           };
         };
