@@ -620,7 +620,7 @@ scene('game', () => {
         };
 
         // removing forcemove
-        if (Math.abs(player.pos.x - m.pos.x) < SCALE/10) {
+        if (Math.abs(player.pos.y - m.pos.y) < SCALE/10) {
           m.forceMove = 'none';
         };
       
