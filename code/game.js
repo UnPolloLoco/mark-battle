@@ -588,14 +588,14 @@ scene('game', () => {
     // MINIMARK AI
     get('miniMark').forEach((m) => {
       if (m.canMove) {
-        if (player.pos.x <= m.pos.x - SCALE || m.forceMove == 'left') { // left
+        if (player.pos.x <= m.pos.x - SCALE || m.forceMove.dir == 'left') { // left
           m.xVel = Math.max(
             -RUN_SPEED * 0.75,
             m.xVel - RUN_SPEED * 0.75 * dt() * (
               m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
             )
           );
-        } else if (player.pos.x >= m.pos.x + SCALE || m.forceMove == 'right') { // right
+        } else if (player.pos.x >= m.pos.x + SCALE || m.forceMove.dir == 'right') { // right
           m.xVel = Math.min(
             RUN_SPEED / 2,
             m.xVel + RUN_SPEED * 0.75 * dt() * (
@@ -608,13 +608,17 @@ scene('game', () => {
           );
           if (Math.abs(player.pos.y - m.pos.y) > SCALE*0.65) {
             m.forceMove = rand() < 0.5 ? 'left' : 'right';
+            m.forceMove = {
+              dir: m.forceMove,
+              start: m.pos.x
+            };
           };
         };
         // jumping
         if (player.pos.y < m.pos.y - SCALE*0.75 && m.isGrounded()) {
-          m.forceMove = 'none';
           let mpxs = m.pos.x / SCALE;
           if ( !((1.4 < mpxs && mpxs < 4) || (6 < mpxs && mpxs < 8.5)) ) {
+            m.forceMove = 'none';
             m.jump(JUMP_SPEED);
           };
         };
