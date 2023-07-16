@@ -602,7 +602,7 @@ scene('game', () => {
               m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
             )
           );
-        } else if (Math.abs(player.pos.x - m.pos.x) < SCALE) { // slowing
+        } else if (Math.abs(player.pos.x - m.pos.x) < SCALE && Math.abs(player.pos.y - m.pos.y) < SCALE/4) { // slowing
           m.xVel -= m.xVel * dt() * (
             m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
           );
