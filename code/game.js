@@ -75,7 +75,7 @@ scene('game', () => {
       vec2(-100, 225),  vec2(-240, 90), vec2(-240, -80),
     ])}),
     {
-      health: 1000,
+      health: 500,
       sliced: false,
     }
   ]); 
@@ -464,7 +464,7 @@ scene('game', () => {
   function markAttack() {
     let phase = clamp(
       1, 
-      Math.floor(mark.health / -200) + 6, 
+      Math.floor(mark.health / -100) + 6, 
       5
     );
     maNum++;
