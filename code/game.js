@@ -558,12 +558,12 @@ scene('game', () => {
     player.move(player.xVel, 0);
 
     // HEALTH BAR DISPLAY
-    healthBar.width = SCALE*6 * mark.health/1000; 
+    healthBar.width = SCALE*6 * mark.health/500; 
  
     // MARK TAKES DAMAGE
     if (!mark.sliced && slash.isColliding(mark) && player.isAttacking) {
       mark.sliced = true;
-      mark.health -= 3;
+      mark.health -= 2;
 
       let clashPos = mark.pos.add(
     		(mark.pos.sub(player.pos))
