@@ -26,6 +26,10 @@ function la(a,b) {
 };
 
 const SCALE = width()/10;
+const JUMP_SPEED = SCALE * 9;
+const RUN_SPEED = SCALE * 5;
+const GROUND_FRICTION = 8;
+const AIR_FRICTION = 2;
 
 loadFont('playfair', 'fonts/PlayfairDisplay.ttf')
 
