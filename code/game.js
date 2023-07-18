@@ -1,5 +1,3 @@
-import minimarkAI from 'minimark.js';
-
 scene('game', () => {
   const Z = {
     bg:            0,
