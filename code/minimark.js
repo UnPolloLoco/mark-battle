@@ -1,6 +1,4 @@
-import * from '_start.js';
-
-export function minimarkAI() {
+function minimarkAI() {
   get('miniMark').forEach((m) => {
       if (m.canMove) {
         if (player.pos.x <= m.pos.x - SCALE || m.forceMove == 'left') { // left
