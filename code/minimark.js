@@ -61,7 +61,7 @@ function minimarkAI() {
         };
       };
     });
-  catch (e) {
+  } catch (e) {
     alert(e);
   };
 };
