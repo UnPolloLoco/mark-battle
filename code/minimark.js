@@ -1,5 +1,6 @@
 function minimarkAI() {
-  get('miniMark').forEach((m) => {
+  try {
+    get('miniMark').forEach((m) => {
       if (m.canMove) {
         if (player.pos.x <= m.pos.x - SCALE || m.forceMove == 'left') { // left
           m.xVel = Math.max(
@@ -60,4 +61,7 @@ function minimarkAI() {
         };
       };
     });
+  catch (e) {
+    alert(e);
+  };
 };
