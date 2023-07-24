@@ -94,6 +94,32 @@ scene('game', () => {
     }; 
     return a;
   };
+
+  // mark movement binder
+  function newMarkPos(x) {
+    let bounds = [
+      vec2( 5, 2 ),
+      vec2( 5, 2 ),
+    ];
+    if (x == 0) {
+      bounds = [
+        vec2( 1.6, 1.6 ),
+        vec2( 8.4, 2.6 ),
+      ];
+    } else if (x == 1) {
+      bounds = [
+        vec2( 4, 1.6 ),
+        vec2( 6, 2.3 ),
+      ];
+    };
+
+    let randPos = vec2(
+      rand(bounds[0].x, bounds[1].x),
+      rand(bounds[0].y, bounds[1].y),
+    );
+
+    return randPos.scale(SCALE);
+  };
   
   // bean
   const player = add([
@@ -466,72 +492,83 @@ scene('game', () => {
     maNum++;
     let curAttack = maNum % (phase + 1);
 
-    if (curAttack == 0) {
-      // LASERS
-      
-      for (let n = 0; n < 2+phase; n++) {
-        wait(0.4 * n, () => {
-          for (let i = 0; i < 2; i++) {
-            let eye = markEyes()[i];
-          	add([
-          		pos(eye),
-          		anchor('left'),
-          		sprite('laser', { anim: 'beam' }),
-          		scale(SCALE/500 / 2),
-          		area({ scale: vec2(1, 0.2) }),
-          		lifespan(1.5),
-              rotate(player.pos.angle(eye)),
-              z(Z.projectiles),
-          		"laser",
-          		{
-          			dir: deg2rad( player.pos.angle(eye) ),
-          		}
-          	]);
-          };
-        });
-      };
-      wait(0.5 * 5+phase, markAttack);
-    } else if (curAttack == 1) {
-      // MINI MARK
+    let moveTime = 0.8;
+    tween(
+      mark.pos,
+      newMarkPos(curAttack),
+      moveTime,
+      (val) => mark.pos = val,
+      easings.easeInOutQuad,
+    );
 
-      let airTime = 1;
-      
-      for (let n = 0; n < 2; n++) {
-        let mm = add([
-          sprite('miniMark'),
-          pos(mark.pos),
-          z(Z.player - 2),
-          scale(SCALE/500 / 3),
-          area(),
-          body({ gravityScale: 0, }),
-          anchor('center'),
-          shader('light'),
-          "miniMark",
-          {
-            xVel: 0,
-            spawnDir: n%2==0 ? 1 : -1,
-            spawnTime: time(),
-            canMove: false,
-            health: 2,
-            attackedBy: -1,
-            forceMove: 'none',
-          }
-        ]);
+    wait(moveTime + 0.5, () => {
+      if (curAttack == 0) {
+        // LASERS
         
-        tween(
-      		mm.pos,
-      		mm.pos.add(SCALE * 2.5 * mm.spawnDir, 0),
-      		airTime,
-      		(val) => mm.pos = val,
-      		easings.easeOutCubic,
-      	);
-        wait(airTime + 0.3, () => {
-          mm.gravityScale = 1;
-        });
+        for (let n = 0; n < 2+phase; n++) {
+          wait(0.4 * n, () => {
+            for (let i = 0; i < 2; i++) {
+              let eye = markEyes()[i];
+            	add([
+            		pos(eye),
+            		anchor('left'),
+            		sprite('laser', { anim: 'beam' }),
+            		scale(SCALE/500 / 2),
+            		area({ scale: vec2(1, 0.2) }),
+            		lifespan(1.5),
+                rotate(player.pos.angle(eye)),
+                z(Z.projectiles),
+            		"laser",
+            		{
+            			dir: deg2rad( player.pos.angle(eye) ),
+            		}
+            	]);
+            };
+          });
+        };
+        wait(0.5 * 5+phase, markAttack);
+      } else if (curAttack == 1) {
+        // MINI MARK
+  
+        let airTime = 1;
+        
+        for (let n = 0; n < 2; n++) {
+          let mm = add([
+            sprite('miniMark'),
+            pos(mark.pos),
+            z(Z.player - 2),
+            scale(SCALE/500 / 3),
+            area(),
+            body({ gravityScale: 0, }),
+            anchor('center'),
+            shader('light'),
+            "miniMark",
+            {
+              xVel: 0,
+              spawnDir: n%2==0 ? 1 : -1,
+              spawnTime: time(),
+              canMove: false,
+              health: 2,
+              attackedBy: -1,
+              forceMove: 'none',
+            }
+          ]);
+          
+          tween(
+        		mm.pos,
+        		mm.pos.add(SCALE * 2.5 * mm.spawnDir, 0),
+        		airTime,
+        		(val) => mm.pos = val,
+        		easings.easeOutCubic,
+        	);
+          wait(airTime + 0.3, () => {
+            mm.gravityScale = 1;
+          });
+        };
+        
+        wait(airTime + 4, markAttack);
       };
-      
-      wait(airTime + 4, markAttack);
-    };
+    });
     
   };
 
