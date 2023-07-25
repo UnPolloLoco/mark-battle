@@ -145,15 +145,16 @@ scene('game', () => {
   // slash
   const slash = player.add([
     sprite('slash'),
-    pos(0, -150),
+    pos(500, -150), // 0, -150
     anchor('center'),
-    scale(vec2(16, 10)),
+    scale(vec2(16, 10).scale(0.5)), // remove 0.5
     area({ 
       scale: vec2(0.95, 0.22),
       offset: vec2(0, 90),
     }),
     opacity(0),
     shader('white'),
+    rotate(270), // remove
     {
       attackID: rand(),
     }
