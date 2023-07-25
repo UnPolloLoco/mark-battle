@@ -145,16 +145,15 @@ scene('game', () => {
   // slash
   const slash = player.add([
     sprite('slash'),
-    pos(400, -30), // 0, -150
+    pos(0, -150),
     anchor('center'),
-    scale(vec2(1.8, 3.5)), // vec2(16, 10)
+    scale(vec2(16, 10)),
     area({ 
       scale: vec2(0.95, 0.22),
       offset: vec2(0, 90),
     }),
     opacity(0),
     shader('white'),
-    rotate(270), // remove
     {
       attackID: rand(),
     }
@@ -687,6 +686,30 @@ scene('game', () => {
           destroy(m);
         };
       };
+
+      /////////////////////
+      // minimark attack //
+      /////////////////////
+
+      /*
+      slash = player.add([
+        sprite('slash'),
+        pos(400, -30), // 0, -150
+        anchor('center'),
+        scale(vec2(1.8, 3.5)), // vec2(16, 10)
+        area({ 
+          scale: vec2(0.95, 0.22),
+          offset: vec2(0, 90),
+        }),
+        opacity(0),
+        shader('white'),
+        rotate(270), // remove
+        {
+          attackID: rand(),
+        }
+      ]);
+    */
+      
     });
 
     
