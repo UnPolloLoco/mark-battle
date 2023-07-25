@@ -145,9 +145,9 @@ scene('game', () => {
   // slash
   const slash = player.add([
     sprite('slash'),
-    pos(500, 70), // 0, -150
+    pos(400, 120), // 0, -150
     anchor('center'),
-    scale(vec2(2, 13.3)), // vec2(16, 10)
+    scale(vec2(1.8, 9)), // vec2(16, 10)
     area({ 
       scale: vec2(0.95, 0.22),
       offset: vec2(0, 90),
