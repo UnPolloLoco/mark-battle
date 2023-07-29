@@ -159,6 +159,30 @@ scene('game', () => {
     }
   ]);
 
+  // attack func
+  function beanAttack() {
+    let attackDelta = time() - player.lastAttack;
+    
+    if (!player.isAttacking && attackDelta >= 0.25) {
+      player.isAttacking = true;
+      player.lastAttack = time();
+      player.gravityScale = 0.7;
+     
+      slash.flipX = (player.xVel >= 0);
+      slash.opacity = 1;
+      slash.play('attack');
+      slash.attackID = rand();
+      
+      setTimeout(() => {
+        mark.sliced = false;
+        player.isAttacking = false;
+        player.gravityScale = 1;
+        
+        slash.opacity = 0;
+      }, 175);
+    };
+  };
+
   // damage special fx
   function clashEffect(p, s) {
     add([
@@ -389,26 +413,16 @@ scene('game', () => {
   })
   
   onKeyPress('space', () => {
-    let attackDelta = time() - player.lastAttack;
-    
-    if (!player.isAttacking && attackDelta >= 0.25) {
-      player.isAttacking = true;
-      player.lastAttack = time();
-      player.gravityScale = 0.7;
-     
-      slash.flipX = (player.xVel >= 0);
-      slash.opacity = 1;
-      slash.play('attack');
-      slash.attackID = rand();
-      
-      setTimeout(() => {
-        mark.sliced = false;
-        player.isAttacking = false;
-        player.gravityScale = 1;
-        
-        slash.opacity = 0;
-      }, 175);
+    beanAttack();
+  });
+
+  let lastClick = -1;
+  onClick(() => {
+    if (time() - lastClick < 0.2) {
+      beanAttack();
     };
+    
+    lastClick = time();
   });
   
   ////////////////
