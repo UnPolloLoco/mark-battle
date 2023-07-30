@@ -751,8 +751,14 @@ scene('game', () => {
       ///////////////////////////
       // minimark attack check //
       ///////////////////////////
-
-      if (m.slash.opacity == 1 && m.slash.isCollding(player) && !player.attackedBy.includes(m.slash.attackID)) {
+      
+      if (
+        m.slash.opacity == 1 
+        &&
+        m.slash.isColliding(player) 
+        && 
+        !player.attackedBy.includes(m.slash.attackID)
+      ) {
         player.attackedBy.push(m.slash.attackID);
         player.attackedBy = player.attackedBy.slice(-10);
         player.health--;
