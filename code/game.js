@@ -138,6 +138,7 @@ scene('game', () => {
       isAttacking: false,
       lastAttack: -123,
       health: 10,
+      attackedBy: [],
     }
   ]);
   player.play('idle');
@@ -565,6 +566,25 @@ scene('game', () => {
               health: 2,
               attackedBy: -1,
               forceMove: 'none',
+              slash: -1,
+              lastAttack: -1,
+            }
+          ]);
+
+          mm.slash = mm.add([
+            sprite('slash'),
+            pos(400, -30),
+            anchor('center'),
+            scale(vec2(1.8, 3.5)), 
+            area({ 
+              scale: vec2(0.95, 0.22),
+              offset: vec2(0, 90),
+            }), 
+            opacity(0),
+            shader('white'),
+            rotate(270),
+            {
+              attackID: rand(),
             }
           ]);
           
@@ -592,6 +612,8 @@ scene('game', () => {
   
   
   onUpdate(() => {
+
+    debug.log(player.health);
 
     /////////////////
     // player move //
@@ -658,7 +680,7 @@ scene('game', () => {
           m.xVel -= m.xVel * dt() * (
             m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
           );
-          if ((player.pos.y > SCALE*4.3 || m.pos.y > SCALE*4.5) && Math.abs(player.pos.y - m.pos.y) > SCALE*0.65) {
+          if ((player.pos.y > SCALE*4.3 || m.pos.y > SCALE*4.5) && Math.abs(player.pos.y - m.pos.y) > SCALE*0.6) {
             m.forceMove = rand() < 0.5 ? 'left' : 'right';
           };
         };
@@ -705,24 +727,36 @@ scene('game', () => {
       // minimark attack //
       /////////////////////
 
-      /*
-      slash = player.add([
-        sprite('slash'),
-        pos(400, -30), // 0, -150
-        anchor('center'),
-        scale(vec2(1.8, 3.5)), // vec2(16, 10)
-        area({ 
-          scale: vec2(0.95, 0.22),
-          offset: vec2(0, 90),
-        }),
-        opacity(0),
-        shader('white'),
-        rotate(270), // remove
-        {
-          attackID: rand(),
-        }
-      ]);
-    */
+      if (
+        m.canMove
+        &&
+        time() - m.lastAttack > 0.35
+        &&
+        Math.abs(player.pos.x - m.pos.x) < SCALE
+        &&
+        Math.abs(player.pos.y - m.pos.y) < SCALE/2
+      ) {
+        m.lastAttack = time();
+       
+        //m.slash.flipX = (player.xVel >= 0); rot pos flipx
+        m.slash.opacity = 1;
+        m.slash.play('attack');
+        m.slash.attackID = rand();
+        
+        setTimeout(() => {
+          slash.opacity = 0;
+        }, 175);
+      };
+
+      ///////////////////////////
+      // minimark attack check //
+      ///////////////////////////
+
+      if (m.opacity == 1 && m.slash.isCollding(player) && !player.attackedBy.includes(m.slash.attackID)) {
+        player.attackedBy.push(m.slash.attackID);
+        player.attackedBy = player.attackedBy.slice(-10);
+        player.health--;
+      };
       
     });
 
