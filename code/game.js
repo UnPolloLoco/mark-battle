@@ -554,7 +554,10 @@ scene('game', () => {
             z(Z.player - 2),
             scale(SCALE/500 / 3),
             area(),
-            body({ gravityScale: 0, }),
+            body({ 
+              gravityScale: 0, 
+              mass: 0.75,
+            }),
             anchor('center'),
             shader('light'),
             "miniMark",
@@ -662,21 +665,21 @@ scene('game', () => {
     /////////////////
     get('miniMark').forEach((m) => {
       if (m.canMove) {
-        if (player.pos.x <= m.pos.x - SCALE*0.7 || m.forceMove == 'left') { // left
+        if (player.pos.x <= m.pos.x - SCALE*0.6 || m.forceMove == 'left') { // left
           m.xVel = Math.max(
             -RUN_SPEED * 0.75,
             m.xVel - RUN_SPEED * 0.75 * dt() * (
               m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
             )
           );
-        } else if (player.pos.x >= m.pos.x + SCALE*0.7 || m.forceMove == 'right') { // right
+        } else if (player.pos.x >= m.pos.x + SCALE*0.6 || m.forceMove == 'right') { // right
           m.xVel = Math.min(
             RUN_SPEED / 2,
             m.xVel + RUN_SPEED * 0.75 * dt() * (
               m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
             )
           );
-        } else if (Math.abs(player.pos.x - m.pos.x) < SCALE*0.7 && Math.abs(player.pos.y - m.pos.y) < SCALE/4) { // slowing
+        } else if (Math.abs(player.pos.x - m.pos.x) < SCALE*0.6 && Math.abs(player.pos.y - m.pos.y) < SCALE/4) { // slowing
           m.xVel -= m.xVel * dt() * (
             m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
           );
@@ -766,6 +769,7 @@ scene('game', () => {
         player.attackedBy.push(m.slash.attackID);
         player.attackedBy = player.attackedBy.slice(-10);
         player.health--;
+        player.xVel = (pmpx ? -RUN_SPEED : RUN_SPEED);
       };
       
     });
