@@ -738,7 +738,10 @@ scene('game', () => {
       ) {
         m.lastAttack = time();
        
-        //m.slash.flipX = (player.xVel >= 0); rot pos flipx
+        m.slash.flipX = (player.xVel < 0);
+        m.slash.pos = (player.xVel < 0 ? -400 : 400);
+        m.slash.angle = (player.xVel < 0 ? 0 : 270);
+        
         m.slash.opacity = 1;
         m.slash.play('attack');
         m.slash.attackID = rand();
