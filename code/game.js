@@ -662,21 +662,21 @@ scene('game', () => {
     /////////////////
     get('miniMark').forEach((m) => {
       if (m.canMove) {
-        if (player.pos.x <= m.pos.x - SCALE || m.forceMove == 'left') { // left
+        if (player.pos.x <= m.pos.x - SCALE/2 || m.forceMove == 'left') { // left
           m.xVel = Math.max(
             -RUN_SPEED * 0.75,
             m.xVel - RUN_SPEED * 0.75 * dt() * (
               m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
             )
           );
-        } else if (player.pos.x >= m.pos.x + SCALE || m.forceMove == 'right') { // right
+        } else if (player.pos.x >= m.pos.x + SCALE/2 || m.forceMove == 'right') { // right
           m.xVel = Math.min(
             RUN_SPEED / 2,
             m.xVel + RUN_SPEED * 0.75 * dt() * (
               m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
             )
           );
-        } else if (Math.abs(player.pos.x - m.pos.x) < SCALE && Math.abs(player.pos.y - m.pos.y) < SCALE/4) { // slowing
+        } else if (Math.abs(player.pos.x - m.pos.x) < SCALE/2 && Math.abs(player.pos.y - m.pos.y) < SCALE/4) { // slowing
           m.xVel -= m.xVel * dt() * (
             m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
           );
@@ -737,10 +737,11 @@ scene('game', () => {
         Math.abs(player.pos.y - m.pos.y) < SCALE/2
       ) {
         m.lastAttack = time();
-       
-        m.slash.flipX = (player.xVel < 0);
-        m.slash.pos.x = (player.xVel < 0 ? -400 : 400);
-        m.slash.angle = (player.xVel < 0 ? 90 : 270);
+
+        let pmpx = (player.pos.x - m.pos.x < 0);
+        m.slash.flipX = pmpx;
+        m.slash.pos.x = (pmpx ? -400 : 400);
+        m.slash.angle = (pmpx ? 90 : 270);
         
         m.slash.opacity = 1;
         m.slash.play('attack');
