@@ -662,14 +662,14 @@ scene('game', () => {
     /////////////////
     get('miniMark').forEach((m) => {
       if (m.canMove) {
-        if (player.pos.x <= m.pos.x - SCALE/2 || m.forceMove == 'left') { // left
+        if (player.pos.x <= m.pos.x - SCALE*0.65 || m.forceMove == 'left') { // left
           m.xVel = Math.max(
             -RUN_SPEED * 0.75,
             m.xVel - RUN_SPEED * 0.75 * dt() * (
               m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
             )
           );
-        } else if (player.pos.x >= m.pos.x + SCALE/2 || m.forceMove == 'right') { // right
+        } else if (player.pos.x >= m.pos.x + SCALE*0.65 || m.forceMove == 'right') { // right
           m.xVel = Math.min(
             RUN_SPEED / 2,
             m.xVel + RUN_SPEED * 0.75 * dt() * (
@@ -732,7 +732,7 @@ scene('game', () => {
         &&
         time() - m.lastAttack > 0.35
         &&
-        Math.abs(player.pos.x - m.pos.x) < SCALE
+        Math.abs(player.pos.x - m.pos.x) < SCALE/2
         &&
         Math.abs(player.pos.y - m.pos.y) < SCALE/2
       ) {
