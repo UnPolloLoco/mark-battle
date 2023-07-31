@@ -769,7 +769,7 @@ scene('game', () => {
         player.attackedBy.push(m.slash.attackID);
         player.attackedBy = player.attackedBy.slice(-10);
         player.health--;
-        player.xVel = (pmpx ? -RUN_SPEED : RUN_SPEED);
+        player.xVel = (player.pos.x - m.pos.x < 0) ? -RUN_SPEED : RUN_SPEED;
       };
       
     });
