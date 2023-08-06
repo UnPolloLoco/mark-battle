@@ -408,18 +408,16 @@ scene('game', () => {
       )
     );
 	});
-  
-  onKeyDown('m', () => {
-    shake(SCALE);
-  })
-  
-  onKeyPress('space', () => {
-    beanAttack();
-  });
+
+  if (!isTouchscreen()) {
+    onKeyPress('space', () => {
+      beanAttack();
+    });
+  };
 
   let lastClick = -1;
   onClick(() => {
-    if (time() - lastClick < 0.2) {
+    if (isTouchscreen() && time() - lastClick < 0.2) {
       beanAttack();
     };
     
@@ -616,16 +614,29 @@ scene('game', () => {
   
   onUpdate(() => {
 
-    debug.log(player.health);
+    debug.log(`ts ${isTouchscreen()} - md ${isMouseDown()}`);
+    //debug.log(player.health);
 
-    /////////////////
-    // player move //
-    /////////////////
-    if (!(isKeyDown('a') || isKeyDown('d'))) {
+    //////////////////////////
+    // player indirect move //
+    //////////////////////////
+    let doFriction = false;
+    if (!isTouchScreen()) {
+      if (!(isKeyDown('a') || isKeyDown('d'))) {
+        doFriction = true;
+      };
+    else {
+      if (!isMouseDown()) {
+        doFriction = true;
+      };
+    };
+
+    if (doFriction) {
       player.xVel -= player.xVel * dt() * (
         player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
       );
     };
+    
     player.move(player.xVel, 0);
 
     // HEALTH BAR DISPLAY
