@@ -621,7 +621,7 @@ scene('game', () => {
     // player indirect move //
     //////////////////////////
     let doFriction = false;
-    if (!isTouchScreen()) {
+    if (!isTouchscreen()) {
       if (!(isKeyDown('a') || isKeyDown('d'))) {
         doFriction = true;
       };
