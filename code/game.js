@@ -384,37 +384,62 @@ scene('game', () => {
   onKeyPress('0', () => {
     debug.inspect = !debug.inspect; 
   });
-  
+
+  // keyboard jump
   onKeyDown("w", () => {
     if (player.isGrounded()) {
 			player.jump(JUMP_SPEED);
 		};
   });
 
-	onKeyDown("a", () => {
-    player.xVel = Math.max(
-      -RUN_SPEED,
-      player.xVel - RUN_SPEED * dt() * (
-        player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
-      )
-    );
-	});
+  // keyboard movement
+  if (!TOUCH) {
+  	onKeyDown("a", () => {
+      player.xVel = Math.max(
+        -RUN_SPEED,
+        player.xVel - RUN_SPEED * dt() * (
+          player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+        )
+      );
+  	});
 
-	onKeyDown("d", () => {
-    player.xVel = Math.min(
-      RUN_SPEED,
-      player.xVel + RUN_SPEED * dt() * (
-        player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
-      )
-    );
-	});
+	  onKeyDown("d", () => {
+      player.xVel = Math.min(
+        RUN_SPEED,
+        player.xVel + RUN_SPEED * dt() * (
+          player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+        )
+      );
+  	});
 
-  if (!isTouchscreen()) {
+    // keyboard attack
     onKeyPress('space', () => {
       beanAttack();
     });
+
+  // touchscreen movement
+  } else {
+    
+    if (isMouseDown()) {
+      if (mousePos().x < player.pos) {
+        player.xVel = Math.max(
+          -RUN_SPEED,
+          player.xVel - RUN_SPEED * dt() * (
+            player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+          )
+        );
+      } else {
+        player.xVel = Math.min(
+          RUN_SPEED,
+          player.xVel - RUN_SPEED * dt() * (
+            player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+          )
+        );
+      };
+    };
   };
 
+  // touchscreen attack
   let lastClick = -1;
   onClick(() => {
     if (isTouchscreen() && time() - lastClick < 0.2) {
