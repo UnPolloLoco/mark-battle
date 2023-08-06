@@ -639,7 +639,7 @@ scene('game', () => {
   
   onUpdate(() => {
 
-    debug.log(`ig ${isGrounded()}`);
+    debug.log(`ig ${player.isGrounded()}`);
     //debug.log(player.health);
 
     //////////////////////////
