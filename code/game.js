@@ -639,7 +639,7 @@ scene('game', () => {
   
   onUpdate(() => {
 
-    debug.log(`ts ${isTouchscreen()} - md ${isMouseDown()}`);
+    debug.log(`ig ${isGrounded()}`);
     //debug.log(player.health);
 
     //////////////////////////
