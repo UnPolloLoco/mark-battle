@@ -625,7 +625,7 @@ scene('game', () => {
       if (!(isKeyDown('a') || isKeyDown('d'))) {
         doFriction = true;
       };
-    else {
+    } else {
       if (!isMouseDown()) {
         doFriction = true;
       };
