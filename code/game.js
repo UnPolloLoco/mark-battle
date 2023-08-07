@@ -639,7 +639,7 @@ scene('game', () => {
   
   onUpdate(() => {
 
-    debug.log(`ig ${player.isGrounded()}`);
+    debug.log(`m ${mousePos().scale(1/SCALE)} - p ${player.pos.scale(1/SCALE)}`);
     //debug.log(player.health);
 
     //////////////////////////
