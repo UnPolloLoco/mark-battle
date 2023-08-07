@@ -392,6 +392,8 @@ scene('game', () => {
 		};
   });
 
+  debug.log(`t ${TOUCH} - imd ${isMouseDown} - rol ${(mousePos().x < player.pos.x)}`);
+
   // keyboard movement
   if (!TOUCH) {
   	onKeyDown("a", () => {
@@ -421,7 +423,6 @@ scene('game', () => {
   } else {
     
     if (isMouseDown()) {
-      debug.log('a')
       if (mousePos().x < player.pos.x) {
         player.xVel = Math.max(
           -RUN_SPEED,
