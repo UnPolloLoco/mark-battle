@@ -646,7 +646,7 @@ scene('game', () => {
     // player indirect move //
     //////////////////////////
     let doFriction = false;
-    if (!isTouchscreen()) {
+    if (!TOUCH) {
       if (!(isKeyDown('a') || isKeyDown('d'))) {
         doFriction = true;
       };
@@ -655,6 +655,8 @@ scene('game', () => {
         doFriction = true;
       };
     };
+
+    debug.log(doFriction);
 
     if (doFriction) {
       player.xVel -= player.xVel * dt() * (
