@@ -639,7 +639,6 @@ scene('game', () => {
   
   onUpdate(() => {
 
-    debug.log(`m ${mousePos().scale(1/SCALE)} - p ${player.pos.scale(1/SCALE)}`);
     //debug.log(player.health);
 
     //////////////////////////
@@ -647,16 +646,18 @@ scene('game', () => {
     //////////////////////////
     let doFriction = false;
     if (!TOUCH) {
+      // on keyboard and not pressing a nor d
       if (!(isKeyDown('a') || isKeyDown('d'))) {
         doFriction = true;
       };
     } else {
+      // on touch and not holding down
       if (!isMouseDown()) {
         doFriction = true;
       };
     };
 
-    debug.log(player.xvel);
+    debug.log(player.xVel);
 
     if (doFriction) {
       player.xVel -= player.xVel * dt() * (
