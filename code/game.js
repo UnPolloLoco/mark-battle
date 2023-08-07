@@ -421,7 +421,7 @@ scene('game', () => {
   } else {
     
     if (isMouseDown()) {
-      if (mousePos().x < player.pos) {
+      if (mousePos().x < player.pos.x) {
         player.xVel = Math.max(
           -RUN_SPEED,
           player.xVel - RUN_SPEED * dt() * (
