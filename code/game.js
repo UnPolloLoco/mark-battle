@@ -656,7 +656,7 @@ scene('game', () => {
       };
     };
 
-    debug.log(doFriction);
+    debug.log(player.xvel);
 
     if (doFriction) {
       player.xVel -= player.xVel * dt() * (
