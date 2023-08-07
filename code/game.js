@@ -421,6 +421,7 @@ scene('game', () => {
   } else {
     
     if (isMouseDown()) {
+      debug.log('a')
       if (mousePos().x < player.pos.x) {
         player.xVel = Math.max(
           -RUN_SPEED,
@@ -431,12 +432,14 @@ scene('game', () => {
       } else {
         player.xVel = Math.min(
           RUN_SPEED,
-          player.xVel - RUN_SPEED * dt() * (
+          player.xVel + RUN_SPEED * dt() * (
             player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
           )
         );
       };
+      
     };
+    
   };
 
   // touchscreen attack
@@ -656,8 +659,6 @@ scene('game', () => {
         doFriction = true;
       };
     };
-
-    debug.log(player.xVel);
 
     if (doFriction) {
       player.xVel -= player.xVel * dt() * (
