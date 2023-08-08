@@ -625,23 +625,23 @@ scene('game', () => {
 
     // touch movement
     if (TOUCH) {
-    if (isMouseDown()) {
-      if (mousePos().x < player.pos.x) {
-        player.xVel = Math.max(
-          -RUN_SPEED,
-          player.xVel - RUN_SPEED * dt() * (
-            player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
-          )
-        );
-      } else {
-        player.xVel = Math.min(
-          RUN_SPEED,
-          player.xVel + RUN_SPEED * dt() * (
-            player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
-          )
-        );
+      if (isMouseDown()) {
+        if (toWorld(mousePos()).x < player.pos.x) {
+          player.xVel = Math.max(
+            -RUN_SPEED,
+            player.xVel - RUN_SPEED * dt() * (
+              player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+            )
+          );
+        } else {
+          player.xVel = Math.min(
+            RUN_SPEED,
+            player.xVel + RUN_SPEED * dt() * (
+              player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+            )
+          );
+        };
       };
-    };
     };
 
     //////////////////////////
