@@ -392,7 +392,7 @@ scene('game', () => {
 		};
   });
 
-  debug.log(`t ${TOUCH} - imd ${isMouseDown()} - rol ${(mousePos().x < player.pos.x)}`);
+  debug.log(`t ${TOUCH} - imd ${isMouseDown()} - rol ${(mousePos().x < player.pos.x)} \nmpx ${mousePos().x} - ppx ${player.pos.x}`);
 
   // keyboard movement
   if (!TOUCH) {
