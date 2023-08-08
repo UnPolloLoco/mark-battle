@@ -392,7 +392,7 @@ scene('game', () => {
 		};
   });
 
-  debug.log(`t ${TOUCH} - imd ${isMouseDown()} - rol ${(mousePos().x < player.pos.x)} \nmpx ${mousePos().x} - ppx ${player.pos.x}`);
+  
 
   // keyboard movement
   if (!TOUCH) {
@@ -419,28 +419,6 @@ scene('game', () => {
       beanAttack();
     });
 
-  // touchscreen movement
-  } else {
-    
-    if (isMouseDown()) {
-      if (mousePos().x < player.pos.x) {
-        player.xVel = Math.max(
-          -RUN_SPEED,
-          player.xVel - RUN_SPEED * dt() * (
-            player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
-          )
-        );
-      } else {
-        player.xVel = Math.min(
-          RUN_SPEED,
-          player.xVel + RUN_SPEED * dt() * (
-            player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
-          )
-        );
-      };
-      
-    };
-    
   };
 
   // touchscreen attack
@@ -644,6 +622,27 @@ scene('game', () => {
   onUpdate(() => {
 
     //debug.log(player.health);
+
+    // touch movement
+    if (TOUCH) {
+    if (isMouseDown()) {
+      if (mousePos().x < player.pos.x) {
+        player.xVel = Math.max(
+          -RUN_SPEED,
+          player.xVel - RUN_SPEED * dt() * (
+            player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+          )
+        );
+      } else {
+        player.xVel = Math.min(
+          RUN_SPEED,
+          player.xVel + RUN_SPEED * dt() * (
+            player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+          )
+        );
+      };
+    };
+    };
 
     //////////////////////////
     // player indirect move //
