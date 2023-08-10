@@ -623,6 +623,8 @@ scene('game', () => {
 
     //debug.log(player.health);
 
+    debug.log(`\nmpx ${mousePos().x}\ncbr ${canvas.getBoundingClientRect().left}\nppx ${player.pos.x}\ndif ${mousePos().x - canvas.getBoundngClientRect().left}`);
+
     // touch movement
     if (TOUCH) {
       if (isMouseDown()) {
