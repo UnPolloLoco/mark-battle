@@ -617,6 +617,17 @@ scene('game', () => {
   wait(1, () => {
     markAttack();
   });
+
+  let touchJumpCheck = SCALE * -5;
+  loop(0.1, () => {
+    let fixedMousePos = mousePos.y - canvas.getBoundingClientRect().left;
+    if (fixedMousePos < touchJumpCheck - SCALE*2) {
+      if (player.isGrounded()) {
+		  	player.jump(JUMP_SPEED);
+	  	};
+    };
+    touchJumpCheck = fixedMousePos;
+  });
   
   
   onUpdate(() => {
