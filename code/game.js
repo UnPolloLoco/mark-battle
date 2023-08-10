@@ -623,12 +623,12 @@ scene('game', () => {
 
     //debug.log(player.health);
 
-    debug.log(`\nmpx ${mousePos().x}\ncbr ${canvas.getBoundingClientRect().left}\nppx ${player.pos.x}\ndif ${mousePos().x - canvas.getBoundngClientRect().left}`);
+    debug.log(`\nmpx ${mousePos().x}\ncbr ${canvas.getBoundingClientRect().left}\nppx ${player.pos.x}\ndif ${mousePos().x - canvas.getBoundingClientRect().left}`);
 
     // touch movement
     if (TOUCH) {
       if (isMouseDown()) {
-        if ((mousePos().x - canvas.getBoundngClientRect().left) < player.pos.x) {
+        if ((mousePos().x - canvas.getBoundingClientRect().left) < player.pos.x) {
           player.xVel = Math.max(
             -RUN_SPEED,
             player.xVel - RUN_SPEED * dt() * (
