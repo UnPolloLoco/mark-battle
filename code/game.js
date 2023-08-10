@@ -626,7 +626,7 @@ scene('game', () => {
     // touch movement
     if (TOUCH) {
       if (isMouseDown()) {
-        if (toWorld(mousePos()).x < player.pos.x) {
+        if ((mousePos().x - canvas.getBoundngClientRect().left) < player.pos.x) {
           player.xVel = Math.max(
             -RUN_SPEED,
             player.xVel - RUN_SPEED * dt() * (
