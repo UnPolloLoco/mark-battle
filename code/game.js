@@ -626,7 +626,7 @@ scene('game', () => {
 		  	player.jump(JUMP_SPEED);
 	  	};
     };
-    //debug.log(`\n ${fixedMousePos < touchJumpCheck - SCALE*2} \n fmp ${fixedMousePos.scale(1/SCALE)} \n tjc `);
+    debug.log(`\n ${fixedMousePos < touchJumpCheck - SCALE*2} \n fmp ${fixedMousePos/SCALE} \n tjc ${touchJumpCheck/SCALE}`);
     touchJumpCheck = fixedMousePos;
   });
   
