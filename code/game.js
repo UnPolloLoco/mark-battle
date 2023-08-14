@@ -620,7 +620,7 @@ scene('game', () => {
 
   let touchJumpCheck = SCALE * -5;
   loop(0.1, () => {
-    let fixedMousePos = mousePos.y - canvas.getBoundingClientRect().top;
+    let fixedMousePos = mousePos().y - canvas.getBoundingClientRect().top;
     if (fixedMousePos < touchJumpCheck - SCALE*2) {
       if (player.isGrounded()) {
 		  	player.jump(JUMP_SPEED);
