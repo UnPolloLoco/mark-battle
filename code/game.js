@@ -977,9 +977,9 @@ scene('game', () => {
             if (m.curAnim() != 'jump') m.play('jump');
             m.extra.opacity = 0;
           };
-          m.flipX = (m.xVel < 0);
-          m.extra.flipX = (m.xVel < 0);
-          m.animSpeed = m.xVel/SCALE * 0.8;
+          m.flipX = (m.xVel > 0);
+          m.extra.flipX = (m.xVel > 0);
+          m.animSpeed = m.xVel/SCALE * 1;
         };
       }
 
