@@ -663,7 +663,7 @@ scene('game', () => {
           });
         };
         
-        wait(airTime + 4, markAttack);
+        //wait(airTime + 4, markAttack);
       };
     });
     
