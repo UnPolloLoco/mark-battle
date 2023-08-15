@@ -649,6 +649,7 @@ scene('game', () => {
             sprite('megaMinimarkExtras'),
             anchor('center'),
             opacity(0),
+            scale(mm.scale),
           ]);
           
           tween(
@@ -832,7 +833,7 @@ scene('game', () => {
       		.unit().scale(-SCALE / 3)
       	);
         
-        clashEffect(clashPos, 1);
+        clashEffect(clashPos, (m.is('megaMinimark') ? 2:1));
         
         if (m.health <= 0) {
           destroy(m);
