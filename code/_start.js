@@ -36,7 +36,8 @@ loadFont('playfair', 'fonts/PlayfairDisplay.ttf')
 
 loadRoot('sprites/');
 
-ls('mark');
+//ls('mark');
+loadSprite('mark', 'https://i.ibb.co/7v1KkPT/IMG-8476.png');
 
 la('blocks', {
   block: {
