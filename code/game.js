@@ -61,7 +61,7 @@ scene('game', () => {
   const mark = add([
     sprite('mark'),
     pos(SCALE*5, SCALE*2),
-    scale(SCALE/640 * 2),
+    scale(SCALE/640 * 4),
     rotate(0),
     anchor('center'),
     shader('mark', () => ({
@@ -80,9 +80,6 @@ scene('game', () => {
     }
   ]); 
 
-  mark.onUpdate(() => {
-    mark.pos = player.pos.sub(0, SCALE*0.8);
-  });
 
   // mark eye coords
   function markEyes() {
