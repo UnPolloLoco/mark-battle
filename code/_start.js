@@ -7,7 +7,7 @@ kaboom({
   width: kaboomDimensions.w,
   height: kaboomDimensions.h,
   inspectColor: [255,255,255],
-  pixelDensity: 2.5,
+  pixelDensity: 1.5,
   crisp: true,
 });
 
@@ -139,8 +139,10 @@ la('megaMinimark', {
     anims: {
       fall: 0,
       mouth: 1,
-      laser1: 2,
-      laser2: 3,
+      laser: {
+        from: 2, to: 3,
+        speed: 9,
+      },
     }
   },
 });
