@@ -61,7 +61,7 @@ scene('game', () => {
   const mark = add([
     sprite('mark'),
     pos(SCALE*5, SCALE*2),
-    scale(SCALE/640 * 4),
+    scale(SCALE/640 * 2),
     rotate(0),
     anchor('center'),
     shader('mark', () => ({
