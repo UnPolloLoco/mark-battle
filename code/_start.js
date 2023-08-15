@@ -37,6 +37,7 @@ loadFont('playfair', 'fonts/PlayfairDisplay.ttf')
 loadRoot('sprites/');
 
 ls('mark');
+
 la('blocks', {
   block: {
     x: 0, y: 0,
@@ -51,6 +52,7 @@ la('blocks', {
     width: 500, height: 500,
   }
 });
+
 ls('slash', {
   sliceX: 6,
   sliceY: 1,
@@ -62,6 +64,7 @@ ls('slash', {
     },
   },
 });
+
 ls('beans', {
   sliceX: 3,
   sliceY: 3,
@@ -75,6 +78,7 @@ ls('beans', {
     battle:   1,
   },
 });
+
 ls('clash', {
   sliceX: 3,
   sliceY: 2,
@@ -86,6 +90,7 @@ ls('clash', {
     },
   },
 });
+
 ls('laser', {
 	sliceX: 2,
 	sliceY: 1,
@@ -94,7 +99,61 @@ ls('laser', {
 		boom: 1,
 	}
 });
-loadSprite('miniMark', 'mark.png');
+
+ls('miniMark', {
+  sliceX: 3,
+  sliceY, 2,
+  anims {
+    moving: 0,
+    attacking: 1,
+    jumpMove: 4,
+    fallMove: 5,
+  }
+});
+
+la('megaMiniMark', {
+  megaMiniMark: {
+    x: 0, y: 0,
+    width: 2000, height: 1000,
+    sliceX: 4,
+    sliceY: 2,
+    anims: {
+      roll: {
+        from: 0, to: 3,
+        speed: 15,
+      },
+      jump: {
+        from: 4, to: 7,
+        speed: 10,
+      }
+    }
+  },
+  
+  megaMiniMarkExtras: {
+    x: 0, y: 1500,
+    width: 2000, height: 500,
+    sliceX: 4,
+    anims: {
+      fall: 0,
+      mouth: 1,
+      laser1: 2,
+      laser2: 3,
+    }
+  },
+});
+
+ls('laserFlare', {
+  sliceX: 2,
+  anims: {
+    flash: {
+      from: 0, to: 1,
+      speed: 9,
+    }
+  }
+});
+
+
+
 
 loadShader('light', null, `
   vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
