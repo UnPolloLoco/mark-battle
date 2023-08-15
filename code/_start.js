@@ -34,10 +34,12 @@ const TOUCH = isTouchscreen();
 
 loadFont('playfair', 'fonts/PlayfairDisplay.ttf')
 
+// TEMPORARY WEEEWOOOOWEEEWOOOO
+loadSprite('mark', 'https://i.ibb.co/7v1KkPT/IMG-8476.png');
+
 loadRoot('sprites/');
 
 //ls('mark');
-loadSprite('mark', 'https://i.ibb.co/7v1KkPT/IMG-8476.png');
 
 la('blocks', {
   block: {
