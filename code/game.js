@@ -80,6 +80,10 @@ scene('game', () => {
     }
   ]); 
 
+  mark.onUpdate(() => {
+    mark.pos = bean.pos.sub(0, SCALE*2);
+  });
+
   // mark eye coords
   function markEyes() {
     let a = [];
