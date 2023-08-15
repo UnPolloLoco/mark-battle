@@ -979,7 +979,7 @@ scene('game', () => {
           };
           m.flipX = (m.xVel < 0);
           m.extra.flipX = (m.xVel < 0);
-          m.animSpeed = m.xVel/SCALE * 2.5;
+          m.animSpeed = m.xVel/SCALE * 0.8;
         };
       }
 
