@@ -75,7 +75,7 @@ scene('game', () => {
       vec2(-100, 225),  vec2(-240, 90), vec2(-240, -80),
     ])}),
     {
-      health: 500,
+      health: 399,
       sliced: false,
     }
   ]); 
