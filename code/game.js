@@ -689,7 +689,7 @@ scene('game', () => {
       };
       touchJumpCheck = fixedMousePos;
     });
-  }:
+  };
   
   
   onUpdate(() => {
