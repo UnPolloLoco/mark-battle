@@ -554,7 +554,7 @@ scene('game', () => {
         
         for (let n = 0; n < 2; n++) {
           let mm = add([
-            sprite('miniMark'),
+            sprite('minimark', { anim: 'moving' }),
             pos(mark.pos),
             z(Z.player - 2),
             scale(SCALE/500 / 3),
@@ -565,7 +565,7 @@ scene('game', () => {
             }),
             anchor('center'),
             shader('light'),
-            "miniMark",
+            "minimark",
             {
               xVel: 0,
               spawnDir: n%2==0 ? 1 : -1,
@@ -714,7 +714,7 @@ scene('game', () => {
     /////////////////
     // minimark ai //
     /////////////////
-    get('miniMark').forEach((m) => {
+    get('minimark').forEach((m) => {
       if (m.canMove) {
         if (player.pos.x <= m.pos.x - SCALE*0.6 || m.forceMove == 'left') { // left
           m.xVel = Math.max(
