@@ -828,10 +828,10 @@ scene('game', () => {
       // minimark animations //
       /////////////////////////
 
-      if (time() - m.lastAttack < 0.175) {
+      if (time() - m.lastAttack < 0.2) {
         m.play('attacking');
       } else {
-        if (m.isGrounded || m.lastY == -1) {
+        if (m.isGrounded() || m.lastY == -1) {
           m.play('moving');
         } else if (m.pos.y > m.lastY) { // FALLING
           m.play('fallMove');
@@ -841,6 +841,7 @@ scene('game', () => {
         m.flipX = (m.xVel < 0);
       };
 
+      
       m.lastY = m.pos.y;
       
     });
