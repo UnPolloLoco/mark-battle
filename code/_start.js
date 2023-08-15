@@ -103,7 +103,7 @@ ls('laser', {
 ls('miniMark', {
   sliceX: 3,
   sliceY: 2,
-  anims {
+  anims: {
     moving: 0,
     attacking: 1,
     jumpMove: 4,
