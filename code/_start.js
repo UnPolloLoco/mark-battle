@@ -124,10 +124,12 @@ la('megaMinimark', {
       roll: {
         from: 0, to: 3,
         speed: 15,
+        loop: true,
       },
       jump: {
         from: 4, to: 7,
         speed: 10,
+        loop: true,
       }
     }
   },
@@ -142,6 +144,7 @@ la('megaMinimark', {
       laser: {
         from: 2, to: 3,
         speed: 9,
+        loop: true,
       },
     }
   },
@@ -153,6 +156,7 @@ ls('laserFlare', {
     flash: {
       from: 0, to: 1,
       speed: 9,
+      loop: true,
     }
   }
 });
