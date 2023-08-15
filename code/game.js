@@ -611,6 +611,59 @@ scene('game', () => {
         };
         
         wait(airTime + 4, markAttack);
+      } else if (curAttack == 2) {
+        // M E G A MINI MARK
+  
+        let airTime = 1;
+        
+        for (let n = 0; n < 2; n++) {
+          let mm = add([
+            sprite('megaMinimark', { anim: 'roll' }),
+            pos(mark.pos),
+            z(Z.player - 2),
+            scale(SCALE/500 / 3),
+            area(),
+            body({ 
+              gravityScale: 0, 
+              mass: 0.75,
+            }),
+            anchor('center'),
+            shader('light'),
+            "minimark",
+            "megaMinimark",
+            {
+              xVel: 0,
+              spawnDir: n%2==0 ? 1 : -1,
+              spawnTime: time(),
+              canMove: false,
+              health: 4,
+              attackedBy: -1,
+              forceMove: 'none',
+              extra: -1,
+              lastAttack: -1,
+              lastY: -1,
+            }
+          ]);
+
+          mm.extra = mm.add([
+            sprite('megaMinimarkExtras'),
+            anchor('center'),
+            opacity(0),
+          ]);
+          
+          tween(
+        		mm.pos,
+        		mm.pos.add(SCALE * 2.5 * mm.spawnDir, 0),
+        		airTime,
+        		(val) => mm.pos = val,
+        		easings.easeOutCubic,
+        	);
+          wait(airTime + 0.3, () => {
+            mm.gravityScale = 1;
+          });
+        };
+        
+        wait(airTime + 4, markAttack);
       };
     });
     
@@ -620,16 +673,23 @@ scene('game', () => {
     markAttack();
   });
 
+  ////////////////////
+  // touch controls //
+  ////////////////////
+
+  // touch jump 
   let touchJumpCheck = SCALE * -5;
-  loop(0.1, () => {
-    let fixedMousePos = mousePos().y - canvas.getBoundingClientRect().top;
-    if (fixedMousePos < touchJumpCheck - SCALE*2) {
-      if (player.isGrounded()) {
-		  	player.jump(JUMP_SPEED);
-	  	};
-    };
-    touchJumpCheck = fixedMousePos;
-  });
+  if (TOUCH) {
+    loop(0.1, () => {
+      let fixedMousePos = mousePos().y - canvas.getBoundingClientRect().top;
+      if (fixedMousePos < touchJumpCheck - SCALE*2) {
+        if (player.isGrounded()) {
+  		  	player.jump(JUMP_SPEED);
+  	  	};
+      };
+      touchJumpCheck = fixedMousePos;
+    });
+  }:
   
   
   onUpdate(() => {
@@ -786,6 +846,8 @@ scene('game', () => {
       if (
         m.canMove
         &&
+        !m.is('megaMinimark')
+        &&
         time() - m.lastAttack > 0.35
         &&
         Math.abs(player.pos.x - m.pos.x) < SCALE/2
@@ -808,11 +870,48 @@ scene('game', () => {
         }, 175);
       };
 
+      //////////////////////////
+      // MEGA minimark attack //
+      //////////////////////////
+
+      if (
+        m.is('megaMinimark') 
+        &&
+        time() - m.lastAttack > 3 
+        &&
+        time() - m.spawnTime > 3
+        /* LINE OF SIGHT CHECK */
+      ) {
+        m.canMove = false;
+        m.lastAttack = time();
+        wait(1, () => {
+          for (let i = 0; i < 2; i++) {
+            let eye = m.pos; //markEyes()[i];
+            add([
+              pos(eye),
+              anchor('left'),
+              sprite('laser', { anim: 'beam' }),
+              scale(SCALE/500 / 4),
+              area({ scale: vec2(1, 0.2) }),
+              lifespan(1.5),
+              rotate(player.pos.angle(eye)),
+              z(Z.projectiles),
+              "laser",
+              {
+                dir: deg2rad( player.pos.angle(eye) ),
+              }
+            ]);
+          };
+        });
+      };
+
       ///////////////////////////
       // minimark attack check //
       ///////////////////////////
       
       if (
+        !m.is('megaMinimark')
+        &&
         m.slash.opacity == 1 
         &&
         m.slash.isColliding(player) 
@@ -829,18 +928,59 @@ scene('game', () => {
       // minimark animations //
       /////////////////////////
 
-      if (time() - m.lastAttack < 0.2) {
-        m.play('attacking');
-      } else {
-        if (m.isGrounded() || m.lastY == -1) {
-          m.play('moving');
-        } else if (m.pos.y > m.lastY) { // FALLING
-          m.play('fallMove');
-        } else { // JUMPING
-          m.play('jumpMove');
+      if (!m.is('megaMinimark')) {
+        // minimark
+        
+        if (time() - m.lastAttack < 0.2) {
+          m.play('attacking');
+        } else {
+          if (m.isGrounded() || m.lastY == -1) {
+            // MOVING
+            m.play('moving');
+          } else if (m.pos.y > m.lastY) { 
+            // FALLING
+            m.play('fallMove');
+          } else { 
+            // JUMPING
+            m.play('jumpMove');
+          };
+          m.flipX = (m.xVel < 0);
         };
-        m.flipX = (m.xVel < 0);
-      };
+
+      } else {
+        // mega minimark
+
+        let laDelta = time() - m.lastAttack;
+        if (laDelta < 1.2) {
+          // ATTACKING
+          if (laDelta < 0.5) {
+            m.play('roll');
+            m.extra.opacity = 1;
+            m.extra.play('mouth');
+          } else {
+            m.play('roll');
+            m.extra.opacity = 1;
+            m.extra.play('laser');
+          }
+        } else {
+          if (m.isGrounded() || m.lastY == -1) {
+            // MOVING
+            m.play('roll');
+            m.extra.opacity = 0;
+          } else if (m.pos.y > m.lastY) { 
+            // FALLING
+            m.play('roll');
+            m.extra.opacity = 1;
+            m.extra.play('fall');
+          } else { 
+            // JUMPING
+            m.play('jump');
+            m.extra.opacity = 0;
+          };
+          m.flipX = (m.xVel < 0);
+          m.extra.flipX = (m.xVel < 0);
+        };
+      }
 
       
       m.lastY = m.pos.y;
