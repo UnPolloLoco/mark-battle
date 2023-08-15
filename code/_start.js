@@ -100,7 +100,7 @@ ls('laser', {
 	}
 });
 
-ls('miniMark', {
+ls('minimark', {
   sliceX: 3,
   sliceY: 2,
   anims: {
@@ -111,8 +111,8 @@ ls('miniMark', {
   }
 });
 
-la('megaMiniMark', {
-  megaMiniMark: {
+la('megaMinimark', {
+  megaMinimark: {
     x: 0, y: 0,
     width: 2000, height: 1000,
     sliceX: 4,
@@ -129,7 +129,7 @@ la('megaMiniMark', {
     }
   },
   
-  megaMiniMarkExtras: {
+  megaMinimarkExtras: {
     x: 0, y: 1500,
     width: 2000, height: 500,
     sliceX: 4,
