@@ -576,6 +576,7 @@ scene('game', () => {
               forceMove: 'none',
               slash: -1,
               lastAttack: -1,
+              lastY: -1,
             }
           ]);
 
@@ -822,6 +823,25 @@ scene('game', () => {
         player.health--;
         player.xVel = (player.pos.x - m.pos.x < 0) ? -RUN_SPEED : RUN_SPEED;
       };
+
+      /////////////////////////
+      // minimark animations //
+      /////////////////////////
+
+      if (time() - m.lastAttack < 0.175) {
+        m.play('attacking');
+      } else {
+        if (m.isGrounded || m.lastY == -1) {
+          m.play('moving');
+        } else if (m.pos.y > m.lastY) { // FALLING
+          m.play('fallMove');
+        } else { // JUMPING
+          m.play('jumpMove');
+        };
+        m.flipX = (m.xVel < 0);
+      };
+
+      m.lastY = m.pos.y;
       
     });
 
