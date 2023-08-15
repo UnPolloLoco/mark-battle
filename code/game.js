@@ -645,7 +645,7 @@ scene('game', () => {
             }
           ]);
 
-          mm.extra = mm.add([
+          mm.extra = add([
             sprite('megaMinimarkExtras'),
             anchor('center'),
             opacity(0),
@@ -949,6 +949,8 @@ scene('game', () => {
 
       } else {
         // mega minimark
+
+        m.extra.pos = m.pos;
 
         let laDelta = time() - m.lastAttack;
         if (laDelta < 1.2) {
