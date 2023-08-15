@@ -663,7 +663,7 @@ scene('game', () => {
           });
         };
         
-        //wait(airTime + 4, markAttack);
+        wait(airTime + 4, markAttack);
       };
     });
     
@@ -979,7 +979,7 @@ scene('game', () => {
           };
           m.flipX = (m.xVel > 0);
           m.extra.flipX = (m.xVel > 0);
-          m.animSpeed = m.xVel/SCALE * 1;
+          m.animSpeed = Math.abs(m.xVel/SCALE * 1);
         };
       }
 
