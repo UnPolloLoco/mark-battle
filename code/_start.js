@@ -7,7 +7,7 @@ kaboom({
   width: kaboomDimensions.w,
   height: kaboomDimensions.h,
   inspectColor: [255,255,255],
-  pixelDensity: 1.5,
+  pixelDensity: 2.5,
   crisp: true,
 });
 
