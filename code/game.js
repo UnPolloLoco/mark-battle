@@ -621,11 +621,11 @@ scene('game', () => {
             sprite('megaMinimark', { anim: 'roll' }),
             pos(mark.pos),
             z(Z.player - 2),
-            scale(SCALE/500 / 3),
+            scale(SCALE/500 / 3*2),
             area(),
             body({ 
               gravityScale: 0, 
-              mass: 0.75,
+              mass: 1.25,
             }),
             anchor('center'),
             shader('light'),
@@ -954,35 +954,35 @@ scene('game', () => {
         if (laDelta < 1.2) {
           // ATTACKING
           if (laDelta < 0.5) {
-            m.play('roll');
+            if (m.curAnim() != 'roll') m.play('roll');
             m.extra.opacity = 1;
             m.extra.play('mouth');
           } else {
-            m.play('roll');
+            if (m.curAnim() != 'roll') m.play('roll');
             m.extra.opacity = 1;
             m.extra.play('laser');
           }
         } else {
           if (m.isGrounded() || m.lastY == -1) {
             // MOVING
-            m.play('roll');
+            if (m.curAnim() != 'roll') m.play('roll');
             m.extra.opacity = 0;
           } else if (m.pos.y > m.lastY) { 
             // FALLING
-            m.play('roll');
+            if (m.curAnim() != 'roll') m.play('roll');
             m.extra.opacity = 1;
             m.extra.play('fall');
           } else { 
             // JUMPING
-            m.play('jump');
+            if (m.curAnim() != 'jump') m.play('jump');
             m.extra.opacity = 0;
           };
           m.flipX = (m.xVel < 0);
           m.extra.flipX = (m.xVel < 0);
+          m.animSpeed = m.xVel/SCALE * 2.5;
         };
       }
 
-      
       m.lastY = m.pos.y;
       
     });
