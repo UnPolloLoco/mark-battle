@@ -135,7 +135,7 @@ la('megaMinimark', {
   },
   
   megaMinimarkExtras: {
-    x: 0, y: 1500,
+    x: 0, y: 1000,
     width: 2000, height: 500,
     sliceX: 4,
     anims: {
