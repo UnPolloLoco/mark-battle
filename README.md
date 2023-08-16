@@ -1,1 +1,2 @@
-### Do the thing [here](https://unpolloloco.github.io/mark-battle)
+### Play the thing [here](https://unpolloloco.github.io/mark-battle)
+Don't forget it's a work in progress...
