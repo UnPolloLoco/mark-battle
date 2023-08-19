@@ -779,26 +779,28 @@ scene('game', () => {
     // minimark ai //
     /////////////////
     get('minimark').forEach((m) => {
+      let megaMulti = m.is('megaMark') ? 0.3 : 1;
+      let approachStop = m.is('miniMark') ? SCALE*1.2 : SCALE:0.6;
       if (m.canMove) {
-        if (player.pos.x <= m.pos.x - SCALE*0.6 || m.forceMove == 'left') { // left
+        if (player.pos.x <= m.pos.x - approachStop || m.forceMove == 'left') { // left
           m.xVel = Math.max(
             -RUN_SPEED * 0.75,
-            m.xVel - RUN_SPEED * 0.75 * dt() * (
+            m.xVel - RUN_SPEED * 0.75 * megaMulti * dt() * (
               m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
             )
           );
-        } else if (player.pos.x >= m.pos.x + SCALE*0.6 || m.forceMove == 'right') { // right
+        } else if (player.pos.x >= m.pos.x + approachStop || m.forceMove == 'right') { // right
           m.xVel = Math.min(
             RUN_SPEED / 2,
-            m.xVel + RUN_SPEED * 0.75 * dt() * (
+            m.xVel + RUN_SPEED * 0.75 * megaMulti * dt() * (
               m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
             )
           );
-        } else if (Math.abs(player.pos.x - m.pos.x) < SCALE*0.6 && Math.abs(player.pos.y - m.pos.y) < SCALE/4) { // slowing
+        } else if (Math.abs(player.pos.x - m.pos.x) < approachStop && Math.abs(player.pos.y - m.pos.y) < SCALE/4) { // slowing
           m.xVel -= m.xVel * dt() * (
             m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
           );
-          if ((player.pos.y > SCALE*4.3 || m.pos.y > SCALE*4.5) && Math.abs(player.pos.y - m.pos.y) > SCALE*0.6) {
+          if ((player.pos.y > SCALE*4.3 || m.pos.y > SCALE*4.5) && Math.abs(player.pos.y - m.pos.y) > approachStop) {
             m.forceMove = rand() < 0.5 ? 'left' : 'right';
           };
         };
@@ -837,6 +839,9 @@ scene('game', () => {
         clashEffect(clashPos, (m.is('megaMinimark') ? 2:1));
         
         if (m.health <= 0) {
+          if (m.is('megaMinimark')) {
+            destroy(m.extra);
+          };
           destroy(m);
         };
       };
