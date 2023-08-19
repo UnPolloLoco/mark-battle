@@ -779,8 +779,8 @@ scene('game', () => {
     // minimark ai //
     /////////////////
     get('minimark').forEach((m) => {
-      let megaMulti = m.is('megaMark') ? 0.3 : 1;
-      let approachStop = m.is('miniMark') ? SCALE*1.2 : SCALE:0.6;
+      let megaMulti = (m.is('megaMark') ? 0.3 : 1);
+      let approachStop = (m.is('miniMark') ? SCALE*1.2 : SCALE*0.6);
       if (m.canMove) {
         if (player.pos.x <= m.pos.x - approachStop || m.forceMove == 'left') { // left
           m.xVel = Math.max(
