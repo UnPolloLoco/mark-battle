@@ -650,6 +650,7 @@ scene('game', () => {
             anchor('center'),
             opacity(0),
             scale(mm.scale),
+            z(Z.player - 1),
           ]);
           
           tween(
