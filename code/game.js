@@ -629,6 +629,7 @@ scene('game', () => {
             }),
             anchor('center'),
             shader('light'),
+            rotate(0),
             "minimark",
             "megaMinimark",
             {
@@ -651,6 +652,7 @@ scene('game', () => {
             opacity(0),
             scale(mm.scale),
             z(Z.player - 1),
+            rotate(0),
           ]);
           
           tween(
@@ -957,8 +959,6 @@ scene('game', () => {
       } else {
         // mega minimark
 
-        m.extra.pos = m.pos;
-
         let laDelta = time() - m.lastAttack;
         if (laDelta < 1.2) {
           // ATTACKING
@@ -966,30 +966,38 @@ scene('game', () => {
             if (m.curAnim() != 'roll') m.play('roll');
             m.extra.opacity = 1;
             m.extra.play('mouth');
+            m.angle = 0;
           } else {
             if (m.curAnim() != 'roll') m.play('roll');
             m.extra.opacity = 1;
             m.extra.play('laser');
+            m.angle = 0;
           }
         } else {
           if (m.isGrounded() || m.lastY == -1) {
             // MOVING
             if (m.curAnim() != 'roll') m.play('roll');
             m.extra.opacity = 0;
+            m.angle = 0;
           } else if (m.pos.y > m.lastY) { 
             // FALLING
-            if (m.curAnim() != 'roll') m.play('roll');
+            if (m.curAnim() != 'jump') m.play('jump');
             m.extra.opacity = 1;
             m.extra.play('fall');
+            m.angle = (m.xVel < 0) ? 15 : -45 ;
           } else { 
             // JUMPING
             if (m.curAnim() != 'jump') m.play('jump');
             m.extra.opacity = 0;
+            m.angle = (m.xVel < 0) ? 15 : -45 ;
           };
           m.flipX = (m.xVel > 0);
           m.extra.flipX = (m.xVel > 0);
-          m.animSpeed = Math.abs(m.xVel/SCALE * 1);
+          m.animSpeed = Math.abs(m.xVel/SCALE);
         };
+        
+        m.extra.angle = m.angle;
+        m.extra.pos = m.pos;
       }
 
       m.lastY = m.pos.y;
