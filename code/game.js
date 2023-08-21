@@ -984,12 +984,12 @@ scene('game', () => {
             if (m.curAnim() != 'jump') m.play('jump');
             m.extra.opacity = 1;
             m.extra.play('fall');
-            m.angle = (m.xVel < 0) ? 15 : -45 ;
+            //m.angle = (m.xVel < 0) ? 15 : -45 ;
           } else { 
             // JUMPING
             if (m.curAnim() != 'jump') m.play('jump');
             m.extra.opacity = 0;
-            m.angle = (m.xVel < 0) ? 15 : -45 ;
+            //m.angle = (m.xVel < 0) ? 15 : -45 ;
           };
           m.flipX = (m.xVel > 0);
           m.extra.flipX = (m.xVel > 0);
