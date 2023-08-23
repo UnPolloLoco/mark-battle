@@ -788,7 +788,7 @@ scene('game', () => {
       let mmmAttackStop = false;
       if (m.is('megaMinimark')) {
         let laDelta = time() - m.lastAttack;
-        if (laDelta < 1.2 && laDelta > 0.3) {
+        if (laDelta < 1.2) {
           mmmAttackStop = true;
         }
       };
