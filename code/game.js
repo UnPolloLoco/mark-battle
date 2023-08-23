@@ -653,6 +653,7 @@ scene('game', () => {
             scale(mm.scale),
             z(Z.player - 1),
             rotate(0),
+            shader('light'),
           ]);
           
           tween(
@@ -889,27 +890,29 @@ scene('game', () => {
         time() - m.lastAttack > 3 
         &&
         time() - m.spawnTime > 3
-        /* LINE OF SIGHT CHECK */
+        /* LINE OF SIGHT CHECK WHEN */
       ) {
         m.canMove = false;
         m.lastAttack = time();
         wait(1, () => {
-          for (let i = 0; i < 2; i++) {
-            let eye = m.pos; //markEyes()[i];
-            add([
-              pos(eye),
-              anchor('left'),
-              sprite('laser', { anim: 'beam' }),
-              scale(SCALE/500 / 4),
-              area({ scale: vec2(1, 0.2) }),
-              lifespan(1.5),
-              rotate(player.pos.angle(eye)),
-              z(Z.projectiles),
-              "laser",
-              {
-                dir: deg2rad( player.pos.angle(eye) ),
-              }
-            ]);
+          if (m.health > 0) {
+            for (let i = 0; i < 2; i++) {
+              let eye = m.pos; //markEyes()[i];
+              add([
+                pos(eye),
+                anchor('left'),
+                sprite('laser', { anim: 'beam' }),
+                scale(SCALE/500 / 4),
+                area({ scale: vec2(1, 0.2) }),
+                lifespan(1.5),
+                rotate(player.pos.angle(eye)),
+                z(Z.projectiles),
+                "laser",
+                {
+                  dir: deg2rad( player.pos.angle(eye) ),
+                }
+              ]);
+            };
           };
         });
       };
