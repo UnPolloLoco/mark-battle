@@ -117,8 +117,8 @@ ls('minimark', {
 la('megaMinimark', {
   megaMinimark: {
     x: 0, y: 0,
-    width: 2000, height: 1000,
-    sliceX: 4,
+    width: 1500, height: 1000,
+    sliceX: 3,
     sliceY: 2,
     anims: {
       roll: {
@@ -126,23 +126,19 @@ la('megaMinimark', {
         speed: 15,
         loop: true,
       },
-      jump: {
-        from: 4, to: 7,
-        speed: 10,
-        loop: true,
-      }
+      jump: 4,
+      fall: 5,
     }
   },
   
   megaMinimarkExtras: {
     x: 0, y: 1000,
-    width: 2000, height: 500,
-    sliceX: 4,
+    width: 1500, height: 500,
+    sliceX: 3,
     anims: {
-      fall: 0,
-      mouth: 1,
+      mouth: 0,
       laser: {
-        from: 2, to: 3,
+        from: 1, to: 2,
         speed: 9,
         loop: true,
       },
