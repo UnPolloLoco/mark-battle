@@ -782,7 +782,7 @@ scene('game', () => {
     // minimark ai //
     /////////////////
     get('minimark').forEach((m) => {
-      let megaMulti = (m.is('megaMinimark') ? 0.3 : 1);
+      let megaMulti = (m.is('megaMinimark') ? 0.2 : 1);
       let approachStop = (m.is('miniMark') ? SCALE*2 : SCALE*0.6);
 
       let mmmAttackStop = false;
@@ -793,22 +793,23 @@ scene('game', () => {
         }
       };
       
-      if (m.canMove && !mmmAttackStop) {
-        if (player.pos.x <= m.pos.x - approachStop || m.forceMove == 'left') { // left
+      if (m.canMove) {
+        if (player.pos.x <= m.pos.x - approachStop || m.forceMove == 'left' && !mmmAttackStop) { // left
           m.xVel = Math.max(
             -RUN_SPEED * 0.75,
             m.xVel - RUN_SPEED * 0.75 * megaMulti * dt() * (
               m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
             )
           );
-        } else if (player.pos.x >= m.pos.x + approachStop || m.forceMove == 'right') { // right
+        } else if (player.pos.x >= m.pos.x + approachStop || m.forceMove == 'right' && !mmmAttackStop) { // right
           m.xVel = Math.min(
             RUN_SPEED / 2,
             m.xVel + RUN_SPEED * 0.75 * megaMulti * dt() * (
               m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
             )
           );
-        } else if (Math.abs(player.pos.x - m.pos.x) < approachStop && Math.abs(player.pos.y - m.pos.y) < SCALE/4) { // slowing
+        } else if ((Math.abs(player.pos.x - m.pos.x) < approachStop && Math.abs(player.pos.y - m.pos.y) < SCALE/4) || mmmAttackStop) { 
+          // slowing
           m.xVel -= m.xVel * dt() * (
             m.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
           );
@@ -817,7 +818,7 @@ scene('game', () => {
           };
         };
         // jumping
-        if (player.pos.y < m.pos.y - SCALE*0.75 && m.isGrounded()) {
+        if (player.pos.y < m.pos.y - SCALE*0.75 && m.isGrounded() && !mmmAttackStop) {
           let mpxs = m.pos.x / SCALE;
           if ( !((1.4 < mpxs && mpxs < 4) || (6 < mpxs && mpxs < 8.5)) ) {
             m.forceMove = 'none';
