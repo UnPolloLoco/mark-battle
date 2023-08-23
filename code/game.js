@@ -782,9 +782,18 @@ scene('game', () => {
     // minimark ai //
     /////////////////
     get('minimark').forEach((m) => {
-      let megaMulti = (m.is('megaMark') ? 0.3 : 1);
-      let approachStop = (m.is('miniMark') ? SCALE*1.2 : SCALE*0.6);
-      if (m.canMove) {
+      let megaMulti = (m.is('megaMinimark') ? 0.3 : 1);
+      let approachStop = (m.is('miniMark') ? SCALE*2 : SCALE*0.6);
+
+      let mmmAttackStop = false;
+      if (m.is('megaMinimark')) {
+        let laDelta = time() - m.lastAttack;
+        if (laDelta < 1.2 && laDelta > 0.3) {
+          mmmAttackStop = true;
+        }
+      };
+      
+      if (m.canMove && !mmmAttackStop) {
         if (player.pos.x <= m.pos.x - approachStop || m.forceMove == 'left') { // left
           m.xVel = Math.max(
             -RUN_SPEED * 0.75,
@@ -969,38 +978,32 @@ scene('game', () => {
             if (m.curAnim() != 'roll') m.play('roll');
             m.extra.opacity = 1;
             m.extra.play('mouth');
-            m.angle = 0;
           } else {
             if (m.curAnim() != 'roll') m.play('roll');
             m.extra.opacity = 1;
             m.extra.play('laser');
-            m.angle = 0;
           }
         } else {
           if (m.isGrounded() || m.lastY == -1) {
             // MOVING
             if (m.curAnim() != 'roll') m.play('roll');
             m.extra.opacity = 0;
-            m.angle = 0;
           } else if (m.pos.y > m.lastY) { 
             // FALLING
-            if (m.curAnim() != 'jump') m.play('jump');
-            m.extra.opacity = 1;
-            m.extra.play('fall');
-            //m.angle = (m.xVel < 0) ? 15 : -45 ;
+            if (m.curAnim() != 'fall') m.play('fall');
+            m.extra.opacity = 0;
           } else { 
             // JUMPING
             if (m.curAnim() != 'jump') m.play('jump');
             m.extra.opacity = 0;
-            //m.angle = (m.xVel < 0) ? 15 : -45 ;
           };
           m.flipX = (m.xVel > 0);
-          m.extra.flipX = (m.xVel > 0);
           m.animSpeed = Math.abs(m.xVel/SCALE);
         };
         
         m.extra.angle = m.angle;
         m.extra.pos = m.pos;
+        m.extra.flipX = m.flipX;
       }
 
       m.lastY = m.pos.y;
