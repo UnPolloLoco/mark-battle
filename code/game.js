@@ -46,11 +46,13 @@ scene('game', () => {
   
   // underground shake proofer
   add([
-    rect(width() + SCALE*2/3, SCALE),
-    pos(-SCALE/3, height()),
+    rect(width() + SCALE*2, SCALE*2),
+    pos(-SCALE, height() - SCALE/3),
     color(rgb(130,130,130)),
     z(Z.bg),
     shader('light'),
+    area(),
+    body({ isStatic: true }),
   ]);
   
   ////////////////
