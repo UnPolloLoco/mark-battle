@@ -537,7 +537,7 @@ scene('game', () => {
       if (curAttack == 0) {
         // LASERS
 
-        mark.laserFLare.opacity = 1;
+        mark.laserFlare.opacity = 1;
         
         for (let n = 0; n < 2+phase; n++) {
           wait(0.4 * n, () => {
@@ -561,7 +561,7 @@ scene('game', () => {
           });
         };
         wait(0.4 * 3+phase, () => {
-          mark.laserFLare.opacity = 0; 
+          mark.laserFlare.opacity = 0; 
         });
         wait(0.4 * 5+phase, markAttack);
       } else if (curAttack == 1) {
