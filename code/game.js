@@ -79,6 +79,7 @@ scene('game', () => {
       ]),
       scale: vec2(0.8),
     }),
+    'mark',
     {
       health: 399,
       sliced: false,
