@@ -85,6 +85,12 @@ scene('game', () => {
     }
   ]); 
 
+  mark.laserFlare = mark.add([
+    sprite('laserFlare', { anim: 'flash' }),
+    anchor('center'),
+    opacity(0),
+  ]);
+
 
   // mark eye coords
   function markEyes() {
@@ -530,6 +536,8 @@ scene('game', () => {
     wait(moveTime + 0.5, () => {
       if (curAttack == 0) {
         // LASERS
+
+        mark.laserFLare.opacity = 1;
         
         for (let n = 0; n < 2+phase; n++) {
           wait(0.4 * n, () => {
@@ -552,7 +560,10 @@ scene('game', () => {
             };
           });
         };
-        wait(0.5 * 5+phase, markAttack);
+        wait(0.4 * 3+phase, () => {
+          mark.laserFLare.opacity = 0; 
+        });
+        wait(0.4 * 5+phase, markAttack);
       } else if (curAttack == 1) {
         // MINI MARK
   
