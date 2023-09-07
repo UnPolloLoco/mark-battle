@@ -786,6 +786,8 @@ scene('game', () => {
     ////////////
     // lasers //
     ////////////
+    mark.update() // if this isnt here then the laser eye anim doesnt work??
+    
     get('laser').forEach((l) => {
   		if (l.curAnim() == 'beam') {
   			l.pos = l.pos.add(
