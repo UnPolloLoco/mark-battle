@@ -561,10 +561,10 @@ scene('game', () => {
             };
           });
         };
-        wait(0.4 * 3+phase, () => {
+        wait(0.4 * (2.5+phase), () => {
           mark.laserFlare.opacity = 0; 
         });
-        wait(0.4 * 5+phase, markAttack);
+        wait(0.4 * (5+phase), markAttack);
       } else if (curAttack == 1) {
         // MINI MARK
   
