@@ -1070,7 +1070,7 @@ scene('game', () => {
   	get('puff').forEach((p) => {
   		p.opacity -= dt()*0.1;
   		if (p.is('jetPuff')) {
-  			p.opacity -= dt() * (0.3 - mark.frame/30);
+  			p.opacity -= dt() * (0.5 - mark.frame/30);
   		}
   		if (p.opacity <= 0) {
   			destroy(p);
