@@ -133,6 +133,25 @@ scene('game', () => {
 
     return randPos.scale(SCALE);
   };
+
+  // mark quiver
+
+  function markQuiver() {
+    let duration = rand(1, 3);
+    let magnitude = rand(-10, 10);
+
+    tween(
+      mark.angle,
+      magnitude,
+      duration,
+      (val) => mark.angle = val,
+      easings.easeInOutQuad,
+    );
+    
+    wait(duration + 0.5, markQuiver);
+  };
+
+  markQuiver();
   
   // bean
   const player = add([
@@ -712,7 +731,6 @@ scene('game', () => {
       touchJumpCheck = fixedMousePos;
     });
   };
-  
   
   onUpdate(() => {
 
