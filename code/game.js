@@ -1053,8 +1053,6 @@ scene('game', () => {
     // mark visual phases + smoke puffs //
     //////////////////////////////////////
 
-    debug.log(mark.frame)
-
     if (rand() < 0.25 + (mark.frame)/10) {
   		add([
   			sprite('puff'),
@@ -1104,6 +1102,7 @@ scene('game', () => {
       5
     );
     mark.frame = phase - 1;
+    debug.log(phase)
     
   });
 });
