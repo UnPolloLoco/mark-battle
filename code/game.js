@@ -1060,7 +1060,7 @@ scene('game', () => {
   	    	scale(SCALE/500 * mi[2]),
   		    anchor('center'),
 		    	z(1),
-  				rotate(randi(0,360)),
+  				rotate(mi[1]),
           "puff",
   				"jetPuff"
   	    ]);
