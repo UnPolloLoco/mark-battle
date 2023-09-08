@@ -1102,7 +1102,8 @@ scene('game', () => {
       5
     );
     mark.frame = phase - 1;
-    debug.log(phase)
+    
+    debug.log(`${phase} -- ${mark.frame});
     
   });
 });
