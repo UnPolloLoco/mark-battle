@@ -1030,9 +1030,9 @@ scene('game', () => {
       
     });
 
-    //////////////////////
-    // mark smoke puffs //
-    //////////////////////
+    //////////////////////////////////////
+    // mark visual phases + smoke puffs //
+    //////////////////////////////////////
 
     if (rand() < 0.25 + (mark.frame)/10) {
   		add([
@@ -1076,6 +1076,13 @@ scene('game', () => {
   			destroy(p);
   		};
   	});
+
+    let phase = clamp(
+      1, 
+      Math.floor(mark.health / -100) + 6, 
+      5
+    );
+    mark.frame = phase - 1;
     
   });
 });
