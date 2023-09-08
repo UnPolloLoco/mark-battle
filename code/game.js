@@ -81,7 +81,7 @@ scene('game', () => {
     }),
     'mark',
     {
-      health: 399,
+      health: 500,
       sliced: false,
     }
   ]); 
@@ -1052,6 +1052,8 @@ scene('game', () => {
     //////////////////////////////////////
     // mark visual phases + smoke puffs //
     //////////////////////////////////////
+
+    debug.log(mark.frame)
 
     if (rand() < 0.25 + (mark.frame)/10) {
   		add([
