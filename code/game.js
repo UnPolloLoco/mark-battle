@@ -1030,6 +1030,52 @@ scene('game', () => {
       
     });
 
+    //////////////////////
+    // mark smoke puffs //
+    //////////////////////
+
+    if (rand() < 0.25 + (mark.frame)/10) {
+  		add([
+  			sprite('puff'),
+  			pos(mark.pos),
+  			opacity(0.5),
+  			move(rand(0,360), SCALE*rand(0.15,0.25)),
+  			scale(SCALE/500 *rand(0.5,1)),
+  			anchor('center'),
+  			z(Z.mark - 2),
+  			rotate(randi(0,360)),
+  			"puff"
+  		]);
+  	};
+
+    let mcmf = markCavities[mark.frame]
+  	for (let i = 0; i < mcmf.length; i++) {
+  		let mi = mcmf[i];
+  		if (rand() < 0.3) {
+  			add([
+  			  sprite('puff'),
+  		    pos(mark.pos.add(mi[0].scale(SCALE))),
+  		  	opacity(0.5),
+  		  	move(mi[1] + 8*Math.sin(time()*(3+mark.frame)), SCALE*rand(0.4,0.5)),
+  	    	scale(SCALE/500 * mi[2]),
+  		    anchor('center'),
+		    	z(1),
+  				rotate(randi(0,360)),
+          "puff",
+  				"jetPuff"
+  	    ]);
+  		};
+  	};
+  
+  	get('puff').forEach((p) => {
+  		p.opacity -= dt()*0.1;
+  		if (p.is('jetPuff')) {
+  			p.opacity -= dt() * (0.3 - mark.frame/30);
+  		}
+  		if (p.opacity <= 0) {
+  			destroy(p);
+  		};
+  	});
     
   });
 });
