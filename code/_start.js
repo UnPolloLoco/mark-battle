@@ -141,7 +141,7 @@ la('megaMinimark', {
       mouth: 0,
       laser: {
         from: 1, to: 2,
-        speed: 9,
+        speed: 12,
         loop: true,
       },
     }
@@ -153,7 +153,7 @@ ls('laserFlare', {
   anims: {
     flash: {
       from: 0, to: 1,
-      speed: 9,
+      speed: 12,
       loop: true,
     }
   }
