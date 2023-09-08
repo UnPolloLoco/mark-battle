@@ -1,4 +1,4 @@
-const markCavities = [
+var markCavities = [
 	[],
 	[
 		/*    pos           angle  size */
