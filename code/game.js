@@ -1067,9 +1067,10 @@ scene('game', () => {
   		]);
   	};
 
-    let mcmf = markCavities[mark.frame]
+    let mcmf = markCavities[mark.frame];
   	for (let i = 0; i < mcmf.length; i++) {
   		let mi = mcmf[i];
+      console.log(mi);
   		if (rand() < 0.3) {
   			add([
   			  sprite('puff'),
