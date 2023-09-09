@@ -1070,6 +1070,8 @@ scene('game', () => {
     let mcmf = markCavities[mark.frame];
   	for (let i = 0; i < mcmf.length; i++) {
   		let mi = mcmf[i];
+
+      debug.log(`\n${mcmf.length} -- ${i}\n\n${mcmf}\n`);
       
   		if (mcmf.length > i && rand() < 0.3) {
   			add([
@@ -1103,8 +1105,7 @@ scene('game', () => {
       5
     );
     mark.frame = phase - 1;
-    
-    debug.log(`${phase} -- ${mark.frame}`);
+
     
   });
 });
