@@ -1071,8 +1071,6 @@ scene('game', () => {
   	for (let i = 0; i < mcmf.length; i++) {
   		let mi = mcmf[i];
 
-      console.log(`ml ${mcmf.length} -- i ${i} --- mcmf ${mcmf}\n`);
-      
   		if (mcmf.length > i && rand() < 0.3) {
   			add([
   			  sprite('puff'),
