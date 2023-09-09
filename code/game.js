@@ -71,6 +71,7 @@ scene('game', () => {
       'rand': rand(),
   	})),
     z(Z.mark),
+    opacity(1),
     area({
       shape: new Polygon([
         vec2(-140, -220), vec2(65, -220), vec2(210, -150), 
@@ -1102,8 +1103,11 @@ scene('game', () => {
       Math.floor(mark.health / -100) + 6, 
       5
     );
-    mark.frame = phase - 1;
-
+    mark.frame = Math.min(3, phase - 1);
+    
+    if (phase == 5) {
+      mark.opacity = 0;
+    };
     
   });
 });
