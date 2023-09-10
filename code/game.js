@@ -159,7 +159,14 @@ scene('game', () => {
       magnitude,
       duration,
       (val) => mark.angle = val,
-      easings.easeInOutQuad,
+      choose([
+        easings.easeInOutQuad,
+        easings.easeInOutQuad,
+        easings.easeInOutQuad,
+        
+        easings.easeOutBounce,
+        easings.easeInOutCubic,
+      ]),
     );
     
     wait(duration + 0.5, markQuiver);
