@@ -106,13 +106,13 @@ ls('laser', {
 });
 
 ls('minimark', {
-  sliceX: 3,
+  sliceX: 2,
   sliceY: 2,
   anims: {
     moving: 0,
     attacking: 1,
-    jumpMove: 4,
-    fallMove: 5,
+    fallMove: 2,
+    jumpMove: 3,
   }
 });
 
