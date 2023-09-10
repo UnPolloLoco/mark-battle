@@ -167,7 +167,12 @@ loadShader('light', null, `
     vec4 c = def_frag();
     float dist = distance(pos, vec2(0, 0));
     float alpha = 1.0 - (max(0.0, dist - 0.4) * 0.6);
-    return vec4(c.r * alpha, c.g * alpha, c.b * alpha, c.a);
+    return vec4(
+      c.r * alpha * 1.025, 
+      c.g * alpha, 
+      c.b * alpha * 1.1,
+      c.a
+    );
   }
 `);
 
@@ -200,9 +205,9 @@ loadShader('mark', null, `
 	  float dist = distance(pos, vec2(0, 0));
     float alpha = 1.0 - (max(0.0, dist - 0.4) * 0.6);
 	  return vec4(
-      base.r*alpha, 
-      base.g*alpha,
-      base.b*alpha,
+      base.r * alpha * 1.025, 
+      base.g * alpha,
+      base.b * alpha * 1.1,
       base.a
     );
   }
