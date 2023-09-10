@@ -366,11 +366,12 @@ scene('game', () => {
     fixed(),
   ]);
   
-  // red bar part
+  // colored part
   const healthBar = add([
     rect(SCALE*6, SCALE/10),
     pos(SCALE*2, SCALE * 9/20),
-    color(RED),
+    //color(RED),
+    color(rgb(140, 0, 240)),
     z(Z.ui),
     fixed(),
   ]);
