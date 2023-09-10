@@ -26,7 +26,9 @@ scene('game', () => {
     rect(width(), height()),
     fixed(),
     color(rgb(50,50,50)),
-    shader('light'),
+    shader('light', () => ({
+      'tint': getShaderTint(),
+  	})),
     z(Z.bg),
   ]);
   
@@ -39,7 +41,7 @@ scene('game', () => {
         pos(SCALE*c, SCALE*r),
         z(Z.bg),
         scale(SCALE/500),
-        shader('light'),
+        shader('light', () => ({ 'tint': getShaderTint(), })),
       ]);
     };
   }; 
@@ -50,7 +52,7 @@ scene('game', () => {
     pos(-SCALE, height() - SCALE/3),
     color(rgb(130,130,130)),
     z(Z.bg),
-    shader('light'),
+    shader('light', () => ({ 'tint': getShaderTint() })),
     area(),
     body({ isStatic: true }),
   ]);
@@ -69,6 +71,7 @@ scene('game', () => {
     shader('mark', () => ({
   		'time': time(),
       'rand': rand(),
+      'tint': getShaderTint(),
   	})),
     z(Z.mark),
     opacity(1),
@@ -135,6 +138,12 @@ scene('game', () => {
     return randPos.scale(SCALE);
   };
 
+  // mark evil essence
+
+  function getShaderTint() {
+    return (500 - mark.health) /500 *0.3;
+  };
+
   // mark quiver
 
   function markQuiver() {
@@ -162,7 +171,7 @@ scene('game', () => {
     anchor('center'),
     area(),
     body(),
-    shader('light'),
+    shader('light', () => ({ 'tint': getShaderTint() })),
     z(Z.player),
     "player",
     "laserBreak",
@@ -271,7 +280,7 @@ scene('game', () => {
         body({ isStatic: true }),
         anchor('topleft'),
         scale(SCALE/500 / 3),
-        shader('light'),
+        shader('light', () => ({ 'tint': getShaderTint() })),
         z(Z.tiles),
         "block",
         { style: 'block' }
@@ -282,7 +291,7 @@ scene('game', () => {
         body({ isStatic: true }),
         anchor('topleft'),
         scale(SCALE/500 / 3),
-        shader('light'),
+        shader('light', () => ({ 'tint': getShaderTint() })),
         z(Z.tiles), 
         "block",
         { style: 'rightBlock' }
@@ -316,7 +325,7 @@ scene('game', () => {
           z(Z.tiles),
           area(),
           body({ isStatic: true }),
-          shader('light'),
+          shader('light', () => ({ 'tint': getShaderTint() })),
           "laserBreak",
         ]);
         // block shadow
@@ -329,7 +338,7 @@ scene('game', () => {
             z(Z.tiles - 2),
             color(rgb(20,20,20)),
             opacity(0.2),
-            shader('light')
+            shader('light', () => ({ 'tint': getShaderTint() }))
           ]);
         };
       // murder the block
@@ -603,7 +612,7 @@ scene('game', () => {
               mass: 0.75,
             }),
             anchor('center'),
-            shader('light'),
+            shader('light', () => ({ 'tint': getShaderTint() })),
             "minimark",
             {
               xVel: 0,
@@ -666,7 +675,7 @@ scene('game', () => {
               mass: 1.25,
             }),
             anchor('center'),
-            shader('light'),
+            shader('light', () => ({ 'tint': getShaderTint() })),
             rotate(0),
             "minimark",
             "megaMinimark",
@@ -691,7 +700,7 @@ scene('game', () => {
             scale(mm.scale),
             z(Z.player - 1),
             rotate(0),
-            shader('light'),
+            shader('light', () => ({ 'tint': getShaderTint() })),
           ]);
           
           tween(
