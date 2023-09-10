@@ -141,7 +141,11 @@ scene('game', () => {
   // mark evil essence
 
   function getShaderTint() {
-    return (500 - mark.health) /500 *0.3;
+    if (get('mark').length == 1) {
+      return (500 - mark.health) /500 *0.3;
+    } else {
+      return 0;
+    };
   };
 
   // mark quiver
