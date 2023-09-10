@@ -85,7 +85,7 @@ scene('game', () => {
     }),
     'mark',
     {
-      health: 0,
+      health: 500,
       sliced: false,
     }
   ]); 
