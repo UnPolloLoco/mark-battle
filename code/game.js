@@ -142,7 +142,7 @@ scene('game', () => {
 
   function getShaderTint() {
     if (get('mark').length == 1) {
-      return (500 - mark.health) /500 *0.3;
+      return (500 - mark.health) /500 *0.5;
     } else {
       return 0;
     };
