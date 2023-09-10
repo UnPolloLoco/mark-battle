@@ -163,14 +163,16 @@ ls('laserFlare', {
 
 
 loadShader('light', null, `
+  uniform float tint;
+
   vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     vec4 c = def_frag();
     float dist = distance(pos, vec2(0, 0));
     float alpha = 1.0 - (max(0.0, dist - 0.4) * 0.6);
     return vec4(
-      c.r * alpha * 1.025, 
+      c.r * alpha * (1.0 + tint/4.0), 
       c.g * alpha, 
-      c.b * alpha * 1.1,
+      c.b * alpha * (1.0 + tint),
       c.a
     );
   }
@@ -186,6 +188,7 @@ loadShader('white', null, `
 loadShader('mark', null, `
   uniform float time;
   uniform float rand;
+  uniform float tint;
   
   vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     vec4 c = def_frag();
@@ -205,9 +208,9 @@ loadShader('mark', null, `
 	  float dist = distance(pos, vec2(0, 0));
     float alpha = 1.0 - (max(0.0, dist - 0.4) * 0.6);
 	  return vec4(
-      base.r * alpha * 1.025, 
+      base.r * alpha * (1.0 + tint/4.0), 
       base.g * alpha,
-      base.b * alpha * 1.1,
+      base.b * alpha * (1.0 + tint),
       base.a
     );
   }
