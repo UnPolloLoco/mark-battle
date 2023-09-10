@@ -168,7 +168,7 @@ loadShader('light', null, `
   vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     vec4 c = def_frag();
     float dist = distance(pos, vec2(0, 0));
-    float alpha = 1.0 - (max(0.0, dist - 0.4) * 0.6);
+    float alpha = 1.0 - (max(0.0, dist - 0.4) * 1.0);
     return vec4(
       c.r * alpha * (1.0 + tint/4.0), 
       c.g * alpha, 
