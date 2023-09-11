@@ -208,7 +208,9 @@ loadShader('mark', null, `
 	  }
    
 	  float dist = distance(pos, vec2(0, 0));
-    float alpha = 1.0 - (max(0.0, dist - 0.4) * 0.6);
+    float alpha = smoothstep(0.0, 1.0,
+      1.0 - (max(0.0, dist - 0.3) * 0.7)
+    );
 	  return vec4(
       base.r * alpha * (1.0 + tint/4.0), 
       base.g * alpha,
