@@ -24,10 +24,6 @@ scene('game', () => {
       5
     );
   };
-
-  console.log(clamp( 1, Math.floor(500 / -100) + 6, 5));
-  console.log(clamp( 1, Math.floor(400 / -100) + 6, 5));
-  console.log(clamp( 1, Math.floor(300 / -100) + 6, 5));
   
   ////////////////
   // background //
