@@ -195,6 +195,18 @@ scene('game', () => {
     }
   ]);
   player.play('idle');
+
+  const tempHealth = add([
+    text('', {
+      size: SCALE,
+    }),
+    color(WHITE),
+    pos(SCALE/8, height()-SCALE/8),
+    z(Z.ui),
+  ]);
+  tempHealth.onUpdate(() => {
+    tempHealth.text = player.health;
+  });
   
   // slash
   const slash = player.add([
