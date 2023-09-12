@@ -22,7 +22,7 @@ Phase 4
 2  Minimark
 2  Mega Minimark
 2  Kaboom
-   ???
+   LightEning
 
 Phase 5
 
@@ -30,5 +30,5 @@ Phase 5
 4  Minimark
 2  Mega Minimark
 3  Kaboom
-   ???
+   LightEning
    Smoke thingy
