@@ -18,17 +18,17 @@ Phase 3
 
 Phase 4
 
-x5 Lasers
-x2 Minimark
-x2 Mega Minimark
-x2 Kaboom
+5  Lasers
+2  Minimark
+2  Mega Minimark
+2  Kaboom
    ???
 
 Phase 5
 
-x6 Lasers
-x4 Minimark
-x2 Mega Minimark
-x3 Kaboom
+6  Lasers
+4  Minimark
+2  Mega Minimark
+3  Kaboom
    ???
    Smoke thingy
