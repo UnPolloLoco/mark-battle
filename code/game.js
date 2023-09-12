@@ -203,6 +203,7 @@ scene('game', () => {
     color(WHITE),
     pos(SCALE/8, height()-SCALE/8),
     z(Z.ui),
+    anchor('botleft'),
   ]);
   tempHealth.onUpdate(() => {
     tempHealth.text = player.health;
