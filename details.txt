@@ -1,0 +1,34 @@
+Phase 1
+
+2  Lasers
+2  Minimark
+
+Phase 2
+
+3  Lasers
+2  Minimark
+2  Mega Minimark
+
+Phase 3
+
+4  Lasers
+2  Minimark
+2  Mega Minimark
+1  Kaboom
+
+Phase 4
+
+x5 Lasers
+x2 Minimark
+x2 Mega Minimark
+x2 Kaboom
+   ???
+
+Phase 5
+
+x6 Lasers
+x4 Minimark
+x2 Mega Minimark
+x3 Kaboom
+   ???
+   Smoke thingy
