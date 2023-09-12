@@ -1,34 +1,34 @@
 Phase 1
 
-2  Lasers
-2  Minimark
+X  2  Lasers
+X  2  Minimark
 
 Phase 2
 
-3  Lasers
-2  Minimark
-2  Mega Minimark
+X  3  Lasers
+X  2  Minimark
+.  1  Kaboom
 
 Phase 3
 
-4  Lasers
-2  Minimark
-2  Mega Minimark
-1  Kaboom
+.  4  Lasers
+.  2  Minimark
+.  2  Kaboom
+.  2  Mega Minimark
 
 Phase 4
 
-5  Lasers
-2  Minimark
-2  Mega Minimark
-2  Kaboom
-   LightEning
+.  5  Lasers
+.  2  Minimark
+.  3  Kaboom
+.  2  Mega Minimark
+.  2  Egg
 
 Phase 5
 
-6  Lasers
-4  Minimark
-2  Mega Minimark
-3  Kaboom
-   LightEning
-   Smoke thingy
+.  6  Lasers
+.  4  Minimark
+.  4  Kaboom
+.  2  Mega Minimark
+.  4  Egg
+.  1  Smoke Beam Thingy
