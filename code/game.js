@@ -16,6 +16,16 @@ scene('game', () => {
   function clamp(a, x, b) {
     return Math.max(Math.min(b, x), a);
   };
+
+  function getPhase() {
+    return clamp(
+      1, 
+      Math.floor(mark.health / -100) + 6, 
+      5
+    );
+  };
+
+  debug.log(`${getPhase(500)} ${getPhase(400)} ${getPhase(300)}`)
   
   ////////////////
   // background //
@@ -571,13 +581,8 @@ scene('game', () => {
   var maNum = -1; // mark attack number
   
   function markAttack() {
-    let phase = clamp(
-      1, 
-      Math.floor(mark.health / -100) + 6, 
-      5
-    );
     maNum++;
-    let curAttack = maNum % (phase + 1);
+    let curAttack = maNum % (getPhase() + 1);
 
     let moveTime = 0.8;
     tween(
@@ -594,7 +599,7 @@ scene('game', () => {
 
         mark.laserFlare.opacity = 1;
         
-        for (let n = 0; n < 2+phase; n++) {
+        for (let n = 0; n < 2+getPhase(); n++) {
           wait(0.4 * n, () => {
             for (let i = 0; i < 2; i++) {
               let eye = markEyes()[i];
@@ -615,10 +620,10 @@ scene('game', () => {
             };
           });
         };
-        wait(0.4 * (2.5+phase), () => {
+        wait(0.4 * (2.5+getPhase()), () => {
           mark.laserFlare.opacity = 0; 
         });
-        wait(0.4 * (5+phase), markAttack);
+        wait(0.4 * (5+getPhase()), markAttack);
       } else if (curAttack == 1) {
         // MINI MARK
   
@@ -1132,14 +1137,9 @@ scene('game', () => {
   		};
   	});
 
-    let phase = clamp(
-      1, 
-      Math.floor(mark.health / -100) + 6, 
-      5
-    );
-    mark.frame = Math.min(3, phase - 1);
+    mark.frame = Math.min(3, getPhase() - 1);
     
-    if (phase == 5) {
+    if (getPhase() == 5) {
       mark.opacity = 0;
     };
     
