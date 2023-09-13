@@ -686,6 +686,8 @@ scene('game', () => {
         
         wait(airTime + 4, markAttack);
       } else if (curAttack == 2) {
+        markAttack();
+      } else if (curAttack == 3) {
         // M E G A MINI MARK
   
         let airTime = 1;
