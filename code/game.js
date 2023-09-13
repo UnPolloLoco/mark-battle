@@ -1128,7 +1128,8 @@ scene('game', () => {
     //////////////////////
 
     get('butterfly').forEach((b) => {
-      b.pos = b.pos.add(Vec2.fromAngle(b.angle).scale(SCALE * dt()))
+      b.pos = b.pos.add(Vec2.fromAngle(b.dir).scale(SCALE * dt()))
+      b.angle = b.dir;
     });
 
     //////////////////////////////////////
