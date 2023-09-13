@@ -11,24 +11,24 @@ X  2  Minimark
 
 Phase 3
 
-.  4  Pew Pew
-.  2  Minimark
+X  4  Pew Pew
+X  2  Minimark
 .  2  Kaboom
-.  2  Mega Minimark
+X  2  Mega Minimark
 
 Phase 4
 
-.  5  Pew Pew
-.  2  Minimark
+X  5  Pew Pew
+X  2  Minimark
 .  3  Kaboom
-.  2  Mega Minimark
+X  2  Mega Minimark
 .  2  Egg
 
 Phase 5
 
-.  6  Pew Pew
+X  6  Pew Pew
 .  4  Minimark
 .  4  Kaboom
-.  2  Mega Minimark
+X  2  Mega Minimark
 .  4  Egg
 .  2  Smoke Beam Thingy
