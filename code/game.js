@@ -127,11 +127,25 @@ scene('game', () => {
       vec2( 5, 2 ),
     ];
     if (x == 0) {
+      // pew pew
       bounds = [
         vec2( 1.6, 1.6 ),
         vec2( 8.4, 2.6 ),
       ];
     } else if (x == 1) {
+      // minimark
+      bounds = [
+        vec2( 4, 1.6 ),
+        vec2( 6, 2.3 ),
+      ];
+    } else if (x == 2) {
+      // kaboom
+      bounds = [
+        vec2( 2.6, 1.6 ),
+        vec2( 7.4, 2.6 ),
+      ];
+    } else if (x == 3) {
+      // mega minimark
       bounds = [
         vec2( 4, 1.6 ),
         vec2( 6, 2.3 ),
@@ -686,7 +700,24 @@ scene('game', () => {
         
         wait(airTime + 4, markAttack);
       } else if (curAttack == 2) {
-        markAttack();
+        // KABOOOOOM BUT BUTTERFLY
+
+        add([
+          sprite('butterfly'),
+          pos(mark.pos),
+          z(Z.mark - 1),
+          scale(SCALE/58 / 3),
+          area(),
+          anchor('center'),
+          shader('light', () => ({ 'tint': getShaderTint() })),
+          rotate(0),
+          "butterfly",
+          {
+            spawnTime: time(),
+          }
+        ]);
+        
+        wait(0.5, markAttack)
       } else if (curAttack == 3) {
         // M E G A MINI MARK
   
