@@ -1,24 +1,24 @@
 Phase 1
 
-X  2  Lasers
+X  2  Pew Pew
 X  2  Minimark
 
 Phase 2
 
-X  3  Lasers
+X  3  Pew Pew
 X  2  Minimark
 .  1  Kaboom
 
 Phase 3
 
-.  4  Lasers
+.  4  Pew Pew
 .  2  Minimark
 .  2  Kaboom
 .  2  Mega Minimark
 
 Phase 4
 
-.  5  Lasers
+.  5  Pew Pew
 .  2  Minimark
 .  3  Kaboom
 .  2  Mega Minimark
@@ -26,9 +26,9 @@ Phase 4
 
 Phase 5
 
-.  6  Lasers
+.  6  Pew Pew
 .  4  Minimark
 .  4  Kaboom
 .  2  Mega Minimark
 .  4  Egg
-.  1  Smoke Beam Thingy
+.  2  Smoke Beam Thingy
