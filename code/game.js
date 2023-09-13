@@ -93,7 +93,7 @@ scene('game', () => {
     }),
     'mark',
     {
-      health: 500,
+      health: 400,
       sliced: false,
     }
   ]); 
@@ -702,6 +702,8 @@ scene('game', () => {
       } else if (curAttack == 2) {
         // KABOOOOOM BUT BUTTERFLY
 
+        let btfAngle = 180 * randi(0,2) + rand(-40, 40);
+
         add([
           sprite('butterfly'),
           pos(mark.pos),
@@ -714,6 +716,7 @@ scene('game', () => {
           "butterfly",
           {
             spawnTime: time(),
+            dir: btfAngle,
           }
         ]);
         
@@ -1118,6 +1121,14 @@ scene('game', () => {
 
       m.lastY = m.pos.y;
       
+    });
+
+    //////////////////////
+    // kaboom butterfly //
+    //////////////////////
+
+    get('butterfly').forEach((b) => {
+      b.pos = b.pos.add(Vec2.fromAngle(b.angle).scale(SCALE * dt()))
     });
 
     //////////////////////////////////////
