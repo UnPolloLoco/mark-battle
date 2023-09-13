@@ -34,6 +34,8 @@ const TOUCH = isTouchscreen();
 
 loadFont('playfair', 'fonts/PlayfairDisplay.ttf')
 
+ls('butterfly', 'https://raw.githubusercontent.com/replit/kaboom/master/sprites/btfly');
+
 loadRoot('sprites/');
 
 ls('mark', {
@@ -158,6 +160,8 @@ ls('laserFlare', {
     }
   }
 });
+
+
 
 
 
