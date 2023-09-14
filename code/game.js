@@ -1127,6 +1127,19 @@ scene('game', () => {
     // kaboom butterfly //
     //////////////////////
 
+    function butterflyExplosion(butter) {
+      if (player.pos.dist(butter.pos) < SCALE * 1) {
+        player.health -= 3;
+      };
+      add([
+        pos(butter.pos),
+        circle(SCALE),
+        color(WHITE),
+        lifespan(0.1),
+        opacity(0.5),
+      ]);
+    };
+
     get('butterfly').forEach((b) => {
       b.pos = b.pos.add(Vec2.fromAngle(b.dir).scale(SCALE * dt()))
       b.angle = b.dir + 90;
@@ -1136,6 +1149,14 @@ scene('game', () => {
         b.dir += Math.abs(angleToBean - b.dir) / (angleToBean - b.dir) * dt() * 90;
       };*/
       b.dir = angleToBean;
+
+      if (time() - b.spawnTime >= 5) {
+        addKaboom(b.pos, {
+          scale: 1/231 * SCALE
+        });
+        butterflyExplosion(b);
+        destroy(b);
+      };
     });
 
     //////////////////////////////////////
