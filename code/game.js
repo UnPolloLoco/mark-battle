@@ -1128,16 +1128,16 @@ scene('game', () => {
     //////////////////////
 
     function butterflyExplosion(butter) {
-      if (player.pos.dist(butter.pos) < SCALE * 1) {
+      if (player.pos.dist(butter.pos) < SCALE * 2) {
         player.health -= 3;
       };
-      add([
+      /*add([
         pos(butter.pos),
         circle(SCALE),
         color(WHITE),
         lifespan(0.1),
         opacity(0.5),
-      ]);
+      ]);*/
     };
 
     get('butterfly').forEach((b) => {
@@ -1152,7 +1152,7 @@ scene('game', () => {
 
       if (time() - b.spawnTime >= 5) {
         addKaboom(b.pos, {
-          scale: 1/231 * SCALE
+          scale: 1/231 * SCALE*4
         });
         butterflyExplosion(b);
         destroy(b);
