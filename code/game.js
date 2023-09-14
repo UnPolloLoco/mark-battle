@@ -707,7 +707,7 @@ scene('game', () => {
         add([
           sprite('butterfly'),
           pos(mark.pos),
-          z(Z.mark - 1),
+          z(Z.projectiles),
           scale(SCALE/58 / 3),
           area(),
           anchor('center'),
