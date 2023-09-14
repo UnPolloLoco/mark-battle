@@ -1132,7 +1132,9 @@ scene('game', () => {
       b.angle = b.dir + 90;
 
       let angleToBean = player.pos.angle(b.pos); // from b.pos to player.pos
-      b.dir = angleToBean;
+      if (Math.abs(angleToBean - b.dir) > 3) {
+        b.dir += Math.abs(angleToBean - b.dir) / (angleToBean - b.dir) * dt() * 90;
+      };
     });
 
     //////////////////////////////////////
