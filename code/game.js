@@ -643,10 +643,10 @@ scene('game', () => {
         
         for (let n = 0; n < 2; n++) {
           let mm = add([
-            sprite('minimark', { anim: 'moving' }),
+            sprite('minimarkEgg', { anim: 'miniEgg' }),
             pos(mark.pos),
             z(Z.player - 2),
-            scale(SCALE/500 / 3),
+            scale(SCALE/500 / 3*2),
             area(),
             body({ 
               gravityScale: 0, 
@@ -695,6 +695,8 @@ scene('game', () => {
         	);
           wait(airTime + 0.3, () => {
             mm.gravityScale = 1;
+            mm.scale = mm.scale.scale(0.5);
+            mm.play('miniFall');
           });
         };
         
@@ -728,10 +730,10 @@ scene('game', () => {
         
         for (let n = 0; n < 2; n++) {
           let mm = add([
-            sprite('megaMinimark', { anim: 'roll' }),
+            sprite('minimarkEgg', { anim: 'megaEgg' }),
             pos(mark.pos),
             z(Z.player - 2),
-            scale(SCALE/500 / 3*2),
+            scale(SCALE/500 / 3*2*2),
             area(),
             body({ 
               gravityScale: 0, 
@@ -775,6 +777,8 @@ scene('game', () => {
         	);
           wait(airTime + 0.3, () => {
             mm.gravityScale = 1;
+            mm.scale = mm.scale.scale(0.5);
+            mm.play('megaFall');
           });
         };
         
@@ -903,6 +907,12 @@ scene('game', () => {
         if (laDelta < 1.2) {
           mmmAttackStop = true;
         }
+      };
+
+      if (m.curAnim() == 'miniFall' || m.curAnim() == 'megaFall') {
+        if (m.isGrounded()) {
+          m.use(sprite(`${m.is('megaMinimark') ? 'megaM' : 'm'}inimark`));
+        };
       };
       
       if (m.canMove) {
