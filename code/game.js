@@ -1229,7 +1229,7 @@ scene('game', () => {
   			p.opacity -= dt() * (0.15 - mark.frame/30);
   		}
       if (p.is('eggPuff')) {
-  			p.opacity -= dt() * (1.2 - mark.frame/30);
+  			p.opacity -= dt() * (1.5 - mark.frame/30);
   		}
   		if (p.opacity <= 0) {
   			destroy(p);
