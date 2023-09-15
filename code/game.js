@@ -645,7 +645,7 @@ scene('game', () => {
           let mm = add([
             sprite('minimarkEgg', { anim: 'miniEgg' }),
             pos(mark.pos),
-            z(Z.player - 2),
+            z(Z.mark - 2),
             scale(SCALE/500 / 3*2),
             area(),
             body({ 
@@ -733,7 +733,7 @@ scene('game', () => {
           let mm = add([
             sprite('minimarkEgg', { anim: 'megaEgg' }),
             pos(mark.pos),
-            z(Z.player - 2),
+            z(Z.mark - 2),
             scale(SCALE/500 / 3*2*2),
             area(),
             body({ 
@@ -764,7 +764,7 @@ scene('game', () => {
             sprite('megaMinimarkExtras'),
             anchor('center'),
             opacity(0),
-            scale(mm.scale),
+            scale(mm.scale / 2),
             z(Z.player - 1),
             rotate(0),
             shader('light', () => ({ 'tint': getShaderTint() })),
