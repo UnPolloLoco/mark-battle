@@ -154,11 +154,17 @@ ls('minimarkEgg', {
   sliceX: 3,
   sliceY: 2,
   anims: {
-    miniEgg1: 0,
-    miniEgg2: 1,
+    miniEgg: {
+      from: 0, to: 1,
+      speed: 12,
+      loop: true,
+    },
     miniFall: 2,
-    megaEgg1: 3,
-    megaEgg2: 4,
+    megaEgg: {
+      from: 3, to: 4,
+      speed: 12,
+      loop: true,
+    },
     megaFall: 5,
   }
 });
