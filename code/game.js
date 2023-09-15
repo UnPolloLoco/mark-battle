@@ -812,13 +812,13 @@ scene('game', () => {
         sprite('puff'),
         pos(eggPos),
         opacity(0.5),
-        move(360/12 * i, SCALE),
+        move(360/12 * i, SCALE * 2.5),
         scale(SCALE/500 * 0.4),
         anchor('center'),
         z(Z.effects),
         rotate(rand(0, 360)),
         "puff",
-        "jetPuff"
+        "eggPuff" // õ-ô
       ]);
     };
   };
@@ -1227,6 +1227,9 @@ scene('game', () => {
   		p.opacity -= dt()*0.1;
   		if (p.is('jetPuff')) {
   			p.opacity -= dt() * (0.15 - mark.frame/30);
+  		}
+      if (p.is('eggPuff')) {
+  			p.opacity -= dt() * (0.5 - mark.frame/30);
   		}
   		if (p.opacity <= 0) {
   			destroy(p);
