@@ -696,7 +696,7 @@ scene('game', () => {
         	);
           wait(airTime + 0.3, () => {
             mm.gravityScale = 1;
-            minimarkEggOpen(m.pos);
+            minimarkEggOpen(mm.pos);
             mm.scale = mm.scale.scale(0.5);
             mm.play('miniFall');
           });
@@ -780,7 +780,7 @@ scene('game', () => {
         	);
           wait(airTime + 0.3, () => {
             mm.gravityScale = 1;
-            minimarkEggOpen(m.pos);
+            minimarkEggOpen(mm.pos);
             mm.scale = mm.scale.scale(0.5);
             mm.play('megaFall');
           });
