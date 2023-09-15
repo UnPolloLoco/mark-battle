@@ -794,6 +794,33 @@ scene('game', () => {
     markAttack();
   });
 
+  /////////////////////////////
+  // mark attack fancy funcs //
+  /////////////////////////////
+
+  function butterflyExplosion(butter) {
+    if (player.pos.dist(butter.pos) < SCALE * 2) {
+      player.health -= 3;
+    };
+  };
+
+  function minimarkEggOpen(eggPos) {
+    for (let i = 0; i < 8; i++) {
+      add([
+        sprite('puff'),
+        pos(eggPos),
+        opacity(0.5),
+        move(360/8 * i),
+        scale(SCALE/500 * 0.4),
+        anchor('center'),
+        z(Z.effects),
+        rotate(rand(0, 360)),
+        "puff",
+        "jetPuff"
+      ]);
+    };
+  };
+
   ////////////////////
   // touch controls //
   ////////////////////
@@ -915,6 +942,7 @@ scene('game', () => {
         if (m.isGrounded()) {
           m.use(sprite(`${m.is('megaMinimark') ? 'megaM' : 'm'}inimark`));
           m.isEgg = false;
+          minimarkEggOpen(m.pos);
         };
       };
       
@@ -1140,27 +1168,11 @@ scene('game', () => {
     // kaboom butterfly //
     //////////////////////
 
-    function butterflyExplosion(butter) {
-      if (player.pos.dist(butter.pos) < SCALE * 2) {
-        player.health -= 3;
-      };
-      /*add([
-        pos(butter.pos),
-        circle(SCALE),
-        color(WHITE),
-        lifespan(0.1),
-        opacity(0.5),
-      ]);*/
-    };
-
     get('butterfly').forEach((b) => {
       b.pos = b.pos.add(Vec2.fromAngle(b.dir).scale(SCALE * dt()))
       b.angle = b.dir + 90;
 
       let angleToBean = player.pos.angle(b.pos); // from b.pos to player.pos
-      /*if (Math.abs(angleToBean - b.dir) > 3) {
-        b.dir += Math.abs(angleToBean - b.dir) / (angleToBean - b.dir) * dt() * 90;
-      };*/
       b.dir = angleToBean;
 
       if (time() - b.spawnTime >= 5) {
