@@ -666,6 +666,7 @@ scene('game', () => {
               slash: -1,
               lastAttack: -1,
               lastY: -1,
+              isEgg: true,
             }
           ]);
 
@@ -755,6 +756,7 @@ scene('game', () => {
               extra: -1,
               lastAttack: -1,
               lastY: -1,
+              isEgg: true,
             }
           ]);
 
@@ -912,6 +914,7 @@ scene('game', () => {
       if (m.curAnim() == 'miniFall' || m.curAnim() == 'megaFall') {
         if (m.isGrounded()) {
           m.use(sprite(`${m.is('megaMinimark') ? 'megaM' : 'm'}inimark`));
+          m.isEgg = false;
         };
       };
       
@@ -1072,7 +1075,7 @@ scene('game', () => {
       // minimark animations //
       /////////////////////////
 
-      if (!m.is('megaMinimark')) {
+      if (!m.isEgg && !m.is('megaMinimark')) {
         // minimark
         
         if (time() - m.lastAttack < 0.2) {
