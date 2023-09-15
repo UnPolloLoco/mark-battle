@@ -807,12 +807,12 @@ scene('game', () => {
   };
 
   function minimarkEggOpen(eggPos) {
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 12; i++) {
       add([
         sprite('puff'),
         pos(eggPos),
         opacity(0.5),
-        move(360/8 * i, SCALE*0.5),
+        move(360/12 * i, SCALE),
         scale(SCALE/500 * 0.4),
         anchor('center'),
         z(Z.effects),
