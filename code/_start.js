@@ -150,6 +150,19 @@ la('megaMinimark', {
   },
 });
 
+ls('minimarkEgg', {
+  sliceX: 3,
+  sliceY: 2,
+  anims: {
+    miniEgg1: 0,
+    miniEgg2: 1,
+    miniFall: 2,
+    megaEgg1: 3,
+    megaEgg2: 4,
+    megaFall: 5,
+  }
+});
+
 ls('laserFlare', {
   sliceX: 2,
   anims: {
