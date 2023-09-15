@@ -1094,7 +1094,7 @@ scene('game', () => {
           m.flipX = (m.xVel < 0);
         };
 
-      } else {
+      } else if (!m.isEgg) {
         // mega minimark
 
         let laDelta = time() - m.lastAttack;
