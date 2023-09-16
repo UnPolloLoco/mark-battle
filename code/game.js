@@ -701,7 +701,7 @@ scene('game', () => {
           tween(
         		mm.scale,
         		vec2(SCALE/500 / 3*2),
-        		airTime,
+        		airTime + 0.3,
         		(val) => mm.scale = val,
         		easings.easeInQuart,
         	);
@@ -789,7 +789,7 @@ scene('game', () => {
           tween(
         		mm.pos,
         		mm.pos.add(SCALE * 2.5 * mm.spawnDir, 0),
-        		airTime,
+        		airTime + 0.3,
         		(val) => mm.pos = val,
         		easings.easeOutCubic,
         	);
