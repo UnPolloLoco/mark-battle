@@ -93,7 +93,7 @@ scene('game', () => {
     }),
     'mark',
     {
-      health: 400,
+      health: 300,
       sliced: false,
     }
   ]); 
@@ -474,6 +474,10 @@ scene('game', () => {
     debug.inspect = !debug.inspect; 
   });
 
+  onKeyPress('m', () => {
+    markAttack();
+  });
+
   // keyboard jump
   onKeyDown("w", () => {
     if (player.isGrounded()) {
@@ -736,7 +740,10 @@ scene('game', () => {
             pos(mark.pos),
             z(Z.mark - 2),
             scale(SCALE/500 / 3*2*2),
-            area(),
+            area({
+              scale: vec2(0.85, 0.65),
+              offset: vec2(0, 88),
+            }),
             body({ 
               gravityScale: 0, 
               mass: 1.25,
