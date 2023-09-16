@@ -803,7 +803,7 @@ scene('game', () => {
           
           wait(airTime + 0.3, () => {
             mm.gravityScale = 1;
-            minimarkEggOpen(mm.pos, 1);
+            minimarkEggOpen(mm.pos, 0.8);
             mm.scale = mm.scale.scale(0.5);
             mm.play('megaFall');
           });
@@ -830,7 +830,7 @@ scene('game', () => {
   };
 
   function minimarkEggOpen(eggPos, opac) {
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 22*opac; i++) {
       add([
         sprite('puff'),
         pos(eggPos),
