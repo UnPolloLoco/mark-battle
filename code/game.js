@@ -650,7 +650,7 @@ scene('game', () => {
             sprite('minimarkEgg', { anim: 'miniEgg' }),
             pos(mark.pos),
             z(Z.mark - 2),
-            scale(SCALE/500 / 3*2),
+            scale(SCALE/500 / 3),
             area(),
             body({ 
               gravityScale: 0, 
@@ -698,6 +698,14 @@ scene('game', () => {
         		(val) => mm.pos = val,
         		easings.easeOutCubic,
         	);
+          tween(
+        		mm.scale,
+        		vec2(SCALE/500 / 3*2),
+        		airTime,
+        		(val) => mm.scale = val,
+        		easings.easeInQuart,
+        	);
+          
           wait(airTime + 0.3, () => {
             mm.gravityScale = 1;
             minimarkEggOpen(mm.pos);
@@ -739,7 +747,7 @@ scene('game', () => {
             sprite('minimarkEgg', { anim: 'megaEgg' }),
             pos(mark.pos),
             z(Z.mark - 2),
-            scale(SCALE/500 / 3*2*2),
+            scale(SCALE/500 / 3*2),
             area({
               scale: vec2(0.85, 0.65),
               offset: vec2(0, 88),
@@ -785,6 +793,14 @@ scene('game', () => {
         		(val) => mm.pos = val,
         		easings.easeOutCubic,
         	);
+          tween(
+        		mm.scale,
+        		vec2(SCALE/500 / 3*2*2),
+        		airTime,
+        		(val) => mm.scale = val,
+        		easings.easeInQuart,
+        	);
+          
           wait(airTime + 0.3, () => {
             mm.gravityScale = 1;
             minimarkEggOpen(mm.pos);
