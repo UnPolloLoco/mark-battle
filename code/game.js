@@ -701,9 +701,9 @@ scene('game', () => {
           tween(
         		mm.scale,
         		vec2(SCALE/500 / 3*2),
-        		airTime + 0.3,
+        		airTime + 0.25,
         		(val) => mm.scale = val,
-        		easings.easeInQuart,
+        		easings.easeInQuint,
         	);
           
           wait(airTime + 0.3, () => {
@@ -789,16 +789,16 @@ scene('game', () => {
           tween(
         		mm.pos,
         		mm.pos.add(SCALE * 2.5 * mm.spawnDir, 0),
-        		airTime + 0.3,
+        		airTime,
         		(val) => mm.pos = val,
         		easings.easeOutCubic,
         	);
           tween(
         		mm.scale,
         		vec2(SCALE/500 / 3*2*2),
-        		airTime,
+        		airTime + 0.25,
         		(val) => mm.scale = val,
-        		easings.easeInQuart,
+        		easings.easeInQuint,
         	);
           
           wait(airTime + 0.3, () => {
