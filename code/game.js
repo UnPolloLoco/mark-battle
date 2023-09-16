@@ -708,7 +708,7 @@ scene('game', () => {
           
           wait(airTime + 0.3, () => {
             mm.gravityScale = 1;
-            minimarkEggOpen(mm.pos);
+            minimarkEggOpen(mm.pos, 0.5);
             mm.scale = mm.scale.scale(0.5);
             mm.play('miniFall');
           });
@@ -803,7 +803,7 @@ scene('game', () => {
           
           wait(airTime + 0.3, () => {
             mm.gravityScale = 1;
-            minimarkEggOpen(mm.pos);
+            minimarkEggOpen(mm.pos, 1);
             mm.scale = mm.scale.scale(0.5);
             mm.play('megaFall');
           });
@@ -829,13 +829,13 @@ scene('game', () => {
     };
   };
 
-  function minimarkEggOpen(eggPos) {
-    for (let i = 0; i < 12; i++) {
+  function minimarkEggOpen(eggPos, opac) {
+    for (let i = 0; i < 15; i++) {
       add([
         sprite('puff'),
         pos(eggPos),
-        opacity(0.5),
-        move(360/12 * i, SCALE * 2.5),
+        opacity(opac),
+        move(360/15 * i, SCALE * 2.5),
         scale(SCALE/500 * 0.4),
         anchor('center'),
         z(Z.effects),
