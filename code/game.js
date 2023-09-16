@@ -868,6 +868,9 @@ scene('game', () => {
 
     //debug.log(player.health);
 
+    if (get('megaMinimark').length > 0) 
+      debug.log( get('megaMinimark')[0].extra.opacity );
+
     // touch movement
     if (TOUCH) {
       if (isMouseDown()) {
