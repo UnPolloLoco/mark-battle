@@ -853,9 +853,9 @@ scene('game', () => {
   // touch jump 
   let touchJumpCheck = SCALE * -5;
   if (TOUCH) {
-    loop(0.1, () => {
+    loop(0.05, () => {
       let fixedMousePos = mousePos().y - canvas.getBoundingClientRect().top;
-      if (fixedMousePos < touchJumpCheck - SCALE*2) {
+      if (fixedMousePos < touchJumpCheck - SCALE*1) {
         if (player.isGrounded()) {
   		  	player.jump(JUMP_SPEED);
   	  	};
@@ -865,12 +865,6 @@ scene('game', () => {
   };
   
   onUpdate(() => {
-
-    //debug.log(player.health);
-
-    if (get('megaMinimark').length > 0) 
-      debug.log( get('megaMinimark')[0].extra.opacity );
-
     // touch movement
     if (TOUCH) {
       if (isMouseDown()) {
