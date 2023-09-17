@@ -780,7 +780,7 @@ scene('game', () => {
             sprite('megaMinimarkExtras'),
             anchor('center'),
             opacity(0),
-            scale(mm.scale / 2),
+            scale(SCALE/500 / 3*2),
             z(Z.player - 1),
             rotate(0),
             shader('light', () => ({ 'tint': getShaderTint() })),
