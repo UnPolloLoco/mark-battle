@@ -1085,14 +1085,15 @@ scene('game', () => {
               	vec2(-0.01, 0.35),
               	vec2(-0.26, 0.31),
               ];
+              let eye = eyes[i].scale(SCALE);
               add([
-                pos(m.pos.add( eye[i].scale(SCALE) )),
+                pos(m.pos.add( eye )),
                 anchor('left'),
                 sprite('laser', { anim: 'beam' }),
                 scale(SCALE/500 / 4),
                 area({ scale: vec2(1, 0.2) }),
                 lifespan(1.5),
-                rotate(player.pos.angle(eye[i])),
+                rotate(player.pos.angle(eye)),
                 z(Z.projectiles),
                 "laser",
                 {
