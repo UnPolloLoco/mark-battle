@@ -1081,15 +1081,18 @@ scene('game', () => {
         wait(1, () => {
           if (m.health > 0) {
             for (let i = 0; i < 2; i++) {
-              let eye = m.pos; //markEyes()[i];
+              let eyes = [
+              	vec2(-0.01, 0.35),
+              	vec2(-0.26, 0.31),
+              ];
               add([
-                pos(eye),
+                pos(m.pos.add( eye[i].scale(SCALE) )),
                 anchor('left'),
                 sprite('laser', { anim: 'beam' }),
                 scale(SCALE/500 / 4),
                 area({ scale: vec2(1, 0.2) }),
                 lifespan(1.5),
-                rotate(player.pos.angle(eye)),
+                rotate(player.pos.angle(eye[i])),
                 z(Z.projectiles),
                 "laser",
                 {
