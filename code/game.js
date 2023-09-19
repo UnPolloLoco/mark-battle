@@ -1087,10 +1087,10 @@ scene('game', () => {
               ];
               let eye = eyes[i].scale(SCALE);
               
-              debug.log(m.pos.add(eye).scale(1/SCALE));
+              debug.log(eye);
 
               add([
-                rect(20, 20),
+                rect(10, 10),
                 color(RED),
                 lifespan(0.1),
                 pos(m.pos.add(eye)),
@@ -1109,9 +1109,10 @@ scene('game', () => {
                 z(Z.projectiles),
                 "laser",
                 {
-                  dir: deg2rad( eye.angle(player.pos) ),
+                  dir: deg2rad( player.pos.angle(eye) ),
                 }
               ]);
+              
             };
           };
         });
