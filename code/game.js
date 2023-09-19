@@ -1068,6 +1068,8 @@ scene('game', () => {
       // MEGA minimark attack //
       //////////////////////////
 
+      debug.log(`${time() - m.lastAttack > 3} - ${time() - m.spawnTime > 3}`);
+      
       if (
         m.is('megaMinimark') 
         &&
