@@ -1088,6 +1088,15 @@ scene('game', () => {
               let eye = eyes[i].scale(SCALE);
               
               debug.log(m.pos.add(eye).scale(1/SCALE));
+
+              add([
+                rect(10, 10),
+                color(RED),
+                lifespan(0.1),
+                pos(eye),
+                anchor('center'),
+                z(Z.ui),
+              ])
               
               add([
                 pos(m.pos.add( eye )),
