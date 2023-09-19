@@ -1082,12 +1082,14 @@ scene('game', () => {
           if (m.health > 0) {
             for (let i = 0; i < 2; i++) {
               let eyes = [
-              	vec2(-0.01, 0.35),
-              	vec2(-0.26, 0.31),
+              	vec2(0, 0.18),
+              	vec2(-0.13, 0.16),
               ];
               let eye = eyes[i].scale(SCALE);
-              
-              debug.log(eye);
+
+              if (m.flipX) {
+                eye = eye.scale(vec2(-1, 1));
+              };
 
               // temp mark
               add([
