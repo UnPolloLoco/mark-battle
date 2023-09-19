@@ -1098,7 +1098,7 @@ scene('game', () => {
                 scale(SCALE/500 / 4),
                 area({ scale: vec2(1, 0.2) }),
                 lifespan(1.5),
-                rotate(player.pos.angle(eye)),
+                rotate(player.pos.angle(m.pos.add(eye))),
                 z(Z.projectiles),
                 "laser",
                 {
