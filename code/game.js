@@ -1090,10 +1090,10 @@ scene('game', () => {
               debug.log(m.pos.add(eye).scale(1/SCALE));
 
               add([
-                rect(10, 10),
+                rect(20, 20),
                 color(RED),
                 lifespan(0.1),
-                pos(eye),
+                pos(m.pos.add(eye)),
                 anchor('center'),
                 z(Z.ui),
               ])
