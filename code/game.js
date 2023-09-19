@@ -1100,7 +1100,7 @@ scene('game', () => {
                 z(Z.projectiles),
                 "laser",
                 {
-                  dir: deg2rad( eye.pos.angle(player) ),
+                  dir: deg2rad( eye.angle(player.pos) ),
                 }
               ]);
             };
