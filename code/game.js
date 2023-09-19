@@ -1089,11 +1089,20 @@ scene('game', () => {
               
               debug.log(eye);
 
+              // temp mark
               add([
                 rect(10, 10),
                 color(RED),
                 lifespan(0.1),
                 pos(m.pos.add(eye)),
+                anchor('center'),
+                z(Z.ui),
+              ])
+              add([
+                rect(10, 10),
+                color(GREEN),
+                lifespan(0.1),
+                pos(m.pos),
                 anchor('center'),
                 z(Z.ui),
               ])
