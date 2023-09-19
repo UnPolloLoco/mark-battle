@@ -1087,7 +1087,7 @@ scene('game', () => {
               ];
               let eye = eyes[i].scale(SCALE);
               
-              debug.log(eye.scale(1/SCALE));
+              debug.log(m.pos.add(eye).scale(1/SCALE));
               
               add([
                 pos(m.pos.add( eye )),
@@ -1100,7 +1100,7 @@ scene('game', () => {
                 z(Z.projectiles),
                 "laser",
                 {
-                  dir: deg2rad( player.pos.angle(eye) ),
+                  dir: deg2rad( eye.pos.angle(player) ),
                 }
               ]);
             };
