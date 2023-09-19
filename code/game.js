@@ -1090,24 +1090,6 @@ scene('game', () => {
               if (m.flipX) {
                 eye = eye.scale(vec2(-1, 1));
               };
-
-              // temp mark
-              add([
-                rect(10, 10),
-                color(RED),
-                lifespan(0.1),
-                pos(m.pos.add(eye)),
-                anchor('center'),
-                z(Z.ui),
-              ])
-              add([
-                rect(10, 10),
-                color(GREEN),
-                lifespan(0.1),
-                pos(m.pos),
-                anchor('center'),
-                z(Z.ui),
-              ])
               
               add([
                 pos(m.pos.add( eye )),
@@ -1120,7 +1102,7 @@ scene('game', () => {
                 z(Z.projectiles),
                 "laser",
                 {
-                  dir: deg2rad( player.pos.angle(eye) ),
+                  dir: deg2rad( player.pos.angle(m.pos.add(eye)) ),
                 }
               ]);
               
