@@ -56,14 +56,27 @@ scene('game', () => {
   
   // underground shake proofer
   add([
-    rect(width() + SCALE*2, SCALE*2),
-    pos(-SCALE, height() - SCALE/3),
+    rect(width() + SCALE*4, SCALE*4),
+    pos(-SCALE*2, height() - SCALE/3),
     color(rgb(130,130,130)),
     z(Z.bg),
     shader('light', () => ({ 'tint': getShaderTint() })),
     area(),
     body({ isStatic: true }),
   ]);
+
+  // movement borders
+  for (let i = 0; i < 2; i++) {
+    add([
+      rect(SCALE*2, SCALE*12),
+      pos(-SCALE*2 + 12*i*SCALE, -SCALE*5),
+      color(BLACK),
+      area(),
+      body({ isStatic: true }),
+      opacity(0),
+	    "border",
+    ]);
+  };
   
   ////////////////
   // characters //
@@ -283,19 +296,6 @@ scene('game', () => {
       lifespan(0.2),
       rotate(randi(0,360)),
       anchor('center'),
-    ]);
-  };
-	
-  // movement borders
-  for (let i = 0; i < 2; i++) {
-    add([
-      rect(SCALE, SCALE*10),
-      pos(-SCALE + 11*i*SCALE, -SCALE*3),
-      color(BLACK),
-      area(),
-      body({ isStatic: true }),
-      opacity(0),
-	    "border",
     ]);
   };
 
