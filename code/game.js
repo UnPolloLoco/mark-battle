@@ -1086,6 +1086,7 @@ scene('game', () => {
               	vec2(-0.26, 0.31),
               ];
               let eye = eyes[i].scale(SCALE);
+              debug.log(eye.scale(1/SCALE))
               add([
                 pos(m.pos.add( eye )),
                 anchor('left'),
