@@ -600,7 +600,7 @@ scene('game', () => {
     maNum++;
     let curAttack = maNum % (getPhase() + 1);
 
-    let moveTime = 0.8;
+    let moveTime = 0.8 - 0.15*(getPhase() - 1);
     tween(
       mark.pos,
       newMarkPos(curAttack),
@@ -609,7 +609,7 @@ scene('game', () => {
       easings.easeInOutQuad,
     );
 
-    wait(moveTime + 0.5, () => {
+    wait(moveTime + 0.4, () => {
       if (curAttack == 0) {
         // LASERS
 
