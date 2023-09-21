@@ -24,12 +24,18 @@ scene('game', () => {
       5
     );
   };
+
+  //////////////////
+  // GAME STARTER //
+  //////////////////
+
+  const GAME = add([]);
   
   ////////////////
   // background //
   ////////////////
   
-  add([
+  GAME.add([
     pos(0,0),
     rect(width(), height()),
     fixed(),
@@ -43,7 +49,7 @@ scene('game', () => {
   // bricks
   for (let r = -1; r <= 6; r++) {
     for (let c = -1; c <= 10; c++) {
-      add([
+      GAME.add([
         sprite('bgBlock'),
         opacity(0.08),
         pos(SCALE*c, SCALE*r),
@@ -55,7 +61,7 @@ scene('game', () => {
   }; 
   
   // underground shake proofer
-  add([
+  GAME.add([
     rect(width() + SCALE*4, SCALE*4),
     pos(-SCALE*2, height() - SCALE/3),
     color(rgb(130,130,130)),
@@ -67,7 +73,7 @@ scene('game', () => {
 
   // movement borders
   for (let i = 0; i < 2; i++) {
-    add([
+    GAME.add([
       rect(SCALE*2, SCALE*12),
       pos(-SCALE*2 + 12*i*SCALE, -SCALE*5),
       color(BLACK),
@@ -83,7 +89,7 @@ scene('game', () => {
   ////////////////
   
   // mark
-  const mark = add([
+  const mark = GAME.add([
     sprite('mark'),
     pos(SCALE*5, SCALE*2),
     scale(SCALE/500 * 2),
@@ -210,7 +216,7 @@ scene('game', () => {
   markQuiver();
   
   // bean
-  const player = add([
+  const player = GAME.add([
     sprite('beans'),
     pos(SCALE*0.9, SCALE),
     scale(SCALE/500 / 3),
@@ -231,7 +237,7 @@ scene('game', () => {
   ]);
   player.play('idle');
 
-  const tempHealth = add([
+  const tempHealth = GAME.add([
     text('', {
       size: SCALE,
     }),
@@ -287,7 +293,7 @@ scene('game', () => {
 
   // damage special fx
   function clashEffect(p, s) {
-    add([
+    GAME.add([
       pos(p),
       sprite('clash', { anim: 'clash' }),
       shader('white'),
@@ -354,7 +360,7 @@ scene('game', () => {
       let obj = theFilthyKids[i];
       if (j == 0) {
         // block border
-        add([
+        GAME.add([
           rect(SCALE/3 + SCALE/25, SCALE/3 + SCALE/25),
           pos(obj.pos
             .add(-SCALE/3, SCALE*13/3)
@@ -364,7 +370,7 @@ scene('game', () => {
           color(BLACK),
         ]);
         // add the block
-        add([
+        GAME.add([
           sprite(obj.style),
           pos(obj.pos.add(-SCALE/3, SCALE*13/3)),
           scale(SCALE/500 / 3),
@@ -376,7 +382,7 @@ scene('game', () => {
         ]);
         // block shadow
         if (obj.pos.y < SCALE) {
-          add([
+          GAME.add([
             rect(SCALE/3, SCALE*3),
             pos(obj.pos
               .add(-SCALE/3, SCALE*14/3)
@@ -400,7 +406,7 @@ scene('game', () => {
   
   // health bar shadow
   for (let i = 1; i <= 3; i++) {
-    add([
+    GAME.add([
       rect(SCALE*6 + SCALE/60*i, SCALE/10 + SCALE/60*i),
       pos(SCALE*5, SCALE/2),
       anchor('center'),
@@ -412,7 +418,7 @@ scene('game', () => {
   };
   
   // empty health bar
-  add([
+  GAME.add([
     rect(SCALE*6, SCALE/10),
     pos(SCALE*5, SCALE * 1/2),
     anchor('center'),
@@ -422,7 +428,7 @@ scene('game', () => {
   ]);
   
   // colored part
-  const healthBar = add([
+  const healthBar = GAME.add([
     rect(SCALE*6, SCALE/10),
     pos(SCALE*2, SCALE * 9/20),
     //color(RED),
@@ -450,7 +456,7 @@ scene('game', () => {
       textOpacity = 0.1;
     };
     for (let j = 1; j <= 3; j++) {
-      add([
+      GAME.add([
         text('MARK', {
           size: SCALE/2,  
           textAlign: 'center',
@@ -646,7 +652,7 @@ scene('game', () => {
         let airTime = 1;
         
         for (let n = 0; n < 2; n++) {
-          let mm = add([
+          let mm = GAME.add([
             sprite('minimarkEgg', { anim: 'miniEgg' }),
             pos(mark.pos),
             z(Z.mark - 2),
@@ -720,7 +726,7 @@ scene('game', () => {
 
         let btfAngle = 180 * randi(0,2) + rand(-40, 40);
 
-        add([
+        GAME.add([
           sprite('butterfly'),
           pos(mark.pos),
           z(Z.projectiles),
@@ -743,7 +749,7 @@ scene('game', () => {
         let airTime = 1;
         
         for (let n = 0; n < 2; n++) {
-          let mm = add([
+          let mm = GAME.add([
             sprite('minimarkEgg', { anim: 'megaEgg' }),
             pos(mark.pos),
             z(Z.mark - 2),
@@ -776,7 +782,7 @@ scene('game', () => {
             }
           ]);
 
-          mm.extra = add([
+          mm.extra = GAME.add([
             sprite('megaMinimarkExtras'),
             anchor('center'),
             opacity(0),
@@ -831,7 +837,7 @@ scene('game', () => {
 
   function minimarkEggOpen(eggPos, opac) {
     for (let i = 0; i < 25*opac; i++) {
-      add([
+      GAME.add([
         sprite('puff'),
         pos(eggPos),
         opacity(opac),
@@ -1091,7 +1097,7 @@ scene('game', () => {
                 eye = eye.scale(vec2(-1, 1));
               };
               
-              add([
+              GAME.add([
                 pos(m.pos.add( eye )),
                 anchor('left'),
                 sprite('laser', { anim: 'beam' }),
