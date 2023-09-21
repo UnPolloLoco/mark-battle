@@ -1271,6 +1271,14 @@ scene('game', () => {
     if (getPhase() == 5) {
       mark.opacity = 0;
     };
+
+    /////////////////
+    // LOSS EFFECT //
+    /////////////////
+
+    if (player.health <= 0) {
+      usePostEffect('perish');
+    };
     
   });
 });
