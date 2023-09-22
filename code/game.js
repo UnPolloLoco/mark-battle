@@ -227,6 +227,7 @@ scene('game', () => {
       lastAttack: -123,
       health: 10,
       attackedBy: [],
+      timeOfDeath: -1,
     }
   ]);
   player.play('idle');
@@ -1275,10 +1276,13 @@ scene('game', () => {
     /////////////////
     // LOSS EFFECT //
     /////////////////
-
+    
     if (player.health <= 0) {
+      if (player.timeOfDeath == -1) {
+        player.timeOfDeath = time();
+      };
       usePostEffect('perish', () => ({
-        'time': time(),
+        'time': time() - player.timeOfDeath,
       }));
     };
     
