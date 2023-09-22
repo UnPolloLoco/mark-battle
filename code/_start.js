@@ -244,12 +244,28 @@ loadShader('mark', null, `
 `);
 
 loadShader("perish", null, `
+	uniform float time;
+ 
 	vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
 		vec4 c = def_frag();
-		float light = (c.r + c.g + c.b) / 3.0;
-		vec4 base = vec4(light, light, light, c.a);
-		return mix(c, base, 0.95);
-	}
+		float blur = time * 0.006;
+  
+		vec4 t1 = texture2D(tex, uv + vec2(blur, 0));
+		vec4 t2 = texture2D(tex, uv - vec2(blur, 0));
+		vec4 t3 = texture2D(tex, uv + vec2(0, blur));
+		vec4 t4 = texture2D(tex, uv - vec2(0, blur));
+
+		vec4 blurred = (c+c + t1+t2+t3+t4) / 6.0;
+
+		float light = (blurred.r + blurred.g + blurred.b);
+		light = min(
+			light / 3.0,
+			1.0 - 0.4 * time - 0.3 * distance(uv, vec2(0.5))
+		);
+		vec4 darkened = vec4(light, light, light, c.a);
+		
+		return darkened;
+	}  
 `)
 
 // basic light
