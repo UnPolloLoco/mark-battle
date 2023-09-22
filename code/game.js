@@ -1277,7 +1277,9 @@ scene('game', () => {
     /////////////////
 
     if (player.health <= 0) {
-      usePostEffect('perish');
+      usePostEffect('perish', () => ({
+        'time': time(),
+      }));
     };
     
   });
