@@ -248,7 +248,7 @@ loadShader("perish", null, `
  
 	vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
 		vec4 c = def_frag();
-		float blur = time * 0.009;
+		float blur = time * 0.013;
   
 		vec4 t1 = texture2D(tex, uv + vec2(blur, 0));
 		vec4 t2 = texture2D(tex, uv - vec2(blur, 0));
@@ -258,11 +258,11 @@ loadShader("perish", null, `
 		vec4 blurred = (c+c + t1+t2+t3+t4) / 6.0;
 
 		float light = (blurred.r + blurred.g + blurred.b) / 3.0;
-		light *= 1.3 - (time * 0.5) - (0.4 * distance(uv, vec2(0.5)));
+		light *= 2.5 - (time * 1.6) - (0.4 * distance(uv, vec2(0.5)));
 		vec4 darkened = vec4(light, light, light, c.a);
 		
 		return darkened;
-	}  
+	} 
 `)
 
 // basic light
