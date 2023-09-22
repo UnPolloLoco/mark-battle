@@ -478,6 +478,10 @@ scene('game', () => {
   onKeyPress('m', () => {
     markAttack();
   });
+  
+  onKeyPress('n', () => {
+    player.health = 0;
+  });
 
   // keyboard jump
   onKeyDown("w", () => {
@@ -1280,6 +1284,9 @@ scene('game', () => {
     if (player.health <= 0) {
       if (player.timeOfDeath == -1) {
         player.timeOfDeath = time();
+        wait(1.6, () => {
+          go('fail');
+        });
       };
       usePostEffect('perish', () => ({
         'time': time() - player.timeOfDeath,
