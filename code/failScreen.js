@@ -8,7 +8,4 @@ scene('fail', () => {
     color(WHITE),
     anchor('center'),
   ]);
-
-  debug.log('scene changed');
-  console.log('scene changed');
 });
