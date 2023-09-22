@@ -184,6 +184,11 @@ ls('laserFlare', {
 
 
 
+loadShader('clear', null, `
+  vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
+    return def_frag();
+  }
+`);
 
 loadShader('light', null, `
   uniform float tint;
