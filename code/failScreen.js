@@ -38,7 +38,7 @@ scene('fail', () => {
   ]);
 
   onUpdate(() => {
-    if (deathScreenEnterTime < 1.6) {
+    if (time() - deathScreenEnterTime < 1.6) {
       usePostEffect('perish', () => ({
         'time': 1.6 - (time() - deathScreenEnterTime),
       }));
