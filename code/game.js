@@ -231,26 +231,6 @@ scene('game', () => {
     }
   ]);
   player.play('idle');
-
-  // bean healthbar
-  
-  const playerHealthBar = add([
-    rect(SCALE/3, SCALE/30),
-    color(GREEN),
-    pos(0,0),
-    z(Z.ui - 1),
-    anchor('center'),
-    "playerHealthBar",
-  ]);
-
-  const playerHealthBarOutline = add([
-    rect(SCALE/3 + SCALE/45, SCALE/30 + SCALE/45),
-    color(BLACK),
-    pos(0,0),
-    z(Z.ui - 2),
-    anchor('center'),
-    "playerHealthBar",
-  ]);
   
   // slash
   const slash = player.add([
@@ -926,18 +906,9 @@ scene('game', () => {
     // health bars //
     /////////////////
 
-    // bean health positioner
-    get('playerHealthBar', (phb) => {
-      phb.pos = player.pos.sub(0, SCALE*0.3);
-    });
-
-    // bean health meter
-    playerHealthBar.width = SCALE/3 * player.health / 10;
-    
-    // mark health meter
+    // mark health
     healthBar.width = SCALE*6 * mark.health/500; 
     
- 
     //////////////////
     // mark damaged //
     //////////////////
