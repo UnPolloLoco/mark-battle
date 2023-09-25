@@ -802,6 +802,20 @@ scene('game', () => {
         };
         
         wait(airTime + 4, markAttack);
+      } else if (curAttack == 4) {
+        // THE EGG
+
+        add([
+          sprite('egg'),
+          pos(mark.pos),
+          z(Z.projectiles),
+          scale(SCALE/40 / 3),
+          area(),
+          body(),
+          anchor('center'),
+          shader('light', () => ({ 'tint': getShaderTint() })),
+          "egg",
+        ]);
       };
     });
     
