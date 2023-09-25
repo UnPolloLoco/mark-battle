@@ -237,7 +237,7 @@ scene('game', () => {
   const playerHealthBar = add([
     rect(SCALE/3, SCALE/30),
     color(GREEN),
-    pos(),
+    pos(0,0),
     z(Z.ui - 1),
     anchor('center'),
     "playerHealthBar",
@@ -246,7 +246,7 @@ scene('game', () => {
   const playerHealthBarOutline = add([
     rect(SCALE/3 + SCALE/45, SCALE/30 + SCALE/45),
     color(BLACK),
-    pos(),
+    pos(0,0),
     z(Z.ui - 2),
     anchor('center'),
     "playerHealthBar",
