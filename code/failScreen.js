@@ -18,10 +18,10 @@ scene('fail', () => {
       size: SCALE/2,
       font: 'reenieBeanie',
     }),
-    pos(SCALE*3, SCALE*1.5),
+    pos(SCALE*2.6, SCALE*1.3),
     color(rgb(150,150,150)),
     anchor('center'),
-    rotate(30),
+    rotate(-10),
     z(1),
   ]);
   add([
