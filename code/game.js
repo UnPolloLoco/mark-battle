@@ -928,7 +928,7 @@ scene('game', () => {
 
     // bean health positioner
     get('playerHealthBar', (phb) => {
-      phb.pos = bean.pos.sub(0, SCALE*0.3);
+      phb.pos = player.pos.sub(0, SCALE*0.3);
     });
 
     // bean health meter
