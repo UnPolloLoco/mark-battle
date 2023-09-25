@@ -1,16 +1,17 @@
 scene('fail', () => {
   setBackground(BLACK);
-  usePostEffect('clear');
+
+  let deathScreenEnterTime = time();
 
   // fade in
-  add([
+  /*add([
     rect(width(), height()),
     pos(0,0),
     color(BLACK),
     lifespan(0, { fade: 0.6 }),
     opacity(1),
     z(10),
-  ])
+  ])*/
 
   // main text
   add([
@@ -24,6 +25,7 @@ scene('fail', () => {
     rotate(-10),
     z(1),
   ]);
+  
   add([
     text('WALLOPED', { 
       size: SCALE,
@@ -34,4 +36,17 @@ scene('fail', () => {
     anchor('center'),
     z(0),
   ]);
+
+  const postEffectTicker = add()
+
+  postEffectTicker.onUpdate(() => {
+    usePostEffect('perish', () => ({
+      'time': 1.6 - (time() - deathScreenEnterTime),
+    }));
+  });
+
+  wait(1.6, () => {
+    destroy(postEffectTicker);
+    usePostEffect('clear');
+  });
 });
