@@ -34,6 +34,7 @@ const TOUCH = isTouchscreen();
 loadFont('playfair', 'fonts/PlayfairDisplay.ttf')
 
 loadSprite('butterfly', 'https://raw.githubusercontent.com/replit/kaboom/master/sprites/btfly.png');
+loadSprite('egg', 'https://raw.githubusercontent.com/replit/kaboom/master/sprites/egg_crack.png');
 
 loadRoot('sprites/');
 
