@@ -192,7 +192,7 @@ scene('game', () => {
   // mark quiver
 
   function markQuiver() {
-    let duration = rand(1, 3);
+    let duration = rand(1, 3) * (9 - getPhase()) / 8; // x1 to x0.5
     let magnitude = rand(-10, 10);
 
     tween(
@@ -202,10 +202,9 @@ scene('game', () => {
       (val) => mark.angle = val,
       choose([
         easings.easeInOutQuad,
-        easings.easeInOutQuad,
-        
         easings.easeOutBounce,
         easings.easeInOutCubic,
+        easings.easeOutBack
       ]),
     );
     
