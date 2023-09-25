@@ -3,7 +3,10 @@ scene('fail', () => {
   usePostEffect('clear');
   
   add([
-    text('L bad', { size: SCALE }),
+    text('WALLOPED', { 
+      size: SCALE,
+      font: 'playfair',
+    }),
     pos(center()),
     color(WHITE),
     anchor('center'),
