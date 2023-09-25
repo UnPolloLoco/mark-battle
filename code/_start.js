@@ -32,6 +32,7 @@ const AIR_FRICTION = 2;
 const TOUCH = isTouchscreen();
 
 loadFont('playfair', 'fonts/PlayfairDisplay.ttf')
+loadFont('reenieBeanie', 'fonts/Reenie_Beanie.ttf')
 
 loadSprite('butterfly', 'https://raw.githubusercontent.com/replit/kaboom/master/sprites/btfly.png');
 loadSprite('egg', 'https://raw.githubusercontent.com/replit/kaboom/master/sprites/egg_crack.png');
