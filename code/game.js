@@ -163,6 +163,12 @@ scene('game', () => {
         vec2( 4, 1.6 ),
         vec2( 6, 2.3 ),
       ];
+    } else if (x == 4) {
+      // egg
+      bounds = [
+        vec2( 1.6, 1.4 ),
+        vec2( 8.4, 2.3 ),
+      ];
     };
 
     let randPos = vec2(
@@ -195,7 +201,6 @@ scene('game', () => {
       duration,
       (val) => mark.angle = val,
       choose([
-        easings.easeInOutQuad,
         easings.easeInOutQuad,
         easings.easeInOutQuad,
         
