@@ -3,16 +3,6 @@ scene('fail', () => {
 
   let deathScreenEnterTime = time();
 
-  // fade in
-  /*add([
-    rect(width(), height()),
-    pos(0,0),
-    color(BLACK),
-    lifespan(0, { fade: 0.6 }),
-    opacity(1),
-    z(10),
-  ])*/
-
   // main text
   add([
     text('bombastically', { 
@@ -36,6 +26,22 @@ scene('fail', () => {
     anchor('center'),
     z(0),
   ]);
+
+
+
+  add([
+    rect(SCALE*6, SCALE*0.5),
+    pos(SCALE*2, SCALE*3.5),
+    color(GREEN),
+  ]);
+
+  add([
+    rect(SCALE*6, SCALE*0.5),
+    pos(SCALE*2, SCALE*4.5),
+    color(RED),
+  ]);
+
+  
 
   usePostEffect('un-perish', () => ({
     'time': 1.6 - (time() - deathScreenEnterTime),
