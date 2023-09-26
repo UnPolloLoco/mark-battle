@@ -37,13 +37,11 @@ scene('fail', () => {
     z(0),
   ]);
 
-  onUpdate(() => {
-    if (time() - deathScreenEnterTime < 1.6) {
-      usePostEffect('perish', () => ({
-        'time': 1.6 - (time() - deathScreenEnterTime),
-      }));
-    } else {
-      usePostEffect('clear');
-    };
+  usePostEffect('un-perish', () => ({
+    'time': 1.6 - (time() - deathScreenEnterTime),
+  }));
+  
+  wait(1.6, () => {
+    usePostEffect('clear');
   });
 });
