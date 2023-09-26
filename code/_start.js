@@ -289,7 +289,7 @@ loadShader("un-perish", null, `
 		light *= 1.0 - (time * 0.6) - (0.4 * distance(uv, vec2(0.5)));
 		vec4 darkened = vec4(light, light, light, c.a);
 		
-		return mix(blurred, darkened, max(0.0, time * 1.6));
+		return mix(blurred, darkened, min(1.0, max(0.0, time * 1.6)));
 	} 
 `)
 
