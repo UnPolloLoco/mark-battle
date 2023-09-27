@@ -19,7 +19,7 @@ scene('fail', () => {
   add([
     text('WALLOPED', { 
       size: SCALE,
-      font: 'playfair',
+      font: 'nerko',
     }),
     pos(width()/2, SCALE*2),
     color(WHITE),
