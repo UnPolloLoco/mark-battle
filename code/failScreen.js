@@ -4,7 +4,7 @@ scene('fail', () => {
   let deathScreenEnterTime = time();
 
   // main text
-  add([
+  /*add([
     text('bombastically', { 
       size: SCALE/2,
       font: 'reenieBeanie',
@@ -14,31 +14,55 @@ scene('fail', () => {
     anchor('center'),
     rotate(-10),
     z(1),
-  ]);
+  ]);*/
   
   add([
     text('WALLOPED', { 
-      size: SCALE,
+      size: SCALE * 1.4,
       font: 'nerko',
     }),
-    pos(width()/2, SCALE*2),
+    pos(width()/2, SCALE*1.7), // prev 2
     color(WHITE),
     anchor('center'),
-    z(0),
+    z(1),
   ]);
 
+  // scoring
 
+  add([
+    text('Score: 1234', {
+      size: SCALE/2,
+      font: 'reenieBeanie',
+    }),
+    pos(SCALE*2, height()/2),
+    anchor('left'),
+    z(1)
+  ]);
+
+  add([
+    text('Completion: 123%', {
+      size: SCALE/2,
+      font: 'reenieBeanie',
+    }),
+    pos(width()/2, height()/2),
+    anchor('left'),
+    z(1)
+  ]);
+
+  // buttons
 
   add([
     rect(SCALE*6, SCALE*0.5),
     pos(SCALE*2, SCALE*3.5),
     color(GREEN),
+    z(0),
   ]);
 
   add([
     rect(SCALE*6, SCALE*0.5),
     pos(SCALE*2, SCALE*4.5),
     color(RED),
+    z(0),
   ]);
 
   
