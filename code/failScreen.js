@@ -34,7 +34,7 @@ scene('fail', () => {
       size: SCALE/2,
       font: 'reenieBeanie',
     }),
-    pos(SCALE*2, height()/2),
+    pos(SCALE*2, SCALE*3),
     anchor('left'),
     z(1)
   ]);
@@ -44,26 +44,35 @@ scene('fail', () => {
       size: SCALE/2,
       font: 'reenieBeanie',
     }),
-    pos(width()/2, height()/2),
+    pos(width()/2, SCALE*3),
     anchor('left'),
     z(1)
   ]);
 
   // buttons
 
-  add([
-    rect(SCALE*6, SCALE*0.5),
-    pos(SCALE*2, SCALE*3.5),
-    color(GREEN),
-    z(0),
-  ]);
+  for (let i = 0; i < 2; i++) {
+    let rectWidth = (i == 0) ? 6 : 0.25;
+    let rectOpacity = (i == 0) ? 0.2 : 1;
 
-  add([
-    rect(SCALE*6, SCALE*0.5),
-    pos(SCALE*2, SCALE*4.5),
-    color(RED),
-    z(0),
-  ]);
+    rectWidth *= SCALE;
+    
+    add([
+      rect(rectWidth, SCALE*0.5),
+      pos(SCALE*2, SCALE*3.5),
+      color(GREEN),
+      opacity(rectOpacity),
+      z(0),
+    ]);
+  
+    add([
+      rect(rectWidth, SCALE*0.5),
+      pos(SCALE*2, SCALE*4.5),
+      color(RED),
+      opacity(rectOpacity),
+      z(0),
+    ]);
+  };
 
   
 
