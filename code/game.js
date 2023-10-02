@@ -239,7 +239,10 @@ scene('game', () => {
   // player hp bar
 
   const playerHealthBg = add([
-    rect(SCALE/3 + SCALE/20, SCALE/10 + SCALE/20),
+    rect(
+      SCALE/3 + SCALE/20, 
+      SCALE/20 + SCALE/20
+    ),
     pos(player.pos),
     color(BLACK),
     z(Z.player + 1),
@@ -247,7 +250,7 @@ scene('game', () => {
   ]);
 
   const playerHealthBar = add([
-    rect(SCALE/3, SCALE/10),
+    rect(SCALE/3, SCALE/20),
     pos(player.pos),
     color(GREEN),
     z(Z.player + 1),
@@ -948,8 +951,8 @@ scene('game', () => {
 
     // player health
     playerHealthBg.pos = player.pos.add(
-      -SCALE/6 - SCALE/10,
-      SCALE/2 - SCALE/10
+      -SCALE/6 - SCALE/40,
+      SCALE/2 - SCALE/40
     );
     playerHealthBar.pos = player.pos.add(
       -SCALE/6,
