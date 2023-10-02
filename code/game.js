@@ -241,7 +241,8 @@ scene('game', () => {
   const playerHealthBg = player.add([
     rect(SCALE/3, SCALE/10),
     pos(-250, 300),
-    color(BLACK),
+    color(WHITE),
+    "abc"
   ]);
   
   // slash
