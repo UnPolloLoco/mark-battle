@@ -240,12 +240,12 @@ scene('game', () => {
 
   const playerHealthBg = add([
     rect(
-      SCALE/3 + SCALE/20, 
-      SCALE/20 + SCALE/20
+      SCALE/3 + SCALE/25, 
+      SCALE/20 + SCALE/25
     ),
     pos(player.pos),
     color(BLACK),
-    z(Z.player + 1),
+    z(Z.ui - 2),
     "playerHealthBar",
   ]);
 
@@ -253,7 +253,7 @@ scene('game', () => {
     rect(SCALE/3, SCALE/20),
     pos(player.pos),
     color(GREEN),
-    z(Z.player + 1),
+    z(Z.ui - 1),
     "playerHealthBar",
     "phbColor",
   ]);
@@ -951,13 +951,15 @@ scene('game', () => {
 
     // player health
     playerHealthBg.pos = player.pos.add(
-      -SCALE/6 - SCALE/40,
-      SCALE/2 - SCALE/40
+      -SCALE/6 - SCALE/50,
+      SCALE/2 - SCALE/50
     );
+    
     playerHealthBar.pos = player.pos.add(
       -SCALE/6,
       SCALE/2,
     );
+    playerHealthBar.width = SCALE/3 / 10*player.health;
     
     //////////////////
     // mark damaged //
