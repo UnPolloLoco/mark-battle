@@ -241,7 +241,7 @@ scene('game', () => {
   const playerHealthBg = add([
     rect(
       SCALE/3 + SCALE/30, 
-      SCALE/30 + SCALE/30
+      SCALE/40 + SCALE/30
     ),
     pos(player.pos),
     color(BLACK),
@@ -250,7 +250,7 @@ scene('game', () => {
   ]);
 
   const playerHealthBar = add([
-    rect(SCALE/3, SCALE/30),
+    rect(SCALE/3, SCALE/40),
     pos(player.pos),
     color(GREEN),
     z(Z.ui - 1),
