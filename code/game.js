@@ -960,6 +960,10 @@ scene('game', () => {
       SCALE/4,
     );
     playerHealthBar.width = SCALE/3 / 10*player.health;
+
+    if (player.health <= 3) {
+      playerHealthBar.color = (time() * 6) % 1 < 0.5 ? WHITE : GREEN;
+    };
     
     //////////////////
     // mark damaged //
