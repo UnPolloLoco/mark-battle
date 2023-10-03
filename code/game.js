@@ -963,7 +963,6 @@ scene('game', () => {
 
     if (player.health <= 3) {
       playerHealthBar.color = (time() * 6) % 1 < 0.5 ? WHITE : GREEN;
-      debug.log((time() * 6) % 1 < 0.5);
     };
     
     //////////////////
