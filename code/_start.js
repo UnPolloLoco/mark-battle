@@ -37,6 +37,7 @@ loadFont('nerko', 'fonts/NerkoOne.ttf');
 
 loadSprite('butterfly', 'https://raw.githubusercontent.com/replit/kaboom/master/sprites/btfly.png');
 loadSprite('egg', 'https://raw.githubusercontent.com/replit/kaboom/master/sprites/egg_crack.png');
+loadSprite('splatter', 'https://fastly.picsum.photos/id/81/100/20.jpg?hmac=mUhkRRLDhODo8p9WGUNDwpgSIM2K4yMaNmhs9PwE8rA')
 
 loadRoot('sprites/');
 
