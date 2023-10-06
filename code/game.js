@@ -1268,7 +1268,23 @@ scene('game', () => {
       let angleToBean = player.pos.angle(b.pos); // from b.pos to player.pos
       b.dir = angleToBean;
 
-      if (time() - b.spawnTime >= 5) {
+      let lifeLength = time() - b.spawnTime;
+
+      if (rand() < lifeLength ** 2 / 36) {
+    		add([
+    			sprite('puff'),
+    			pos(b.pos),
+    			opacity(0.4),
+    			move(rand(0,360), SCALE*rand(0.15,0.25)),
+    			scale(SCALE/500 *rand(0.25,0.5)),
+    			anchor('center'),
+    			z(Z.projectiles - 1),
+    			rotate(randi(0,360)),
+    			"puff"
+    		]);
+    	};
+
+      if (lifeLength >= 5) {
         addKaboom(b.pos, {
           scale: 1/231 * SCALE*4
         });
