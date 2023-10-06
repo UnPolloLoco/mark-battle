@@ -878,6 +878,31 @@ scene('game', () => {
     };
   };
 
+  /////////////////////
+  // player onupdate //
+  /////////////////////
+
+  player.onUpdate(() => {
+    // player health
+    playerHealthBg.pos = player.pos.add(
+      -SCALE/6 - SCALE/60,
+      SCALE/4 - SCALE/60
+    );
+    
+    playerHealthBar.pos = player.pos.add(
+      -SCALE/6,
+      SCALE/4,
+    );
+
+    playerHealthBar.width = SCALE/3 / 10*player.health;
+
+    if (player.health <= 3) {
+      playerHealthBar.color = (time() * 6) % 1 < 0.5 ? WHITE : RED;
+    } else {
+      playerHealthBar.color = GREEN;
+    };
+  });
+  
   ////////////////////
   // touch controls //
   ////////////////////
@@ -949,21 +974,6 @@ scene('game', () => {
     // mark health
     healthBar.width = SCALE*6 * mark.health/500; 
 
-    // player health
-    playerHealthBg.pos = player.pos.add(
-      -SCALE/6 - SCALE/60,
-      SCALE/4 - SCALE/60
-    );
-    
-    playerHealthBar.pos = player.pos.add(
-      -SCALE/6,
-      SCALE/4,
-    );
-    playerHealthBar.width = SCALE/3 / 10*player.health;
-
-    if (player.health <= 3) {
-      playerHealthBar.color = (time() * 6) % 1 < 0.5 ? WHITE : GREEN;
-    };
     
     //////////////////
     // mark damaged //
