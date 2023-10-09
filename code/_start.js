@@ -35,10 +35,6 @@ loadFont('playfair', 'fonts/PlayfairDisplay.ttf');
 loadFont('reenieBeanie', 'fonts/ReenieBeanie.ttf');
 loadFont('nerko', 'fonts/NerkoOne.ttf');
 
-loadSprite('butterfly', 'https://raw.githubusercontent.com/replit/kaboom/master/sprites/btfly.png');
-loadSprite('egg', 'https://raw.githubusercontent.com/replit/kaboom/master/sprites/egg_crack.png');
-loadSprite('splatter', 'https://fastly.picsum.photos/id/81/100/20.jpg?hmac=mUhkRRLDhODo8p9WGUNDwpgSIM2K4yMaNmhs9PwE8rA')
-
 loadRoot('sprites/');
 
 ls('mark', {
@@ -180,6 +176,21 @@ ls('laserFlare', {
       speed: 12,
       loop: true,
     }
+  }
+});
+
+ls('butterfly', {
+  sliceX: 2
+});
+
+la('egg', {
+  sliceX: 2,
+  sliceY: 2,
+  anims: {
+    egg: 0,
+    splatter1: 1,
+    splatter2: 2,
+    splatter3: 3,
   }
 });
 
