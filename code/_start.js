@@ -183,7 +183,7 @@ ls('butterfly', {
   sliceX: 2
 });
 
-la('egg', {
+ls('egg', {
   sliceX: 2,
   sliceY: 2,
   anims: {
