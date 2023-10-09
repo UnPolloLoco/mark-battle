@@ -1,3 +1,23 @@
+- Pew Pew -
+
+  Behavior:
+      Flies towards player and 
+      vanishes when it touches
+      the ground.
+  Damage: 
+      1 (x2)
+  First Seen:
+      Phase 1
+  Scaling:
+     -One extra laser for each
+      later phase.
+     -Less time in between shots.
+    
+  
+   
+
+- - - - - - - - - - - - - - -
+
 Phase 1
 
 X  2  Pew Pew
