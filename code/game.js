@@ -738,8 +738,8 @@ scene('game', () => {
 
         let btfAngle = 180 * randi(0,2) + rand(-40, 40);
 
-        add([
-          sprite('butterfly'),
+        let b = add([
+          sprite('butterfly', { anim: fly }),
           pos(mark.pos),
           z(Z.projectiles),
           scale(SCALE/500 / 3),
@@ -752,6 +752,11 @@ scene('game', () => {
             spawnTime: time(),
             dir: btfAngle,
           }
+        ]);
+
+        b.add([
+          sprite('butterflyGlow', { anim: fly }),
+          anchor('center'),
         ]);
         
         wait(0.5, markAttack)
