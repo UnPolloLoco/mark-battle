@@ -211,9 +211,11 @@ ls('egg', {
   sliceY: 2,
   anims: {
     egg: 0,
-    splatter1: 1,
-    splatter2: 2,
-    splatter3: 3,
+    splatter: {
+      from: 1, to: 2,
+      speed: 10,
+    },
+    weakSplatter: 3,
   }
 });
 
