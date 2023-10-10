@@ -179,8 +179,16 @@ ls('laserFlare', {
   }
 });
 
-ls('butterfly', {
-  sliceX: 2
+la('butterfly', {
+  butterfly: {
+    x: 0, y: 0,
+    width: 1000, height: 500,
+    sliceX: 2,
+  },
+  butterflyGlow: {
+    x: 0, y: 500,
+    width: 1000, height: 500,
+    sliceX: 2,
 });
 
 ls('egg', {
