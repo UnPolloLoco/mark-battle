@@ -1298,6 +1298,20 @@ scene('game', () => {
       };
     });
 
+    //////////////////
+    // egg behavior //
+    //////////////////
+
+    get('egg').forEach((e) => {
+      if (e.frame == 0 && e.isGrounded()) {
+        e.scale = e.scale.scale(2);
+        e.unuse('body');
+        e.play('splatter');
+        e.area.scale = vec2(0.9, 0.2);
+        e.area.offset = vec2(0, -50);
+      };
+    });
+
     //////////////////////////////////////
     // mark visual phases + smoke puffs //
     //////////////////////////////////////
