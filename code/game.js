@@ -1307,8 +1307,12 @@ scene('game', () => {
         e.scale = e.scale.scale(2);
         e.unuse('body');
         e.play('splatter');
+        
         e.area.scale = vec2(0.9, 0.2);
         e.area.offset = vec2(0, -50);
+
+        e.use( z(Z.tiles + 1) );
+        e.pos = e.pos.add(0, SCALE/12 * 3)
       };
     });
 
