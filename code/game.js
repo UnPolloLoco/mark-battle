@@ -1320,12 +1320,12 @@ scene('game', () => {
         e.pos = e.pos.add(0, SCALE/12 * 3)
       };
 
-      if (rand() < 0.2) {
+      if (rand() < 0.15) {
     		add([
     			sprite('puff'),
     			pos(e.pos),
-    			opacity(0.5),
-    			move(rand(0,180), SCALE*rand(0.15,0.25)),
+    			opacity(0.4),
+    			move(rand(180,360), SCALE*rand(0.15,0.25)),
     			scale(SCALE/500 *rand(0.4,0.8)),
     			anchor('center'),
     			z(Z.mark - 2),
@@ -1334,7 +1334,7 @@ scene('game', () => {
     		]);
     	};
 
-      if (e.isOverlapping(player)) {
+      if (e.isColliding(player)) {
         player.xVel = clamp(
           -RUN_SPEED * EGG_SLOWDOWN, 
           player.xVel, 
