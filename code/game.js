@@ -846,7 +846,7 @@ scene('game', () => {
           pos(mark.pos),
           z(Z.projectiles),
           scale(SCALE/500 / 1.5),
-          area(),
+          area({ collisionIgnore: ['minimark', 'player'] }),
           body(),
           anchor('center'),
           shader('light', () => ({ 'tint': getShaderTint() })),
@@ -1318,6 +1318,28 @@ scene('game', () => {
 
         e.use( z(Z.tiles + 1) );
         e.pos = e.pos.add(0, SCALE/12 * 3)
+      };
+
+      if (rand() < 0.2) {
+    		add([
+    			sprite('puff'),
+    			pos(e.pos),
+    			opacity(0.5),
+    			move(rand(0,180), SCALE*rand(0.15,0.25)),
+    			scale(SCALE/500 *rand(0.4,0.8)),
+    			anchor('center'),
+    			z(Z.mark - 2),
+    			rotate(randi(0,360)),
+    			"puff"
+    		]);
+    	};
+
+      if (e.isOverlapping(player)) {
+        player.xVel = clamp(
+          -RUN_SPEED * EGG_SLOWDOWN, 
+          player.xVel, 
+          RUN_SPEED * EGG_SLOWDOWN,
+        );
       };
     });
 
