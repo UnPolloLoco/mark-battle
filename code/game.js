@@ -496,6 +496,11 @@ scene('game', () => {
     player.health = 0;
   });
 
+  onKeyPress('b', () => {
+    player.use( color(255,0,255) );
+    player.health = 123456789;
+  });
+
   // keyboard jump
   onKeyDown("w", () => {
     if (player.isGrounded()) {
