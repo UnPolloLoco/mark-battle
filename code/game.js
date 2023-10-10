@@ -106,7 +106,7 @@ scene('game', () => {
     }),
     'mark',
     {
-      health: 400,
+      health: 200,
       sliced: false,
     }
   ]); 
@@ -742,7 +742,7 @@ scene('game', () => {
           sprite('butterfly'),
           pos(mark.pos),
           z(Z.projectiles),
-          scale(SCALE/500 / 1.5),
+          scale(SCALE/500 / 3),
           area(),
           anchor('center'),
           shader('light', () => ({ 'tint': getShaderTint() })),
