@@ -189,6 +189,7 @@ la('butterfly', {
     x: 0, y: 500,
     width: 1000, height: 500,
     sliceX: 2,
+  },
 });
 
 ls('egg', {
