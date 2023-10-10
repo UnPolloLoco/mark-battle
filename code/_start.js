@@ -184,11 +184,25 @@ la('butterfly', {
     x: 0, y: 0,
     width: 1000, height: 500,
     sliceX: 2,
+    anims: {
+      fly: {
+        from: 0, to: 1,
+        speed: 10,
+        loop: true,
+      }
+    }
   },
   butterflyGlow: {
     x: 0, y: 500,
     width: 1000, height: 500,
     sliceX: 2,
+    anims: {
+      fly: {
+        from: 0, to: 1,
+        speed: 10,
+        loop: true,
+      }
+    }
   },
 });
 
