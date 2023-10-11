@@ -214,7 +214,7 @@ ls('egg', {
     egg: 0,
     splatter: {
       from: 1, to: 2,
-      speed: 10,
+      speed: 16,
     },
     weakSplatter: 3,
   }
