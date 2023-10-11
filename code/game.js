@@ -765,11 +765,22 @@ scene('game', () => {
           }
         ]);
 
-        b.glow = add([
+        b.glow = b.add([
           sprite('butterflyGlow', { anim: 'fly' }),
           anchor('center'),
           opacity(0),
         ]);
+
+        b.areaGlow = add([
+          sprite('whiteGlow'),
+          anchor('center'),
+          opacity(1),
+          pos(b.pos),
+          z(Z.projectiles - 1),
+        ]);
+
+        // TWEEN AREA GLOW
+        // TWEEN BUTTER ANGLE
 
         wait(1, () => {
           b.use(
@@ -1318,6 +1329,8 @@ scene('game', () => {
 
         let angleToBean = player.pos.angle(b.pos); // from b.pos to player.pos
         b.dir = angleToBean;
+
+        b.areaGlow.pos = b.pos;
 
         let lifeLength = time() - (b.spawnTime + 1);
 
