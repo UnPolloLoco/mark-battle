@@ -504,7 +504,11 @@ scene('game', () => {
   // keyboard jump
   onKeyDown("w", () => {
     if (player.isGrounded()) {
-			player.jump(JUMP_SPEED);
+      if (player.isEgged) {
+			  player.jump(JUMP_SPEED * EGG_JUMP_SLOWDOWN);
+      } else {
+			  player.jump(JUMP_SPEED); // normal
+      };
 		};
   });
 
@@ -923,9 +927,11 @@ scene('game', () => {
     loop(0.05, () => {
       let fixedMousePos = mousePos().y - canvas.getBoundingClientRect().top;
       if (fixedMousePos < touchJumpCheck - SCALE*1) {
-        if (player.isGrounded()) {
-  		  	player.jump(JUMP_SPEED);
-  	  	};
+        if (player.isEgged) {
+  			  player.jump(JUMP_SPEED * EGG_JUMP_SLOWDOWN);
+        } else {
+  			  player.jump(JUMP_SPEED); // normal
+        };
       };
       touchJumpCheck = fixedMousePos;
     });
@@ -1341,7 +1347,9 @@ scene('game', () => {
     		]);
     	};
 
-      if (e.isColliding(player)) {
+      player.isEgged = e.isColliding(player);
+      
+      if (player.isEgged) {
         player.xVel = clamp(
           -RUN_SPEED * EGG_SLOWDOWN, 
           player.xVel, 
