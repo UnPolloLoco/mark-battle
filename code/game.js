@@ -744,29 +744,39 @@ scene('game', () => {
         wait(airTime + 4, markAttack);
       } else if (curAttack == 2) {
         // KABOOOOOM BUT BUTTERFLY
-
-        let btfAngle = 180 * randi(0,2) + rand(-40, 40);
+        let spawnT = time();
 
         let b = add([
           sprite('butterfly', { anim: 'fly' }),
-          pos(mark.pos),
+          pos(mark.pos.add(0, SCALE*1.5),
           z(Z.projectiles),
           scale(SCALE/500 / 3),
           area(),
           anchor('center'),
-          shader('light', () => ({ 'tint': getShaderTint() })),
-          rotate(0),
+          shader('butterflySpawn', () => ({ 'time': time()-spawnT })),
+          rotate(180),
           "butterfly",
           {
-            spawnTime: time(),
-            dir: btfAngle,
+            spawnTime: spawnT,
+            dir: 180,
+            canFly: false,
           }
         ]);
 
         b.add([
           sprite('butterflyGlow', { anim: 'fly' }),
           anchor('center'),
+          opacity(0),
         ]);
+
+        wait(1, () => {
+          b.use(
+            shader('light', () => ({ 'tint': getShaderTint() }))
+          );
+          b.dir = 180 * randi(0,2) + rand(-40, 40);
+          b.children[0].opacity = 1;
+          b.canFly = true;
+        });
         
         wait(0.5, markAttack)
       } else if (curAttack == 3) {
@@ -1297,34 +1307,36 @@ scene('game', () => {
     //////////////////////
 
     get('butterfly').forEach((b) => {
-      b.pos = b.pos.add(Vec2.fromAngle(b.dir).scale(SCALE * dt()))
-      b.angle = b.dir + 90;
+      if (b.canFly) {
+        b.pos = b.pos.add(Vec2.fromAngle(b.dir).scale(SCALE * dt()))
+        b.angle = b.dir + 90;
 
-      let angleToBean = player.pos.angle(b.pos); // from b.pos to player.pos
-      b.dir = angleToBean;
+        let angleToBean = player.pos.angle(b.pos); // from b.pos to player.pos
+        b.dir = angleToBean;
 
-      let lifeLength = time() - b.spawnTime;
+        let lifeLength = time() - (b.spawnTime + 1);
 
-      if (rand() < lifeLength ** 2 / 36) {
-    		add([
-    			sprite('puff'),
-    			pos(b.pos),
-    			opacity(0.4),
-    			move(rand(0,360), SCALE*rand(0.15,0.25)),
-    			scale(SCALE/500 *rand(0.25,0.5)),
-    			anchor('center'),
-    			z(Z.projectiles - 1),
-    			rotate(randi(0,360)),
-    			"puff"
-    		]);
-    	};
+        if (rand() < lifeLength ** 2 / 36) {
+    	  	add([
+    	  		sprite('puff'),
+    	  		pos(b.pos),
+      			opacity(0.4),  
+    	  		move(rand(0,360), SCALE*rand(0.15,0.25)),
+    	  		scale(SCALE/500 *rand(0.25,0.5)),
+    	  		anchor('center'),  
+    	  		z(Z.projectiles - 1),
+    	  		rotate(randi(0,360)),
+    		  	"puff"
+    	  	]);
+      	};
 
-      if (lifeLength >= 5) {
-        addKaboom(b.pos, {
-          scale: 1/231 * SCALE*4
-        });
-        butterflyExplosion(b);
-        destroy(b);
+        if (lifeLength >= 5) {
+          addKaboom(b.pos, {
+            scale: 1/231 * SCALE*4
+          });
+          butterflyExplosion(b);
+          destroy(b);
+        };
       };
     });
 
