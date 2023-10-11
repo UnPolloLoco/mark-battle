@@ -765,7 +765,7 @@ scene('game', () => {
           }
         ]);
 
-        b.add([
+        b.glow = add([
           sprite('butterflyGlow', { anim: 'fly' }),
           anchor('center'),
           opacity(0),
@@ -777,7 +777,7 @@ scene('game', () => {
           );
 
           wait(0.4, () => {
-            b.children[0].opacity = 1;
+            b.glow.opacity = 1;
             b.canFly = true;
             b.dir = 180 * randi(0,2) + rand(-40, 40);
           });
