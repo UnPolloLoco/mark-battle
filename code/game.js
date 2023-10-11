@@ -774,21 +774,11 @@ scene('game', () => {
         b.areaGlow = add([
           sprite('whiteGlow'),
           anchor('center'),
-          opacity(1),
+          opacity(0),
           pos(b.pos),
           z(Z.projectiles - 1),
           scale(SCALE/500 * 2/3),
         ]);
-
-        // TWEEN AREA GLOW
-
-        tween(
-      		1,
-      		0,
-      		1,
-      		(val) => b.areaGlow.opacity = val,
-      		easings.easeInOutCubic,
-      	);
         
         // TWEEN BUTTER ANGLE
 
@@ -805,10 +795,7 @@ scene('game', () => {
             shader('light', () => ({ 'tint': getShaderTint() }))
           );
 
-          //wait(0.6, () => {
-            b.glow.opacity = 0;
-            b.canFly = true;
-          //});
+          b.canFly = true;
         });
         
         wait(1.6, markAttack)
@@ -1366,7 +1353,7 @@ scene('game', () => {
       	};
 
         b.glow.opacity = lifeLength ** 2 / 25;
-        b.areaGlow.opacity = lifeLength ** 2 / 50;
+        b.areaGlow.opacity = lifeLength ** 2 / 25;
 
         if (lifeLength >= 5) {
           addKaboom(b.pos, {
