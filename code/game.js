@@ -778,7 +778,7 @@ scene('game', () => {
           b.canFly = true;
         });
         
-        wait(0.5, markAttack)
+        wait(1.3, markAttack)
       } else if (curAttack == 3) {
         // M E G A MINI MARK
   
