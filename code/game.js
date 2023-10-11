@@ -748,7 +748,7 @@ scene('game', () => {
 
         let b = add([
           sprite('butterfly', { anim: 'fly' }),
-          pos(mark.pos.add(0, SCALE*1.5),
+          pos(mark.pos.add(0, SCALE*1.5)),
           z(Z.projectiles),
           scale(SCALE/500 / 3),
           area(),
