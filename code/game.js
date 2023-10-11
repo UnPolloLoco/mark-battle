@@ -753,7 +753,9 @@ scene('game', () => {
           scale(SCALE/500 / 3),
           area(),
           anchor('center'),
-          shader('butterflySpawn', () => ({ 'time': time()-spawnT })),
+          shader('butterflySpawn', () => ({
+            'time': time() - spawnT
+          })),
           rotate(180),
           "butterfly",
           {
@@ -773,12 +775,15 @@ scene('game', () => {
           b.use(
             shader('light', () => ({ 'tint': getShaderTint() }))
           );
-          b.dir = 180 * randi(0,2) + rand(-40, 40);
-          b.children[0].opacity = 1;
-          b.canFly = true;
+
+          wait(0.4, () => {
+            b.children[0].opacity = 1;
+            b.canFly = true;
+            b.dir = 180 * randi(0,2) + rand(-40, 40);
+          });
         });
         
-        wait(1.3, markAttack)
+        wait(1.2, markAttack)
       } else if (curAttack == 3) {
         // M E G A MINI MARK
   
@@ -884,7 +889,7 @@ scene('game', () => {
           ]);
         });
           
-        wait(0.5 + 0.1*shakeCount, markAttack);
+        wait(0.7 + 0.1*shakeCount, markAttack);
       };
     });
     
