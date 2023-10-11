@@ -805,10 +805,10 @@ scene('game', () => {
             shader('light', () => ({ 'tint': getShaderTint() }))
           );
 
-          wait(0.6, () => {
-            b.glow.opacity = 1;
+          //wait(0.6, () => {
+            b.glow.opacity = 0;
             b.canFly = true;
-          });
+          //});
         });
         
         wait(1.6, markAttack)
@@ -1364,6 +1364,9 @@ scene('game', () => {
     		  	"puff"
     	  	]);
       	};
+
+        b.glow.opacity = x ** 2 / 25;
+        b.areaGlow.opacity = x ** 2 / 50;
 
         if (lifeLength >= 5) {
           addKaboom(b.pos, {
