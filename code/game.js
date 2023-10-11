@@ -779,6 +779,20 @@ scene('game', () => {
           z(Z.projectiles - 1),
           scale(SCALE/500 * 2/3),
         ]);
+
+        for (let i = 0; i < 5; i++) {
+          add([
+    	  		sprite('puff'),
+    	  		pos(b.pos),
+      			opacity(0.4),  
+    	  		move(rand(0,360), SCALE*rand(0.15,0.25)),
+    	  		scale(SCALE/500 *rand(0.2,0.4)),
+    	  		anchor('center'),  
+    	  		z(Z.projectiles + 1),
+    	  		rotate(randi(0,360)),
+    		  	"puff"
+    	  	]);
+        };
         
         // TWEEN BUTTER ANGLE
 
