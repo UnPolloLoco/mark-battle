@@ -221,6 +221,7 @@ ls('egg', {
   }
 });
 
+ls('whiteGlow');
 
 
 
