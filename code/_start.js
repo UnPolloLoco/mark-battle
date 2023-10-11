@@ -341,11 +341,12 @@ loadShader('butterflySpawn', null, `
     vec4 c = def_frag();
     
     float light = (c.r + c.g + c.b) * 2.0;
+    vec4 starter;
 
     if (light < 0.1) {
-      vec4 starter = vec4(0,0,0, c.a);
+      starter = vec4(0,0,0, c.a);
     } else {
-      vec4 starter = vec4(0.235, 0.117, 0.471, c.a);
+      starter = vec4(0.235, 0.117, 0.471, c.a);
     }
     
     return mix(
