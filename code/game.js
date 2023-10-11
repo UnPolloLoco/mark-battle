@@ -1334,7 +1334,7 @@ scene('game', () => {
     		]);
     	};
 
-      debug.log(e.isColliding(player));
+      debug.log(`${player} - ${e} - ${player.isColliding(e))}`;
 
       if (e.isColliding(player)) {
         player.xVel = clamp(
