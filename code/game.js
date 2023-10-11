@@ -846,11 +846,11 @@ scene('game', () => {
         // THE EGG
 
         // mark shake
-        let shakeCount = 10;
-        let shakeMagnitude = 1/30;
+        let shakeCount = 16;
+        let shakeMagnitude = 1/15;
         
         for (let i = 0; i < shakeCount; i++) {
-          let smModified = shakeMagnitude + i * (2/30 / shakeCount); // increase shake as time passes
+          let smModified = shakeMagnitude * (i+1) / shakeCount; // increase shake as time passes
           
           wait(0.1 * i, () => {
             mark.pos = mark.pos.sub(SCALE * smModified, 0); // left
