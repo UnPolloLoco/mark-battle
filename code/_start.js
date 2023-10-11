@@ -30,6 +30,7 @@ const RUN_SPEED = SCALE * 5;
 const GROUND_FRICTION = 8;
 const AIR_FRICTION = 2;
 const EGG_SLOWDOWN = 0.12;
+const EGG_JUMP_SLOWDOWN = 0.25;
 const TOUCH = isTouchscreen();
 
 loadFont('playfair', 'fonts/PlayfairDisplay.ttf');
