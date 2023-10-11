@@ -780,13 +780,14 @@ scene('game', () => {
           scale(SCALE/500 * 2/3),
         ]);
 
-        for (let i = 0; i < 5; i++) {
+        // funky smoke spawn effect
+        for (let i = 0; i < 6; i++) {
           add([
     	  		sprite('puff'),
     	  		pos(b.pos),
-      			opacity(0.4),  
+      			opacity(0.5),  
     	  		move(rand(0,360), SCALE*rand(0.15,0.25)),
-    	  		scale(SCALE/500 *rand(0.2,0.4)),
+    	  		scale(SCALE/500 *rand(0.25,0.5)),
     	  		anchor('center'),  
     	  		z(Z.projectiles + 1),
     	  		rotate(randi(0,360)),
