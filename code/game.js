@@ -846,16 +846,19 @@ scene('game', () => {
         // THE EGG
 
         // mark shake
-        for (let i = 0; i < 3; i++) {
+        let shakeCount = 9;
+        let shakeMagnitude = 1/16;
+        
+        for (let i = 0; i < shakeCount; i++) {
           wait(0.1 * i, () => {
-            mark.pos = mark.pos.sub(SCALE/10, 0); // left
+            mark.pos = mark.pos.sub(SCALE*shakeMagnitude, 0); // left
           });
           wait(0.05 + 0.1*i, () => {
-            mark.pos = mark.pos.add(SCALE/10, 0); // right
+            mark.pos = mark.pos.add(SCALE*shakeMagnitude, 0); // right
           });
         };
 
-        wait(0.4, () => {
+        wait(0.5 + 0.1*shakeCount, () => {
           add([
             sprite('egg'),
             pos(mark.pos),
