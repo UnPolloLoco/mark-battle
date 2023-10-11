@@ -1334,6 +1334,8 @@ scene('game', () => {
     		]);
     	};
 
+      debug.log(e.isColliding(player));
+
       if (e.isColliding(player)) {
         player.xVel = clamp(
           -RUN_SPEED * EGG_SLOWDOWN, 
