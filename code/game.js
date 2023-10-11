@@ -748,7 +748,7 @@ scene('game', () => {
 
         let b = add([
           sprite('butterfly', { anim: 'fly' }),
-          pos(mark.pos.add(0, SCALE*1.5)),
+          pos(mark.pos.add(0, SCALE*1.25)),
           z(Z.projectiles),
           scale(SCALE/500 / 3),
           area(),
@@ -1365,8 +1365,8 @@ scene('game', () => {
     	  	]);
       	};
 
-        b.glow.opacity = x ** 2 / 25;
-        b.areaGlow.opacity = x ** 2 / 50;
+        b.glow.opacity = lifeLength ** 2 / 25;
+        b.areaGlow.opacity = lifeLength ** 2 / 50;
 
         if (lifeLength >= 5) {
           addKaboom(b.pos, {
