@@ -794,7 +794,7 @@ scene('game', () => {
 
         tween(
       		b.angle,
-      		b.dir,
+      		player.pos.angle(b.pos) + 90,
       		1,
       		(val) => b.angle = val,
       		easings.easeInOutCubic,
