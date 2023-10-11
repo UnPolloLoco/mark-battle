@@ -339,10 +339,18 @@ loadShader('butterflySpawn', null, `
   
   vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     vec4 c = def_frag();
+    
     float light = (c.r + c.g + c.b) * 2.0;
+
+    if (light < 0.1) {
+      vec4 starter = vec4(0,0,0, c.a);
+    } else {
+      vec4 starter = vec4(0.235, 0.117, 0.471, c.a);
+    }
+    
     return mix(
       c, 
-      vec4(light, light, light, c.a), 
+      starter, 
       1.0 - time
     );
   }
