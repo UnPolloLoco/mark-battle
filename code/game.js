@@ -845,17 +845,31 @@ scene('game', () => {
       } else if (curAttack == 4) {
         // THE EGG
 
-        add([
-          sprite('egg'),
-          pos(mark.pos),
-          z(Z.projectiles),
-          scale(SCALE/500 / 1.5),
-          area({ collisionIgnore: ['minimark', 'player'] }),
-          body(),
-          anchor('center'),
-          shader('light', () => ({ 'tint': getShaderTint() })),
-          "egg",
-        ]);
+        // mark shake
+        for (let i = 0; i < 3; i++) {
+          wait(0.1 * i, () => {
+            mark.pos = mark.pos.sub(SCALE/10, 0); // left
+          });
+          wait(0.05 + 0.1*i, () => {
+            mark.pos = mark.pos.add(SCALE/10, 0); // right
+          });
+        };
+
+        wait(0.4, () => {
+          add([
+            sprite('egg'),
+            pos(mark.pos),
+            z(Z.projectiles),
+            scale(SCALE/500 / 1.5),
+            area({ collisionIgnore: ['minimark', 'player'] }),
+            body(),
+            anchor('center'),
+            shader('light', () => ({ 'tint': getShaderTint() })),
+            "egg",
+          ]);
+        });
+          
+        wait(1.3, markAttack);
       };
     });
     
@@ -1333,12 +1347,12 @@ scene('game', () => {
         e.pos = e.pos.add(0, SCALE/24 * 7)
       };
 
-      if (rand() < 0.15) {
+      if (rand() < 0.1) {
     		add([
     			sprite('puff'),
     			pos(e.pos),
     			opacity(0.4),
-    			move(rand(180,360), SCALE*rand(0.15,0.25)),
+    			move(rand(200,340), SCALE*rand(0.2,0.3)),
     			scale(SCALE/500 *rand(0.4,0.8)),
     			anchor('center'),
     			z(Z.mark - 2),
