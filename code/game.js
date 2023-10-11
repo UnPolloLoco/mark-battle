@@ -1310,14 +1310,21 @@ scene('game', () => {
     get('egg').forEach((e) => {
       if (e.frame == 0 && e.isGrounded()) {
         e.scale = e.scale.scale(2);
-        e.unuse('body');
         e.play('splatter');
         
-        e.area.scale = vec2(0.9, 0.2);
-        e.area.offset = vec2(0, -50);
-
-        e.use( z(Z.tiles + 1) );
-        e.pos = e.pos.add(0, SCALE/12 * 3)
+        e.unuse('body');
+        
+        e.area.use(
+          area({
+            scale: vec2(0.9, 0.2),
+            offset: vec2(0, -50),
+          })
+        );
+        e.use(
+          z(Z.tiles + 1)
+        );
+        
+        e.pos = e.pos.add(0, SCALE/24 * 7)
       };
 
       if (rand() < 0.15) {
@@ -1333,8 +1340,6 @@ scene('game', () => {
     			"puff"
     		]);
     	};
-
-      debug.log(`${player} - ${e} - ${player.isColliding(e)}`);
 
       if (e.isColliding(player)) {
         player.xVel = clamp(
