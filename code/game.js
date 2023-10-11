@@ -1314,7 +1314,7 @@ scene('game', () => {
         
         e.unuse('body');
         
-        e.area.use(
+        e.use(
           area({
             scale: vec2(0.9, 0.2),
             offset: vec2(0, -50),
