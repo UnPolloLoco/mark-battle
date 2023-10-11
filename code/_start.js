@@ -338,7 +338,7 @@ loadShader('butterflySpawn', null, `
   
   vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     vec4 c = def_frag();
-    float n = max(1.0, 3.0*(1.0 - time) );
+    float n = max(1.0, 9.0*(1.0 - time) );
     return vec4(c.r *n, c.g *n, c.b *n, c.a);
   }
 `);
