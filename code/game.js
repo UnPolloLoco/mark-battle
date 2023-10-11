@@ -846,23 +846,25 @@ scene('game', () => {
         // THE EGG
 
         // mark shake
-        let shakeCount = 9;
-        let shakeMagnitude = 1/16;
+        let shakeCount = 10;
+        let shakeMagnitude = 1/30;
         
         for (let i = 0; i < shakeCount; i++) {
+          let smModified = shakeMagnitude + i * (2/30 / shakeCount); // increase shake as time passes
+          
           wait(0.1 * i, () => {
-            mark.pos = mark.pos.sub(SCALE*shakeMagnitude, 0); // left
+            mark.pos = mark.pos.sub(SCALE * smModified, 0); // left
           });
           wait(0.05 + 0.1*i, () => {
-            mark.pos = mark.pos.add(SCALE*shakeMagnitude, 0); // right
+            mark.pos = mark.pos.add(SCALE * smModified, 0); // right
           });
         };
 
-        wait(0.5 + 0.1*shakeCount, () => {
+        wait(0.1*shakeCount, () => {
           add([
             sprite('egg'),
             pos(mark.pos),
-            z(Z.projectiles),
+            z(Z.mark - 1),
             scale(SCALE/500 / 1.5),
             area({ collisionIgnore: ['minimark', 'player'] }),
             body(),
