@@ -760,7 +760,7 @@ scene('game', () => {
           "butterfly",
           {
             spawnTime: spawnT,
-            dir: 180,
+            dir: 180 * randi(0,2) + rand(-40, 40),
             canFly: false,
           }
         ]);
@@ -777,24 +777,41 @@ scene('game', () => {
           opacity(1),
           pos(b.pos),
           z(Z.projectiles - 1),
+          scale(SCALE/500 * 2/3),
         ]);
 
         // TWEEN AREA GLOW
+
+        tween(
+      		1,
+      		0,
+      		1,
+      		(val) => b.areaGlow.opacity = val,
+      		easings.easeInOutCubic,
+      	);
+        
         // TWEEN BUTTER ANGLE
+
+        tween(
+      		b.angle,
+      		b.dir,
+      		1,
+      		(val) => b.angle = val,
+      		easings.easeInOutCubic,
+      	);
 
         wait(1, () => {
           b.use(
             shader('light', () => ({ 'tint': getShaderTint() }))
           );
 
-          wait(0.4, () => {
+          wait(0.6, () => {
             b.glow.opacity = 1;
             b.canFly = true;
-            b.dir = 180 * randi(0,2) + rand(-40, 40);
           });
         });
         
-        wait(1.2, markAttack)
+        wait(1.6, markAttack)
       } else if (curAttack == 3) {
         // M E G A MINI MARK
   
@@ -1353,6 +1370,7 @@ scene('game', () => {
             scale: 1/231 * SCALE*4
           });
           butterflyExplosion(b);
+          destroy(b.areaGlow);
           destroy(b);
         };
       };
