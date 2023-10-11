@@ -884,7 +884,7 @@ scene('game', () => {
           ]);
         });
           
-        wait(1.3, markAttack);
+        wait(0.5 + 0.1*shakeCount, markAttack);
       };
     });
     
