@@ -647,7 +647,7 @@ scene('game', () => {
         mark.laserFlare.opacity = 1;
         
         for (let n = 0; n < 2+getPhase(); n++) {
-          wait(0.4 * n, () => {
+          wait(0.6 + (0.45 - getPhase()*0.05) * n, () => {
             for (let i = 0; i < 2; i++) {
               let eye = markEyes()[i];
             	add([
@@ -667,10 +667,13 @@ scene('game', () => {
             };
           });
         };
-        wait(0.4 * (2.5+getPhase()), () => {
+
+        let laserFinishTime = 0.6 + (0.45 - getPhase()*0.05) * (2+getPhase());
+        
+        wait(laserFinishTime + 0.3, () => {
           mark.laserFlare.opacity = 0; 
         });
-        wait(0.4 * (5+getPhase()), markAttack);
+        wait(laserFinishTime + 0.7, markAttack);
       } else if (curAttack == 1) {
         // MINI MARK
   
