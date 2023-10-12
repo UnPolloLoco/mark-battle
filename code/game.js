@@ -1395,6 +1395,9 @@ scene('game', () => {
     // egg behavior //
     //////////////////
 
+    // preset
+    player.isEgged = false;
+
     get('egg').forEach((e) => {
       if (e.frame == 0 && e.isGrounded()) {
         e.scale = e.scale.scale(2);
@@ -1428,8 +1431,10 @@ scene('game', () => {
     			"puff"
     		]);
     	};
-
-      player.isEgged = !player.isEgged ? e.isColliding(player) : true;
+      
+      if (e.isColliding(player)) {
+        player.isEgged = true;
+      };
       
       if (player.isEgged) {
         player.xVel = clamp(
