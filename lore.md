@@ -1,20 +1,20 @@
 [Timeline Candidate #1](#timeline-1)  
 [Timeline Candidate #2](#timeline-2)  
 
-### Official
+## Official
 
 - Mark is Bean's father
 - Bean - and therefore Mark - are frogs...
 - Mark can access other universes. Bean wants that power.
 - Mark hates Bean because Bean replaced him as Kaboom's mascot
 
-### Unofficial
+## Unofficial
 
 - Mark's appearance is just a mask, obscuring his frog-self
 - Perhaps bean doesn't want the multiverse power, and just fears its potential
 - The land of Kaboom is named Kaboomtopia
 
-### Timeline 1
+## Timeline 1
 
 1. Kaboomtopia, with Mark as its head, is peaceful and happy
 2. One day, Mark decides it can be better
@@ -30,6 +30,6 @@
 12. After just one week, Mark got everyone to work against their will, out of fear for his powers, for a better Kaboomtopia.
 13. Bean had enough of it, and he went to find Mark and end this once and for all.
 
-### Timeline 2
+## Timeline 2
 
 One day...
