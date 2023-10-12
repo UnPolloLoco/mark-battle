@@ -1371,8 +1371,11 @@ scene('game', () => {
     	  	]);
       	};
 
-        b.glow.opacity = lifeLength ** 2 / 25;
-        b.areaGlow.opacity = lifeLength ** 2 / 25;
+        let o = (lifeLength ** 2 / 25);
+        o += 10 * Math.sin(20 * lifeLength);
+
+        b.glow.opacity = o;
+        b.areaGlow.opacity = o;
 
         if (lifeLength >= 5) {
           addKaboom(b.pos, {
