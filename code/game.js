@@ -915,7 +915,10 @@ scene('game', () => {
             pos(mark.pos),
             z(Z.mark - 1),
             scale(SCALE/500 / 1.5),
-            area({ collisionIgnore: ['minimark', 'player'] }),
+            area({ 
+              collisionIgnore: ['minimark', 'player'],
+              scale: vec2(0.65, 1),
+            }),
             body(),
             anchor('center'),
             shader('light', () => ({ 'tint': getShaderTint() })),
