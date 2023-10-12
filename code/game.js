@@ -497,8 +497,12 @@ scene('game', () => {
   });
 
   onKeyPress('b', () => {
-    player.use( color(255,127,255) );
+    player.use( color(127,255,255) );
     player.health = 123456789;
+  });
+
+  onKeyPress('v', () => {
+    player.pos = center();
   });
 
   // keyboard jump
@@ -1419,7 +1423,7 @@ scene('game', () => {
     		]);
     	};
 
-      player.isEgged = e.isColliding(player);
+      player.isEgged = !player.isEgged ? e.isColliding(player) : true;
       
       if (player.isEgged) {
         player.xVel = clamp(
