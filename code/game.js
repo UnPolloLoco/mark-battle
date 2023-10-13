@@ -724,7 +724,17 @@ scene('game', () => {
               attackID: rand(),
             }
           ]);
-          
+
+          // color change
+          tween(
+            rgb(60, 30, 120),
+            rgb(255,255,255),
+            airTime + 0.25,
+            (c) => mm.color = c,
+            easings.easeInQuart
+          );
+
+          // move away from mark
           tween(
         		mm.pos,
         		mm.pos.add(SCALE * 2.5 * mm.spawnDir, 0),
@@ -732,6 +742,8 @@ scene('game', () => {
         		(val) => mm.pos = val,
         		easings.easeOutCubic,
         	);
+
+          // size increase
           tween(
         		mm.scale,
         		vec2(SCALE/500 / 3*2),
@@ -739,7 +751,8 @@ scene('game', () => {
         		(val) => mm.scale = val,
         		easings.easeInQuint,
         	);
-          
+
+          // drop to the ground
           wait(airTime + 0.3, () => {
             mm.gravityScale = 1;
             minimarkEggOpen(mm.pos, 0.5);
@@ -869,7 +882,17 @@ scene('game', () => {
             rotate(0),
             shader('light', () => ({ 'tint': getShaderTint() })),
           ]);
-          
+
+          // color change
+          tween(
+            rgb(60, 30, 120),
+            rgb(255,255,255),
+            airTime + 0.25,
+            (c) => mm.color = c,
+            easings.easeInQuart
+          );
+
+          // move away from mark
           tween(
         		mm.pos,
         		mm.pos.add(SCALE * 2.5 * mm.spawnDir, 0),
@@ -877,6 +900,8 @@ scene('game', () => {
         		(val) => mm.pos = val,
         		easings.easeOutCubic,
         	);
+
+          // size change
           tween(
         		mm.scale,
         		vec2(SCALE/500 / 3*2*2),
@@ -884,7 +909,8 @@ scene('game', () => {
         		(val) => mm.scale = val,
         		easings.easeInQuint,
         	);
-          
+
+          // drop down
           wait(airTime + 0.3, () => {
             mm.gravityScale = 1;
             minimarkEggOpen(mm.pos, 0.65);
