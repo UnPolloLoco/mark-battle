@@ -1127,6 +1127,22 @@ scene('game', () => {
     // minimark ai //
     /////////////////
     get('minimark').forEach((m) => {
+        if (time() - m.spawnTime < 0.8 && rand() < 0.3) {
+    	  	add([
+    	  		sprite('puff'),
+    	  		pos(b.pos),
+      			opacity(0.4),  
+    	  		move(rand(0,360), SCALE*rand(0.15,0.25)),
+    	  		scale(SCALE/500 *rand(0.25,0.5)),
+    	  		anchor('center'),  
+    	  		z(Z.mark - 3),
+    	  		rotate(randi(0,360)),
+    		  	"puff"
+    	  	]);
+      	};
+
+      // ACTUAL MINIMARK
+      
       let megaMulti = (m.is('megaMinimark') ? 0.2 : 1);
       let approachStop = (m.is('miniMark') ? SCALE*2 : SCALE*0.6);
 
