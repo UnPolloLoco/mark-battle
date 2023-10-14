@@ -1127,10 +1127,10 @@ scene('game', () => {
     // minimark ai //
     /////////////////
     get('minimark').forEach((m) => {
-        if (time() - m.spawnTime < 0.8 && rand() < 0.3) {
+        if (time() - m.spawnTime < 0.7 && rand() < 0.3) {
     	  	add([
     	  		sprite('puff'),
-    	  		pos(b.pos),
+    	  		pos(m.pos),
       			opacity(0.4),  
     	  		move(rand(0,360), SCALE*rand(0.15,0.25)),
     	  		scale(SCALE/500 *rand(0.25,0.5)),
