@@ -1420,7 +1420,7 @@ scene('game', () => {
       	};
 
         let o = (lifeLength ** 2 / 25);
-        o += 0.2 * Math.sin(20 * lifeLength);
+        o += 0.3 * Math.sin(15 * lifeLength);
 
         b.glow.opacity = o;
         b.areaGlow.opacity = o;
