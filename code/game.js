@@ -1135,7 +1135,7 @@ scene('game', () => {
     	  		move(rand(0,360), SCALE*rand(0.15,0.25)),
     	  		scale(SCALE/500 *rand(0.25,0.5)),
     	  		anchor('center'),  
-    	  		z(Z.mark - 3),
+    	  		z(Z.mark - 1),
     	  		rotate(randi(0,360)),
     		  	"puff"
     	  	]);
