@@ -1127,13 +1127,13 @@ scene('game', () => {
     // minimark ai //
     /////////////////
     get('minimark').forEach((m) => {
-        if (time() - m.spawnTime < 0.7 && rand() < 0.3) {
+        if (time() - m.spawnTime < 0.7 && rand() < 0.35) {
     	  	add([
     	  		sprite('puff'),
     	  		pos(m.pos),
       			opacity(0.4),  
-    	  		move(rand(0,360), SCALE*rand(0.15,0.25)),
-    	  		scale(SCALE/500 *rand(0.25,0.5)),
+    	  		move(rand(0,360), SCALE*rand(0.2,0.3)),
+    	  		scale(SCALE/500 *rand(0.25,0.6)),
     	  		anchor('center'),  
     	  		z(Z.mark - 1),
     	  		rotate(randi(0,360)),
