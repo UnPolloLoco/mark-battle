@@ -9,6 +9,11 @@ scene('game', () => {
     ui:          600,
   }
 
+  const GAME_STATUS = {
+    paused: false,
+    lost: false,
+  };
+
   ///////////////
   // functions //
   ///////////////
@@ -488,6 +493,10 @@ scene('game', () => {
     debug.inspect = !debug.inspect; 
   });
 
+  onKeyPress('p', () => {
+    GAME_STATUS.paused = !GAME_STATUS.paused;
+  });
+  
   onKeyPress('m', () => {
     markAttack();
   });
@@ -997,6 +1006,7 @@ scene('game', () => {
   /////////////////////
 
   player.onUpdate(() => {
+  if (!GAME_STATUS.paused) {
     // player health
     playerHealthBg.pos = player.pos.add(
       -SCALE/6 - SCALE/60,
@@ -1015,6 +1025,7 @@ scene('game', () => {
     } else {
       playerHealthBar.color = GREEN;
     };
+  };
   });
   
   ////////////////////
@@ -1038,6 +1049,7 @@ scene('game', () => {
   };
   
   onUpdate(() => {
+  if (!GAME_STATUS.paused) {
     // touch movement
     if (TOUCH) {
       if (isMouseDown()) {
@@ -1564,6 +1576,7 @@ scene('game', () => {
     };
     
   });
+};
 });
 
 go('game');
