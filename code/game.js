@@ -494,7 +494,7 @@ scene('game', () => {
   });
 
   onKeyPress('p', () => {
-    get('*', (x) => {
+    get('*').forEach((x) => {
       x.paused = !x.paused;
     });
   });
