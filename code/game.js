@@ -14,6 +14,12 @@ scene('game', () => {
     lost: false,
   };
 
+  const TIME_REAL_INFO = {
+    counter: 0,
+    offset: 0,
+    lastPause: 0
+  };
+
   ///////////////
   // functions //
   ///////////////
@@ -37,12 +43,22 @@ scene('game', () => {
       } else {
         GAME_STATUS.paused = override;
       };
+
+      if (GAME_STATUS.paused) {
+        TIME_REAL_INFO.lastPause = time();
+      } else {
+        TIME_REAL_INFO.offset = TIME_REAL_INFO.counter - TIME_REAL_INFO.lastPause;
+      };
       
       get('*').forEach((x) => {
         x.paused = GAME_STATUS.paused;
       });
     };
   };
+
+  function timeReal() {
+    return TIME_REAL_INFO.counter;
+  };         
   
   ////////////////
   // background //
@@ -1601,8 +1617,14 @@ scene('game', () => {
         'time': time() - player.timeOfDeath,
       }));
     };
+
+    TIME_REAL_INFO.counter = time() - TIME_REAL_INFO.offset;
     
   };
+  // end of un-paused checker thingy
+
+  debug.log(TIME_REAL_INFO.counter);
+    
   });
 });
 
