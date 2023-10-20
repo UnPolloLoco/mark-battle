@@ -508,7 +508,7 @@ scene('game', () => {
   });
 
   onKeyPress('p', () => {
-    pauseGame();
+    pauseToggle();
   });
 
   // debug and fun
