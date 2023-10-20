@@ -522,7 +522,7 @@ scene('game', () => {
   });
 
   onKeyPress('b', () => {
-    player.use( color(255,255,150) );
+    player.use( color(255,255,0) );
     player.health = 123456789;
   });
 
