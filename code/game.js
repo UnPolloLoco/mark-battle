@@ -29,6 +29,20 @@ scene('game', () => {
       5
     );
   };
+
+  function pauseToggle(override) {
+    if (!GAME_STATUS.lost) {
+      if (override == undefined) {
+        GAME_STATUS.paused = !GAME_STATUS.paused;
+      } else {
+        GAME_STATUS.paused = override;
+      };
+      
+      get('*').forEach((x) => {
+        x.paused = GAME_STATUS.paused;
+      });
+    };
+  };
   
   ////////////////
   // background //
@@ -111,7 +125,7 @@ scene('game', () => {
     }),
     'mark',
     {
-      health: 200,
+      health: 500,
       sliced: false,
     }
   ]); 
@@ -494,10 +508,10 @@ scene('game', () => {
   });
 
   onKeyPress('p', () => {
-    get('*').forEach((x) => {
-      x.paused = !x.paused;
-    });
+    pauseGame();
   });
+
+  // debug and fun
   
   onKeyPress('m', () => {
     markAttack();
@@ -508,15 +522,20 @@ scene('game', () => {
   });
 
   onKeyPress('b', () => {
-    player.use( color(127,255,255) );
+    player.use( color(255,255,150) );
     player.health = 123456789;
   });
 
   onKeyPress('v', () => {
     player.pos = center();
   });
+  
+  onKeyPress('c', () => {
+    mark.health -= 100;
+  });
 
   // keyboard jump
+  
   onKeyDown("w", () => {
     if (player.isGrounded()) {
       if (player.isEgged) {
@@ -527,7 +546,7 @@ scene('game', () => {
 		};
   });
 
-  
+
 
   // keyboard movement
   if (!TOUCH) {
@@ -1568,6 +1587,10 @@ scene('game', () => {
     if (player.health <= 0) {
       if (player.timeOfDeath == -1) {
         player.timeOfDeath = time();
+
+        pauseToggle(true);
+        GAME_STATUS.lost = true;
+        
         wait(1.6, () => {
           go('fail');
         });
