@@ -296,25 +296,27 @@ scene('game', () => {
 
   // attack func
   function beanAttack() {
-    let attackDelta = time() - player.lastAttack;
-    
-    if (!player.isAttacking && attackDelta >= 0.25) {
-      player.isAttacking = true;
-      player.lastAttack = time();
-      player.gravityScale = 0.7;
-     
-      slash.flipX = (player.xVel >= 0);
-      slash.opacity = 1;
-      slash.play('attack');
-      slash.attackID = rand();
+    if (!GAME_STATUS.paused) {
+      let attackDelta = time() - player.lastAttack;
       
-      setTimeout(() => {
-        mark.sliced = false;
-        player.isAttacking = false;
-        player.gravityScale = 1;
+      if (!player.isAttacking && attackDelta >= 0.25) {
+        player.isAttacking = true;
+        player.lastAttack = time();
+        player.gravityScale = 0.7;
+       
+        slash.flipX = (player.xVel >= 0);
+        slash.opacity = 1;
+        slash.play('attack');
+        slash.attackID = rand();
         
-        slash.opacity = 0;
-      }, 175);
+        setTimeout(() => {
+          mark.sliced = false;
+          player.isAttacking = false;
+          player.gravityScale = 1;
+          
+          slash.opacity = 0;
+        }, 175);
+      };
     };
   };
 
@@ -1160,19 +1162,19 @@ scene('game', () => {
     // minimark ai //
     /////////////////
     get('minimark').forEach((m) => {
-        if (time() - m.spawnTime < 0.7 && rand() < 0.35) {
-    	  	add([
-    	  		sprite('puff'),
-    	  		pos(m.pos),
-      			opacity(0.4),  
-    	  		move(rand(0,360), SCALE*rand(0.2,0.3)),
-    	  		scale(SCALE/500 *rand(0.25,0.6)),
-    	  		anchor('center'),  
-    	  		z(Z.mark - 1),
-    	  		rotate(randi(0,360)),
-    		  	"puff"
-    	  	]);
-      	};
+      if (time() - m.spawnTime < 0.7 && rand() < 0.35) {
+        add([
+          sprite('puff'),
+          pos(m.pos),
+          opacity(0.4),  
+          move(rand(0,360), SCALE*rand(0.2,0.3)),
+          scale(SCALE/500 *rand(0.25,0.6)),
+          anchor('center'),  
+          z(Z.mark - 1),
+          rotate(randi(0,360)),
+          "puff"
+        ]);
+      };
 
       // ACTUAL MINIMARK
       
