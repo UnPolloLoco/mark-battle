@@ -1,6 +1,6 @@
 scene('fail', () => {
   setBackground(BLACK);
-
+ 
   let deathScreenEnterTime = time();
 
   // main text
