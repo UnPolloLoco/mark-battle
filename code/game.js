@@ -1623,7 +1623,7 @@ scene('game', () => {
   };
   // end of un-paused checker thingy
 
-  debug.log(TIME_REAL_INFO.counter);
+  debug.log(`${TIME_REAL_INFO.counter} -- ${TIME_REAL_INFO.offset}`);
     
   });
 });
