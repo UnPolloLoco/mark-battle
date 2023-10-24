@@ -36,7 +36,7 @@ scene('game', () => {
     );
   };
 
-  function builtintimeReal() {
+  function builtinTime() {
     return time();
   };
 
@@ -54,10 +54,10 @@ scene('game', () => {
 
       if (GAME_STATUS.paused) {
         // BUILT-IN TIME
-        TIME_REAL_INFO.lastPause = builtintimeReal();
+        TIME_REAL_INFO.lastPause = builtinTime();
       } else {
         // BUILT-IN TIME
-        TIME_REAL_INFO.offset += builtintimeReal() - TIME_REAL_INFO.lastPause;
+        TIME_REAL_INFO.offset += builtinTime() - TIME_REAL_INFO.lastPause;
       };
       
       get('*').forEach((x) => {
@@ -1626,7 +1626,7 @@ scene('game', () => {
     };
 
     // NEEDS TO BE BUILT-IN TIME
-    TIME_REAL_INFO.counter = builtintimeReal() - TIME_REAL_INFO.offset;
+    TIME_REAL_INFO.counter = builtinTime() - TIME_REAL_INFO.offset;
     
   };
   // end of un-paused checker thingy
