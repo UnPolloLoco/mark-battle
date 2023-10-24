@@ -36,6 +36,14 @@ scene('game', () => {
     );
   };
 
+  function builtintimeReal() {
+    return time();
+  };
+
+  function timeReal() {
+    return TIME_REAL_INFO.counter;
+  };        
+  
   function pauseToggle(override) {
     if (!GAME_STATUS.lost) {
       if (override == undefined) {
@@ -45,9 +53,11 @@ scene('game', () => {
       };
 
       if (GAME_STATUS.paused) {
-        TIME_REAL_INFO.lastPause = time();
+        // BUILT-IN TIME
+        TIME_REAL_INFO.lastPause = builtintimeReal();
       } else {
-        TIME_REAL_INFO.offset += time() - TIME_REAL_INFO.lastPause;
+        // BUILT-IN TIME
+        TIME_REAL_INFO.offset += builtintimeReal() - TIME_REAL_INFO.lastPause;
       };
       
       get('*').forEach((x) => {
@@ -56,9 +66,6 @@ scene('game', () => {
     };
   };
 
-  function timeReal() {
-    return TIME_REAL_INFO.counter;
-  };         
   
   ////////////////
   // background //
@@ -125,7 +132,7 @@ scene('game', () => {
     rotate(0),
     anchor('center'),
     shader('mark', () => ({
-  		'time': time(),
+  		'time': timeReal(),
       'rand': rand(),
       'tint': getShaderTint(),
   	})),
@@ -313,11 +320,11 @@ scene('game', () => {
   // attack func
   function beanAttack() {
     if (!GAME_STATUS.paused) {
-      let attackDelta = time() - player.lastAttack;
+      let attackDelta = timeReal() - player.lastAttack;
       
       if (!player.isAttacking && attackDelta >= 0.25) {
         player.isAttacking = true;
-        player.lastAttack = time();
+        player.lastAttack = timeReal();
         player.gravityScale = 0.7;
        
         slash.flipX = (player.xVel >= 0);
@@ -596,11 +603,11 @@ scene('game', () => {
   // touchscreen attack
   let lastClick = -1;
   onClick(() => {
-    if (isTouchscreen() && time() - lastClick < 0.2) {
+    if (isTouchscreen() && timeReal() - lastClick < 0.2) {
       beanAttack();
     };
     
-    lastClick = time();
+    lastClick = timeReal();
   });
   
   ////////////////
@@ -744,7 +751,7 @@ scene('game', () => {
             {
               xVel: 0,
               spawnDir: n%2==0 ? 1 : -1,
-              spawnTime: time(),
+              spawnTime: timeReal(),
               canMove: false,
               health: 2,
               attackedBy: -1,
@@ -812,7 +819,7 @@ scene('game', () => {
         wait(airTime + 4, markAttack);
       } else if (curAttack == 2) {
         // KABOOOOOM BUT BUTTERFLY
-        let spawnT = time();
+        let spawnT = timeReal();
 
         let b = add([
           sprite('butterfly', { anim: 'fly' }),
@@ -822,7 +829,7 @@ scene('game', () => {
           area(),
           anchor('center'),
           shader('butterflySpawn', () => ({
-            'time': time() - spawnT
+            'time': timeReal() - spawnT
           })),
           rotate(180),
           "butterfly",
@@ -909,7 +916,7 @@ scene('game', () => {
             {
               xVel: 0,
               spawnDir: n%2==0 ? 1 : -1,
-              spawnTime: time(),
+              spawnTime: timeReal(),
               canMove: false,
               health: 4,
               attackedBy: -1,
@@ -1060,7 +1067,7 @@ scene('game', () => {
     playerHealthBar.width = SCALE/3 / 10*player.health;
 
     if (player.health <= 3) {
-      playerHealthBar.color = (time() * 6) % 1 < 0.5 ? WHITE : RED;
+      playerHealthBar.color = (timeReal() * 6) % 1 < 0.5 ? WHITE : RED;
     } else {
       playerHealthBar.color = GREEN;
     };
@@ -1178,7 +1185,7 @@ scene('game', () => {
     // minimark ai //
     /////////////////
     get('minimark').forEach((m) => {
-      if (time() - m.spawnTime < 0.7 && rand() < 0.35) {
+      if (timeReal() - m.spawnTime < 0.7 && rand() < 0.35) {
         add([
           sprite('puff'),
           pos(m.pos),
@@ -1199,7 +1206,7 @@ scene('game', () => {
 
       let mmmAttackStop = false;
       if (m.is('megaMinimark')) {
-        let laDelta = time() - m.lastAttack;
+        let laDelta = timeReal() - m.lastAttack;
         if (laDelta < 1.2) {
           mmmAttackStop = true;
         }
@@ -1252,7 +1259,7 @@ scene('game', () => {
       
         m.move(m.xVel, 0);
       // cant move yet
-      } else if (m.spawnTime + 2 < time()) {
+      } else if (m.spawnTime + 2 < timeReal()) {
         m.canMove = true;
       };
 
@@ -1287,13 +1294,13 @@ scene('game', () => {
         &&
         !m.is('megaMinimark')
         &&
-        time() - m.lastAttack > 0.35
+        timeReal() - m.lastAttack > 0.35
         &&
         Math.abs(player.pos.x - m.pos.x) < SCALE/2
         &&
         Math.abs(player.pos.y - m.pos.y) < SCALE/2
       ) {
-        m.lastAttack = time();
+        m.lastAttack = timeReal();
 
         let pmpx = (player.pos.x - m.pos.x < 0);
         m.slash.flipX = pmpx;
@@ -1316,13 +1323,13 @@ scene('game', () => {
       if (
         m.is('megaMinimark') 
         &&
-        time() - m.lastAttack > 3 
+        timeReal() - m.lastAttack > 3 
         &&
-        time() - m.spawnTime > 3
+        timeReal() - m.spawnTime > 3
         /* LINE OF SIGHT CHECK WHEN */
       ) {
         m.canMove = false;
-        m.lastAttack = time();
+        m.lastAttack = timeReal();
         wait(1, () => {
           if (m.health > 0) {
             for (let i = 0; i < 2; i++) {
@@ -1382,7 +1389,7 @@ scene('game', () => {
       if (!m.isEgg && !m.is('megaMinimark')) {
         // minimark
         
-        if (time() - m.lastAttack < 0.2) {
+        if (timeReal() - m.lastAttack < 0.2) {
           m.play('attacking');
         } else {
           if (m.isGrounded() || m.lastY == -1) {
@@ -1401,7 +1408,7 @@ scene('game', () => {
       } else if (!m.isEgg) {
         // mega minimark
 
-        let laDelta = time() - m.lastAttack;
+        let laDelta = timeReal() - m.lastAttack;
         if (laDelta < 1.2) {
           // ATTACKING
           if (laDelta < 0.5) {
@@ -1454,7 +1461,7 @@ scene('game', () => {
 
         b.areaGlow.pos = b.pos;
 
-        let lifeLength = time() - (b.spawnTime + 1);
+        let lifeLength = timeReal() - (b.spawnTime + 1);
 
         if (rand() < lifeLength ** 2 / 36) {
     	  	add([
@@ -1568,7 +1575,7 @@ scene('game', () => {
   			  sprite('puff'),
   		    pos(mark.pos.add(mi[0].scale(SCALE))),
   		  	opacity(0.5),
-  		  	move(mi[1] + 8*Math.sin(time()*(3+mark.frame)), SCALE*rand(0.4,0.5)),
+  		  	move(mi[1] + 8*Math.sin(timeReal()*(3+mark.frame)), SCALE*rand(0.4,0.5)),
   	    	scale(SCALE/500 * mi[2]),
   		    anchor('center'),
 		    	z(1),
@@ -1604,7 +1611,7 @@ scene('game', () => {
     
     if (player.health <= 0) {
       if (player.timeOfDeath == -1) {
-        player.timeOfDeath = time();
+        player.timeOfDeath = timeReal();
 
         pauseToggle(true);
         GAME_STATUS.lost = true;
@@ -1614,16 +1621,15 @@ scene('game', () => {
         });
       };
       usePostEffect('perish', () => ({
-        'time': time() - player.timeOfDeath,
+        'time': timeReal() - player.timeOfDeath,
       }));
     };
 
-    TIME_REAL_INFO.counter = time() - TIME_REAL_INFO.offset;
+    // NEEDS TO BE BUILT-IN TIME
+    TIME_REAL_INFO.counter = builtintimeReal() - TIME_REAL_INFO.offset;
     
   };
   // end of un-paused checker thingy
-
-  debug.log(`${TIME_REAL_INFO.counter} -- ${TIME_REAL_INFO.offset}`);
     
   });
 });
