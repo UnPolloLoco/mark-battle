@@ -47,7 +47,7 @@ scene('game', () => {
       if (GAME_STATUS.paused) {
         TIME_REAL_INFO.lastPause = time();
       } else {
-        TIME_REAL_INFO.offset = TIME_REAL_INFO.counter - TIME_REAL_INFO.lastPause;
+        TIME_REAL_INFO.offset = time() - TIME_REAL_INFO.lastPause;
       };
       
       get('*').forEach((x) => {
