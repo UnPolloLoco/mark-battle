@@ -7,6 +7,7 @@ scene('game', () => {
     effects:     400,
     tiles:       500,
     ui:          600,
+    pause:       700,
   }
 
   const GAME_STATUS = {
@@ -53,11 +54,19 @@ scene('game', () => {
       };
 
       if (GAME_STATUS.paused) {
+        // paused
         // BUILT-IN TIME
         TIME_REAL_INFO.lastPause = builtinTime();
+        get('pauseUI', (p) => {
+          p.opacity = p.trueOpacity;
+        });
       } else {
+        // unpaused
         // BUILT-IN TIME
         TIME_REAL_INFO.offset += builtinTime() - TIME_REAL_INFO.lastPause;
+        get('pauseUI', (p) => {
+          p.opacity = 0;
+        });
       };
       
       get('*').forEach((x) => {
@@ -117,6 +126,40 @@ scene('game', () => {
       body({ isStatic: true }),
       opacity(0),
 	    "border",
+    ]);
+  };
+
+  ////////////////
+  // pause "ui" //
+  ////////////////
+
+  add([
+    rect(width(), height()),
+    pos(0,0),
+    fixed(),
+    color(BLACK),
+    opacity(0),
+    z(Z.pause),
+    "pauseUI", 
+    {
+      trueOpacity: 0.2,
+    }
+  ]);
+
+  for (let i = 0; i < 3; i += 2) {
+    add([
+      pos(center().add(
+        (i-1) * SCALE/3, 0
+      )),
+      rect(SCALE*2/3, SCALE*2),
+      color(WHITE),
+      opacity(0),
+      z(Z.pause + 1),
+      anchor('center'),
+      "pauseUI", 
+      {
+        trueOpacity: 0.8,
+      }
     ]);
   };
   
