@@ -1621,7 +1621,8 @@ scene('game', () => {
         });
       };
       usePostEffect('perish', () => ({
-        'time': timeReal() - player.timeOfDeath,
+        // BUILT-IN TIME
+        'time': builtinTime() - player.timeOfDeath,
       }));
     };
 
