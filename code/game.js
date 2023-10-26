@@ -1654,7 +1654,8 @@ scene('game', () => {
     
     if (player.health <= 0) {
       if (player.timeOfDeath == -1) {
-        player.timeOfDeath = timeReal();
+        // BUILT-IN TIME
+        player.timeOfDeath = builtinTime();
 
         pauseToggle(true);
         GAME_STATUS.lost = true;
@@ -1665,7 +1666,7 @@ scene('game', () => {
       };
       usePostEffect('perish', () => ({
         // BUILT-IN TIME
-        'time': timeReal() - player.timeOfDeath,
+        'time': builtinTime() - player.timeOfDeath,
       }));
     };
 
@@ -1674,9 +1675,9 @@ scene('game', () => {
     
   };
   // end of un-paused checker thingy
-
+    
   //debug.log(`${timeReal() - player.timeOfDeath}`);
-  debug.log(JSON.stringify(TIME_REAL_INFO));
+  //debug.log(JSON.stringify(TIME_REAL_INFO));
     
   });
 });
