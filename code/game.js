@@ -1675,7 +1675,7 @@ scene('game', () => {
   };
   // end of un-paused checker thingy
 
-  debug.log((timeReal() - player.timeOfDeath))
+  debug.log(`${timeReal() - player.timeOfDeath}`);
     
   });
 });
