@@ -1665,7 +1665,7 @@ scene('game', () => {
       };
       usePostEffect('perish', () => ({
         // BUILT-IN TIME
-        'time': builtinTime() - player.timeOfDeath,
+        'time': timeReal() - player.timeOfDeath,
       }));
     };
 
@@ -1674,6 +1674,8 @@ scene('game', () => {
     
   };
   // end of un-paused checker thingy
+
+  debug.log((timeReal() - player.timeOfDeath))
     
   });
 });
