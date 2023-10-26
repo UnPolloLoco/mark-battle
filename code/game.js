@@ -75,6 +75,8 @@ scene('game', () => {
     };
   };
 
+  wait(2, pauseToggle());
+
   
   ////////////////
   // background //
@@ -146,7 +148,7 @@ scene('game', () => {
     }
   ]);
 
-  for (let i = 0; i < 3; i += 2) {
+  for (let i = 0; i <= 2; i += 2) {
     add([
       pos(center().add(
         (i-1) * SCALE/3, 0
