@@ -57,14 +57,14 @@ scene('game', () => {
         // paused
         // BUILT-IN TIME
         TIME_REAL_INFO.lastPause = builtinTime();
-        get('pauseUI', (p) => {
+        get('pauseUI').forEach((p) => {
           p.opacity = p.trueOpacity;
         });
       } else {
         // unpaused
         // BUILT-IN TIME
         TIME_REAL_INFO.offset += builtinTime() - TIME_REAL_INFO.lastPause;
-        get('pauseUI', (p) => {
+        get('pauseUI').forEach((p) => {
           p.opacity = 0;
         });
       };
