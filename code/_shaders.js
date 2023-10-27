@@ -152,10 +152,10 @@ loadShader("perishScreenBackground", null, `
 	
 		angle /= 360.0;
 	
-		dist *= 0.2;
-		dist *= 1.0 + 0.15 * sin((angle + time / 80.0) * 140.0);
+		dist *= 0.15;
+		dist *= 1.0 + 0.15 * sin((angle + time / 160.0) * 140.0);
 	
-		float altShimmer = sin((angle - time / 30.0) * 230.0) - 0.5;
+		float altShimmer = sin((angle - time / 60.0) * 230.0) - 0.5;
 		altShimmer = altShimmer * altShimmer * altShimmer * altShimmer;
 		dist *= 1.0 + 0.05 * altShimmer;
 		
