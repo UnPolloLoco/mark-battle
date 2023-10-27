@@ -1659,7 +1659,7 @@ scene('game', () => {
 
         // hide pause ui
         get('pauseUI').forEach((p) => {
-          p.po.y = -2 * height();
+          p.pos.y = -2 * height();
         });
 
         pauseToggle(true);
@@ -1681,8 +1681,6 @@ scene('game', () => {
   };
   // end of un-paused checker thingy
     
-  //debug.log(`${timeReal() - player.timeOfDeath}`);
-  //debug.log(JSON.stringify(TIME_REAL_INFO));
     
   });
 });
