@@ -142,14 +142,14 @@ scene('game', () => {
     z(Z.pause),
     "pauseUI", 
     {
-      trueOpacity: 0.2,
+      trueOpacity: 0.3,
     }
   ]);
 
   for (let i = 0; i <= 2; i += 2) {
     add([
       pos(center().add(
-        (i-1) * SCALE/3, 0
+        (i-1) * SCALE/2, 0
       )),
       rect(SCALE*2/3, SCALE*2),
       color(WHITE),
@@ -158,7 +158,7 @@ scene('game', () => {
       anchor('center'),
       "pauseUI", 
       {
-        trueOpacity: 0.8,
+        trueOpacity: 0.85,
       }
     ]);
   };
