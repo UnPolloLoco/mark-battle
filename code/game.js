@@ -75,8 +75,6 @@ scene('game', () => {
     };
   };
 
-  wait(2, pauseToggle());
-
   
   ////////////////
   // background //
