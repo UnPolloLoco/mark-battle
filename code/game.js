@@ -1657,6 +1657,11 @@ scene('game', () => {
         // BUILT-IN TIME
         player.timeOfDeath = builtinTime();
 
+        // hide pause ui
+        get('pauseUI').forEach((p) => {
+          p.po.y = -2 * height();
+        });
+
         pauseToggle(true);
         GAME_STATUS.lost = true;
         
