@@ -3,6 +3,17 @@ scene('fail', () => {
  
   let deathScreenEnterTime = time();
 
+  add([
+  	rect(width(), height()),
+  	pos(0,0),
+  	color(BLACK),
+  	shader("perishScreenBackground", () => ({
+  		"time": time(),
+  	})),
+    z(-1),
+  ]);
+
+
   // main text
   /*add([
     text('bombastically', { 
