@@ -142,7 +142,7 @@ scene('game', () => {
     z(Z.pause),
     "pauseUI", 
     {
-      trueOpacity: 0.3,
+      trueOpacity: 0.45,
     }
   ]);
 
@@ -158,7 +158,7 @@ scene('game', () => {
       anchor('center'),
       "pauseUI", 
       {
-        trueOpacity: 0.85,
+        trueOpacity: 0.9,
       }
     ]);
   };
