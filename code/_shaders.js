@@ -130,37 +130,47 @@ loadShader('butterflySpawn', null, `
 `);
 
 loadShader("perishScreenBackground", null, `
-	uniform float time;
-	
-	vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
-		vec4 c = def_frag();
-		float dist = distance(vec2(0,0), pos) - 0.2;
-	
-		float angle;
-	
-		if (pos.x != 0.0) {
-			angle = atan(pos.y / pos.x) * 57.29;
-		} else {
-			angle = 0.0;
-		}
-		
-		if (pos.x < 0.0) {
-			angle += 180.0;
-		} else if (pos.x > 0.0 && pos.y < 0.0) {
-			angle += 360.0;
-		};
-	
-		angle /= 360.0;
-	
-		dist *= 0.15;
-		dist *= 1.0 + 0.15 * sin((angle + time / 160.0) * 140.0);
-	
-		float altShimmer = sin((angle - time / 60.0) * 230.0) - 0.5;
-		altShimmer = altShimmer * altShimmer * altShimmer * altShimmer;
-		dist *= 1.0 + 0.05 * altShimmer;
-		
-		return vec4(dist * 0.8, 0, dist, 1);
-	}
+  uniform float time;
+  
+  vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
+  	vec4 c = def_frag();
+  	float newPosY = pos.y * 6.0 / 10.0;
+  	
+  	float dist = distance(vec2(0,0), vec2(pos.x, newPosY)) - 0.1;
+  
+  	float angle;
+  
+  	if (pos.x != 0.0) {
+  		angle = atan(newPosY / pos.x) * 57.29;
+  	} else {
+  		angle = 0.0;
+  	}
+  	
+  	if (pos.x < 0.0) {
+  		angle += 180.0;
+  	} else if (pos.x > 0.0 && newPosY < 0.0) {
+  		angle += 360.0;
+  	};
+  
+  	angle /= 360.0;
+  	angle += dist / 30.0;
+  	
+  	float col = dist * 0.2;
+  	col *= 1.0 + 0.15 * sin((angle + time / 120.0) * 140.0);
+  
+  	float altShimmer = sin((angle - time / 50.0) * 230.0) - 0.5;
+  	altShimmer = altShimmer * altShimmer * altShimmer * altShimmer;
+  	
+  	col *= 1.0 + 0.05 * altShimmer;
+  	col *= dist / 4.0 + 0.8;
+  	
+  	return vec4(
+  		col * 0.55, 
+  		0, 
+  		col * 0.95,
+  		1
+  	);
+  }
 `);
 
 // basic light
@@ -177,3 +187,5 @@ loadShader("perishScreenBackground", null, `
 
 // purple tunnel shine thingy (perish menu?)
 // https://kaboomjs.com/play?example=shader&code=eJyNU99P2zAQfo7%2FilsekF1Ck5Z269iCNOBtSDx0b9M0TOImFokd2Q5jmvq%2F72y3QAXSJiXK%2Ffi%2B73znS57Dt5urmzOwLa%2BFgVpXYy%2BU405qBVL5QE5InsPlaJ3udzhyz%2B%2B07ikjpNO8Xg9GOkHTO8FVmkGa2xCwuQ9MB9Wke2Bg03QQRtp2XRkh1AWv7hujR1UjVY1dl8EtSUYlN9r0sEGaAyd78YkkJHkQ1QI2hjcUrTkM2mYQrPEhGAuodKdNBpb3QyfM%2FAqceGTwhySRW0EJtdj8DBoMNZNYoZbW%2BRR%2BuKpEkKdFVrDMF2FwAsV0Ho6wI3DVdPFMidwARdD0Ed6VCCtiuSQgUJOjYsj%2FhhwCjsEElh%2Bm84%2B%2B%2FhZEZ8UhBUVCCt8D%2Fc%2Bv5I9LmK328Kj0DD%2F3cDg6glj9Tfbp%2Bz07NhMT%2BXMCY2E4k3I3gid3huLHGJwtsR8rFaU71XBf2Owq1JvAbOGNg%2Bl1bt3KvseVK19ST%2FbU0x11Hg0%2F%2FqWvfUB84Uz%2By3nr9MXyFQQfI9xoVFgpGhkIXWVQZGFHMpj5frbkFjeb1zX9TpBSOfpL1q6luDWtkE3rKGMZSXD8cZdIEtaTXlx%2FufzqXfuvH4IyKM%2BB%2BjtL%2FWjSszAh6slbL%2F6Dkb88Egnl
+// new
+// https://kaboomjs.com/play?example=shader&code=eJyNU8tu2zAQPJtfsdUhoBxFL1tpHnWAJrm1QAq4l6IoGkaiLSISaZBUkqLwv3dJSbFjFGgvEnd3ZjS7SyUJfL27vbsAU7OKa6hU2bVcWmaFkiCkSySEJAncdMaqdsCRR%2FagVEtDQhrFquVGC8tp8MCZDCIIEuMTJnGJeCPXwQj0bBpsuBamXpaac3nNyse1Vp2skCq7pongnnRSrJRuYYUsC1a0%2FJKQJ17OYaXZmuIph40yEfhT9%2BQPcyhVo3QEhrWbhuv8Fix%2FCeE3mfRVWEDFVz%2B9RHhJJr265M9flPmGRVSMf8EUTuMUEsjSOEXQCKuEsU4AX0yW3HugaZSGvQnqyC%2FRqBaGcAJpnKHtgc%2FkunFdTMQKejC8WyAk9QYnvoz6DNXpaCnxlrCFKRTv4%2Fwc7WyBN4a%2FofQ%2Bt87qTvvDofTxArKzAdpr7MBXDgxHR6%2Bz%2BBt7djqwXRN9NtllX2F%2BTgnM3k4PNzMMD3tJ4xxLLjVFU%2FjlYzeqAitGSEoHKb92t4fce5lCNneHvYk2dlmLtsV7u9hnnozMYiDmM39wCymc1X3eXjD9r8A3deA9LQ4hA2AYxnzAnXmy5rbT0t9YigP2UGetiADD1D%2FH5HkRYZSRCfa9Jff4H7Gqot%2BdSGnps6hsTfEG1lysa0vDENG40v5eehdK0%2BvPH28%2BudD86%2FejISyugLq1B26GwYUfJXXkrRP%2FEZI%2FJFsp1Q%3D%3D
