@@ -153,7 +153,6 @@ loadShader("perishScreenBackground", null, `
   	};
   
   	angle /= 360.0;
-  	angle += dist / 30.0;
   	
   	float col = dist * 0.2;
   	col *= 1.0 + 0.15 * sin((angle + time / 120.0) * 140.0);
