@@ -16,7 +16,7 @@ scene('fail', () => {
   add([
     text('WALLOPED', { 
       size: SCALE,
-      font: 'nerko',
+      font: 'titillium',
     }),
     pos(width()/2, SCALE*3),
     color(WHITE),
@@ -33,7 +33,7 @@ scene('fail', () => {
     add([
       text(scorerText, {
         size: SCALE/4,
-        font: 'reenieBeanie',
+        font: 'itim',
         align: 'right'
       }),
       pos(
