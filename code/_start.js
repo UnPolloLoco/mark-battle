@@ -36,6 +36,8 @@ const TOUCH = isTouchscreen();
 loadFont('playfair', 'fonts/PlayfairDisplay.ttf');
 loadFont('reenieBeanie', 'fonts/ReenieBeanie.ttf');
 loadFont('nerko', 'fonts/NerkoOne.ttf');
+loadFont('titillium', 'fonts/TitilliumWeb.ttf');
+loadFont('itim', 'fonts/Itim.ttf');
 
 loadRoot('sprites/');
 
