@@ -618,6 +618,14 @@ scene('game', () => {
     mark.health -= 100;
   });
 
+  onKeyPress('x', () => {
+    for (let i = 0; i < 10; i++) {
+      wait(i * 0.08, () => {
+        markAttack();
+      });
+    };
+  });
+
   // keyboard jump
   
   onKeyDown("w", () => {
