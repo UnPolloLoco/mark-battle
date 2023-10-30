@@ -21,6 +21,12 @@ scene('game', () => {
     lastPause: 0
   };
 
+  const SCORING = {
+    points: 0,
+    completion: 0, // not updated until the end
+  };
+  
+
   ///////////////
   // functions //
   ///////////////
@@ -28,6 +34,8 @@ scene('game', () => {
   function clamp(a, x, b) {
     return Math.max(Math.min(b, x), a);
   };
+
+  ////
 
   function getPhase() {
     return clamp(
@@ -37,14 +45,20 @@ scene('game', () => {
     );
   };
 
+  ////
+
   function builtinTime() {
     return time();
   };
+
+  ////
 
   function timeReal() {
     return TIME_REAL_INFO.counter;
   };        
   
+  ////
+
   function pauseToggle(override) {
     if (!GAME_STATUS.lost) {
       if (override == undefined) {
@@ -398,6 +412,8 @@ scene('game', () => {
       rotate(randi(0,360)),
       anchor('center'),
     ]);
+
+    SCORING.points++;
   };
 
   // constants
@@ -1204,6 +1220,10 @@ scene('game', () => {
     		(mark.pos.sub(player.pos))
     		.unit().scale(-SCALE)
     	);
+
+      // one point gets added by clashEffect,
+      // so hitting mark adds two
+      SCORING.points++;
       
       clashEffect(clashPos, 3);
       
@@ -1664,8 +1684,11 @@ scene('game', () => {
 
         pauseToggle(true);
         GAME_STATUS.lost = true;
+
+        SCORING.completion = Math.floor((500 - mark.health) / 5);
         
         wait(1.6, () => {
+          alert( JSON.stringify(SCORING) );
           go('fail');
         });
       };
