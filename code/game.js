@@ -1150,7 +1150,7 @@ scene('game', () => {
   if (TOUCH) {
     loop(0.05, () => {
       let fixedMousePos = mousePos().y - canvas.getBoundingClientRect().top;
-      if (fixedMousePos < touchJumpCheck - SCALE*1) {
+      if (fixedMousePos < touchJumpCheck - SCALE*1 && player.isGrounded()) {
         if (player.isEgged) {
   			  player.jump(JUMP_SPEED * EGG_JUMP_SLOWDOWN);
         } else {
