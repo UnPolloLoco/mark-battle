@@ -1,4 +1,4 @@
-scene('fail', () => {
+scene('fail', (gameScore) => {
   setBackground(BLACK);
  
   let deathScreenEnterTime = time();
@@ -27,7 +27,10 @@ scene('fail', () => {
   // scoring
 
   for (let i = 0; i < 2; i++) {
-    let scorerText = ['1234 points', '56% complete'][i];
+    let scorerText = [
+      `${gameScore.points} points`,
+      `${gameScore.completion}% complete`
+    ][i];
     let yPosAdd = [SCALE/2, SCALE][i];
     
     add([
