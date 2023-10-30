@@ -1221,8 +1221,7 @@ scene('game', () => {
     //////////////////
     if (!mark.sliced && slash.isColliding(mark) && player.isAttacking) {
       mark.sliced = true;
-      //mark.health -= 2;
-      mark.health -= 20;
+      mark.health -= 5;
 
       let clashPos = mark.pos.add(
     		(mark.pos.sub(player.pos))
