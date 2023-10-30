@@ -1688,8 +1688,7 @@ scene('game', () => {
         SCORING.completion = Math.floor((500 - mark.health) / 5);
         
         wait(1.6, () => {
-          alert( JSON.stringify(SCORING) );
-          go('fail');
+          go('fail', SCORING);
         });
       };
       usePostEffect('perish', () => ({
