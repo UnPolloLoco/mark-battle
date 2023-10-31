@@ -1722,11 +1722,11 @@ scene('game', () => {
     // debugging :(((
     let list = [];
     get('minimark').forEach((m) => {
-      list.push([
-        Math.round(m.xVel), 
-        m.isFalling(),
-        m.isJumping()
-      ]);
+      list.push({
+        g: m.isGrounded, 
+        f: m.isFalling(),
+        j: m.isJumping()
+      });
     });
     debug.log( JSON.stringify(list) );
     
