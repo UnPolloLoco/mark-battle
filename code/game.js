@@ -413,6 +413,16 @@ scene('game', () => {
       anchor('center'),
     ]);
 
+    add([
+      pos(p),
+      sprite('whiteGlow'),
+      scale(SCALE/500 * s),
+      z(Z.effects),
+      lifespan(0.05),
+      rotate(randi(0,360)),
+      anchor('center'),
+    ]);
+
     SCORING.points++;
   };
 
