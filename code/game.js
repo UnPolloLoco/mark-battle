@@ -1722,7 +1722,7 @@ scene('game', () => {
     // debugging :(((
     let list = [];
     get('minimark').forEach((m) => {
-      list.push(m.gravityScale);
+      list.push([m.xVel, m.isFalling(), m.isJumping()]);
     });
     debug.log( JSON.stringify(list) );
     
