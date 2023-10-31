@@ -419,6 +419,7 @@ scene('game', () => {
       scale(SCALE/500 * s),
       z(Z.effects),
       lifespan(0.05),
+      opacity(0.75),
       rotate(randi(0,360)),
       anchor('center'),
     ]);
