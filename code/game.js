@@ -1723,7 +1723,7 @@ scene('game', () => {
     let list = [];
     get('minimark').forEach((m) => {
       list.push({
-        g: m.isGrounded, 
+        g: m.isGrounded(), 
         f: m.isFalling(),
         j: m.isJumping()
       });
