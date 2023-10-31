@@ -1717,6 +1717,14 @@ scene('game', () => {
 
     // NEEDS TO BE BUILT-IN TIME
     TIME_REAL_INFO.counter = builtinTime() - TIME_REAL_INFO.offset;
+
+
+    // debugging :(((
+    let list = [];
+    get('minimark').forEach((m) => {
+      list.push(m.gravityScale);
+    });
+    debug.log( JSON.stringify(list) );
     
   };
   // end of un-paused checker thingy
