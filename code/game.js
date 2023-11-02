@@ -894,7 +894,7 @@ scene('game', () => {
           });
         };
         
-        //wait(airTime + 4, markAttack);
+        wait(airTime + 4, markAttack);
       } else if (curAttack == 2) {
         // KABOOOOOM BUT BUTTERFLY
         let spawnT = timeReal();
@@ -1727,7 +1727,7 @@ scene('game', () => {
         gs: m.gravityScale.toFixed(2),
       });
     });
-    debug.log( JSON.stringify(list) );
+    //debug.log( JSON.stringify(list) );
     
   };
   // end of un-paused checker thingy
