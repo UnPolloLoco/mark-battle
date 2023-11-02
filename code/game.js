@@ -894,7 +894,7 @@ scene('game', () => {
           });
         };
         
-        wait(airTime + 4, markAttack);
+        //wait(airTime + 4, markAttack);
       } else if (curAttack == 2) {
         // KABOOOOOM BUT BUTTERFLY
         let spawnT = timeReal();
@@ -1723,11 +1723,11 @@ scene('game', () => {
     let list = [];
     get('minimark').forEach((m) => {
       list.push({
-        jf: m.jumpForce.toFixed(2), 
-        gs: m.gravityScale.toFixed(2),
+        c: m.canMove, 
+        f: m.forceMove, 
       });
     });
-    //debug.log( JSON.stringify(list) );
+    debug.log( JSON.stringify(list) );
     
   };
   // end of un-paused checker thingy
