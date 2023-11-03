@@ -1279,6 +1279,7 @@ scene('game', () => {
       //m.update();
       //debug.log( JSON.stringify(list) );
       list++;
+      m.color = list == 1 ? RED : WHITE;
 
       
       if (timeReal() - m.spawnTime < 0.7 && rand() < 0.35) {
