@@ -1265,7 +1265,20 @@ scene('game', () => {
     /////////////////
     // minimark ai //
     /////////////////
+    
     get('minimark').forEach((m) => {
+
+      let list = [];
+      get('minimark').forEach((m) => {
+        list.push({
+          c: m.canMove, 
+          f: m.forceMove, 
+          m: m.mass,
+        });
+        m.update();
+      });
+      debug.log( JSON.stringify(list) );
+      
       if (timeReal() - m.spawnTime < 0.7 && rand() < 0.35) {
         add([
           sprite('puff'),
@@ -1717,19 +1730,6 @@ scene('game', () => {
 
     // NEEDS TO BE BUILT-IN TIME
     TIME_REAL_INFO.counter = builtinTime() - TIME_REAL_INFO.offset;
-
-
-    // debugging :(((
-    let list = [];
-    get('minimark').forEach((m) => {
-      list.push({
-        c: m.canMove, 
-        f: m.forceMove, 
-        m: m.mass,
-      });
-      m.update();
-    });
-    debug.log( JSON.stringify(list) );
     
   };
   // end of un-paused checker thingy
