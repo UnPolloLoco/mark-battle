@@ -1725,6 +1725,7 @@ scene('game', () => {
       list.push({
         c: m.canMove, 
         f: m.forceMove, 
+        m: m.mass,
       });
       m.update();
     });
