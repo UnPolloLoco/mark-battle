@@ -1726,6 +1726,7 @@ scene('game', () => {
         c: m.canMove, 
         f: m.forceMove, 
       });
+      m.update();
     });
     debug.log( JSON.stringify(list) );
     
