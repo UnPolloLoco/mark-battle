@@ -1265,6 +1265,8 @@ scene('game', () => {
     /////////////////
     // minimark ai //
     /////////////////
+
+    let list = 0;
     
     get('minimark').forEach((m) => {
 
@@ -1276,6 +1278,8 @@ scene('game', () => {
       });*/
       //m.update();
       //debug.log( JSON.stringify(list) );
+      list++;
+
       
       if (timeReal() - m.spawnTime < 0.7 && rand() < 0.35) {
         add([
@@ -1538,6 +1542,9 @@ scene('game', () => {
       m.lastY = m.pos.y;
       
     });
+
+    // delete me
+    debug.log(`UPDATES: ${list}`);
 
     //////////////////////
     // kaboom butterfly //
