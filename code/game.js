@@ -1274,7 +1274,7 @@ scene('game', () => {
         f: m.forceMove, 
         m: m.mass,
       });*/
-      m.update();
+      //m.update();
       //debug.log( JSON.stringify(list) );
       
       if (timeReal() - m.spawnTime < 0.7 && rand() < 0.35) {
