@@ -1537,9 +1537,6 @@ scene('game', () => {
       
     });
 
-    // delete me
-    debug.log(`UPDATES: ${list}`);
-
     //////////////////////
     // kaboom butterfly //
     //////////////////////
