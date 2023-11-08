@@ -1266,23 +1266,14 @@ scene('game', () => {
     // minimark ai //
     /////////////////
 
-    let list = 0;
+    let mmCount = 0;
     
     get('minimark').forEach((m) => {
+      
+      mmCount++;
+      m.color = mmCount == 1 ? RED : WHITE;
 
-      m.update();
-
-      /*let list = [];
-      list.push({
-        c: m.canMove, 
-        f: m.forceMove, 
-        m: m.mass,
-      });*/
-      //m.update();
-      //debug.log( JSON.stringify(list) );
-      list++;
-      m.color = list == 1 ? RED : WHITE;
-
+      if (mmCount == 1) m.update();
       
       if (timeReal() - m.spawnTime < 0.7 && rand() < 0.35) {
         add([
