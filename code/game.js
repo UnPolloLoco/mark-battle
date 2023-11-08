@@ -1270,6 +1270,8 @@ scene('game', () => {
     
     get('minimark').forEach((m) => {
 
+      m.update();
+
       /*let list = [];
       list.push({
         c: m.canMove, 
