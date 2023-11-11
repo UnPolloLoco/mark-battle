@@ -25,6 +25,8 @@ scene('game', () => {
     points: 0,
     completion: 0, // not updated until the end
   };
+
+  var epicTemporaryVariablePleaseDeleteMeEventually = prompt('Attribute to test');
   
 
   ///////////////
@@ -1275,7 +1277,7 @@ scene('game', () => {
 
       if (mmCount == 1) { 
         m.update();
-        debug.log(m.canMove);
+        debug.log(m[epicTemporaryVariablePleaseDeleteMeEventually]);
       };
       
       if (timeReal() - m.spawnTime < 0.7 && rand() < 0.35) {
