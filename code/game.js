@@ -1273,7 +1273,10 @@ scene('game', () => {
       mmCount++;
       m.color = mmCount == 1 ? RED : WHITE;
 
-      if (mmCount == 1) m.update();
+      if (mmCount == 1) { 
+        m.update();
+        debug.log(m.canMove);
+      };
       
       if (timeReal() - m.spawnTime < 0.7 && rand() < 0.35) {
         add([
