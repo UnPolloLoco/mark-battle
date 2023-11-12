@@ -756,21 +756,7 @@ scene('game', () => {
 
   // out of sight out of mind
   
-  add([
-    sprite('minimark'),
-    pos(width()*1.5, height()/2),
-    z(Z.mark - 2),
-    scale(SCALE/500 / 3),
-    area(),
-    body({ 
-      gravityScale: 0, 
-      mass: 0.1,
-    }),
-    anchor('center'),
-    "minimark",
-    "purgatory",
-    {xVel: 0,spawnDir: n%2==0 ? 1 : -1,spawnTime: timeReal(),canMove: false,health: 2,attackedBy: -1,forceMove: 'none',slash: -1,lastAttack: -1,lastY: -1,isEgg: true,}
-  ]);
+  add([sprite('minimark'),pos(width()*1.5, height()/2),z(Z.mark - 2),scale(SCALE/500 / 3),area(),body({ gravityScale: 0, mass: 0.1,}),anchor('center'),"minimark","purgatory",{xVel: 0,spawnDir: 1,spawnTime: timeReal(),canMove: false,health: 1234567890,attackedBy: -1,forceMove: 'none',slash: -1,lastAttack: -1,lastY: -1,isEgg: false,}]);
 
   //////////////////
   // mark attacks //
