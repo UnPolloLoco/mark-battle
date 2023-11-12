@@ -25,8 +25,6 @@ scene('game', () => {
     points: 0,
     completion: 0, // not updated until the end
   };
-
-  var epicTemporaryVariablePleaseDeleteMeEventually = prompt('Attribute to test');
   
 
   ///////////////
@@ -756,6 +754,24 @@ scene('game', () => {
     };
   });
 
+  // out of sight out of mind
+  
+  add([
+    sprite('minimark'),
+    pos(width()*1.5, height()/2),
+    z(Z.mark - 2),
+    scale(SCALE/500 / 3),
+    area(),
+    body({ 
+      gravityScale: 0, 
+      mass: 0.1,
+    }),
+    anchor('center'),
+    "minimark",
+    "purgatory",
+    {xVel: 0,spawnDir: n%2==0 ? 1 : -1,spawnTime: timeReal(),canMove: false,health: 2,attackedBy: -1,forceMove: 'none',slash: -1,lastAttack: -1,lastY: -1,isEgg: true,}
+  ]);
+
   //////////////////
   // mark attacks //
   //////////////////
@@ -1275,9 +1291,9 @@ scene('game', () => {
       mmCount++;
       m.color = mmCount == 1 ? RED : WHITE;
 
-      if (mmCount == 1) { 
-        m.update();
-        debug.log(m[epicTemporaryVariablePleaseDeleteMeEventually]);
+      if (m.is('purgatory')) {
+        m.pos = vec2(width() * 1.5, height()/2);
+        m.gravityScale = 0;
       };
       
       if (timeReal() - m.spawnTime < 0.7 && rand() < 0.35) {
