@@ -29,7 +29,3 @@
 11. Mark returns to Kaboomtopia at last, ready to put his ideas into practice.
 12. After just one week, Mark got everyone to work against their will, out of fear for his powers, for a better Kaboomtopia.
 13. Bean had enough of it, and he went to find Mark and end this once and for all.
-
-## Timeline 2
-
-One day...
