@@ -1,6 +1,3 @@
-[Timeline Candidate #1](#timeline-1)  
-[Timeline Candidate #2](#timeline-2)  
-
 ## Official
 
 - Mark is Bean's father
