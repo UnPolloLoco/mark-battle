@@ -898,7 +898,7 @@ scene('game', () => {
           });
         };
         
-        //wait(airTime + 4, markAttack);
+        wait(airTime + 4, markAttack);
       } else if (curAttack == 2) {
         // KABOOOOOM BUT BUTTERFLY
         let spawnT = timeReal();
