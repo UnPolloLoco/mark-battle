@@ -35,13 +35,11 @@ const TOUCH = isTouchscreen();
 
 loadSprite('tempBG', 'https://i.ibb.co/ZxrmpQt/IMG-0315.png');
 
-loadRoot('fonts/');
-
-loadFont('playfair', 'PlayfairDisplay.ttf');
-loadFont('reenieBeanie', 'ReenieBeanie.ttf');
-loadFont('nerko', 'NerkoOne.ttf');
-loadFont('titillium', 'TitilliumWeb.ttf');
-loadFont('itim', 'Itim.ttf');
+loadFont('playfair', 'fonts/PlayfairDisplay.ttf');
+loadFont('reenieBeanie', 'fonts/ReenieBeanie.ttf');
+loadFont('nerko', 'fonts/NerkoOne.ttf');
+loadFont('titillium', 'fonts/TitilliumWeb.ttf');
+loadFont('itim', 'fonts/Itim.ttf');
 
 loadRoot('sprites/');
 
