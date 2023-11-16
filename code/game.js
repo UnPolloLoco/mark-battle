@@ -646,6 +646,7 @@ scene('game', () => {
       pos(0,0),
       z(Z.bg + 1),
       scale(SCALE/640 * 10),
+      "tempBG",
     ]);
 
     get('newLevelBlock').forEach((b) => {
