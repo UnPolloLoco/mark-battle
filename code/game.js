@@ -637,6 +637,15 @@ scene('game', () => {
     };
   });
 
+  onKeyPress('z', () => {
+    add([
+      sprite('tempBG'),
+      pos(0,0),
+      z(Z.bg + 1),
+      scale(SCALE/640 * 10),
+    ]);
+  });
+
   // keyboard jump
   
   onKeyDown("w", () => {
