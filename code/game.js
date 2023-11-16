@@ -644,6 +644,10 @@ scene('game', () => {
       z(Z.bg + 1),
       scale(SCALE/640 * 10),
     ]);
+
+    get('block').forEach((b) => {
+      b.use(opacity(0));
+    });
   });
 
   // keyboard jump
