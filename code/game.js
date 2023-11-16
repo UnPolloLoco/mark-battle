@@ -645,7 +645,7 @@ scene('game', () => {
       scale(SCALE/640 * 10),
     ]);
 
-    get('block').forEach((b) => {
+    get('block', { recursive: true }).forEach((b) => {
       b.use(opacity(0));
     });
   });
