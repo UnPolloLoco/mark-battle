@@ -490,6 +490,7 @@ scene('game', () => {
           ),
           z(Z.tiles - 1),
           color(BLACK),
+          "newLevelBlock"
         ]);
         // add the block
         add([
@@ -501,6 +502,7 @@ scene('game', () => {
           body({ isStatic: true }),
           shader('light', () => ({ 'tint': getShaderTint() })),
           "laserBreak",
+          "newLevelBlock"
         ]);
         // block shadow
         if (obj.pos.y < SCALE) {
@@ -512,7 +514,8 @@ scene('game', () => {
             z(Z.tiles - 2),
             color(rgb(20,20,20)),
             opacity(0.2),
-            shader('light', () => ({ 'tint': getShaderTint() }))
+            shader('light', () => ({ 'tint': getShaderTint() })),
+            "newLevelBlock"
           ]);
         };
       // murder the block
@@ -645,7 +648,7 @@ scene('game', () => {
       scale(SCALE/640 * 10),
     ]);
 
-    get('block', { recursive: true }).forEach((b) => {
+    get('newLevelBlock').forEach((b) => {
       b.use(opacity(0));
     });
   });
