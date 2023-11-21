@@ -902,7 +902,7 @@ scene('game', () => {
         	);
 
           // size increase
-          tween(
+          let sizeTween = tween(
         		mm.scale,
         		vec2(SCALE/500 / 3*2),
         		airTime + 0.25,
@@ -912,6 +912,7 @@ scene('game', () => {
 
           // drop to the ground
           wait(airTime + 0.3, () => {
+            sizeTween.cancel();
             mm.gravityScale = 1;
             minimarkEggOpen(mm.pos, 0.5);
             mm.scale = mm.scale.scale(0.5);
@@ -1060,7 +1061,7 @@ scene('game', () => {
         	);
 
           // size change
-          tween(
+          let sizeTween = tween(
         		mm.scale,
         		vec2(SCALE/500 / 3*2*2),
         		airTime + 0.25,
@@ -1070,6 +1071,7 @@ scene('game', () => {
 
           // drop down
           wait(airTime + 0.3, () => {
+            sizeTween.cancel();
             mm.gravityScale = 1;
             minimarkEggOpen(mm.pos, 0.65);
             mm.scale = mm.scale.scale(0.5);
