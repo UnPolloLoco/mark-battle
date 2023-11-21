@@ -1599,7 +1599,7 @@ scene('game', () => {
       	};
 
         let o = (
-          (lifeLength / 5) ** 8)
+          (lifeLength / 5) ** 8
           *
           Math.sin(15.1 * lifeLength) 
           +
