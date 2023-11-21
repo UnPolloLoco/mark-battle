@@ -779,6 +779,10 @@ scene('game', () => {
   // mark attacks //
   //////////////////
 
+  function markAttackExtraDelay() {
+    return 1 - 0.2 * getPhase();
+  };
+
   var maNum = -1; // mark attack number
   
   function markAttack() {
@@ -827,7 +831,7 @@ scene('game', () => {
         wait(laserFinishTime + 0.3, () => {
           mark.laserFlare.opacity = 0; 
         });
-        wait(laserFinishTime + 0.7, markAttack);
+        wait(laserFinishTime + 0.7 + markAttackExtraDelay(), markAttack);
       } else if (curAttack == 1) {
         // MINI MARK
   
@@ -915,7 +919,7 @@ scene('game', () => {
           });
         };
         
-        wait(airTime + 4, markAttack);
+        wait(airTime + 4 + markAttackExtraDelay(), markAttack);
       } else if (curAttack == 2) {
         // KABOOOOOM BUT BUTTERFLY
         let spawnT = timeReal();
@@ -987,7 +991,7 @@ scene('game', () => {
           b.canFly = true;
         });
         
-        wait(1.6, markAttack)
+        wait(1.6 + markAttackExtraDelay(), markAttack)
       } else if (curAttack == 3) {
         // M E G A MINI MARK
   
@@ -1073,7 +1077,7 @@ scene('game', () => {
           });
         };
         
-        wait(airTime + 4, markAttack);
+        wait(airTime + 4 + markAttackExtraDelay(), markAttack);
       } else if (curAttack == 4) {
         // THE EGG
 
@@ -1109,13 +1113,13 @@ scene('game', () => {
           ]);
         });
           
-        wait(0.7 + 0.1*shakeCount, markAttack);
+        wait(0.7 + 0.1*shakeCount + markAttackExtraDelay(), markAttack);
       };
     });
     
   };
 
-  wait(1, () => {
+  wait(1.5, () => {
     markAttack();
   });
 
