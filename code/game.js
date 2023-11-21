@@ -1598,8 +1598,16 @@ scene('game', () => {
     	  	]);
       	};
 
-        let o = (lifeLength ** 2 / 25);
-        o += 0.3 * Math.sin(15 * lifeLength);
+        let o = (
+          (lifeLength / 5) ** 8)
+          *
+          Math.sin(15.1 * lifeLength) 
+          +
+          (lifeLength / 5) ** 3
+        );
+        
+        // let o = (lifeLength ** 2 / 25);
+        // o += 0.3 * Math.sin(15 * lifeLength);
 
         b.glow.opacity = o;
         b.areaGlow.opacity = o;
