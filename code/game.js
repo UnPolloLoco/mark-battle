@@ -23,7 +23,7 @@ scene('game', () => {
 
   const SCORING = {
     points: 0,
-    completion: 0, // not updated until the end
+    completion: 0,
   };
   
 
@@ -1260,6 +1260,7 @@ scene('game', () => {
     if (!mark.sliced && slash.isColliding(mark) && player.isAttacking) {
       mark.sliced = true;
       mark.health -= 5;
+      SCORING.completion = Math.floor((500 - mark.health) / 5);
 
       let clashPos = mark.pos.add(
     		(mark.pos.sub(player.pos))
@@ -1741,8 +1742,6 @@ scene('game', () => {
 
         pauseToggle(true);
         GAME_STATUS.lost = true;
-
-        SCORING.completion = Math.floor((500 - mark.health) / 5);
         
         wait(1.6, () => {
           go('fail', SCORING);
