@@ -789,7 +789,6 @@ scene('game', () => {
     maNum++;
 
     let phase = getPhase();
-    let curAttack = maNum % (phase + 1);
     let moveTime = 0.8 - 0.15*(phase - 1);
     
     tween(
@@ -800,10 +799,22 @@ scene('game', () => {
       easings.easeInOutQuad,
     );
 
-    wait(moveTime + 0.4, phase < 5 ? markAttackMain : markAttackSmoke);
+    if (phase < 5) {
+      // MAIN ATTACK LINK
+      wait(moveTime + 0.4, () => {
+        let curAttack = maNum % (phase + 1);
+        markAttackMain(curAttack);
+      });
+    } else {
+      // SMOKE ATTACK LINK
+      wait(moveTime + 0.4, () => {
+        let curAttack = maNum % 3;
+        markAttackSmoke(curAttack);
+      });
+    }
   };
 
-  function markAttackMain() {
+  function markAttackMain(curAttack) {
     if (curAttack == 0) {
       // LASERS
 
@@ -1124,7 +1135,13 @@ scene('game', () => {
     };
   };
 
-  function markAttackSmoke() {
+  ////////////////
+  
+  ////////////////
+  
+  ////////////////
+
+  function markAttackSmoke(curAttack) {
     
   };
 
