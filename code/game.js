@@ -1748,6 +1748,8 @@ scene('game', () => {
           p.pos.y = -2 * height();
         });
 
+        playerHealthBar.width = 0;
+
         pauseToggle(true);
         GAME_STATUS.lost = true;
         
