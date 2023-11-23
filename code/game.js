@@ -1601,7 +1601,7 @@ scene('game', () => {
         let o = (
           (lifeLength / 5) ** 8
           *
-          Math.sin(15.1 * lifeLength) 
+          Math.sin(30.2 * lifeLength) 
           +
           (lifeLength / 5) ** 3
         );
