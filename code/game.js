@@ -787,9 +787,11 @@ scene('game', () => {
   
   function markAttack() {
     maNum++;
-    let curAttack = maNum % (getPhase() + 1);
 
-    let moveTime = 0.8 - 0.15*(getPhase() - 1);
+    let phase = getPhase();
+    let curAttack = maNum % (phase + 1);
+    let moveTime = 0.8 - 0.15*(phase - 1);
+    
     tween(
       mark.pos,
       newMarkPos(curAttack),
@@ -798,326 +800,331 @@ scene('game', () => {
       easings.easeInOutQuad,
     );
 
-    wait(moveTime + 0.4, () => {
-      if (curAttack == 0) {
-        // LASERS
+    wait(moveTime + 0.4, phase < 5 ? markAttackMain : markAttackSmoke);
+  };
 
-        mark.laserFlare.opacity = 1;
-        
-        for (let n = 0; n < 2+getPhase(); n++) {
-          wait(0.6 + (0.45 - getPhase()*0.05) * n, () => {
-            for (let i = 0; i < 2; i++) {
-              let eye = markEyes()[i];
-            	add([
-            		pos(eye),
-            		anchor('left'),
-            		sprite('laser', { anim: 'beam' }),
-            		scale(SCALE/500 / 2),
-            		area({ scale: vec2(1, 0.2) }),
-            		lifespan(1.5),
-                rotate(player.pos.angle(eye)),
-                z(Z.projectiles),
-            		"laser",
-            		{
-            			dir: deg2rad( player.pos.angle(eye) ),
-            		}
-            	]);
-            };
-          });
-        };
+  function markAttackMain() {
+    if (curAttack == 0) {
+      // LASERS
 
-        let laserFinishTime = 0.6 + (0.45 - getPhase()*0.05) * (2+getPhase());
-        
-        wait(laserFinishTime + 0.3, () => {
-          mark.laserFlare.opacity = 0; 
+      mark.laserFlare.opacity = 1;
+      
+      for (let n = 0; n < 2+getPhase(); n++) {
+        wait(0.6 + (0.45 - getPhase()*0.05) * n, () => {
+          for (let i = 0; i < 2; i++) {
+            let eye = markEyes()[i];
+            add([
+              pos(eye),
+              anchor('left'),
+              sprite('laser', { anim: 'beam' }),
+              scale(SCALE/500 / 2),
+              area({ scale: vec2(1, 0.2) }),
+              lifespan(1.5),
+              rotate(player.pos.angle(eye)),
+              z(Z.projectiles),
+              "laser",
+              {
+                dir: deg2rad( player.pos.angle(eye) ),
+              }
+            ]);
+          };
         });
-        wait(laserFinishTime + 0.7 + markAttackExtraDelay(), markAttack);
-      } else if (curAttack == 1) {
-        // MINI MARK
-  
-        let airTime = 1;
-        
-        for (let n = 0; n < 2; n++) {
-          let mm = add([
-            sprite('minimarkEgg', { anim: 'miniEgg' }),
-            pos(mark.pos),
-            z(Z.mark - 2),
-            scale(SCALE/500 / 3),
-            area(),
-            body({ 
-              gravityScale: 0, 
-              mass: 0.75,
-            }),
-            anchor('center'),
-            shader('light', () => ({ 'tint': getShaderTint() })),
-            "minimark",
-            {
-              xVel: 0,
-              spawnDir: n%2==0 ? 1 : -1,
-              spawnTime: timeReal(),
-              canMove: false,
-              health: 2,
-              attackedBy: -1,
-              forceMove: 'none',
-              slash: -1,
-              lastAttack: -1,
-              lastY: -1,
-              isEgg: true,
-            }
-          ]);
+      };
 
-          mm.slash = mm.add([
-            sprite('slash'),
-            pos(400, -30),
-            anchor('center'),
-            scale(vec2(1.8, 3.5)), 
-            area({ 
-              scale: vec2(0.95, 0.22),
-              offset: vec2(0, 90),
-            }), 
-            opacity(0),
-            shader('white'),
-            rotate(270),
-            {
-              attackID: rand(),
-            }
-          ]);
+      let laserFinishTime = 0.6 + (0.45 - getPhase()*0.05) * (2+getPhase());
+      
+      wait(laserFinishTime + 0.3, () => {
+        mark.laserFlare.opacity = 0; 
+      });
+      wait(laserFinishTime + 0.7 + markAttackExtraDelay(), markAttack);
+    } else if (curAttack == 1) {
+      // MINI MARK
 
-          // color change
-          tween(
-            rgb(60, 30, 120),
-            rgb(255,255,255),
-            airTime + 0.25,
-            (c) => mm.color = c,
-            easings.easeInQuart
-          );
-
-          // move away from mark
-          tween(
-        		mm.pos,
-        		mm.pos.add(SCALE * 2.5 * mm.spawnDir, 0),
-        		airTime,
-        		(val) => mm.pos = val,
-        		easings.easeOutCubic,
-        	);
-
-          // size increase
-          let sizeTween = tween(
-        		mm.scale,
-        		vec2(SCALE/500 / 3*2),
-        		airTime + 0.25,
-        		(val) => mm.scale = val,
-        		easings.easeInQuint,
-        	);
-
-          // drop to the ground
-          wait(airTime + 0.3, () => {
-            sizeTween.cancel();
-            mm.gravityScale = 1;
-            minimarkEggOpen(mm.pos, 0.5);
-            mm.scale = mm.scale.scale(0.5);
-            mm.play('miniFall');
-          });
-        };
-        
-        wait(airTime + 4 + markAttackExtraDelay(), markAttack);
-      } else if (curAttack == 2) {
-        // KABOOOOOM BUT BUTTERFLY
-        let spawnT = timeReal();
-
-        let b = add([
-          sprite('butterfly', { anim: 'fly' }),
-          pos(mark.pos.add(0, SCALE*1.25)),
-          z(Z.projectiles),
+      let airTime = 1;
+      
+      for (let n = 0; n < 2; n++) {
+        let mm = add([
+          sprite('minimarkEgg', { anim: 'miniEgg' }),
+          pos(mark.pos),
+          z(Z.mark - 2),
           scale(SCALE/500 / 3),
           area(),
+          body({ 
+            gravityScale: 0, 
+            mass: 0.75,
+          }),
           anchor('center'),
-          shader('butterflySpawn', () => ({
-            'time': timeReal() - spawnT
-          })),
-          rotate(180),
-          "butterfly",
+          shader('light', () => ({ 'tint': getShaderTint() })),
+          "minimark",
           {
-            spawnTime: spawnT,
-            dir: 180 * randi(0,2) + rand(-40, 40),
-            canFly: false,
+            xVel: 0,
+            spawnDir: n%2==0 ? 1 : -1,
+            spawnTime: timeReal(),
+            canMove: false,
+            health: 2,
+            attackedBy: -1,
+            forceMove: 'none',
+            slash: -1,
+            lastAttack: -1,
+            lastY: -1,
+            isEgg: true,
           }
         ]);
 
-        b.glow = b.add([
-          sprite('butterflyGlow', { anim: 'fly' }),
+        mm.slash = mm.add([
+          sprite('slash'),
+          pos(400, -30),
           anchor('center'),
+          scale(vec2(1.8, 3.5)), 
+          area({ 
+            scale: vec2(0.95, 0.22),
+            offset: vec2(0, 90),
+          }), 
           opacity(0),
+          shader('white'),
+          rotate(270),
+          {
+            attackID: rand(),
+          }
         ]);
 
-        b.areaGlow = add([
-          sprite('whiteGlow'),
-          anchor('center'),
-          opacity(0),
-          pos(b.pos),
-          z(Z.projectiles - 1),
-          scale(SCALE/500 * 2/3),
-        ]);
-
-        // funky smoke spawn effect
-        for (let i = 0; i < 6; i++) {
-          add([
-    	  		sprite('puff'),
-    	  		pos(b.pos),
-      			opacity(0.5),  
-    	  		move(rand(0,360), SCALE*rand(0.15,0.25)),
-    	  		scale(SCALE/500 *rand(0.25,0.5)),
-    	  		anchor('center'),  
-    	  		z(Z.projectiles + 1),
-    	  		rotate(randi(0,360)),
-    		  	"puff"
-    	  	]);
-        };
-        
-        // TWEEN BUTTER ANGLE
-
+        // color change
         tween(
-      		b.angle,
-      		player.pos.angle(b.pos) + 90,
-      		1,
-      		(val) => b.angle = val,
-      		easings.easeInOutCubic,
-      	);
+          rgb(60, 30, 120),
+          rgb(255,255,255),
+          airTime + 0.25,
+          (c) => mm.color = c,
+          easings.easeInQuart
+        );
 
-        wait(1, () => {
-          b.use(
-            shader('light', () => ({ 'tint': getShaderTint() }))
-          );
+        // move away from mark
+        tween(
+          mm.pos,
+          mm.pos.add(SCALE * 2.5 * mm.spawnDir, 0),
+          airTime,
+          (val) => mm.pos = val,
+          easings.easeOutCubic,
+        );
 
-          b.canFly = true;
+        // size increase
+        let sizeTween = tween(
+          mm.scale,
+          vec2(SCALE/500 / 3*2),
+          airTime + 0.25,
+          (val) => mm.scale = val,
+          easings.easeInQuint,
+        );
+
+        // drop to the ground
+        wait(airTime + 0.3, () => {
+          sizeTween.cancel();
+          mm.gravityScale = 1;
+          minimarkEggOpen(mm.pos, 0.5);
+          mm.scale = mm.scale.scale(0.5);
+          mm.play('miniFall');
         });
-        
-        wait(1.6 + markAttackExtraDelay(), markAttack)
-      } else if (curAttack == 3) {
-        // M E G A MINI MARK
-  
-        let airTime = 1;
-        
-        for (let n = 0; n < 2; n++) {
-          let mm = add([
-            sprite('minimarkEgg', { anim: 'megaEgg' }),
-            pos(mark.pos),
-            z(Z.mark - 2),
-            scale(SCALE/500 / 3*2),
-            area({
-              scale: vec2(0.85, 0.65),
-              offset: vec2(0, 88),
-            }),
-            body({ 
-              gravityScale: 0, 
-              mass: 1.25,
-            }),
-            anchor('center'),
-            shader('light', () => ({ 'tint': getShaderTint() })),
-            rotate(0),
-            "minimark",
-            "megaMinimark",
-            {
-              xVel: 0,
-              spawnDir: n%2==0 ? 1 : -1,
-              spawnTime: timeReal(),
-              canMove: false,
-              health: 4,
-              attackedBy: -1,
-              forceMove: 'none',
-              extra: -1,
-              lastAttack: -1,
-              lastY: -1,
-              isEgg: true,
-            }
-          ]);
-
-          mm.extra = add([
-            sprite('megaMinimarkExtras'),
-            anchor('center'),
-            opacity(0),
-            scale(SCALE/500 / 3*2),
-            z(Z.player - 1),
-            rotate(0),
-            shader('light', () => ({ 'tint': getShaderTint() })),
-          ]);
-
-          // color change
-          tween(
-            rgb(60, 30, 120),
-            rgb(255,255,255),
-            airTime + 0.25,
-            (c) => mm.color = c,
-            easings.easeInQuart
-          );
-
-          // move away from mark
-          tween(
-        		mm.pos,
-        		mm.pos.add(SCALE * 2.5 * mm.spawnDir, 0),
-        		airTime,
-        		(val) => mm.pos = val,
-        		easings.easeOutCubic,
-        	);
-
-          // size change
-          let sizeTween = tween(
-        		mm.scale,
-        		vec2(SCALE/500 / 3*2*2),
-        		airTime + 0.25,
-        		(val) => mm.scale = val,
-        		easings.easeInQuint,
-        	);
-
-          // drop down
-          wait(airTime + 0.3, () => {
-            sizeTween.cancel();
-            mm.gravityScale = 1;
-            minimarkEggOpen(mm.pos, 0.65);
-            mm.scale = mm.scale.scale(0.5);
-            mm.play('megaFall');
-          });
-        };
-        
-        wait(airTime + 4 + markAttackExtraDelay(), markAttack);
-      } else if (curAttack == 4) {
-        // THE EGG
-
-        // mark shake
-        let shakeCount = 16;
-        let shakeMagnitude = 1/15;
-        
-        for (let i = 0; i < shakeCount; i++) {
-          let smModified = shakeMagnitude * (i+1) / shakeCount; // increase shake as time passes
-          
-          wait(0.1 * i, () => {
-            mark.pos = mark.pos.sub(SCALE * smModified, 0); // left
-          });
-          wait(0.05 + 0.1*i, () => {
-            mark.pos = mark.pos.add(SCALE * smModified, 0); // right
-          });
-        };
-
-        wait(0.1*shakeCount, () => {
-          add([
-            sprite('egg'),
-            pos(mark.pos),
-            z(Z.mark - 1),
-            scale(SCALE/500 / 1.5),
-            area({ 
-              collisionIgnore: ['minimark', 'player'],
-              scale: vec2(0.65, 1),
-            }),
-            body(),
-            anchor('center'),
-            shader('light', () => ({ 'tint': getShaderTint() })),
-            "egg",
-          ]);
-        });
-          
-        wait(0.7 + 0.1*shakeCount + markAttackExtraDelay(), markAttack);
       };
-    });
+      
+      wait(airTime + 4 + markAttackExtraDelay(), markAttack);
+    } else if (curAttack == 2) {
+      // KABOOOOOM BUT BUTTERFLY
+      let spawnT = timeReal();
+
+      let b = add([
+        sprite('butterfly', { anim: 'fly' }),
+        pos(mark.pos.add(0, SCALE*1.25)),
+        z(Z.projectiles),
+        scale(SCALE/500 / 3),
+        area(),
+        anchor('center'),
+        shader('butterflySpawn', () => ({
+          'time': timeReal() - spawnT
+        })),
+        rotate(180),
+        "butterfly",
+        {
+          spawnTime: spawnT,
+          dir: 180 * randi(0,2) + rand(-40, 40),
+          canFly: false,
+        }
+      ]);
+
+      b.glow = b.add([
+        sprite('butterflyGlow', { anim: 'fly' }),
+        anchor('center'),
+        opacity(0),
+      ]);
+
+      b.areaGlow = add([
+        sprite('whiteGlow'),
+        anchor('center'),
+        opacity(0),
+        pos(b.pos),
+        z(Z.projectiles - 1),
+        scale(SCALE/500 * 2/3),
+      ]);
+
+      // funky smoke spawn effect
+      for (let i = 0; i < 6; i++) {
+        add([
+          sprite('puff'),
+          pos(b.pos),
+          opacity(0.5),  
+          move(rand(0,360), SCALE*rand(0.15,0.25)),
+          scale(SCALE/500 *rand(0.25,0.5)),
+          anchor('center'),  
+          z(Z.projectiles + 1),
+          rotate(randi(0,360)),
+          "puff"
+        ]);
+      };
+      
+      // TWEEN BUTTER ANGLE
+
+      tween(
+        b.angle,
+        player.pos.angle(b.pos) + 90,
+        1,
+        (val) => b.angle = val,
+        easings.easeInOutCubic,
+      );
+
+      wait(1, () => {
+        b.use(
+          shader('light', () => ({ 'tint': getShaderTint() }))
+        );
+
+        b.canFly = true;
+      });
+      
+      wait(1.6 + markAttackExtraDelay(), markAttack)
+    } else if (curAttack == 3) {
+      // M E G A MINI MARK
+
+      let airTime = 1;
+      
+      for (let n = 0; n < 2; n++) {
+        let mm = add([
+          sprite('minimarkEgg', { anim: 'megaEgg' }),
+          pos(mark.pos),
+          z(Z.mark - 2),
+          scale(SCALE/500 / 3*2),
+          area({
+            scale: vec2(0.85, 0.65),
+            offset: vec2(0, 88),
+          }),
+          body({ 
+            gravityScale: 0, 
+            mass: 1.25,
+          }),
+          anchor('center'),
+          shader('light', () => ({ 'tint': getShaderTint() })),
+          rotate(0),
+          "minimark",
+          "megaMinimark",
+          {
+            xVel: 0,
+            spawnDir: n%2==0 ? 1 : -1,
+            spawnTime: timeReal(),
+            canMove: false,
+            health: 4,
+            attackedBy: -1,
+            forceMove: 'none',
+            extra: -1,
+            lastAttack: -1,
+            lastY: -1,
+            isEgg: true,
+          }
+        ]);
+
+        mm.extra = add([
+          sprite('megaMinimarkExtras'),
+          anchor('center'),
+          opacity(0),
+          scale(SCALE/500 / 3*2),
+          z(Z.player - 1),
+          rotate(0),
+          shader('light', () => ({ 'tint': getShaderTint() })),
+        ]);
+
+        // color change
+        tween(
+          rgb(60, 30, 120),
+          rgb(255,255,255),
+          airTime + 0.25,
+          (c) => mm.color = c,
+          easings.easeInQuart
+        );
+
+        // move away from mark
+        tween(
+          mm.pos,
+          mm.pos.add(SCALE * 2.5 * mm.spawnDir, 0),
+          airTime,
+          (val) => mm.pos = val,
+          easings.easeOutCubic,
+        );
+
+        // size change
+        let sizeTween = tween(
+          mm.scale,
+          vec2(SCALE/500 / 3*2*2),
+          airTime + 0.25,
+          (val) => mm.scale = val,
+          easings.easeInQuint,
+        );
+
+        // drop down
+        wait(airTime + 0.3, () => {
+          sizeTween.cancel();
+          mm.gravityScale = 1;
+          minimarkEggOpen(mm.pos, 0.65);
+          mm.scale = mm.scale.scale(0.5);
+          mm.play('megaFall');
+        });
+      };
+      
+      wait(airTime + 4 + markAttackExtraDelay(), markAttack);
+    } else if (curAttack == 4) {
+      // THE EGG
+
+      // mark shake
+      let shakeCount = 16;
+      let shakeMagnitude = 1/15;
+      
+      for (let i = 0; i < shakeCount; i++) {
+        let smModified = shakeMagnitude * (i+1) / shakeCount; // increase shake as time passes
+        
+        wait(0.1 * i, () => {
+          mark.pos = mark.pos.sub(SCALE * smModified, 0); // left
+        });
+        wait(0.05 + 0.1*i, () => {
+          mark.pos = mark.pos.add(SCALE * smModified, 0); // right
+        });
+      };
+
+      wait(0.1*shakeCount, () => {
+        add([
+          sprite('egg'),
+          pos(mark.pos),
+          z(Z.mark - 1),
+          scale(SCALE/500 / 1.5),
+          area({ 
+            collisionIgnore: ['minimark', 'player'],
+            scale: vec2(0.65, 1),
+          }),
+          body(),
+          anchor('center'),
+          shader('light', () => ({ 'tint': getShaderTint() })),
+          "egg",
+        ]);
+      });
+        
+      wait(0.7 + 0.1*shakeCount + markAttackExtraDelay(), markAttack);
+    };
+  };
+
+  function markAttackSmoke() {
     
   };
 
