@@ -41,6 +41,14 @@ loadFont('nerko', 'fonts/NerkoOne.ttf');
 loadFont('titillium', 'fonts/TitilliumWeb.ttf');
 loadFont('itim', 'fonts/Itim.ttf');
 
+loadRoot('sprites/scene');
+
+ls('background');
+ls('platformBack');
+ls('platformFront');
+ls('shading');
+ls('torches', { sliceY: 2 });
+
 loadRoot('sprites/');
 
 ls('mark', {
