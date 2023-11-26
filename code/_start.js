@@ -41,7 +41,7 @@ loadFont('nerko', 'fonts/NerkoOne.ttf');
 loadFont('titillium', 'fonts/TitilliumWeb.ttf');
 loadFont('itim', 'fonts/Itim.ttf');
 
-loadRoot('sprites/scene');
+loadRoot('sprites/scene/');
 
 ls('background');
 ls('platformBack');
