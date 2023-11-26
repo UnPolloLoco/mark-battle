@@ -110,6 +110,7 @@ scene('game', () => {
     sprite('background'),
     pos(0,0),
     z(Z.bg),
+    scale(SCALE/50),
   ]);
 
   // back platform
@@ -117,6 +118,7 @@ scene('game', () => {
     sprite('platformBack'),
     pos(0,0),
     z(Z.bg + 1),
+    scale(SCALE/50),
   ]);
 
   // shading
@@ -124,6 +126,7 @@ scene('game', () => {
     sprite('shading'),
     pos(0,0),
     z(Z.bg + 2),
+    scale(SCALE/50),
   ]);
   
   // torches
@@ -131,6 +134,7 @@ scene('game', () => {
     sprite('torches', { anim: 'flicker' }),
     pos(0,0),
     z(Z.bg + 3),
+    scale(SCALE/50),
   ]);
   
   // front platform (not bg)
@@ -138,6 +142,7 @@ scene('game', () => {
     sprite('platformFront'),
     pos(0,0),
     z(Z.tiles),
+    scale(SCALE/50),
   ]);
 
   ///////////////////////////////////////
@@ -147,10 +152,8 @@ scene('game', () => {
   // underground shake proofer
   add([
     rect(width() + SCALE*4, SCALE*4),
-    pos(-SCALE*2, height() - SCALE/3),
-    color(rgb(130,130,130)),
-    z(Z.bg),
-    shader('light', () => ({ 'tint': getShaderTint() })),
+    pos(-SCALE*2, height() - SCALE/8),
+    opacity(0),
     area(),
     body({ isStatic: true }),
   ]);
@@ -172,7 +175,7 @@ scene('game', () => {
   
   add([
     rect(width()*1.5, SCALE),
-    pos(width(), height() - SCALE*0.375),
+    pos(width()/2, height() - SCALE*0.375),
     anchor('top'),
     color(BLACK),
     area(),
