@@ -191,6 +191,7 @@ scene('game', () => {
     area(),
     body({ isStatic: true }),
     opacity(0),
+    "laserBreak",
   ]);
 
   // right platform hitbox 
@@ -202,6 +203,7 @@ scene('game', () => {
     area(),
     body({ isStatic: true }),
     opacity(0),
+    "laserBreak",
   ]);
 
   // left platform hitbox 
@@ -214,6 +216,7 @@ scene('game', () => {
     area(),
     body({ isStatic: true }),
     opacity(0),
+    "laserBreak",
   ]);
 
   ////////////////
