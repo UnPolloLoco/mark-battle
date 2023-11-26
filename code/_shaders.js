@@ -4,10 +4,29 @@ loadShader('clear', null, `
   }
 `);
 
+loadShader('vignette', null, `
+  vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
+    vec4 c = def_frag();
+	
+    float dist = distance(pos, vec2(0, 0));
+    float alpha = smoothstep(0.0, 1.0,
+      1.0 - (max(0.0, dist - 0.8) * 1.2)
+    );
+  	alpha *= alpha;
+  	alpha = 1.0 - alpha;
+	
+    return vec4( 
+      0.0, 0.0, 0.0, 
+	    alpha
+    );
+  }
+`);
+
 loadShader('light', null, `
   uniform float tint;
 
   vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
+    /*
     vec4 c = def_frag();
     float dist = distance(pos, vec2(0, 0));
     float alpha = smoothstep(0.0, 1.0,
@@ -19,6 +38,9 @@ loadShader('light', null, `
       c.b * alpha * (1.0 + tint),
       c.a
     );
+    */
+
+    return def_frag();
   }
 `);
 
