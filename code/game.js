@@ -173,7 +173,7 @@ scene('game', () => {
   add([
     rect(width()*1.5, SCALE),
     pos(width(), height() - SCALE*0.375),
-    origin('top'),
+    anchor('top'),
     color(BLACK),
     area(),
     body({ isStatic: true }),
@@ -196,7 +196,7 @@ scene('game', () => {
   add([
     rect(SCALE*1.875, SCALE/4),
     pos(center().add(-SCALE*1.25, SCALE*1.375)),
-    origin('topright'),
+    anchor('topright'),
     color(BLACK),
     area(),
     body({ isStatic: true }),
