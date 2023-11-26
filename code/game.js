@@ -110,7 +110,7 @@ scene('game', () => {
     sprite('background'),
     pos(0,0),
     z(Z.bg),
-    scale(SCALE/50),
+    scale(SCALE/120),
   ]);
 
   // back platform
@@ -118,7 +118,7 @@ scene('game', () => {
     sprite('platformBack'),
     pos(0,0),
     z(Z.bg + 1),
-    scale(SCALE/50),
+    scale(SCALE/120),
   ]);
 
   // shading
@@ -126,7 +126,7 @@ scene('game', () => {
     sprite('shading'),
     pos(0,0),
     z(Z.bg + 2),
-    scale(SCALE/50),
+    scale(SCALE/120),
   ]);
   
   // torches
@@ -134,7 +134,7 @@ scene('game', () => {
     sprite('torches', { anim: 'flicker' }),
     pos(0,0),
     z(Z.bg + 3),
-    scale(SCALE/50),
+    scale(SCALE/120),
   ]);
   
   // front platform (not bg)
@@ -142,7 +142,7 @@ scene('game', () => {
     sprite('platformFront'),
     pos(0,0),
     z(Z.tiles),
-    scale(SCALE/50),
+    scale(SCALE/120),
   ]);
 
   ///////////////////////////////////////
