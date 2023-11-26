@@ -94,7 +94,7 @@ scene('game', () => {
   // background //
   ////////////////
   
-  add([
+  /*add([
     pos(0,0),
     rect(width(), height()),
     fixed(),
@@ -103,21 +103,46 @@ scene('game', () => {
       'tint': getShaderTint(),
   	})),
     z(Z.bg),
+  ]);*/
+
+  // main background image
+  add([
+    sprite('background'),
+    pos(0,0),
+    z(Z.bg),
+  ]);
+
+  // back platform
+  add([
+    sprite('platformBack'),
+    pos(0,0),
+    z(Z.bg + 1),
+  ]);
+
+  // shading
+  add([
+    sprite('shading'),
+    pos(0,0),
+    z(Z.bg + 2),
   ]);
   
-  // bricks
-  for (let r = -1; r <= 6; r++) {
-    for (let c = -1; c <= 10; c++) {
-      add([
-        sprite('bgBlock'),
-        opacity(0.08),
-        pos(SCALE*c, SCALE*r),
-        z(Z.bg),
-        scale(SCALE/500),
-        shader('light', () => ({ 'tint': getShaderTint(), })),
-      ]);
-    };
-  }; 
+  // torches
+  add([
+    sprite('torches', { anim: 'flicker' }),
+    pos(0,0),
+    z(Z.bg + 3),
+  ]);
+  
+  // front platform (not bg)
+  add([
+    sprite('platformFront'),
+    pos(0,0),
+    z(Z.tiles),
+  ]);
+
+  ///////////////////////////////////////
+  // movement restrictors (nerd emoji) //
+  ///////////////////////////////////////
   
   // underground shake proofer
   add([
@@ -142,6 +167,41 @@ scene('game', () => {
 	    "border",
     ]);
   };
+
+  // ground hitbox 
+  
+  add([
+    rect(width()*1.5, SCALE),
+    pos(width(), height() - SCALE*0.375),
+    origin('top'),
+    color(BLACK),
+    area(),
+    body({ isStatic: true }),
+    opacity(0),
+  ]);
+
+  // right platform hitbox 
+  
+  add([
+    rect(SCALE*1.875, SCALE/4),
+    pos(center().add(SCALE*1.25, SCALE*1.375)),
+    color(BLACK),
+    area(),
+    body({ isStatic: true }),
+    opacity(0),
+  ]);
+
+  // left platform hitbox 
+  
+  add([
+    rect(SCALE*1.875, SCALE/4),
+    pos(center().add(-SCALE*1.25, SCALE*1.375)),
+    origin('topright'),
+    color(BLACK),
+    area(),
+    body({ isStatic: true }),
+    opacity(0),
+  ]);
 
   ////////////////
   // pause "ui" //
@@ -431,100 +491,6 @@ scene('game', () => {
   
   setGravity(SCALE * 24);
   
-  ///////////
-  // level //
-  ///////////
-
-  const level = [
-    '      #####>        #####>      ',
-    '                                ',
-    '                                ',
-    '                                ',
-    '################################',
-  ];
-  
-  const levelConf = {
-    tileWidth: SCALE/3,
-    tileHeight: SCALE/3,
-    pos: vec2(-SCALE/3, SCALE * 13/3),
-    tiles: {
-      "#": () => [
-        sprite('block'),
-        area(),
-        body({ isStatic: true }),
-        anchor('topleft'),
-        scale(SCALE/500 / 3),
-        shader('light', () => ({ 'tint': getShaderTint() })),
-        z(Z.tiles),
-        "block",
-        { style: 'block' }
-      ],
-      ">": () => [
-        sprite('rightBlock'),
-        area(),
-        body({ isStatic: true }),
-        anchor('topleft'),
-        scale(SCALE/500 / 3),
-        shader('light', () => ({ 'tint': getShaderTint() })),
-        z(Z.tiles), 
-        "block",
-        { style: 'rightBlock' }
-      ],
-    },
-  };
-  
-  const levelObject = addLevel(level, levelConf);
-  
-  // adding the... actual blocks
-  let theFilthyKids = levelObject.children;
-  for (let j = 0; j < 2; j++) {
-    for (let i = 0; i < theFilthyKids.length; i++) {
-      let obj = theFilthyKids[i];
-      if (j == 0) {
-        // block border
-        add([
-          rect(SCALE/3 + SCALE/25, SCALE/3 + SCALE/25),
-          pos(obj.pos
-            .add(-SCALE/3, SCALE*13/3)
-            .sub(SCALE/50, SCALE/50)
-          ),
-          z(Z.tiles - 1),
-          color(BLACK),
-          "newLevelBlock"
-        ]);
-        // add the block
-        add([
-          sprite(obj.style),
-          pos(obj.pos.add(-SCALE/3, SCALE*13/3)),
-          scale(SCALE/500 / 3),
-          z(Z.tiles),
-          area(),
-          body({ isStatic: true }),
-          shader('light', () => ({ 'tint': getShaderTint() })),
-          "laserBreak",
-          "newLevelBlock"
-        ]);
-        // block shadow
-        if (obj.pos.y < SCALE) {
-          add([
-            rect(SCALE/3, SCALE*3),
-            pos(obj.pos
-              .add(-SCALE/3, SCALE*14/3)
-            ),
-            z(Z.tiles - 2),
-            color(rgb(20,20,20)),
-            opacity(0.2),
-            shader('light', () => ({ 'tint': getShaderTint() })),
-            "newLevelBlock"
-          ]);
-        };
-      // murder the block
-      } else {
-        destroy(theFilthyKids[i]);
-      };
-    };
-  };
-  
   ////////////////
   // health bar //
   ////////////////
@@ -638,20 +604,6 @@ scene('game', () => {
         markAttack();
       });
     };
-  });
-
-  onKeyPress('z', () => {
-    add([
-      sprite('tempBG'),
-      pos(0,0),
-      z(Z.bg + 1),
-      scale(SCALE/640 * 10),
-      "tempBG",
-    ]);
-
-    get('newLevelBlock').forEach((b) => {
-      b.use(opacity(0));
-    });
   });
 
   // keyboard jump
