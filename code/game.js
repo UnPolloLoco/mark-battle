@@ -790,25 +790,33 @@ scene('game', () => {
 
     let phase = getPhase();
     let moveTime = 0.8 - 0.15*(phase - 1);
-    
-    tween(
-      mark.pos,
-      newMarkPos(),
-      moveTime,
-      (val) => mark.pos = val,
-      easings.easeInOutQuad,
-    );
 
     if (phase < 5) {
-      // MAIN ATTACK LINK
+      
+      // ---------- MAIN ATTACK LINK ---------- 
+      
+      let curAttack = maNum % (phase + 1);
+
+      if (mark.movementTween) mark.movementTween.cancel();
+      
+      mark.movementTween = tween(
+        mark.pos,
+        newMarkPos(curAttack),
+        moveTime,
+        (val) => mark.pos = val,
+        easings.easeInOutQuad,
+      );
+      
       wait(moveTime + 0.4, () => {
-        let curAttack = maNum % (phase + 1);
         markAttackMain(curAttack);
       });
     } else {
-      // SMOKE ATTACK LINK
+      
+      // ---------- SMOKE ATTACK LINK ---------- 
+      
+      let curAttack = maNum % 3;
+      
       wait(moveTime + 0.4, () => {
-        let curAttack = maNum % 3;
         markAttackSmoke(curAttack);
       });
     }
