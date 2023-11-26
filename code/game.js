@@ -90,9 +90,9 @@ scene('game', () => {
   };
 
   
-  ////////////////
-  // background //
-  ////////////////
+  ////////////////////////////////
+  // background + scene effects //
+  ////////////////////////////////
   
   /*add([
     pos(0,0),
@@ -143,6 +143,16 @@ scene('game', () => {
     pos(0,0),
     z(Z.tiles),
     scale(SCALE/120),
+  ]);
+
+  // vignette
+
+  add([
+    pos(0,0),
+    rect(width(), height()),
+    color(RED),
+    z(Z.ui - 10),
+    shader('vignette'),
   ]);
 
   ///////////////////////////////////////
