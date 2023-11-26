@@ -793,7 +793,7 @@ scene('game', () => {
     
     tween(
       mark.pos,
-      newMarkPos(curAttack),
+      newMarkPos(),
       moveTime,
       (val) => mark.pos = val,
       easings.easeInOutQuad,
