@@ -47,7 +47,16 @@ ls('background');
 ls('platformBack');
 ls('platformFront');
 ls('shading');
-ls('torches', { sliceY: 2 });
+ls('torches', {
+  sliceY: 2,
+  anims: {
+    flicker: {
+      from: 0, to: 1,
+      speed: 8,
+      loop: true,
+    }
+  }
+});
 
 loadRoot('sprites/');
 
