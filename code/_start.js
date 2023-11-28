@@ -33,8 +33,6 @@ const EGG_SLOWDOWN = 0.12;
 const EGG_JUMP_SLOWDOWN = 0.25;
 const TOUCH = isTouchscreen();
 
-loadSprite('tempBG', 'https://i.ibb.co/ZxrmpQt/IMG-0315.png');
-
 loadFont('playfair', 'fonts/PlayfairDisplay.ttf');
 loadFont('reenieBeanie', 'fonts/ReenieBeanie.ttf');
 loadFont('nerko', 'fonts/NerkoOne.ttf');
