@@ -500,7 +500,7 @@ scene('game', () => {
       anchor('center'),
     ]);
 
-    SCORING.points++;
+    SCORING.points += 10;
   };
 
   // constants
@@ -1267,9 +1267,9 @@ scene('game', () => {
     		.unit().scale(-SCALE)
     	);
 
-      // one point gets added by clashEffect,
-      // so hitting mark adds two
-      SCORING.points++;
+      // ten points get added by clashEffect,
+      // so hitting mark adds 20
+      SCORING.points += 10;
       
       clashEffect(clashPos, 3);
       
