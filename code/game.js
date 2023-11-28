@@ -1763,6 +1763,14 @@ scene('game', () => {
       }));
     };
 
+    ///////////////
+    // WIN EVENT //
+    ///////////////
+
+    if (mark.health <= 0 && player.health > 0) {
+      go('win');
+    };
+
     // NEEDS TO BE BUILT-IN TIME
     TIME_REAL_INFO.counter = builtinTime() - TIME_REAL_INFO.offset;
     
