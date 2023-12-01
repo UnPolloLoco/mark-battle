@@ -622,6 +622,12 @@ scene('game', () => {
     };
   });
 
+  onKeyPress('z', () => {
+    get('markSpawn').forEach((s) => {
+      destroy(s);
+    });
+  });
+
   // keyboard jump
   
   onKeyDown("w", () => {
@@ -810,6 +816,7 @@ scene('game', () => {
               rotate(player.pos.angle(eye)),
               z(Z.projectiles),
               "laser",
+              "markSpawn",
               {
                 dir: deg2rad( player.pos.angle(eye) ),
               }
@@ -843,6 +850,7 @@ scene('game', () => {
           anchor('center'),
           shader('light', () => ({ 'tint': getShaderTint() })),
           "minimark",
+          "markSpawn",
           {
             xVel: 0,
             spawnDir: n%2==0 ? 1 : -1,
@@ -929,6 +937,7 @@ scene('game', () => {
         })),
         rotate(180),
         "butterfly",
+          "markSpawn",
         {
           spawnTime: spawnT,
           dir: 180 * randi(0,2) + rand(-40, 40),
@@ -1009,6 +1018,7 @@ scene('game', () => {
           rotate(0),
           "minimark",
           "megaMinimark",
+          "markSpawn",
           {
             xVel: 0,
             spawnDir: n%2==0 ? 1 : -1,
@@ -1104,6 +1114,7 @@ scene('game', () => {
           anchor('center'),
           shader('light', () => ({ 'tint': getShaderTint() })),
           "egg",
+          "markSpawn",
         ]);
       });
         
