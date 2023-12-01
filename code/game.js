@@ -206,7 +206,7 @@ scene('game', () => {
   
   add([
     rect(SCALE*1.875, SCALE/4),
-    pos(center().add(SCALE*1.25, SCALE*1.375)),
+    pos(center().add(SCALE*1.25, SCALE*1.36)),
     color(BLACK),
     area(),
     body({ isStatic: true }),
@@ -218,7 +218,7 @@ scene('game', () => {
   
   add([
     rect(SCALE*1.875, SCALE/4),
-    pos(center().add(-SCALE*1.25, SCALE*1.375)),
+    pos(center().add(-SCALE*1.25, SCALE*1.36)),
     anchor('topright'),
     color(BLACK),
     area(),
