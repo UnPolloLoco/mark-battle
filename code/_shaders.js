@@ -12,7 +12,6 @@ loadShader('vignette', null, `
     float alpha = smoothstep(0.0, 1.0,
       1.0 - (max(0.0, dist - 0.8) * 1.2)
     );
-  	alpha *= alpha;
   	alpha = 1.0 - alpha;
 	
     return vec4( 
