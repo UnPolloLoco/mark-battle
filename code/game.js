@@ -1007,13 +1007,13 @@ scene('game', () => {
       
       for (let n = 0; n < 2; n++) {
         let mm = add([
-          sprite('minimarkEgg', { anim: 'megaEgg' }),
+          sprite('minimarkEgg', { anim: 'megaEgg' }), // mega egga :)))
           pos(mark.pos),
           z(Z.mark - 2),
           scale(SCALE/500 / 3*2),
           area({
             scale: vec2(0.85, 0.65),
-            offset: vec2(0, 88),
+            offset: vec2(0, 135),
           }),
           body({ 
             gravityScale: 0, 
