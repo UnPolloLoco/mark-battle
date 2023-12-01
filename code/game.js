@@ -1042,6 +1042,7 @@ scene('game', () => {
           z(Z.player - 1),
           rotate(0),
           shader('light', () => ({ 'tint': getShaderTint() })),
+          "markSpawn",
         ]);
 
         // color change
