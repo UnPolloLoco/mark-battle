@@ -89,6 +89,14 @@ scene('game', () => {
     };
   };
 
+  ////
+
+  function clearMarkSpawns() {
+    get('markSpawn').forEach((s) => {
+      destroy(s);
+    });
+  };
+
   
   ////////////////////////////////
   // background + scene effects //
@@ -623,9 +631,7 @@ scene('game', () => {
   });
 
   onKeyPress('z', () => {
-    get('markSpawn').forEach((s) => {
-      destroy(s);
-    });
+    clearMarkSpawns();
   });
 
   // keyboard jump
