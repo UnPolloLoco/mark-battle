@@ -287,12 +287,12 @@ scene('game', () => {
   for (let i = 0; i < 3; i++) {
     add([
       text('', { 
-        size: SCALE/3,
+        size: SCALE/4,
         font: 'itim',
       }),
       pos(
-        width() - SCALE/3, 
-        height() - SCALE/3 - SCALE*i*0.375
+        width() - SCALE/4, 
+        height() - SCALE/4 - SCALE*i*0.285
       ),
       anchor('botright'),
       color(WHITE),
@@ -300,7 +300,7 @@ scene('game', () => {
       "pauseUI",
       "pauseStats",
       {
-        trueOpacity: 0.9,
+        trueOpacity: 0.6,
         labelType: [
           'points',
           'completion',
