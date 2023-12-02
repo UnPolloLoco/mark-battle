@@ -24,6 +24,7 @@ scene('game', () => {
   const SCORING = {
     points: 0,
     completion: 0,
+    timer: 0,
   };
   
 
@@ -73,6 +74,22 @@ scene('game', () => {
         TIME_REAL_INFO.lastPause = builtinTime();
         get('pauseUI').forEach((p) => {
           p.opacity = p.trueOpacity;
+
+          if (p.is('pauseStats')) {
+            if (p.labelType == 'time') {
+              let m = Math.floor(timeReal() / 60);
+              let s = Math.floor(timeReal() % 60);
+              s = s < 10 ? '0'+s : s;
+              
+              p.text = `${m}:${s} elapsed`;
+              
+            } else if (p.labelType == 'completion') {
+              p.text = `${SCORING.completion}% complete`;
+              
+            } else if (p.labelType == 'points') {
+              p.text = `${SCORING.points} points`;
+            };
+          };
         });
       } else {
         // unpaused
@@ -231,6 +248,8 @@ scene('game', () => {
   // pause "ui" //
   ////////////////
 
+  // pause menu dim
+  
   add([
     rect(width(), height()),
     pos(0,0),
@@ -244,6 +263,8 @@ scene('game', () => {
     }
   ]);
 
+  // pause icon bars
+  
   for (let i = 0; i <= 2; i += 2) {
     add([
       pos(center().add(
@@ -257,6 +278,34 @@ scene('game', () => {
       "pauseUI", 
       {
         trueOpacity: 0.9,
+      }
+    ]);
+  };
+
+  // stats display
+
+  for (let i = 0; i < 3; i++) {
+    add([
+      text('', { 
+        size: SCALE/3,
+        font: 'itim',
+      }),
+      pos(
+        width() - SCALE/3, 
+        height() - SCALE/3 - SCALE*i*0.375
+      ),
+      anchor('botright'),
+      color(WHITE),
+      z(Z.pause + 1),
+      "pauseUI",
+      "pauseStats",
+      {
+        trueOpacity: 0.9,
+        labelType: [
+          'points',
+          'completion',
+          'time'
+        ][i];
       }
     ]);
   };
@@ -1792,6 +1841,7 @@ scene('game', () => {
     // NEEDS TO BE BUILT-IN TIME
     TIME_REAL_INFO.counter = builtinTime() - TIME_REAL_INFO.offset;
     
+    SCORING.timer = timeReal();
   };
   // end of un-paused checker thingy
     
