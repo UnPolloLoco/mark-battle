@@ -1852,7 +1852,7 @@ scene('game', () => {
     ///////////////////
 
     if (redDamageOverlay.opacity > 0) {
-      redDamageOverlay.opacity -= dt();
+      redDamageOverlay.opacity -= dt() * 0.5;
     };
     
     ///////////////
