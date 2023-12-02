@@ -305,7 +305,7 @@ scene('game', () => {
           'points',
           'completion',
           'time'
-        ][i];
+        ][i],
       }
     ]);
   };
