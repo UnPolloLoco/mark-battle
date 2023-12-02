@@ -114,6 +114,12 @@ scene('game', () => {
     });
   };
 
+  ////
+
+  function damagePlayer(amount) {
+    player.health -= amount;
+  };
+
   
   ////////////////////////////////
   // background + scene effects //
@@ -746,7 +752,7 @@ scene('game', () => {
   onCollide('laser', 'laserBreak', (l,g) => {
     if (l.curAnim() == 'beam') {
       if (g.is('player')) {
-        player.health--;
+        damagePlayer(1);
       };
   	  l.play('boom');
       //shake(SCALE/35); one day...
@@ -1198,7 +1204,7 @@ scene('game', () => {
 
   function butterflyExplosion(butter) {
     if (player.pos.dist(butter.pos) < SCALE * 2) {
-      player.health -= 3;
+      damagePlayer(3);
     };
   };
 
@@ -1566,7 +1572,7 @@ scene('game', () => {
       ) {
         player.attackedBy.push(m.slash.attackID);
         player.attackedBy = player.attackedBy.slice(-10);
-        player.health--;
+        damagePlayer(1);
         player.xVel = (player.pos.x - m.pos.x < 0) ? -RUN_SPEED : RUN_SPEED;
       };
 
