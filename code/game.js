@@ -118,7 +118,7 @@ scene('game', () => {
 
   function damagePlayer(amount) {
     player.health -= amount;
-    redDamageOverlay.opacity = 0.15;
+    redDamageOverlay.opacityAlt = 0.15;
   };
 
   
@@ -194,7 +194,12 @@ scene('game', () => {
     rect(width(), height()),
     color(RED),
     z(Z.ui - 11),
-    opacity(0),
+    shader('redOverlay', () => ({
+      'opacity': 0 
+    })),
+    {
+      opacityAlt: 0,
+    }
   ]);
 
   ///////////////////////////////////////
@@ -1852,7 +1857,12 @@ scene('game', () => {
     ///////////////////
 
     if (redDamageOverlay.opacity > 0) {
-      redDamageOverlay.opacity -= dt() * 0.5;
+      redDamageOverlay.opacityAlt -= dt() * 0.5;
+      redDamageOverlay.use(
+        shader('redOverlay', () => ({
+          'opacity': redDamageOverlay.opacityAlt
+        }));
+      )
     };
     
     ///////////////
