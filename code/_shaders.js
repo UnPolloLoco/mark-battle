@@ -196,6 +196,8 @@ loadShader("perishScreenBackground", null, `
 `);
 
 loadShader('redOverlay', null, `
+  uniform float opacity; 
+  
   vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     vec4 c = def_frag();
 	
@@ -203,6 +205,8 @@ loadShader('redOverlay', null, `
     float alpha = smoothstep(0.0, 1.0,
       dist * 0.25 + 0.07
     );
+
+    alpha *= opacity;
 	
     return vec4( 
       1.0, 0.0, 0.0, 
