@@ -45,6 +45,7 @@ ls('background');
 ls('platformBack');
 ls('platformFront');
 ls('shading');
+ls('healthBarShade');
 ls('torches', {
   sliceY: 2,
   anims: {
