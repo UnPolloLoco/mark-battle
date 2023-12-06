@@ -118,7 +118,7 @@ scene('game', () => {
 
   function damagePlayer(amount) {
     player.health -= amount;
-    redDamageOverlay.opacityAlt = 0.5;
+    redDamageOverlay.opacityAlt = 0.7;
   };
 
   
