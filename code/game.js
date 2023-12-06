@@ -596,6 +596,7 @@ scene('game', () => {
     fixed(),
     z(Z.ui),
     sprite('healthBarShade'),
+    scale(SCALE/600 * 10),
   ]);
   
   // empty health bar
@@ -624,6 +625,7 @@ scene('game', () => {
     fixed(),
     z(Z.ui),
     sprite('nameShade'),
+    scale(SCALE/600 * 10),
   ]);
   
   // the name of the evil guy of evilness himself
