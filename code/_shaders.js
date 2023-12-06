@@ -202,6 +202,8 @@ loadShader('redOverlay', null, `
     vec4 c = def_frag();
 	
     float dist = distance(pos, vec2(0, 0));
+    dist *= dist;
+    
     float alpha = smoothstep(0.0, 1.0,
       dist * 0.25 + 0.07
     );
