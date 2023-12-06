@@ -1856,7 +1856,7 @@ scene('game', () => {
     // DAMAGE EFFECT //
     ///////////////////
 
-    if (redDamageOverlay.opacity > 0) {
+    if (redDamageOverlay.opacityAlt > 0) {
       redDamageOverlay.opacityAlt -= dt() * 0.5;
       redDamageOverlay.use(
         shader('redOverlay', () => ({
