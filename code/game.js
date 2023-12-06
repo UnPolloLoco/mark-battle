@@ -591,17 +591,12 @@ scene('game', () => {
   ////////////////
   
   // health bar shadow
-  for (let i = 1; i <= 3; i++) {
-    add([
-      rect(SCALE*6 + SCALE/60*i, SCALE/10 + SCALE/60*i),
-      pos(SCALE*5, SCALE/2),
-      anchor('center'),
-      color(BLACK),
-      opacity(0.18),
-      z(Z.ui),
-      fixed(),
-    ]);
-  };
+  add([
+    pos(0,0),
+    fixed(),
+    z(Z.ui),
+    sprite('healthBarShade'),
+  ]);
   
   // empty health bar
   add([
@@ -622,41 +617,28 @@ scene('game', () => {
     z(Z.ui),
     fixed(),
   ]);
+
+  // name shadow
+  add([
+    pos(0,0),
+    fixed(),
+    z(Z.ui),
+    sprite('nameShade'),
+  ]);
   
-  // health bar label
-  for (let i = 0; i < 9; i++) {
-    let textPos;
-    let textColor;
-    let textOpacity;
-    if (i == 8) {
-      textPos = vec2(0,0);
-      textColor = WHITE;
-      textOpacity = 1;
-    } else {
-      textPos = vec2(
-        Math.cos(Math.PI*2 * i/8),
-        Math.sin(Math.PI*2 * i/8),
-      );
-      textPos = textPos.scale(SCALE/40);
-      textColor = BLACK;
-      textOpacity = 0.1;
-    };
-    for (let j = 1; j <= 3; j++) {
-      add([
-        text('MARK', {
-          size: SCALE/2,  
-          textAlign: 'center',
-          font: 'playfair',
-        }),
-        pos(SCALE*5 + textPos.x*j, SCALE * 1/2 + textPos.y*j),
-        anchor('center'),
-        color(textColor),
-        opacity(textOpacity),
-        z(Z.ui),
-        fixed(),
-      ]);
-    };
-  };
+  // the name of the evil guy of evilness himself
+  add([
+    text('MARK', {
+      size: SCALE/2,  
+      textAlign: 'center',
+      font: 'playfair',
+    }),
+    pos(SCALE*5, SCALE/2),
+    anchor('center'),
+    color(WHITE),
+    z(Z.ui),
+    fixed(),
+  ]);
 	
   /////////////
   // buttons //
