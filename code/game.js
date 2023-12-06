@@ -1861,8 +1861,8 @@ scene('game', () => {
       redDamageOverlay.use(
         shader('redOverlay', () => ({
           'opacity': redDamageOverlay.opacityAlt
-        }));
-      )
+        }))
+      );
     };
     
     ///////////////
