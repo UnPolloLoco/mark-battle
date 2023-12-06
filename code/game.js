@@ -118,7 +118,7 @@ scene('game', () => {
 
   function damagePlayer(amount) {
     player.health -= amount;
-    redDamageOverlay.opacityAlt = 0.15;
+    redDamageOverlay.opacityAlt = 0.5;
   };
 
   
@@ -1857,7 +1857,7 @@ scene('game', () => {
     ///////////////////
 
     if (redDamageOverlay.opacityAlt > 0) {
-      redDamageOverlay.opacityAlt -= dt() * 0.5;
+      redDamageOverlay.opacityAlt -= dt() * 2.5;
       redDamageOverlay.use(
         shader('redOverlay', () => ({
           'opacity': redDamageOverlay.opacityAlt
