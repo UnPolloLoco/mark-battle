@@ -67,6 +67,8 @@ la('headerShading', {
   }
 });
 
+
+
 loadRoot('sprites/');
 
 ls('mark', {
@@ -201,10 +203,10 @@ ls('minimarkEgg', {
 });
 
 ls('laserFlare', {
-  sliceX: 2,
+  sliceX: 3,
   anims: {
     flash: {
-      from: 0, to: 1,
+      from: 1, to: 2,
       speed: 12,
       loop: true,
     }
