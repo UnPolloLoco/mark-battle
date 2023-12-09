@@ -26,6 +26,11 @@ scene('game', () => {
     completion: 0,
     timer: 0,
   };
+
+  const PHASE_STATUS = {
+    activePhase: 1,
+    cutscene: false,
+  }
   
 
   ///////////////
@@ -1801,11 +1806,36 @@ scene('game', () => {
   		};
   	});
 
-    mark.frame = Math.min(3, getPhase() - 1);
+    ///////////////////////
+    // MARK PHASE CHANGE //
+    ///////////////////////
+
+    function setupPhaseChangeCutscene() {
+      PHASE_STATUS.phase += 1;
+      PHASE_STATUS.cutscene = true;
+      
+      phaseChangeCutscene();
+    }
     
-    if (getPhase() == 5) {
-      mark.opacity = 0;
+
+    function phaseChangeCutscene() {
+      mark.frame = Math.min(3, getPhase() - 1);
+      if (getPhase() == 5) {
+        mark.opacity = 0;
+      };
+
+      endPhaseChangeCutscene();
     };
+    
+
+    function endPhaseChangeCutscene() {
+      PHASE_STATUS.cutscene = false;
+    }
+    
+
+    if (getPhase() != PHASE_STATUS.phase) {
+      phaseChangeCutscene();
+    }
 
     /////////////////
     // LOSS EFFECT //
