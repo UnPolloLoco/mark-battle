@@ -45,8 +45,6 @@ ls('background');
 ls('platformBack');
 ls('platformFront');
 ls('shading');
-ls('healthBarShade');
-ls('nameShade');
 ls('torches', {
   sliceY: 2,
   anims: {
@@ -55,6 +53,17 @@ ls('torches', {
       speed: 8,
       loop: true,
     }
+  }
+});
+la('headerShading', {
+  healthBarShade: {
+    x: 0, y: 0,
+    width: 600, height: 75
+  },
+
+  nameShade: {
+    x: 0, y: 75,
+    width: 600, height: 75
   }
 });
 
