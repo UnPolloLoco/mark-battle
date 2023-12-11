@@ -209,7 +209,8 @@ ls('laserFlare', {
       from: 1, to: 2,
       speed: 12,
       loop: true,
-    }
+    },
+    primed: 0,
   }
 });
 
