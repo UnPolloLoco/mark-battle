@@ -870,17 +870,17 @@ scene('game', () => {
 
       tween(
         0, 1,
-        0.5,
+        0.7,
         (val) => mark.laserFlare.opacity = val,
         easings.linear,
       );
 
-      wait(0.6, () => {
+      wait(0.8, () => {
         mark.laserFlare.play('flash');
       });
       
       for (let n = 0; n < 2+getPhase(); n++) {
-        wait(0.6 + (0.45 - getPhase()*0.05) * n, () => {
+        wait(0.8 + (0.45 - getPhase()*0.05) * n, () => {
           for (let i = 0; i < 2; i++) {
             let eye = markEyes()[i];
             add([
@@ -902,20 +902,20 @@ scene('game', () => {
         });
       };
 
-      let laserFinishTime = 0.6 + (0.45 - getPhase()*0.05) * (2+getPhase());
+      let laserFinishTime = 0.8 + (0.45 - getPhase()*0.05) * (2+getPhase());
 
       wait(laserFinishTime, () => {
         mark.laserFlare.play('primed'); 
         
         tween(
           1, 0,
-          0.2,
+          0.2\3,
           (val) => mark.laserFlare.opacity = val,
           easings.linear,
         );
       });
       
-      wait(laserFinishTime + 0.7 + markAttackExtraDelay(), markAttack);
+      wait(laserFinishTime + 0.75 + markAttackExtraDelay(), markAttack);
     } else if (curAttack == 1) {
       // MINI MARK
 
