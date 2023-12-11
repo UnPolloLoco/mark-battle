@@ -901,7 +901,7 @@ scene('game', () => {
       wait(laserFinishTime, () => {
         mark.laserFlare.play('primed'); 
       });
-      wait(laserFinishTime + 0.3, () => {
+      wait(laserFinishTime + 0.15, () => {
         mark.laserFlare.opacity = 0; 
       });
       
