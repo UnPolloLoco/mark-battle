@@ -909,7 +909,7 @@ scene('game', () => {
         
         tween(
           1, 0,
-          0.2\3,
+          0.3,
           (val) => mark.laserFlare.opacity = val,
           easings.linear,
         );
