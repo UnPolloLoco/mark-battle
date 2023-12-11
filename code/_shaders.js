@@ -90,12 +90,13 @@ loadShader("perish", null, `
 		vec4 c = def_frag();
 		float blur = time * 0.013;
   
-		vec4 t1 = texture2D(tex, uv + vec2(blur, 0));
-		vec4 t2 = texture2D(tex, uv - vec2(blur, 0));
-		vec4 t3 = texture2D(tex, uv + vec2(0, blur));
-		vec4 t4 = texture2D(tex, uv - vec2(0, blur));
+		vec4 t1 = 0.5* texture2D(tex, uv + vec2(blur, 0));
+		vec4 t2 = 0.5* texture2D(tex, uv - vec2(blur, 0));
 
-		vec4 blurred = (c+c + t1+t2+t3+t4) / 6.0;
+		vec4 t3 = texture2D(tex, uv + vec2(blur/2.0, 0));
+		vec4 t4 = texture2D(tex, uv - vec2(blur/2.0, 0));
+
+		vec4 blurred = (c+c + t1+t2+t3+t4) / 5.0;
 
 		float light = (blurred.r + blurred.g + blurred.b) / 3.0;
 		light *= 2.5 - (time * 1.6) - (0.4 * distance(uv, vec2(0.5)));
@@ -104,6 +105,9 @@ loadShader("perish", null, `
 		return darkened;
 	} 
 `)
+
+// old perish shader
+// https://kaboomjs.com/play?example=add&code=eJx9VVFv4zYMfo5%2FBZGX2o2XpEnvMKzrgMPucC8DNuCwp2HYKTZja7UlQ1LSBof%2B932UnNZFuwOCWKLIjxTFj1yt6ENda9NQo3omu%2FuXq%2BApWPKVYzZZtlrRl6BcIEV3amdtHzWztM6LqPCbVTXO%2FeB0YFLec6C9g%2Bo8ifxqx8osB9PMS7rXoaXQMhnxOJeTedYB4UvUzZOkpPnqlXHxQq9prQ%2BnF5pJNOom5VbV7PL5wE77Fsrm0HUlfc1mB6P31vW0h1qgoHu%2BySibHbm6RvCqybHa0GB9SXF1OMbFNVW2s64kr%2FqhY7f5SIEfCvqWzZJtRbdU8%2F6fiFHcQJw87LqDw5E4oktaL9dXWziks1m4kkN%2BCAfHm485ViVc0iI6z8W4pHUR8ZL%2B5k39H%2F5Xf%2Fs9%2FHUZ45vqX38Pf6J%2FNpC94xpWebWoAByuFmGzCNtFuC5oRe%2BX66icstHppg2iO5otHSzO62ay3ontVmxns2R0eUub5TtEko%2B5vFq%2BL2S7Xl5jV2sflKk4Hx8MwS7fFZOb1crdsYmRyj6PqCW9%2FFRLFS3wc4wcmCczSB8p%2Byr1hTLvlA%2B%2Fdrq6AxpiPHj%2BAyX4ab8Hj%2FKLVHUXJeUF3f5C%2BTc894VEffFTLIRc4n6GyB6LQvj0geafhRy%2FRzrOSftImJ3yuiLUbSC7JzZBhxNpM%2FJSDD9PSawco1Z7VDDuGukYdwaGXpQ%2Fqap9FlGjjwyjaSOgil1Q8FCpQe10p4NmHxmv6hqxC9P7XffKLDpTSKWPkT67JWVqsZUGIwYlpeSm%2Bznes2M8nRiJYIKZVdYAbejUiYVGEsBf2cxPe0ZREhGCG4XF5HK9ukOUSBzw0Q8Q%2BVO%2FymbIUH61QUn%2FuI4QEUSExav0AAEHyIM1JanOWzyDihno7ZF7KGYzZ4OC%2BzNWghuFbyLGMyBmM9Rta9GtKpyzkwtJrpNwaor%2Bog2nrA36aCUqDXmOA3XoUgefB4sGtQ9ohX%2BnPr205s%2BhTnFoyUDPobU1WYO7dC9GQJmS1eAJ2cm7ER%2FFc2hBXnfAi2HvTtIpMQ3SszzDp3JHSxSnyjQdJ3%2BDs6AEqhaLo65Rl7vTG6kpqUUh0D1f4F8bTCLJrEwpuXDCgyHeDJloMKc8AZY8o0jqkuqQ7ifKsUVwpwYhgddSXMK3FLeQJxl5VEG6Q0Jf3Eb0y4gFWmaZNZGjz1ebMj9x%2BSYqruJIpR7PoJH%2FF1nNMHEol76hY7%2FA52fa4rNYyASJ%2BWrQZJySOUoOdAGT0tvikcaZLFr3ug6tUBCEall6Fjapop6YUyMq42NhJfY8wKlgSvseAYrz2WlydgbEbWYj0Z6YNk7dooRMOIKxcJKNlNhj9h%2BQT5zq
 
 loadShader("un-perish", null, `
 	uniform float time;
