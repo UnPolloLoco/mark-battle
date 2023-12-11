@@ -867,7 +867,13 @@ scene('game', () => {
       // LASERS
 
       mark.laserFlare.play('primed');
-      mark.laserFlare.opacity = 1;
+
+      tween(
+        0, 1,
+        0.5,
+        (val) => mark.laserFlare.opacity = val,
+        easings.linear,
+      );
 
       wait(0.6, () => {
         mark.laserFlare.play('flash');
