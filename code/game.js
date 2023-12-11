@@ -906,9 +906,13 @@ scene('game', () => {
 
       wait(laserFinishTime, () => {
         mark.laserFlare.play('primed'); 
-      });
-      wait(laserFinishTime + 0.15, () => {
-        mark.laserFlare.opacity = 0; 
+        
+        tween(
+          1, 0,
+          0.2,
+          (val) => mark.laserFlare.opacity = val,
+          easings.linear,
+        );
       });
       
       wait(laserFinishTime + 0.7 + markAttackExtraDelay(), markAttack);
