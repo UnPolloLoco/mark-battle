@@ -127,12 +127,23 @@ loadShader("un-perish", null, `
 		vec4 c = def_frag();
 		float blur = max(0.0, time * 0.013);
   
-		vec4 t1 = texture2D(tex, uv + vec2(blur, 0));
-		vec4 t2 = texture2D(tex, uv - vec2(blur, 0));
-		vec4 t3 = texture2D(tex, uv + vec2(0, blur));
-		vec4 t4 = texture2D(tex, uv - vec2(0, blur));
+		vec4 total = vec4(0.0);
+		float divisor = 0.0;
+		for (float i = 0.0; i < 7.0; i += 1.0) {
+			float s = -1.0;
+			for (int j = 0; j < 2; j++) {
+				float mult = (1.0 - i*0.1);
+			
+				total += mult * texture2D(
+					tex, uv + s*vec2(blur * i/6.0, 0)
+				);
+				divisor += mult;
 
-		vec4 blurred = (c+c + t1+t2+t3+t4) / 6.0;
+				s += 2.0;
+			}
+		}
+
+		vec4 blurred = total / divisor;
 
 		float light = (blurred.r + blurred.g + blurred.b) / 3.0;
 		light *= 1.0 - (time * 0.6) - (0.4 * distance(uv, vec2(0.5)));
@@ -141,6 +152,9 @@ loadShader("un-perish", null, `
 		return mix(blurred, darkened, min(1.0, max(0.0, time * 1.6)));
 	} 
 `);
+
+// old un-perish
+// https://kaboomjs.com/play?example=add&code=eJx9VW1v20YM%2Fmz9CsJfIsWq35IVw7IMKNaiXwpsQLFPRbGeJVq6RboT7s5OjCL%2FfQ%2FvbEdZsgKGdS%2FkQx7Jh1ws6F1da9NQo3omu%2FmHq%2BApWPKVYzZZtljQ56BcIEV3amNtHyWztM6LKPDJqhr3fnA6MCnvOdDWQXSajvxiw8rMB9NMS7rXoaXQMhmxOJWbadYB4XOUzdNJSdPFC%2BXimVzTWh8OzyTT0VE2CbeqZpdPd%2BbNwE77FvJm13UlfcsmO6O31vW0hWSgoHu%2BySib7Lm6hv%2BqybFa02B9SXG128fFNVW2s64kr%2FqhY7d%2BT4EfCvqeTZJuRbdU8%2FbviFHc4DhZ2HQ7h6tePeTL%2BbKMFumSsF5dQYzoBBBWEANm2Dlev8%2BxKmGcZtGNXGBKWhYROcmvX5V%2F87%2FyVz%2FCh2eiMpa%2F%2FhH%2BSP6kIHvHNbTyalYBOKxmYT0LV7NwXdCC3s6XUTjFpdNNG0T2qDZ30Ditm9F6I7pXojuZJKXLW1rNl%2FAkPwfzbSHb5fwau1r7oEzF%2BTF1cHb%2BUzF6Wa3cHZvoqezziFrS8081V1EDP8eIgaFeP5ycLc8YJY5NvpLM%2FjfFK3gVrT5S9k3ilHXgSKd8%2BL3T1R2s4007z3%2Bifj9styBhfnEu2YuS8oJuf6P8OyrkQiAvfhHI07NzefETWJE9FoXw8h1NPwrJ%2Foi0npL2kXgb5XVFKP5Adktsgg4H0ubIb1H8OG4GyjEKvgcNEKZI67gzUPQi%2FEFV7dMRNXrPUBo3FKrYBQULlRrURnc6aPaxc6i6hvPSMfpN90ItGlPIgo%2BePpklZWrRlUYlCiWlvKT3Od6yY2RdlORghJlV1gBt6NSBhYviwJds4se9pyiJCM4dD4vR43p1By8ROOCjr8Dzc9%2FLJohQvloj6T8vI0QEkcPiRXiAgAvEwZqSVOct0qBiBHq75x6C2cTZoGD%2BhJXgjoevIsY7IGYTlHxr0fUq3LOTB0ms0%2BFYFU1KG05RG%2FTeilca5zku1K5Lk2AaLLrcNqClfk39fm7NX0Od%2FNASgZ5Da2uyBm%2Fpno2SMgWrQQrZSd6I92I5tOC92yFj2LuDtFtMlZSWJ%2FhU9uirYlSZpuNkb3AW1EDVYrHXNepyc3glNCW1KAS65wv8a4OJJpGVaScPTnhQRM4QiQbzzhNgyTOKRHgd0vtEOPKYOzUICbyW4hLCJb%2BFPEnJowrSGxL67DaiX0Ys0DLLrIkkfXrauAkkMt9EwUUczdQjDRrxfxbVDGOLcmkhOrYOfH6lK3xmMxlDMV4NWpJTMo%2FJgS5gUsotknSc7SJ1r%2BvQCgVBqJal3WGTKurMnBpeGR8LK7HnAUYFUzr%2FEaA43R1GdydAvGZyJNqZacfpXZQ4E45gohxkIyX2mP0LFX2vwg%3D%3D
 
 loadShader('butterflySpawn', null, `
   uniform float time;
