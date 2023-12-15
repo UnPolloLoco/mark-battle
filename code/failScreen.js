@@ -64,6 +64,7 @@ scene('fail', (gameScore) => {
     ),
     anchor('right'),
     z(1),
+    area()
   ])
   
   // restart button
@@ -77,6 +78,7 @@ scene('fail', (gameScore) => {
     ),
     anchor('right'),
     z(1),
+    area()
   ])
 
   restartButton.onClick(() => {
