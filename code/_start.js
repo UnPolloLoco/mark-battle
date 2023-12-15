@@ -40,7 +40,7 @@ loadFont('titillium', 'fonts/TitilliumWeb.ttf');
 loadFont('itim', 'fonts/Itim.ttf');
 
 
-loadSpriteAtlas('failScreenButtons', 'https://placehold.co/1000x500/png', {
+loadSpriteAtlas('https://placehold.co/1000x500/png', {
   failHomeButton: {
     x: 0, y: 0,
     width: 500, height: 500
