@@ -3,6 +3,8 @@ scene('fail', (gameScore) => {
  
   let deathScreenEnterTime = time();
 
+  // background
+  
   add([
   	rect(width(), height()),
   	pos(0,0),
@@ -12,6 +14,8 @@ scene('fail', (gameScore) => {
   	})),
     z(-1),
   ]);
+
+  // main text
   
   add([
     text('WALLOPED', { 
@@ -49,7 +53,35 @@ scene('fail', (gameScore) => {
     ]);
   };
 
+  // home button
 
+  const homeButton = add([
+    sprite('failHomeButton'),
+    scale(SCALE/500),
+    pos(
+      width()/2 + SCALE/2, 
+      height()/2 + SCALE*3/4
+    ),
+    anchor('right'),
+    z(1),
+  ])
+  
+  // restart button
+
+  const restartButton = add([
+    sprite('failRestartButton'),
+    scale(SCALE/500),
+    pos(
+      width()/2 + SCALE*11/6, 
+      height()/2 + SCALE*3/4
+    ),
+    anchor('right'),
+    z(1),
+  ])
+
+  restartButton.onClick(() => {
+    go('game');
+  });
   
 
   usePostEffect('un-perish', () => ({
