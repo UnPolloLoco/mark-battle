@@ -57,7 +57,7 @@ scene('fail', (gameScore) => {
 
   const homeButton = add([
     sprite('failHomeButton'),
-    scale(SCALE/500),
+    scale(SCALE/500 * 0.9),
     pos(
       width()/2 + SCALE/4, 
       height()/2 + SCALE*3/4
@@ -73,7 +73,7 @@ scene('fail', (gameScore) => {
     sprite('failRestartButton'),
     scale(SCALE/500 * 0.9),
     pos(
-      width()/2 + SCALE*18/12, 
+      width()/2 + SCALE*16/12, 
       height()/2 + SCALE*3/4
     ),
     anchor('left'),
@@ -84,6 +84,8 @@ scene('fail', (gameScore) => {
   restartButton.onClick(() => {
     go('game');
   });
+
+
   
 
   usePostEffect('un-perish', () => ({
