@@ -44,7 +44,7 @@ scene('fail', (gameScore) => {
         align: 'right'
       }),
       pos(
-        width()/2 - SCALE/2, 
+        width()/2 - SCALE/4, 
         height()/2 + yPosAdd
       ),
       anchor('right'),
@@ -59,10 +59,10 @@ scene('fail', (gameScore) => {
     sprite('failHomeButton'),
     scale(SCALE/500),
     pos(
-      width()/2 + SCALE/2, 
+      width()/2 + SCALE/4, 
       height()/2 + SCALE*3/4
     ),
-    anchor('right'),
+    anchor('left'),
     z(1),
     area()
   ])
@@ -71,12 +71,12 @@ scene('fail', (gameScore) => {
 
   const restartButton = add([
     sprite('failRestartButton'),
-    scale(SCALE/500),
+    scale(SCALE/500 * 0.9),
     pos(
-      width()/2 + SCALE*11/6, 
+      width()/2 + SCALE*18/12, 
       height()/2 + SCALE*3/4
     ),
-    anchor('right'),
+    anchor('left'),
     z(1),
     area()
   ])
