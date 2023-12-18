@@ -732,51 +732,66 @@ scene('game', () => {
   });
 
 
-  // keyboard jump
-  
-  onKeyDown("w", () => {
-    if (player.isGrounded()) {
-      if (player.isEgged) {
-			  player.jump(JUMP_SPEED * EGG_JUMP_SLOWDOWN);
-      } else {
-			  player.jump(JUMP_SPEED); // normal
-      };
-		};
-  });
-
-
 
   // keyboard movement
+  
   if (!TOUCH) {
+
+    // jump
+    
+    onKeyDown("w", () => {
+      if (player.isGrounded() && !PHASE_STATUS.cutscene) {
+        if (player.isEgged) {
+  			  player.jump(JUMP_SPEED * EGG_JUMP_SLOWDOWN);
+        } else {
+  			  player.jump(JUMP_SPEED); // normal
+        };
+  		};
+    });
+
+    // left
+    
   	onKeyDown("a", () => {
-      player.xVel = Math.max(
-        -RUN_SPEED,
-        player.xVel - RUN_SPEED * dt() * (
-          player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
-        )
-      );
+      if (!PHASE_STATUS.cutscene) {
+        player.xVel = Math.max(
+          -RUN_SPEED,
+          player.xVel - RUN_SPEED * dt() * (
+            player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+          )
+        );
+      };
   	});
 
+    // right
+
 	  onKeyDown("d", () => {
-      player.xVel = Math.min(
-        RUN_SPEED,
-        player.xVel + RUN_SPEED * dt() * (
-          player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
-        )
-      );
+      if (!PHASE_STATUS.cutscene) {
+        player.xVel = Math.min(
+          RUN_SPEED,
+          player.xVel + RUN_SPEED * dt() * (
+            player.isGrounded() ? GROUND_FRICTION : AIR_FRICTION
+          )
+        );
+      };
   	});
 
     // keyboard attack
+    
     onKeyPress('space', () => {
-      beanAttack();
+      if (!PHASE_STATUS.cutscene) beanAttack();
     });
 
   };
 
-  // touchscreen attack
+  
   let lastClick = -1;
+  
+  
   onClick(() => {
-    if (isTouchscreen() && timeReal() - lastClick < 0.2) {
+    
+    // touchscreen attack
+    
+    if (isTouchscreen() && timeReal() - lastClick < 0.2 && !PHASE_STATUS.cutscene) {
       beanAttack();
     };
     
@@ -1319,25 +1334,29 @@ scene('game', () => {
   ////////////////////
 
   // touch jump 
+  
   let touchJumpCheck = SCALE * -5;
   if (TOUCH) {
     loop(0.05, () => {
-      let fixedMousePos = mousePos().y - canvas.getBoundingClientRect().top;
-      if (fixedMousePos < touchJumpCheck - SCALE*1 && player.isGrounded()) {
-        if (player.isEgged) {
-  			  player.jump(JUMP_SPEED * EGG_JUMP_SLOWDOWN);
-        } else {
-  			  player.jump(JUMP_SPEED); // normal
+      if (!PHASE_STATUS.cutscene) {
+        let fixedMousePos = mousePos().y - canvas.getBoundingClientRect().top;
+        if (fixedMousePos < touchJumpCheck - SCALE*1 && player.isGrounded()) {
+          if (player.isEgged) {
+    			  player.jump(JUMP_SPEED * EGG_JUMP_SLOWDOWN);
+          } else {
+    			  player.jump(JUMP_SPEED); // normal
+          };
         };
+        touchJumpCheck = fixedMousePos;
       };
-      touchJumpCheck = fixedMousePos;
     });
   };
   
   onUpdate(() => {
   if (!GAME_STATUS.paused) {
     // touch movement
-    if (TOUCH) {
+    if (TOUCH && !PHASE_STATUS.cutscene) {
+      
       if (isMouseDown()) {
         if ((mousePos().x - canvas.getBoundingClientRect().left) < player.pos.x) {
           player.xVel = Math.max(
@@ -1355,6 +1374,7 @@ scene('game', () => {
           );
         };
       };
+      
     };
 
     //////////////////////////
@@ -1870,10 +1890,13 @@ scene('game', () => {
     function setupPhaseChangeCutscene() {
       PHASE_STATUS.phase += 1;
       PHASE_STATUS.cutscene = true;
-      
-      phaseChangeCutscene();
+
+      setUIOpacity(0);
+      clearMarkSpawns();
+      blackScreenTransition(phaseChangeCutscene);
     }
-    
+
+    ////
 
     function phaseChangeCutscene() {
       mark.frame = Math.min(3, getPhase() - 1);
@@ -1881,14 +1904,17 @@ scene('game', () => {
         mark.opacity = 0;
       };
 
-      endPhaseChangeCutscene();
+      wait(0.7, endPhaseChangeCutscene);
     };
-    
+
+    ////
 
     function endPhaseChangeCutscene() {
       PHASE_STATUS.cutscene = false;
+      setUIOpacity(1);
     }
-    
+
+    ////
 
     if (getPhase() != PHASE_STATUS.phase) {
       phaseChangeCutscene();
