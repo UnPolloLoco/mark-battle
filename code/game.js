@@ -1917,7 +1917,7 @@ scene('game', () => {
     ////
 
     if (getPhase() != PHASE_STATUS.phase) {
-      phaseChangeCutscene();
+      setupPhaseChangeCutscene();
     }
 
     /////////////////
