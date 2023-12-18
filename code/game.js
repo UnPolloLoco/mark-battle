@@ -731,10 +731,6 @@ scene('game', () => {
     clearMarkSpawns();
   });
 
-  onKeyDown('l', () => {
-    debug.timeScale = (debug.timeScale == 1 ? 0.25 : 1);
-  });
-
 
   // keyboard jump
   
