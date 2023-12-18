@@ -1932,6 +1932,9 @@ scene('game', () => {
       
       wait(0.8, () => {
         t.cancel();
+
+        camPos(center());
+        
         tween(
           1.3, 1, 0.5,
           (val) => camScale(val),
