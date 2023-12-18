@@ -1888,7 +1888,7 @@ scene('game', () => {
     ///////////////////////
 
     function setupPhaseChangeCutscene() {
-      PHASE_STATUS.phase += 1;
+      PHASE_STATUS.activePhase += 1;
       PHASE_STATUS.cutscene = true;
 
       setUIOpacity(0);
@@ -1916,7 +1916,7 @@ scene('game', () => {
 
     ////
 
-    if (getPhase() != PHASE_STATUS.phase) {
+    if (getPhase() != PHASE_STATUS.activePhase) {
       setupPhaseChangeCutscene();
     }
 
