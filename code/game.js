@@ -1894,7 +1894,7 @@ scene('game', () => {
       setUIOpacity(0);
       clearMarkSpawns();
 
-      wait(0.5, () => {
+      wait(0.25, () => {
         blackScreenTransition(phaseChangeCutscene);
       });
     }
