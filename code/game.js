@@ -130,7 +130,7 @@ scene('game', () => {
 
   ////
 
-  function blackScreenTransition() {
+  function blackScreenTransition(func) {
   	for (let i = 0; i <= 1; i++) {
   		wait(0.3*i, () => {
   			tween(
@@ -140,6 +140,8 @@ scene('game', () => {
   			);
   		});
   	};
+
+    if (func != undefined) wait(0.3, () => { func(); });
   };
 
   ////
