@@ -731,8 +731,11 @@ scene('game', () => {
     clearMarkSpawns();
   });
 
-  onKeyPress('k', () => { debug.paused = !debug.paused; });
-  onKeyPress('l', () => { debug.stepFrame(); });
+  debug.timeScale = 1;
+  onKeyDown('l', () => {
+    debug.timeScale = 0.25;
+  });
+
 
   // keyboard jump
   
