@@ -1894,8 +1894,22 @@ scene('game', () => {
       setUIOpacity(0);
       clearMarkSpawns();
 
-      wait(0.25, () => {
-        blackScreenTransition(phaseChangeCutscene);
+      wait(0.3, () => {
+        blackScreenTransition(() => {
+          player.xVel = 0;
+          player.pos = vec2(
+            width()/2,
+            height() - SCALE
+          );
+
+          mark.movementTween.cancel();
+          mark.pos = vec2(
+            width()/2,
+            SCALE*2
+          );
+          
+          phaseChangeCutscene();
+        });
       });
     }
 
