@@ -731,9 +731,8 @@ scene('game', () => {
     clearMarkSpawns();
   });
 
-  debug.timeScale = 1;
   onKeyDown('l', () => {
-    debug.timeScale = 0.25;
+    debug.timeScale = (debug.timeScale == 1 ? 0.25 : 1);
   });
 
 
