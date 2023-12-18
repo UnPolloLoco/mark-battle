@@ -1894,7 +1894,7 @@ scene('game', () => {
       setUIOpacity(0);
       clearMarkSpawns();
 
-      wait(0.3, () => {
+      wait(0.8, () => {
         blackScreenTransition(() => {
           player.xVel = 0;
           player.pos = vec2(
@@ -1908,6 +1908,11 @@ scene('game', () => {
             SCALE*2
           );
           
+          mark.frame = Math.min(3, getPhase() - 1);
+          if (getPhase() == 5) {
+            mark.opacity = 0;
+          };
+          
           phaseChangeCutscene();
         });
       });
@@ -1916,12 +1921,25 @@ scene('game', () => {
     ////
 
     function phaseChangeCutscene() {
-      mark.frame = Math.min(3, getPhase() - 1);
-      if (getPhase() == 5) {
-        mark.opacity = 0;
-      };
+      camPos(mark.pos);
+      camScale(2.5);
 
-      wait(0.7, endPhaseChangeCutscene);
+      let t = tween(
+        2.5, 2, 0.8,
+        (val) => camScale(val),
+        easings.linear
+      );
+      
+      wait(0.8, () => {
+        t.cancel();
+        tween(
+          1.3, 1, 0.5,
+          (val) => camScale(val),
+          easings.easeOutCubic
+        );
+      });
+
+      wait(1.5, endPhaseChangeCutscene);
     };
 
     ////
