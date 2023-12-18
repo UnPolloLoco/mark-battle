@@ -731,6 +731,9 @@ scene('game', () => {
     clearMarkSpawns();
   });
 
+  onKeyPress('k', () => { debug.paused = !debug.paused; });
+  onKeyPress('l', () => { debug.stepFrame(); });
+
   // keyboard jump
   
   onKeyDown("w", () => {
