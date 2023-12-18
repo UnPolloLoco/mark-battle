@@ -126,6 +126,20 @@ scene('game', () => {
     redDamageOverlay.opacityAlt = 0.7;
   };
 
+  ////
+
+  function blackScreenTransition() {
+  	for (let i = 0; i <= 1; i++) {
+  		wait(0.3*i, () => {
+  			tween(
+  				i, 1-i, 0.3,
+  				(val) => blackOverlay.opacity = val,
+  				easings.easeInOutSine
+  			);
+  		});
+  	};
+  };
+
   
   ////////////////////////////////
   // background + scene effects //
@@ -205,6 +219,17 @@ scene('game', () => {
     {
       opacityAlt: 0,
     }
+  ]);
+
+  ////
+
+  const blackOverlay = add([
+  	rect(width(), height()),
+  	pos(0,0),
+    fixed(),
+  	color(BLACK),
+  	z(1000),
+  	opacity(0),
   ]);
 
   ///////////////////////////////////////
