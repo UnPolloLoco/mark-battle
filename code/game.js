@@ -66,7 +66,9 @@ scene('game', () => {
   ////
 
   function pauseToggle(override) {
-    if (!GAME_STATUS.lost) {
+    // check if ANY of the function is run
+    if (!GAME_STATUS.lost && !PHASE_STATUS.cutscene) {
+      
       if (override == undefined) {
         GAME_STATUS.paused = !GAME_STATUS.paused;
       } else {
@@ -140,21 +142,22 @@ scene('game', () => {
   	};
   };
 
+  ////
+
+  function setUIOpacity(num) {
+    get('ui').forEach((ui) => {
+      tween(
+        1-num, num, 0.3,
+        (val) => ui.opacity = val,
+        easings.easeInOutSine
+      );
+    });
+  };
+
   
   ////////////////////////////////
   // background + scene effects //
   ////////////////////////////////
-  
-  /*add([
-    pos(0,0),
-    rect(width(), height()),
-    fixed(),
-    color(rgb(50,50,50)),
-    shader('light', () => ({
-      'tint': getShaderTint(),
-  	})),
-    z(Z.bg),
-  ]);*/
 
   // main background image
   add([
@@ -531,6 +534,7 @@ scene('game', () => {
     color(BLACK),
     z(Z.ui - 2),
     "playerHealthBar",
+    "ui",
   ]);
 
   const playerHealthBar = add([
@@ -540,6 +544,7 @@ scene('game', () => {
     z(Z.ui - 1),
     "playerHealthBar",
     "phbColor",
+    "ui",
   ]);
   
   // slash
@@ -627,6 +632,7 @@ scene('game', () => {
     z(Z.ui),
     sprite('healthBarShade'),
     scale(SCALE/600 * 10),
+    "ui",
   ]);
   
   // empty health bar
@@ -637,6 +643,7 @@ scene('game', () => {
     color(rgb(15,15,15)),
     z(Z.ui),
     fixed(),
+    "ui",
   ]);
   
   // colored part
@@ -647,6 +654,7 @@ scene('game', () => {
     color(rgb(140, 0, 240)),
     z(Z.ui),
     fixed(),
+    "ui",
   ]);
 
   // name shadow
@@ -656,6 +664,7 @@ scene('game', () => {
     z(Z.ui),
     sprite('nameShade'),
     scale(SCALE/600 * 10),
+    "ui",
   ]);
   
   // the name of the evil guy of evilness himself
@@ -670,6 +679,7 @@ scene('game', () => {
     color(WHITE),
     z(Z.ui),
     fixed(),
+    "ui",
   ]);
 	
   /////////////
