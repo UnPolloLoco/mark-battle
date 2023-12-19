@@ -1908,11 +1908,6 @@ scene('game', () => {
             SCALE*2
           );
           
-          mark.frame = Math.min(3, getPhase() - 1);
-          if (getPhase() == 5) {
-            mark.opacity = 0;
-          };
-          
           phaseChangeCutscene();
         });
       });
@@ -1948,6 +1943,11 @@ scene('game', () => {
     ////
 
     function endPhaseChangeCutscene() {
+      mark.frame = Math.min(3, getPhase() - 1);
+      if (getPhase() == 5) {
+        mark.opacity = 0;
+      };
+      
       PHASE_STATUS.cutscene = false;
       setUIOpacity(1);
     }
