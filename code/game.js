@@ -1888,6 +1888,11 @@ scene('game', () => {
     ///////////////////////
 
     function setupPhaseChangeCutscene() {
+      if (true) {
+        phaseChangeCutscene();
+        return;
+      };
+      
       PHASE_STATUS.activePhase += 1;
       PHASE_STATUS.cutscene = true;
 
@@ -1916,6 +1921,11 @@ scene('game', () => {
     ////
 
     function phaseChangeCutscene() {
+      if (true) {
+        endPhaseChangeCutscene();
+        return;
+      };
+      
       camPos(mark.pos);
       camScale(2.5);
 
@@ -1944,6 +1954,10 @@ scene('game', () => {
     ////
 
     function endPhaseChangeCutscene() {
+      if (true) {
+        return;
+      };
+      
       mark.frame = Math.min(3, getPhase() - 1);
       if (getPhase() == 5) {
         mark.opacity = 0;
