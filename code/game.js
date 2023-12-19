@@ -1920,12 +1920,12 @@ scene('game', () => {
       camScale(2.5);
 
       let t = tween(
-        2.5, 2, 0.8,
+        2.5, 2, 1.5,
         (val) => camScale(val),
         easings.linear
       );
       
-      wait(0.8, () => {
+      wait(1.5, () => {
         t.cancel();
 
         camPos(center());
@@ -1935,9 +1935,10 @@ scene('game', () => {
           (val) => camScale(val),
           easings.easeOutCubic
         );
+        
+        wait(0.8, endPhaseChangeCutscene);
       });
 
-      wait(1.5, endPhaseChangeCutscene);
     };
 
     ////
