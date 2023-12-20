@@ -1888,7 +1888,7 @@ scene('game', () => {
     ///////////////////////
 
     function setupPhaseChangeCutscene() {
-      if (true) {
+      if (!true) {
         phaseChangeCutscene();
         return;
       };
@@ -1921,7 +1921,7 @@ scene('game', () => {
     ////
 
     function phaseChangeCutscene() {
-      if (true) {
+      if (!true) {
         endPhaseChangeCutscene();
         return;
       };
@@ -1954,7 +1954,7 @@ scene('game', () => {
     ////
 
     function endPhaseChangeCutscene() {
-      if (true) {
+      if (!true) {
         return;
       };
       
